@@ -1,6 +1,8 @@
 ## TITLE: the gale string problem for equilibrium computation in games ##
 
 
+ABSTRACT
+
 * more introduction (all concepts well explained)
 * This thesis presents a report on an original research result, published in ENDM (year);
 this typically would constitute a chapter of a PhD thesis. and related results
@@ -8,12 +10,17 @@ this typically would constitute a chapter of a PhD thesis. and related results
 IMPORTANT: always explain WHY
 
 
-NE --> polytopes --> SC: cyclic --> GALE --> P, via PM (*)
+NE --> polytopes --> SC: cyclic --> GALE (*) --> P, via PM
    --> PPAD --> sign/orientation [& (*)] —-> sign of PM/GALE/equilibria
 
 GALE // polytopes in pivoting.
 
 Mention oik (VvS), but remember that it's not the main point (that's GALE)
+
+
+#### Abstract
+* for request: cut PPAD (first paragraph)
+* **on thesis**: no more than 300 words
 
 INTRO
 
