@@ -1,0 +1,94 @@
+\documentclass[preprint,12pt]{article}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{example}[1][Example]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{remark}[1][Remark]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+
+
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+
+\include{pstricks}
+\include{cases}
+
+
+\begin{document}
+
+\title{The Gale String Problem for Equilibrium Computation in Games}
+
+\begin{abstract}
+
+At most 300 words!
+
+\end{abstract}
+
+\section*{Introduction}
+
+What, why and how
+
+\section{Bimatrix games}
+
+The game theoretic part (i.e., why), from NE to LH
+
+\subsection{Basic definitions}
+
+basic definitions: see section 2 in ge; improved version of thm 2.1 in ge is found in Prop 1 in VvS (general, not just cyclic)
+
+\subsection{Cyclic best response polytopes and Gale strings}
+
+The background of the main result
+
+\subsection{Exponential running time of Lemke-Howson}
+
+SvS (include in subsection above)
+
+\section{The complexity of \textsc{Completely labeled Gale string} and \textsc{Another completely labeled Gale string}}
+
+[why not call them GALE and ANOTHER GALE?]
+
+reduction to Perfect matching; both problems are in P
+
+\section{}
+
+PPAD, LH, orientation, sign... (what follows, in JM, VvS)
+
+oiks, in general: cite, but it's not the main point...
+
+Open problems?
+
+% To cite in body
+% \cite{ref}
+% Bibliography
+% \begin{thebibliography}{00}
+% \bibitem{ref} Referenced text
+% \end{thebibliography}
+
+\end{document}
