@@ -1,0 +1,71 @@
+\documentclass[preprint,12pt]{article}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{example}[1][Example]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{remark}[1][Remark]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+
+
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+
+\include{pstricks}
+\include{cases}
+
+
+\begin{document}
+
+\title{Finding Gale Strings}
+
+\begin{abstract}
+
+The pivoting technique employed by the classical Lemke-Howson algorithm for finding a Nash equilibrium of a bimatrix game has been a major motivation for the definition o the complexity class PPAD \cite{ppad}. Daskalakis, Goldberg and Papaditrimiou \cite{dgp} and Chen and Deng \cite{chendeng} later proved that finding a Nash equilibrium is PPAD-compete for any normal form game. The proof employed a long reduction of a discrete version of the search problem associated with Brouwer's fixed point theorem to a reduction to \textsc{Nash} for a particular class of games.
+
+Savani and von Stengel \cite{svs} proved that the Lemke-Howson algorithm exhibits a exponential running time for a particular class of bimatrix games. These are games are characterised by a cyclic best response polytope. The best response polytope and the Nash equilibria of the game can also be represented by a string of labels and an associated string of 0s and 1s satisfying a set of conditions called the \textit{Gale evenness condition}. This result led to conjecture that this particular class of games could be used for a more immediate proof of PPAD-completeness.
+
+Our result, co-authored with Merschen and von Stengel \cite{cmvs}, proves that \textsc{Nash} for these games is polynomially solvable, thus making the conjecture of PPAD-completeness less likely to be true. This is achieved exploiting the correspondence between the equilibria of the games and the Gale strings, and through a reduction to the \textsc{perfect matching} problem, proved to be polynomially solvable by Edmonds \cite{edpm}.
+
+All the pivoting results can be further analysed in the framework  \textit{Euler complexes}, or \textit{oiks}, introduced by Edmonds \cite{edoik}. V\'{e}gh and von Stengel \cite{vvs} have introduced a general definition of \textit{pivoting system} to deal with \textit{orientation} in oiks. An application to perfect matchings in Euler graphs allows to find in polynomial time a Nash equilibrium of given \textit{sign} in the games corresponding to Gale Strings, a question left open by our article.
+
+\end{abstract}
+
+[332 words, 324 without citations (but maybe: year?)]
+
+[\textbf{request}: about 300 words.  The text can be the same as that provided in the front pages of your thesis.  The abstract should be written in a manner accessible to non-subject experts and in plain English.]
+
+
+% To cite in body
+% \cite{ref}
+% Bibliography
+% \begin{thebibliography}{00}
+% \bibitem{ref} Referenced text
+% \end{thebibliography}
+
+\end{document}
