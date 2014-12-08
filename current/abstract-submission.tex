@@ -8,16 +8,19 @@
 
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
-This thesis presents a report on original research, published as conjoint work with Merschen and von Stengel in ENDM (2010). Our result shows a polynomial time algorithm to find a Nash equilibrium for a particular class of games. This class was previously used by Savani and von Stengel (2006) as an example of exponential time for the classical Lemke-Howson algorithm for bimatrix games.
-
-Our proof exploits the representation of the Nash equilibria of these games by a string of labels and an associated string of 0s and 1s, satisfying a set of conditions, called \text{completely labeled Gale strings}.
-
-Further results stemmed from our theorem... ()
-
-the pivoting technique employed by the Lemke-Howson algorithm has been a major motivation for the definition of the complexity class PPAD (Proof by Parity Argument, Directed version) by Papadimitriou (1994). Daskalakis, Goldberg and Papaditrimiou (2005) and Chen and Deng (2009) later proved that finding a Nash equilibrium is PPAD-compete for any normal form game. ---> THIS GOES, only idea of *direction*, that leads to orientation.
+This thesis presents a report on original research, published as conjoint work with Merschen and von Stengel in ENDM (2010). Our result shows a polynomial time algorithm to find a Nash equilibrium for a particular class of games, which was previously used by Savani and von Stengel (2006) as an example of exponential time for the classical Lemke-Howson algorithm (1964) for bimatrix games.
 
 
-All the pivoting results can be further analysed in the framework  \textit{Euler complexes}, or \textit{oiks}, introduced by Edmonds \cite{edoik}. V\'{e}gh and von Stengel \cite{vvs} have introduced a general definition of \textit{pivoting system} to deal with \textit{orientation} in oiks. An application to perfect matchings in Euler graphs allows to find in polynomial time a Nash equilibrium of given \textit{sign} in the games corresponding to Gale Strings, a question left open by our article.
+
+[sth about PPAD, which further explains why our result is important]
+, which was also a major motivation for the definition of the complexity class PPAD (Proof by Parity Argument, Directed version) by Papadimitriou (1994)
+
+
+Our proof exploits two results. The first one is the representation of the Nash equilibria of these games by a string of labels and an associated string of 0s and 1s satisfying some conditions, called \text{Gale conditions}, as seen in Savani and von Stengel (2006). The second one is the polynomial-time solvability of the problem of finding a perfect matching in a graph, solved by Edmonds (1965).
+
+Further results stemmed from our theorem solved the open problem of the \textit{sign} of the equilibrium found in polynomial time. These proofs analysed the pivoting technique employed by the Lemke-Howson algorithm in the framework of the Euler complexes introduced by Edmonds (2005).
+
+
 
 
 [\textbf{request}: about 300 words.  The text can be the same as that provided in the front pages of your thesis.  The abstract should be written in a manner accessible to non-subject experts and in plain English.]
