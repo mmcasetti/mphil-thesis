@@ -12,3 +12,4 @@ GALE // polytopes in pivoting - not so much! See: mention oik (VvS), but remembe
 #### Outline: see file
 
 thesis-outline.tex
+thesis-outline.md
