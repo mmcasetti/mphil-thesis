@@ -49,3 +49,7 @@ The framework provided by our result led to further questions, related to the
 issue of the *sign* of an index - and so on (Merschen, VvS)
 
 Open problems (?)
+
+## Appendix: Notation
+
+(People should know what a transpose is, but...)
