@@ -10,6 +10,10 @@ What, why and overview of tools used
 
 ## Basic definitions
 
+### Gale strings
+
+Definition
+
 ### Bimatrix games
 
 Nash Equilibria, Best response polytopes
@@ -21,9 +25,7 @@ Prop 1 in VvS (general, not just cyclic polytopes)
 
 The Lemke-Howson algorithm
 
-### Gale strings
-
-Definition, Lemke-Howson for Gale (SvS)
+Lemke-Howson for Gale (SvS)
 
 ### Pivoting and the class PPAD
 
