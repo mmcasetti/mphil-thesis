@@ -1,0 +1,102 @@
+\documentclass[preprint,12pt]{article}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{example}[1][Example]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+\newenvironment{remark}[1][Remark]
+{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}
+{\end{trivlist}}
+
+
+
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+
+\include{pstricks}
+\include{cases}
+
+\begin{document}
+
+\title{The Gale String Problem for Equilibrium Computation in Games}
+
+\begin{abstract}
+
+% Abstract for submission - version of 10/12
+
+This thesis presents a report on original research, published as conjoint work with Merschen and von Stengel in ENDM (2010). Our result shows a polynomial time algorithm to find a Nash equilibrium for a particular class of games, which was previously used by Savani and von Stengel (2006) as an example of exponential time for the classical Lemke-Howson algorithm for bimatrix games (1964).
+
+It was conjectured that solving these games via the Lemke-Howson algorithm was complete in the class $\mathbf{PPAD}$ (Proof by Parity Argument, Directed version). A major motivation for the definition of this class by Papadimitriou (1994) was, in turn, to capture the pivoting technique of many results related to the Nash equilibrium, including the Lemke-Howson algorithm. A $\mathbf{PPAD}$-completness proof of the games we consider would have provided a traceable proof of the Daskalakis, Goldberg and Papaditrimiou (2005) and Chen and Deng (2009) results about the $\mathbf{PPAD}$-completeness of every normal form game. Our result of polynomial-time solvability, on the other hand, indicates the existence of a special class of games, unless $\mathbf{PPAD} = \mathbf{P}$.
+
+Our proof exploits two results. The first one is the representation of the Nash equilibria of these games as a string of labels and an associated string of $0$s and $1$s satisfying some conditions, called \textit{Gale conditions}, as seen in Savani and von Stengel (2006). The second one is the polynomial-time solvability of the problem of finding a perfect matching in a graph, solved by Edmonds (1965).
+
+Further results by Merschen (2012) and V\'{e}gh and von Stengel (2014) stemmed from our theorem. These proofs analysed the pivoting technique of the Lemke-Howson algorithm in the framework of the \textit{Euler complexes} introduced by Edmonds (2005), and solved the open problem of the \textit{sign} of the equilibrium found in polynomial time.
+
+\end{abstract}
+
+
+\section{Introduction}
+
+What, why and overview of tools used
+
+
+\section{Basic definitions}
+
+\subsection{Bimatrix games}
+
+Nash Equilibria, Best response polytopes
+
+see section 2 in ENDM article; improved version of thm 2.1 can be found in Prop 1 in VvS (general, not just cyclic polytopes)
+
+\subsection{The Lemke-Howson algorithm}
+
+The Lemke-Howson algorithm
+
+\subsection{Gale strings}
+
+Definition, Lemke-Howson for Gale (SvS)
+
+\subsection{Pivoting and the class PPAD}
+
+touch on pivoting as one of the reasons to introduce PPA(D). *just give the def of directed*, the idea of pivoting + sign will be discussed in "further results" section. The focus is "why the main result is relevant"
+
+mention oiks, so you can later mention that EulG - as the ones used for MAIN are oik. Again: not too much.
+
+
+\section{The complexity of \textsc{Completely labeled Gale string} and \textsc{Another completely labeled Gale string}}
+
+Note: why not call them GALE and ANOTHER GALE? It would make it more readable.
+
+**Main result!** - the reduction to Perfect matching; both GALE and ANOTHER GALE are in P, we're happy.
+
+
+\section{Further results}
+
+The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS)
+
+Open problems (?)
+
+\end{document}
