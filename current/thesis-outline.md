@@ -8,7 +8,7 @@
 
 What, why and overview of tools used
 
-## Basic definitions
+## Definitions and context
 
 ### Gale strings
 
@@ -21,13 +21,11 @@ Nash Equilibria, Best response polytopes
 see section 2 in ENDM article; improved version of thm 2.1 can be found in
 Prop 1 in VvS (general, not just cyclic polytopes)
 
-### The Lemke-Howson algorithm
+### The Lemke-Howson algorithm and the class PPAD
 
 The Lemke-Howson algorithm
 
 Lemke-Howson for Gale (SvS)
-
-### Pivoting and the class PPAD
 
 touch on pivoting as one of the reasons to introduce PPA(D). *just give the
 def of directed*, the idea of pivoting + sign will be discussed in "further
