@@ -33,6 +33,15 @@
 \usepackage[latin1]{inputenc}
 \usepackage{graphicx}
 \usepackage[all]{xy}
+\usepackage{verbatim}
+
+\def\reals{{\mathbb R}}
+\def\conv{{\rm conv}}
+\def\0{{\bf0}}
+\def\1{{\bf1}}
+\def\T{^{\top}}
+\def\rone{{\1\T}}
+\def\reals{{\mathbb R}}
 
 \include{pstricks}
 \include{cases}
@@ -66,6 +75,7 @@ What, why and overview of tools used
 
 Definition
 
+
 \subsection{Bimatrix games}
 \label{games}
 
@@ -84,7 +94,7 @@ Gale strings can be used to study the problem of finding the Nash equilibrium in
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
-If a point $v$ cannot be omitted from these points without changing $P$ then $v$ is called a {\em vertex} of $P$. A {\em facet} of $P$ is the convex hull $\conv\,F$ of a set $F$ of $d$ vertices of $P$ that lie on a hyperplane $\{ x\in \reals^d\mid a\T x=a_0\}$ so that $a\T u<a_0$ for all other vertices $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the {\em normal vector} of the facet. We often identify the facet with its set of vertices~$F$.
+If a point $v$ cannot be omitted from these points without changing $P$ then $v$ is called a {\em vertex} of $P$. A {\em facet} of $P$ is the convex hull $\conv\,F$ of a set $F$ of $d$ vertices of $P$ that lie on a hyperplane $\{ x\in \reals^d\mid a^T x=a_0\}$ so that $a^T u<a_0$ for all other vertices $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the {\em normal vector} of the facet. We often identify the facet with its set of vertices~$F$.
 
 A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$
 vertices is the convex hull of $n$ points $\mu(t_j)$ on the
@@ -161,7 +171,7 @@ A $d\times n$ bimatrix game $(U,B)$ is a {\em unit vector game}
 if all columns of $U$ are unit vectors.
 For such a game $B$ with $B=[b_1\cdots b_n]$, the columns
 $b_j$ for $j\in[n]$ can be obtained from $c_j$ as in
-Theorem~\ref{t-unitv} if $b_j>\0$ and $\1\T b_j<1$.
+Theorem~\ref{t-unitv} if $b_j>\0$ and $\1^T b_j<1$.
 This is always possible via a positive-affine transformation
 of the payoffs in~$B$, which does not change the game.
 The unit vectors $e_{l(j)}$ that constitute the columns of
@@ -179,14 +189,14 @@ An $m\times n$ bimatrix game $(A,B)$ with (w.l.o.g.{})
 positive payoff matrices $A,B$ can be symmetrized so
 that its Nash equilibria are in one-to-correspondence to the
 symmetric equilibria of the $(m+n)\times(m+n)$
-symmetric game $(C\T,C)$ where
+symmetric game $(C^T,C)$ where
 \[
 \label{symmetrize}
 C=\biggl(\begin{matrix} 0 & B\cr A^\top & 0\cr\end{matrix}\biggr).
 \]
 In turn, as shown by McLennan and Tourky \cite{mt},
 the symmetric equilibria $(x,x)$ of any symmetric game
-$(C\T,C)$ are in one-to-one correspondence to the Nash
+$(C^T,C)$ are in one-to-one correspondence to the Nash
 equilibria $(x,y)$ of the ``imitation game'' $(I,C)$ where
 $I$ is the identity matrix; the mixed strategy $y$ of the
 second player is simply the uniform distribution on the
@@ -244,7 +254,7 @@ Open problems (?)
 
 \section*{Appendix A: Notation}
 
-For a matrix $A$ we denote its transpose with $A\T$. We treat vectors $u,v$ in $\reals^d$ as column vectors, so $u\T v$ is their scalar product. By $\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s. A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$. Inequalities like $u\ge\0$ hold for all components. For a set of points $S$ we denote its convex hull by $\conv\,S$.
+For a matrix $A$ we denote its transpose with $A^T$. We treat vectors $u,v$ in $\reals^d$ as column vectors, so $u^T v$ is their scalar product. By $\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s. A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$. Inequalities like $u\ge\0$ hold for all components. For a set of points $S$ we denote its convex hull by $\conv\,S$.
 
 
 \section*{Appendix B: A result about PPAD completeness of \textsc{Nash}}
