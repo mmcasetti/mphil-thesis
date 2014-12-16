@@ -43,8 +43,6 @@
 
 \begin{abstract}
 
-% New version from 10/12
-
 This thesis presents a report on original research, published as conjoint work with Merschen and von Stengel in ENDM (2010). Our result shows a polynomial time algorithm to find a Nash equilibrium for a particular class of games, which was previously used by Savani and von Stengel (2006) as an example of exponential time for the classical Lemke-Howson algorithm for bimatrix games (1964).
 
 It was conjectured that solving these games via the Lemke-Howson algorithm was complete in the class $\mathbf{PPAD}$ (Proof by Parity Argument, Directed version). A major motivation for the definition of this class by Papadimitriou (1994) was, in turn, to capture the pivoting technique of many results related to the Nash equilibrium, including the Lemke-Howson algorithm. A $\mathbf{PPAD}$-completness proof of the games we consider would have provided a traceable proof of the Daskalakis, Goldberg and Papaditrimiou (2005) and Chen and Deng (2009) results about the $\mathbf{PPAD}$-completeness of every normal form game. Our result of polynomial-time solvability, on the other hand, indicates the existence of a special class of games, unless $\mathbf{PPAD} = \mathbf{P}$.
@@ -73,9 +71,14 @@ Definition
 
 % Nash Equilibria, Best response polytopes
 
+[basic on games, NE]
+
+\subsection{Cyclic polytopes}
+\label{cyclic}
+
 % see section 2 in ENDM article; improved version of thm 2.1 can be found in Prop 1 in VvS (general, not just cyclic polytopes)
 
-[basic on games, NE]
+\begin{comment}
 
 Gale strings can be used to study the problem of finding the Nash equilibrium in a special class of games. These games are characterised by having a \textit{cyclic polytope} as their best response polytope.
 
@@ -98,6 +101,8 @@ F = \conv\{\mu(t_i)\mid i\in 1(s)\}
 \hbox { for some }s\in G(d,n),
 \]
 as shown by Gale \cite{gale}.
+
+
 % Essentially, this holds because any set $S\subset [n]$
 % the moment curve defines a unique hyperplane which is crossed
 % (and not just touched) by the moment curve; if the bitstring
@@ -112,6 +117,8 @@ The following theorem, due to Balthasar and von Stengel
 \cite{B09,BvS10}, establishes a connection between general
 labeled polytopes and equilibria of certain $d\times n$
 bimatrix games $(U,B)$.
+
+%%% THIS FROM VvS
 
 \begin{theorem}\label{t-unitv}
 Consider a labeled  $d$-dimensional simplicial polytope $Q$ with $\0$ in
@@ -206,6 +213,8 @@ Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
 $d+n$ vertices of a cyclic polytope in dimension~$d$.
 
+\end{comment}
+
 \subsection{The Lemke-Howson algorithm}
 
 The Lemke-Howson algorithm
@@ -233,105 +242,20 @@ The framework provided by our result led to further questions, related to the is
 Open problems (?)
 
 
-\section*{Appendix: Notation}
+\section*{Appendix A: Notation}
 
 For a matrix $A$ we denote its transpose with $A\T$. We treat vectors $u,v$ in $\reals^d$ as column vectors, so $u\T v$ is their scalar product. By $\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s. A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$. Inequalities like $u\ge\0$ hold for all components. For a set of points $S$ we denote its convex hull by $\conv\,S$.
 
 
+\section*{Appendix B: A result about PPAD completeness of \textsc{Nash}}
+
+% the result of MSc dissertation
+
 
 \begin{thebibliography}{00}
 
-% As in ENDM, so far
-
 \frenchspacing\parskip-1ex
 \small
-
-\bibitem{B09}
-A. V. Balthasar (2009),
-Geometry and Equilibria in Bimatrix Games.
-PhD Thesis, London School of Economics.
-
-\bibitem{BvS10}
-A. Balthasar, B. von Stengel (2010),
-Index and uniqueness of symmetric equilibria.
-In preparation.
-
-\bibitem{cd} X. Chen, X. Deng (2006).
-Settling the complexity of two-player Nash equilibrium.
-\emph{Proc. 47th FOCS}, pp. 261--272.
-
-\bibitem{dgp} C. Daskalakis, P. W. Goldberg, C. H. Papadimitriou (2006).
-The complexity of computing a Nash equilibrium.
-\emph{Proc. Ann. 38th STOC}, pp. 71--78.
-
-% \bibitem{dgp2} C. Daskalakis, P. W. Goldberg, C. H.  Papadimitriou (2009).
-% The complexity of computing a Nash equilibrium.
-% Commun.\ ACM 52, pp. 89--97.
-
-\bibitem{edm} J. Edmonds (1965).
-Paths, trees, and flowers. \emph{Canad. J. Math.} 17, pp. 449--467.
-
-\bibitem{je07}
-J. Edmonds (2007). Euler complexes. Manuscript,  5 pp.
-
-\bibitem{gale} D. Gale (1963),
-Neighborly and cyclic polytopes.
-In: Convexity, Proc. Symposia in Pure Math., Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
-
-% \bibitem{gz} I. Gilboa and E. Zemel. Nash and correlated equilibria: Some complexity considerations. Games and Economic Behavior, 1989.
-
-% \bibitem{k} L. G. Khachiyan (1979). A polynomial algorithm in linear programming. \emph{Soviet Mathematics Doklady}, 20(1), pp. 191--194.
-
-\bibitem{lg}
-C. E. Lemke, S. J. Grotzinger (1976).
-On generalizing Shapley's index theory to labelled
-pseudomanifolds.
-Math. Programming 10, 245--262.
-
-\bibitem{lh} C. E. Lemke, J. T. Howson, Jr. (1964).
-Equilibrium points of bimatrix games.
-\emph{J.  Soc. Indust. Appl. Mathematics} 12, pp.  413--423.
-
-\bibitem{mt}
-A. McLennan, R. Tourky (2009).
-Simple complexity from imitation games.
-\emph{Games and Economic Behavior},
-in press, doi:10.1016/j.geb.2009.10.003
-
-\bibitem{morris}
-W. D. Morris Jr. (1994).
-Lemke paths on simple polytopes.
-\emph{Math. Oper. Res.} 19, pp. 780--789.
-
-% \bibitem{nash} J. Nash (1951). Noncooperative games.
-% \emph{Ann. Math.} 54, pp. 289--295.
-
-\bibitem{ppad} C. H. Papadimitriou (1994).
-On the complexity of the parity argument and other inefficient proofs of existence.
-\emph{J. Comput. System Sci.} 48, pp. 498--532.
-
-\bibitem{svs} R. Savani, B. von Stengel (2006).
-Hard-to-solve bimatrix games.
-\emph{Econometrica} 74, pp. 397--429.
-
-% \bibitem{shapley} L. S. Shapley (1974), A Note on the Lemke-Howson Algorithm. Mathematical Programming Study, 1, pp. 175--189.
-
-\bibitem{todd} M. J. Todd (1976), Orientation in
-complementary pivot algorithms.
-\emph{Math. Oper. Res.} 1, pp. 54--66.
-
-\bibitem{vS02}
-B. von~Stengel (2002).
-Computing equilibria for two-person games.
-In: \emph{Handbook of Game Theory, Vol.~3,}
-eds. R. J. Aumann and S. Hart, North-Holland, Amsterdam,
-pp. 1723--1759.
-
-
-% \bibitem{val} L. G. Valiant (1979), The complexity of computing the permanent. Theoretical Computer Science 8, pp. 89--201.
-
-% \bibitem{vN}  J. von Neumann (1928). Zur Theorie der Gesellschaftspiele, \emph{Mathematische Annalen}, 100, pp. 295--320.
-
 
 \end{thebibliography}
 
