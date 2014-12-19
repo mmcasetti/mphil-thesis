@@ -8,18 +8,19 @@
 
 What, why and overview of tools used
 
-## Definitions and context
-
-### Gale strings
-
-Definition
-
-### Bimatrix games
+## Bimatrix games and polytopes
 
 Nash Equilibria, Best response polytopes
 
-see section 2 in ENDM article; improved version of thm 2.1 can be found in
-Prop 1 in VvS (general, not just cyclic polytopes)
+Polytopes to games (NE can be found via polytopes, polytopes can be used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
+
+## Cyclic polytopes and gale strings
+
+Special case: cyclic polytopes.
+
+Cyclic polytopes can be represented w/ a combinatorial structure - Gale strings.
+
+Definition
 
 ### The Lemke-Howson algorithm and the class PPAD
 
@@ -33,6 +34,7 @@ results" section. The focus is "why the main result is relevant"
 
 mention oiks, so you can later mention that EulG - as the ones used for MAIN
 are oik. Again: not too much.
+
 
 ## The complexity of **Completely labeled Gale string** and **Another completely labeled Gale string**
 
@@ -51,3 +53,5 @@ Open problems (?)
 ## Appendix: Notation
 
 (People should know what a transpose is, but...)
+
+## Appendix: result on PPAD-completeness proof
