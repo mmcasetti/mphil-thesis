@@ -1,4 +1,5 @@
 \documentclass[preprint,12pt]{article}
+\linespread{1.2}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -36,6 +37,7 @@
 \usepackage{verbatim}
 
 \def\reals{{\mathbb R}}
+\def\naturals{{\mathbb N}}
 \def\conv{{\rm conv}}
 \def\0{{\bf0}}
 \def\1{{\bf1}}
@@ -48,20 +50,37 @@
 \include{pstricks}
 \include{cases}
 
+\newdimen\einr\einr2em
+\def\abs#1{\par\hangafter=1\hangindent=\einr
+  \noindent\hbox to\einr{\ignorespaces#1\hfill}\ignorespaces}
+\def\conv{{\rm conv}}
+\def\0{{\bf0}}
+\def\1{{\bf1}}
+\def\T{^{\top}}
+\def\rone{{\1\T}}
+\def\reals{{\mathbb R}}
+%% \parskip 1ex
+\def\proof{\noindent{\em Proof.\enspace}}
+\def\proofof#1{\noindent{\em Proof of #1.\enspace}}
+\def\endproof{\hfill\strut\nobreak\hfill\tombstone\par\medbreak}
+\def\tombstone{\hbox{\lower.4pt\vbox{\hrule\hbox{\vrule
+  \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
+
+
 \begin{document}
 
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
 \begin{abstract}
 
-
 This thesis presents a report on original research,
 published as joint work with Merschen and von Stengel in
-ENDM (2010). Our result shows a polynomial time algorithm to
-find a Nash equilibrium for a particular class of games,
-which was previously used by Savani and von Stengel (2006)
-as an example of exponential time for the classical
-Lemke-Howson algorithm for bimatrix games (1964).
+{\em Electronic Notes in Discrete Mathematics} (2010). Our result
+shows a polynomial time algorithm to find a Nash equilibrium
+for a particular class of games, which was previously used
+by Savani and von Stengel (2006) as an example of exponential
+time for the classical Lemke-Howson algorithm for bimatrix
+games (1964).
 
 It was conjectured that solving these games via the
 Lemke-Howson algorithm was complete in the class
@@ -89,82 +108,31 @@ perfect matching in a graph, solved by Edmonds (1965).
 Further results by Merschen (2012) and V\'{e}gh and von
 Stengel (2014) solved the open problem of the {\em sign} of
 the equilibrium found in polynomial time.
+
 \end{abstract}
 
 
 \section{Introduction}
 
-What, why
+% What, why
 
 
+\section{Bimatrix Games and Polytopes}
+\label{gamespoly}
 
-% In section \ref{galestrings} we define {\em Gale string} and the problems \gale and \anothergale. In section \ref{games} we see how these problems are connected to the problem \textsc{Nash} for a special case of games. In section \ref{lh} we give the context of our result: we show how \anothergale belongs to the class $\mathbf{PPAD}$ and we relate the result in \ref{svs} about a possible $\mathbf{PPAD}$-completeness of the problems we examine. Finally, in section \ref{main} we give our result, proving that both \gale and \anothergale are polynomially solvable, and we consider the effect this has on the conjecture of \ref{svs}. Further results stemmed from our theorem are reported in section \ref{final}.
-
-An appendix collects the main notation used throughout the thesis.
-
-A final appendix presents our correction to an error in the proof of the $\mathbf{PPAD}$-completeness of \textsc{Nash} in \ref{dgp}.
-
-\section{Definitions and context}
-
-\subsection{Gale strings}
-\label{galestrings}
-
-A {\em Gale string}
-
-
-\subsection{Bimatrix games}
-\label{games}
-
-% Nash Equilibria, Best response polytopes
-
-[basic on games, NE]
-
-\subsection{Cyclic polytopes}
-\label{cyclic}
-
-% see section 2 in ENDM article; improved version of thm 2.1 can be found in Prop 1 in VvS (general, not just cyclic polytopes)
-
-\begin{comment}
-
-Gale strings can be used to study the problem of finding the Nash equilibrium in a special class of games. These games are characterised by having a \textit{cyclic polytope} as their best response polytope.
+\tiny
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
 If a point $v$ cannot be omitted from these points without changing $P$ then $v$ is called a {\em vertex} of $P$. A {\em facet} of $P$ is the convex hull $\conv\,F$ of a set $F$ of $d$ vertices of $P$ that lie on a hyperplane $\{ x\in \reals^d\mid a^T x=a_0\}$ so that $a^T u<a_0$ for all other vertices $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the {\em normal vector} of the facet. We often identify the facet with its set of vertices~$F$.
 
-A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$
-vertices is the convex hull of $n$ points $\mu(t_j)$ on the
-{\em moment curve\/} $\mu\colon t\mapsto
-(t,t^2,\ldots,t^d)^\top$ for $j\in [n]$.
-Suppose that $t_1<t_2<\cdots< t_n$.
-Then the facets of $P$ are encoded by $G(d,n)$, that is,
-\[
-F \hbox{ is a facet of }P
-\quad
-\Longleftrightarrow
-\quad
-F = \conv\{\mu(t_i)\mid i\in 1(s)\}
-\hbox { for some }s\in G(d,n),
-\]
-as shown by Gale \cite{gale}.
-
-
-% Essentially, this holds because any set $S\subset [n]$
-% the moment curve defines a unique hyperplane which is crossed
-% (and not just touched) by the moment curve; if the bitstring
-% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
-For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
-be understood as a label $l(j)$ for each vertex $\mu(t_j)$
-for $j\in [n]$.
-A completely labeled Gale string $s$ therefore represents a
-facet $F$ of $P$ that is completely labeled.
 
 The following theorem, due to Balthasar and von Stengel
 \cite{B09,BvS10}, establishes a connection between general
 labeled polytopes and equilibria of certain $d\times n$
 bimatrix games $(U,B)$.
 
-%%% THIS FROM VvS
+THIS FROM VvS
 
 \begin{theorem}\label{t-unitv}
 Consider a labeled  $d$-dimensional simplicial polytope $Q$ with $\0$ in
@@ -240,6 +208,105 @@ set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
+
+\section{Cyclic Polytopes and Gale Strings}
+
+% PBL: we use G(d,n) for cyclic poly and Gale string (OK, the same, but)
+% also: s as function and as string (idem)
+
+A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$
+vertices is the convex hull of $n$ points $\mu(t_j)$ on the
+{\em moment curve\/}
+
+\[
+\mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top \hbox{ for } j\in [n]
+\]
+
+Suppose that $t_1<t_2<\cdots< t_n$. Then the facets of $P$ are encoded
+by $G(d,n)$, that is $F$ is a facet of $P$ if and only if
+\[
+F = \conv\{\mu(t_i)\mid i\in 1(s)\} \hbox { for some }s\in G(d,n)
+\]
+as shown by Gale \cite{gale}.
+
+\normalsize
+
+Let $[k]=\{1,\ldots,k\}$ for any positive integer $k$.
+For any set $S$, we can represent the function $s:[k]\to S$
+as the string $s = s(1)s(2)\cdots s(k)$. Let $A \subset [k]$, and
+$S=\{0,1\}$. We will then have a correspondence between the function
+$s:A\to \{0,1\}$ and a {\em bitstring} $s$, that in turn corresponds
+to the indicator function of the set
+
+\begin{align*}
+1(s) & = s^{-1}(1) \\
+     & = \{j\in [k]\mid s(j)=1\}
+\end{align*}
+
+For a bitstring $s$, a maximal substring of $s$ of consecutive $1$'s is
+called a {\em run}.
+
+\begin{definition}\label{gale-string}
+$G(d,n)$ is the set of all bitstrings $s$ of length $n$
+such that
+\begin{enumerate}
+\item exactly $d$ bits in $s$ are $1$ and
+\item $s$ fulfills the {\em Gale evenness condition}:
+\[
+01^k0\hbox{ is a substring of }s\quad{\Rightarrow}\quad k\hbox{ is even.}
+\]
+\end{enumerate}
+An element of of $G(d,n)$ is called a {\em Gale string of dimension~$d$ and length~$n$}.
+\end{definition}
+
+Definition \ref{gale-string} characterises Gale strings as bitstrings of length~$n$ with exactly~$d$ elements equal to $1$, such that interior runs
+(that is, runs bounded on both sides by~$0$s) must be of even length. Note
+that this condition allows Gale strings to start or end with an odd-length
+run. If~$d$ is even, then any $s$ in $G(d,n)$ that starts with an odd run
+also ends with an odd run; we can then consider the Gale string as a ``loop''
+by ``glueing together'' the extremes of the string to form an even run. The
+set of Gale strings of even dimension is therefore invariant under a cyclic
+shift of the strings.
+
+As an example, we can consider $G(4,6)$. We have
+\[
+G(4,6) = \{111100, 111001, 110011, 100111, 001111, 110110, 101101, 011011\}
+\]
+The strings $111100$, $111001$, $110011$, $100111$ and $001111$ are
+equivalent under a cyclic shift, as are the strings $110110$, $101101$ and
+$011011$.
+
+From this point forward, we will assume that $d$ is even.
+
+%% give something to generalise to odd case
+%% even case used to define orientation
+
+\tiny
+% NOW! labels, connection to polytopes used for specific games
+
+Given a set $G$ of bit strings of length $n$ and a parameter
+$d$, a {\em labeling\/} is a function $l:[n]\to[d]$.
+Given a labeling, a string $s$ in $G$ is called
+{\em completely labeled\/} if $l(1(s))=[d]$, that is, if
+every label in $[d]$ appears as $l(i)$ for at least one bit
+$s(i)$ so that $s(i)=1$.
+Clearly, if $s$ is completely labeled, then $s$ has
+at least $d$ bits that are~$1$, and
+if exactly $d$ bits in $s$ are~$1$, then every label
+in $[d]$ occurs exactly once.
+
+
+% Essentially, this holds because any set $S\subset [n]$
+% the moment curve defines a unique hyperplane which is crossed
+% (and not just touched) by the moment curve; if the bitstring
+% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
+For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
+be understood as a label $l(j)$ for each vertex $\mu(t_j)$
+for $j\in [n]$.
+A completely labeled Gale string $s$ therefore represents a
+facet $F$ of $P$ that is completely labeled.
+
+
 Special games are obtained by using cyclic polytopes in
 Theorem~\ref{t-unitv}, suitably affinely transformed with
 a completely labeled facet $F_0$.
@@ -259,44 +326,173 @@ Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
 $d+n$ vertices of a cyclic polytope in dimension~$d$.
 
-\end{comment}
 
-\subsection{The Lemke-Howson algorithm}
+\subsection{The Lemke-Howson Algorithm and the Class PPAD}
+% section? subsection? needed?
 
-The Lemke-Howson algorithm
+\normalsize
 
-for Gale
+\section{The Complexity of \gale and \anothergale}
+\label{mainthm}
 
-\subsection{Pivoting and the class PPAD}
+We consider the following decision problem.
+\einr 5em
 
-touch on pivoting as one of the reasons to introduce PPA(D). *just give the def of directed*, the idea of pivoting + sign will be discussed in "further results" section. The focus is "why the main result is relevant"
+\noindent
+\textsc{Completely labeled Gale string}
+{\parskip0pt
+\abs{\textbf{Input}:}
+% Positive integers $n,d$, where $d$ is even and $d<n$, and
+% a string of {\em labels} $l:[n]\to[d]$.
+A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
+\abs{\textbf{Question}:}
+Is there a Gale string $s$ in $G(d,n)$ that is
+{\em completely labeled}?
+\par}
 
-mention oiks, so you can later mention that EulG - as the ones used for MAIN are oik. Again: not too much.
+For example, for the string of labels $l = 1123143$ (with
+$d=4$) the completely labeled Gale strings are 0110011 and
+0011110.
+For $l = 123432$ they are 111100, 110110, 100111, and
+101101.
+For $l = 121314$, there are no completely labeled Gale strings.
 
+The set $G(d,n)$ of Gale strings has a combinatorial
+structure that allows the use of a ``parity argument'',
+which we consider in detail later, to show the following
+known property; it holds for odd $d$ as well but we assume
+throughout that $d$ is even.
 
-\section{The complexity of \textsc{Completely labeled Gale string} and \textsc{Another completely labeled Gale string}}
+\begin{theorem}
+\label{t-even}
+For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
+the number of completely labeled Gale strings in $G(d,n)$ is
+even.
+\end{theorem}
 
-Note: why not call them GALE and ANOTHER GALE? It would make it more readable.
+Theorem~\ref{t-even} implies that if there is one completely
+labeled Gale string, there is also a second one.
+The following function problem asks to compute a completely
+labeled Gale string if one such string is already given.
 
-**Main result!** - the reduction to Perfect matching; both GALE and ANOTHER GALE are in P, we're happy.
+\noindent
+\textsc{Another completely labeled Gale string}
+{\parskip0pt
+\abs{\textbf{Input}:}
+% Positive integers $n,d$, where $d$ is even and $d<n$, and
+% a string of {\em labels} $l:[n]\to[d]$.
+A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
+and a completely labeled Gale string $s$ in $G(d,n)$.
+\abs{\textbf{Output}:}
+A completely labeled Gale string $s'$ in
+$G(d,n)$ where $s'\ne s$.
+\par}
+
+We now show that both \gale and \anothergale
+can be solved in polynomial time.
+The proof uses a reduction to the following problem,
+which was first shown to be solvable in polynomial time by
+Edmonds~\cite{edm}.
+
+\noindent \textsc{Perfect Matching}
+{\parskip0pt
+\abs{\textbf{Input}:} Graph $G = (V,E)$.
+\abs{\textbf{Question}:}
+Is there a set $M\subseteq E$ of pairwise non-adjacent edges
+so that every vertex $v \in V$ is incident to exactly one
+edge in~$M$?
+\par}
+
+\begin{theorem}
+\label{t-main}
+The problems
+\textsc{Completely labeled Gale string} and
+\textsc{Almost completely labeled Gale string}
+can be solved in polynomial time.
+\end{theorem}
+
+\proof
+We give a rather simple reduction to \textsc{Perfect Matching}.
+Given the labeling $l:[n]\to[d]$, construct the
+(multi-)graph $G$ with vertex set $V=[d]$ and up to $n$
+(possibly parallel) edges with endpoints $l(i),l(i+1)$ for
+$i\in [n]$ whenever these endpoints are distinct (so $G$ has
+no loops); here we let $n+1=1$ (``modulo~$n$'') so that
+$n,n+1$ is to be understood as $n,1$.
+Then a completely labeled Gale string $s$ in $G(d,n)$ splits
+into a number of runs which are uniquely split into $d/2$
+pairs $i,i+1$ so that the labels $l(i)$ and $l(i+1)$ are
+distinct, and all labels $1,\ldots,n$ occur among them.
+So this defines a perfect matching for~$G$.
+
+Conversely, a perfect matching $M$ of $G$ defines a Gale
+string $s$ where $s(i)=s({i+1})=1$ if the edge that joins
+$l(i)$ and $l(i+1)$ is in $M$ and $s(i)=0$ otherwise, so $s$
+is completely labeled.
+This shows how \textsc{Completely labeled Gale string}
+reduces to \textsc{Perfect Matching}.
+Finding a perfect matching, or deciding that $G$ has none,
+can be done in polynomial time~\cite{edm}.
+
+The reduction for \textsc{Another completely labeled Gale string}
+is an extension of this.
+Consider the given completely labeled Gale string $s$ and
+the matching $M$ for it.
+If $G$ has multiple edges between two nodes and one of them
+is in $M$, simply replace that edge by a parallel edge to
+obtain another completely labeled Gale string~$s'$.
+Hence, we can assume that $M$ has no edges that have a
+parallel edge.
+Another completely labeled Gale string $s'$ exists by
+Theorem~\ref{t-even}.
+The corresponding matching $M'$ does not use at least one
+edge in $M$.
+Hence, at least one of the $d/2$ graphs $G$ which have one
+of the edges of $M$ removed has a perfect matching $M'$,
+which is a perfect matching of $G$, and which defines
+a completely labeled Gale string $s'$ different from~$s$.
+The search for $M'$ takes again polynomial time.
+\endproof
+
+% Theorem~\ref{t-main} has a simple proof which raises some
+% interesting observations on its own.
+The significance of Theorem~\ref{t-main} is to be understood
+in the context of equilibrium computation for games, which
+we discuss next.
+The remainder of this paper contains only known results.
+
+%% In addition, the multigraph $G$ in the proof of
+%% Theorem~\ref{t-main} is of interest of its own:
+%% It is a Euler graph (each node is the endpoint of an even
+%% number of edges), which is also known as a 1-oik (see
+%% Edmonds \cite{je07}), and its perfect matchings are known as
+%% room partitions.
+%% The set of such room partitions is even, shown by the
+%% ``exchange algorithm'', also due to Edmonds \cite{je07}.
+%% This provides an alternative proof of Theorem~\ref{t-even}.
+%% However, the exchange algorithm for perfect matchings of Euler
+%% graphs is different (and apparently faster) than the
+%% Lemke--Howson algorithm for labeled Gale strings, which
+%% can be exponential (a result due to Morris \cite{morris},
+%% see below).
 
 
 \section{Further results}
 
-The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS)
+% The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS)
 
-Open problems (?)
+% Open problems (?)
 
 
 \section*{Appendix A: Notation}
 
 For a matrix $A$ we denote its transpose with $A^T$. We treat vectors $u,v$ in $\reals^d$ as column vectors, so $u^T v$ is their scalar product. By $\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s. A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$. Inequalities like $u\ge\0$ hold for all components. For a set of points $S$ we denote its convex hull by $\conv\,S$.
 
+For $n \in \naturals$ we denote $[n] = {1,2,\ldots,n}$
 
 \section*{Appendix B: A result about PPAD completeness of \textsc{Nash}}
 
 % the result of MSc dissertation
-
 
 \begin{thebibliography}{00}
 

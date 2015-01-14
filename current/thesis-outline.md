@@ -24,6 +24,8 @@ Definition
 
 ### The Lemke-Howson algorithm and the class PPAD
 
+[maybe skip???]
+
 The Lemke-Howson algorithm
 
 Lemke-Howson for Gale (SvS)
