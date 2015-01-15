@@ -1,6 +1,17 @@
 \documentclass[preprint,12pt]{article}
 \linespread{1.2}
 
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{verbatim}
+
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -26,15 +37,11 @@
 \item[\hskip \labelsep {\bfseries #1}]}
 {\end{trivlist}}
 
-\usepackage{amssymb}
-\usepackage[ruled,vlined]{algorithm2e}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathptmx}
-\usepackage[latin1]{inputenc}
-\usepackage{graphicx}
-\usepackage[all]{xy}
-\usepackage{verbatim}
+
+\newdimen\einr\einr2em
+\def\abs#1{\par\hangafter=1\hangindent=\einr
+  \noindent\hbox to\einr{\ignorespaces#1\hfill}\ignorespaces}
+
 
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
@@ -44,22 +51,15 @@
 \def\T{^{\top}}
 \def\rone{{\1\T}}
 \def\reals{{\mathbb R}}
+
 \def\gale{\textsc{Completely Labeled Gale String}}
 \def\anothergale{\textsc{Another Completely Labeled Gale String}}
 
 \include{pstricks}
 \include{cases}
 
-\newdimen\einr\einr2em
-\def\abs#1{\par\hangafter=1\hangindent=\einr
-  \noindent\hbox to\einr{\ignorespaces#1\hfill}\ignorespaces}
-\def\conv{{\rm conv}}
-\def\0{{\bf0}}
-\def\1{{\bf1}}
-\def\T{^{\top}}
-\def\rone{{\1\T}}
-\def\reals{{\mathbb R}}
-%% \parskip 1ex
+
+
 \def\proof{\noindent{\em Proof.\enspace}}
 \def\proofof#1{\noindent{\em Proof of #1.\enspace}}
 \def\endproof{\hfill\strut\nobreak\hfill\tombstone\par\medbreak}
@@ -284,6 +284,9 @@ From this point forward, we will assume that $d$ is even.
 \tiny
 % NOW! labels, connection to polytopes used for specific games
 
+% def: "completely labeled GS *associated with* labeling" (it makes writing  style more pleasant)
+
+
 Given a set $G$ of bit strings of length $n$ and a parameter
 $d$, a {\em labeling\/} is a function $l:[n]\to[d]$.
 Given a labeling, a string $s$ in $G$ is called
@@ -336,39 +339,123 @@ $d+n$ vertices of a cyclic polytope in dimension~$d$.
 \label{mainthm}
 
 We consider the following decision problem.
+
 \einr 5em
 
 \noindent
-\textsc{Completely labeled Gale string}
+\gale
 {\parskip0pt
 \abs{\textbf{Input}:}
-% Positive integers $n,d$, where $d$ is even and $d<n$, and
-% a string of {\em labels} $l:[n]\to[d]$.
 A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
 \abs{\textbf{Question}:}
-Is there a Gale string $s$ in $G(d,n)$ that is
-{\em completely labeled}?
+Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
+$l$?
 \par}
 
-For example, for the string of labels $l = 1123143$ (with
-$d=4$) the completely labeled Gale strings are 0110011 and
-0011110.
-For $l = 123432$ they are 111100, 110110, 100111, and
-101101.
-For $l = 121314$, there are no completely labeled Gale strings.
+For example, given the string of labels $l=123432$, we see that there are
+four associated completely labeled Gale strings: $111100$, $110110$, $100111$
+and $101101$.
 
-The set $G(d,n)$ of Gale strings has a combinatorial
-structure that allows the use of a ``parity argument'',
-which we consider in detail later, to show the following
-known property; it holds for odd $d$ as well but we assume
-throughout that $d$ is even.
+{\renewcommand{\tabcolsep}{2ex}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{\underline{1234}}32 &
+\textbf{\underline{12}}3\textbf{\underline{43}}2 &
+\textbf{\underline{1}}23\textbf{\underline{432}} &
+\textbf{\underline{1}}2\textbf{\underline{34}}3\textbf{\underline{2}} \\
+\hline
+111100 &
+110110 &
+100111 &
+101101 \\
+\hline
+\end{tabular}
+}
+
+For $121314$, there are no completely labeled Gale strings.
+
+Through a ``parity argument'' we can show the the following property of
+$G(d,n)$.
 
 \begin{theorem}
 \label{t-even}
 For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
-the number of completely labeled Gale strings in $G(d,n)$ is
-even.
+the number of completely labeled Gale strings associated with $l$ is even.
 \end{theorem}
+
+\begin{proof}
+If there are no completely labeled Gale strings associated with $l$, the
+theorem holds trivially.
+
+Suppose now that there is at least one completely labeled Gale strings
+associated with $l$.
+
+%% this from GaleEven19
+To prove the theorem we will introduce an algorithm, a variation on the Lemke-Howson algorithm that will pivot from one Gale string (that will correspond to a Nash equilibrium) to another.
+%should we include the idea of artificial NE here? or just leave it like this, considering the artificial NE as other NEs?
+We start by explaining what we mean by a pivot.
+Suppose we are given an $n$-string $l$, a corresponding Gale string $s$ and a position $i \in \left\{1,\ldots,n\right\}$ which satisfies $s(i) = 1$.
+We first set $s(i) = 0$, i.e.\ we \emph{drop} the label $l(i)$.
+By the GEC, either to the left or the right of $s(i)$, there is an odd run of 1's.
+We choose the side of $s(i)$ adjacent to where the odd run is and invert the first 0 to the left or right of the run, hence \emph{picking} up a new label.
+We refer to this as \emph{pivoting} the label $l(i)$, as we pivot the 1 associated with $l(i)$ across the odd run.
+Clearly the GEC is still satisfied after a pivot, however $l$ may not be fully labeled anymore as one label may be duplicate and thus one label missing.
+We call a bit string which satisfies the GEC and where exactly one label is duplicate an \emph{almost Gale} string.
+%That is, an almost Gale string satisfies the Gale evenness condition from before and the almost labeled condition. this is double
+That is, an almost Gale string $s$ satisfies the GEC; furthermore the number of 1's in $s$ is equal to $d$ and $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
+%That is the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$. second part is follows from the last condition.
+\begin{comment}
+\begin{enumerate}
+\item (\emph{Gale evenness condition}) all maximal substrings of 1's in $s$ with indices considered modulo $n$  %is this a good formal definition?
+have even length;
+\item (\emph{almost labeled condition}) the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
+\end{enumerate}
+\end{comment}
+
+A pivot for an almost Gale string is defined similarly as dropping a duplicate label, assuring that the resulting string is again an almost Gale string or Gale string.  % must not pick up a new label for some strings
+In a Gale string we may drop any label $l(i)$ which satisfies $s(i) = 1$.
+We refer to these as \emph{free} labels.
+
+Note that a pivot is reversible.
+Suppose we just picked up a label $l(i)$ by dropping a label $l(j)$.
+Clearly, $s(i)$ must be at the end of a run and $s(j)$ is equal to 0 and adjacent to the opposite side of the run where $l(i)$ was picked up.
+By pivoting $l(i)$ we must pick $l(j)$, making the pivot reversible.
+We now describe the Lemke-Howson for Gale algorithm,
+
+\begin{algorithm}\label{pivot}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\SetNoline
+\Input{A $n$-string $l \in \left\{1,\ldots,d\right\}^{n}$ where $d$ is even and $d< n$, a Gale string $s$ associated with $l$.}
+\Output{A Gale string $s'\neq s$ associated with $l$.}
+\BlankLine
+
+pivot a free label of s;\\ %pick $i \in [n]$ s.t. $s(i) = 1$ and pivot $l(i)$;\\
+\While{ ($s$ is an almost Gale string) }{
+pivot the duplicate label, not picked up by the previous pivot;
+}
+\Return $s' = s$
+
+\caption{Lemke-Howson for Gale Algorithm}
+\end{algorithm}
+
+As there are only a finite number of possible bit strings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
+Cycling is not possible due to the following observations.
+Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
+Then at this bit assignment of $s$, because each pivot is reversible, we would have to be able to pick up two labels.
+This, however, is ruled out by the GEC as only one of the adjacent runs of the dropped label is odd.
+Returning to initial position is only possible by reversing the initial pivot which is not allowed.
+The only free choice we have is at the beginning of the algorithm where we drop one free label.
+From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string. As this initial choice is somewhat arbitrary the resulting Gale strings and NE for different first steps can vary.
+
+%% until here
+
+\end{proof}
+
+It holds for odd $d$ as well but we assume throughout that $d$ is even.
+
+
 
 Theorem~\ref{t-even} implies that if there is one completely
 labeled Gale string, there is also a second one.
