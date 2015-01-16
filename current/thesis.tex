@@ -375,8 +375,58 @@ and $101101$.
 
 For $121314$, there are no completely labeled Gale strings.
 
-Through a ``parity argument'' we can show the the following property of
-$G(d,n)$.
+% parity. LHG. It would be better not in the proof, so LHG is more visible
+
+% Through a ``parity argument'' we can show the the following property of
+
+Gale strings
+
+
+\begin{definition}{pivoting}
+Let $l$ be a string of labels of length~$n$, let $s$ be a corresponding
+completely or almost completely labeled Gale string, and let $i \in [n]$ be
+such that $s(i)=1$. Consider the strings as ``loops'' by identifying position
+$i$ with any position $i+kn$.
+
+We define as {\em pivoting} the following operation:
+\begin{algorithm}
+set $s(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
+let $j$ be the length of the odd maximal run of $1$s created by this \\
+\If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
+{ set $s(i+j+1)=1$ }
+\If{ the odd maximal run of $1$s is on the \textbf{left} of position $i$ }
+{ set $s(i-j-1)=1$ }
+\caption{Pivoting}
+\end{algorithm}
+\end{definition}
+
+Note that the existence of the odd maximal run is guaranteed by the Gale
+evenness condition.
+
+
+
+\begin{algorithm}\label{lhg}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+
+\Input{A $n$-string $l \in \left\{1,\ldots,d\right\}^{n}$ where $d$ is even
+and $d< n$, a Gale string $s$ associated with $l$.}
+\Output{A Gale string $s'\neq s$ associated with $l$.}
+
+\BlankLine
+
+pivot any label of s\\
+%pick $i \in [n]$ s.t. $s(i) = 1$ and pivot $l(i)$;\\
+\While{ $s$ is an almost completely labeled Gale string }
+{pivot the duplicate label, not picked up by the previous pivot}
+\Return $s' = s$
+
+\caption{Lemke-Howson for Gale Algorithm}
+\end{algorithm}
+
+
+Using algorithm \ref{lhg} we can show a fundamental property of Gale
+strings.
 
 \begin{theorem}
 \label{t-even}
@@ -423,10 +473,9 @@ Clearly, $s(i)$ must be at the end of a run and $s(j)$ is equal to 0 and adjacen
 By pivoting $l(i)$ we must pick $l(j)$, making the pivot reversible.
 We now describe the Lemke-Howson for Gale algorithm,
 
-\begin{algorithm}\label{pivot}
+\begin{algorithm}\label{lhg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
-\SetNoline
 \Input{A $n$-string $l \in \left\{1,\ldots,d\right\}^{n}$ where $d$ is even and $d< n$, a Gale string $s$ associated with $l$.}
 \Output{A Gale string $s'\neq s$ associated with $l$.}
 \BlankLine
