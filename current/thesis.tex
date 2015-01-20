@@ -329,14 +329,13 @@ Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
 $d+n$ vertices of a cyclic polytope in dimension~$d$.
 
-
-\subsection{The Lemke-Howson Algorithm and the Class PPAD}
-% section? subsection? needed?
-
 \normalsize
 
+
 \section{The Complexity of \gale and \anothergale}
-\label{mainthm}
+\label{mainthm-sect}
+
+\subsection{The Problem \gale}\label{gale-pbl-sect}
 
 We consider the following decision problem.
 
@@ -357,7 +356,6 @@ four associated completely labeled Gale strings: $111100$, $110110$, $100111$
 and $101101$.
 
 {\renewcommand{\tabcolsep}{2ex}
-
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{\underline{1234}}32 &
@@ -375,64 +373,75 @@ and $101101$.
 
 For $121314$, there are no completely labeled Gale strings.
 
-% parity. LHG. It would be better not in the proof, so LHG is more visible
+\subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
 
-% Through a ``parity argument'' we can show the the following property of
+\begin{definition}\label{pivoting}
 
-Gale strings
-
-
-\begin{definition}{pivoting}
-Let $l$ be a string of labels of length~$n$, let $s$ be a corresponding
-completely or almost completely labeled Gale string, and let $i \in [n]$ be
-such that $s(i)=1$. Consider the strings as ``loops'' by identifying position
+Consider the strings as ``loops'' by identifying position
 $i$ with any position $i+kn$.
 
-We define as {\em pivoting} the following operation:
-\begin{algorithm}
-set $s(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
+We define as {\em pivoting} the operation defined in algorithm
+\ref{pivoting-algorithm}:
+
+\begin{algorithm}\label{pivoting-algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+
+\Input{A string of labels $l$ of length~$n$; a Gale string $s$ that describes
+a a complete or almost complete labelling of~$l$; $i \in [n]$ such that
+$s(i)=1$}
+\Output{A different Gale string $s'$ that describes a complete or almost
+complete labelling of~$l$.}
+
+\BlankLine
+set $s' = s$
+set $s'(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
 let $j$ be the length of the odd maximal run of $1$s created by this \\
 \If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
-{ set $s(i+j+1)=1$ }
-\If{ the odd maximal run of $1$s is on the \textbf{left} of position $i$ }
-{ set $s(i-j-1)=1$ }
+{ set $s'(i+j+1)=1$ }
+\Else
+{ set $s'(i-j-1)=1$ }
+\Return $s'$
 \caption{Pivoting}
 \end{algorithm}
 \end{definition}
 
-Note that the existence of the odd maximal run is guaranteed by the Gale
-evenness condition.
+Note that, by the Gale evenness condition, we must have an the odd maximal
+run of $1$s either on the right or on the left of position $i$. The
 
+Each pivoting can be seen as a step of a ``path'' between (almost) completely
+labeled Gale strings. If the first and last step of the path are completely
+labeled Gale strings, the path is described by algorithm \ref{lhg-algorithm},
+the {\em Lemke-Howson algorithm}:
 
-
-\begin{algorithm}\label{lhg}
+\begin{algorithm}\label{lhg-algorithm}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 
-\Input{A $n$-string $l \in \left\{1,\ldots,d\right\}^{n}$ where $d$ is even
-and $d< n$, a Gale string $s$ associated with $l$.}
+\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely labeled Gale string $s$ associated with $l$.}
 \Output{A Gale string $s'\neq s$ associated with $l$.}
 
 \BlankLine
 
-pivot any label of s\\
-%pick $i \in [n]$ s.t. $s(i) = 1$ and pivot $l(i)$;\\
-\While{ $s$ is an almost completely labeled Gale string }
+set $s' = s$
+pivot any label of s' \\
+\While{ $s'$ is an almost completely labeled Gale string }
 {pivot the duplicate label, not picked up by the previous pivot}
-\Return $s' = s$
+\Return $s'$
 
 \caption{Lemke-Howson for Gale Algorithm}
 \end{algorithm}
 
+Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
+Gale strings.
 
-Using algorithm \ref{lhg} we can show a fundamental property of Gale
-strings.
-
-\begin{theorem}
-\label{t-even}
+\begin{theorem}\label{even-number-gale}
 For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
 the number of completely labeled Gale strings associated with $l$ is even.
 \end{theorem}
+
+---
+
 
 \begin{proof}
 If there are no completely labeled Gale strings associated with $l$, the
@@ -473,21 +482,7 @@ Clearly, $s(i)$ must be at the end of a run and $s(j)$ is equal to 0 and adjacen
 By pivoting $l(i)$ we must pick $l(j)$, making the pivot reversible.
 We now describe the Lemke-Howson for Gale algorithm,
 
-\begin{algorithm}\label{lhg}
-\SetKwInOut{Input}{input}
-\SetKwInOut{Output}{output}
-\Input{A $n$-string $l \in \left\{1,\ldots,d\right\}^{n}$ where $d$ is even and $d< n$, a Gale string $s$ associated with $l$.}
-\Output{A Gale string $s'\neq s$ associated with $l$.}
-\BlankLine
 
-pivot a free label of s;\\ %pick $i \in [n]$ s.t. $s(i) = 1$ and pivot $l(i)$;\\
-\While{ ($s$ is an almost Gale string) }{
-pivot the duplicate label, not picked up by the previous pivot;
-}
-\Return $s' = s$
-
-\caption{Lemke-Howson for Gale Algorithm}
-\end{algorithm}
 
 As there are only a finite number of possible bit strings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
 Cycling is not possible due to the following observations.
