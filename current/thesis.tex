@@ -211,25 +211,12 @@ special unit vector game.
 
 \section{Cyclic Polytopes and Gale Strings}
 
+\normalsize
+
+\subsection{Gale Strings}
+
 % PBL: we use G(d,n) for cyclic poly and Gale string (OK, the same, but)
 % also: s as function and as string (idem)
-
-A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$
-vertices is the convex hull of $n$ points $\mu(t_j)$ on the
-{\em moment curve\/}
-
-\[
-\mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top \hbox{ for } j\in [n]
-\]
-
-Suppose that $t_1<t_2<\cdots< t_n$. Then the facets of $P$ are encoded
-by $G(d,n)$, that is $F$ is a facet of $P$ if and only if
-\[
-F = \conv\{\mu(t_i)\mid i\in 1(s)\} \hbox { for some }s\in G(d,n)
-\]
-as shown by Gale \cite{gale}.
-
-\normalsize
 
 Let $[k]=\{1,\ldots,k\}$ for any positive integer $k$.
 For any set $S$, we can represent the function $s:[k]\to S$
@@ -282,9 +269,29 @@ From this point forward, we will assume that $d$ is even.
 %% even case used to define orientation
 
 \tiny
+
+\subsection{Cyclic Polytopes and Labeling}
+
+A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$
+vertices is the convex hull of $n$ points $\mu(t_j)$ on the
+{\em moment curve\/}
+
+\[
+\mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top \hbox{ for } j\in [n]
+\]
+
+Suppose that $t_1<t_2<\cdots< t_n$. Then the facets of $P$ are encoded
+by $G(d,n)$, that is $F$ is a facet of $P$ if and only if
+\[
+F = \conv\{\mu(t_i)\mid i\in 1(s)\} \hbox { for some }s\in G(d,n)
+\]
+as shown by Gale \cite{gale}.
+
 % NOW! labels, connection to polytopes used for specific games
 
 % def: "completely labeled GS *associated with* labeling" (it makes writing  style more pleasant)
+
+% def of ALMOST COMPLETELY
 
 
 Given a set $G$ of bit strings of length $n$ and a parameter
@@ -293,6 +300,8 @@ Given a labeling, a string $s$ in $G$ is called
 {\em completely labeled\/} if $l(1(s))=[d]$, that is, if
 every label in $[d]$ appears as $l(i)$ for at least one bit
 $s(i)$ so that $s(i)=1$.
+
+
 Clearly, if $s$ is completely labeled, then $s$ has
 at least $d$ bits that are~$1$, and
 if exactly $d$ bits in $s$ are~$1$, then every label
@@ -309,47 +318,7 @@ for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
 
-
-Special games are obtained by using cyclic polytopes in
-Theorem~\ref{t-unitv}, suitably affinely transformed with
-a completely labeled facet $F_0$.
-When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
-vertices, then the string of labels $l(1)\cdots l(n)$ in
-Theorem~\ref{t-unitv} defines a labeling $l':[d+n]\to [d]$
-where $l'(i)=i$ for $i\in [d]$ and
-$l'(d+j)=l(j)$ for $j\in [n]$.
-In other words, the string of labels $l(1)\cdots l(n)$ is
-just prefixed with the string $1\,2\cdots d$ to give $l'$.
-Then $l'$ has a trivial completely labeled Gale string
-$1^d0^n$ which defines the facet $F_0$.
-Then the problem \textsc{Another completely labeled Gale
-String} defines exactly the problem of finding a Nash
-equilibrium of the unit vector game $(I,B)$.
-Note again that $B$ is here not a general matrix (which would
-define a general game) but obtained from the last $n$ of
-$d+n$ vertices of a cyclic polytope in dimension~$d$.
-
-\normalsize
-
-
-\section{The Complexity of \gale and \anothergale}
-\label{mainthm-sect}
-
-\subsection{The Problem \gale}\label{gale-pbl-sect}
-
-We consider the following decision problem.
-
-\einr 5em
-
-\noindent
-\gale
-{\parskip0pt
-\abs{\textbf{Input}:}
-A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
-\abs{\textbf{Question}:}
-Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
-$l$?
-\par}
+% from here...
 
 For example, given the string of labels $l=123432$, we see that there are
 four associated completely labeled Gale strings: $111100$, $110110$, $100111$
@@ -373,138 +342,27 @@ and $101101$.
 
 For $121314$, there are no completely labeled Gale strings.
 
-\subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
+% until here: checked
 
-\begin{definition}\label{pivoting}
+Special games are obtained by using cyclic polytopes in
+Theorem~\ref{t-unitv}, suitably affinely transformed with
+a completely labeled facet $F_0$.
+When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
+vertices, then the string of labels $l(1)\cdots l(n)$ in
+Theorem~\ref{t-unitv} defines a labeling $l':[d+n]\to [d]$
+where $l'(i)=i$ for $i\in [d]$ and
+$l'(d+j)=l(j)$ for $j\in [n]$.
+In other words, the string of labels $l(1)\cdots l(n)$ is
+just prefixed with the string $1\,2\cdots d$ to give $l'$.
+Then $l'$ has a trivial completely labeled Gale string
+$1^d0^n$ which defines the facet $F_0$.
+Then the problem \textsc{Another completely labeled Gale
+String} defines exactly the problem of finding a Nash
+equilibrium of the unit vector game $(I,B)$.
+Note again that $B$ is here not a general matrix (which would
+define a general game) but obtained from the last $n$ of
+$d+n$ vertices of a cyclic polytope in dimension~$d$.
 
-Consider the strings as ``loops'' by identifying position
-$i$ with any position $i+kn$.
-
-We define as {\em pivoting} the operation defined in algorithm
-\ref{pivoting-algorithm}:
-
-\begin{algorithm}\label{pivoting-algorithm}
-\SetKwInOut{Input}{input}
-\SetKwInOut{Output}{output}
-
-\Input{A string of labels $l$ of length~$n$; a Gale string $s$ that describes
-a a complete or almost complete labelling of~$l$; $i \in [n]$ such that
-$s(i)=1$}
-\Output{A different Gale string $s'$ that describes a complete or almost
-complete labelling of~$l$.}
-
-\BlankLine
-set $s' = s$
-set $s'(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
-let $j$ be the length of the odd maximal run of $1$s created by this \\
-\If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
-{ set $s'(i+j+1)=1$ }
-\Else
-{ set $s'(i-j-1)=1$ }
-\Return $s'$
-\caption{Pivoting}
-\end{algorithm}
-\end{definition}
-
-Note that, by the Gale evenness condition, we must have an the odd maximal
-run of $1$s either on the right or on the left of position $i$. The
-
-Each pivoting can be seen as a step of a ``path'' between (almost) completely
-labeled Gale strings. If the first and last step of the path are completely
-labeled Gale strings, the path is described by algorithm \ref{lhg-algorithm},
-the {\em Lemke-Howson algorithm}:
-
-\begin{algorithm}\label{lhg-algorithm}
-\SetKwInOut{Input}{input}
-\SetKwInOut{Output}{output}
-
-\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely labeled Gale string $s$ associated with $l$.}
-\Output{A Gale string $s'\neq s$ associated with $l$.}
-
-\BlankLine
-
-set $s' = s$
-pivot any label of s' \\
-\While{ $s'$ is an almost completely labeled Gale string }
-{pivot the duplicate label, not picked up by the previous pivot}
-\Return $s'$
-
-\caption{Lemke-Howson for Gale Algorithm}
-\end{algorithm}
-
-Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
-Gale strings.
-
-\begin{theorem}\label{even-number-gale}
-For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
-the number of completely labeled Gale strings associated with $l$ is even.
-\end{theorem}
-
----
-
-
-\begin{proof}
-If there are no completely labeled Gale strings associated with $l$, the
-theorem holds trivially.
-
-Suppose now that there is at least one completely labeled Gale strings
-associated with $l$.
-
-%% this from GaleEven19
-To prove the theorem we will introduce an algorithm, a variation on the Lemke-Howson algorithm that will pivot from one Gale string (that will correspond to a Nash equilibrium) to another.
-%should we include the idea of artificial NE here? or just leave it like this, considering the artificial NE as other NEs?
-We start by explaining what we mean by a pivot.
-Suppose we are given an $n$-string $l$, a corresponding Gale string $s$ and a position $i \in \left\{1,\ldots,n\right\}$ which satisfies $s(i) = 1$.
-We first set $s(i) = 0$, i.e.\ we \emph{drop} the label $l(i)$.
-By the GEC, either to the left or the right of $s(i)$, there is an odd run of 1's.
-We choose the side of $s(i)$ adjacent to where the odd run is and invert the first 0 to the left or right of the run, hence \emph{picking} up a new label.
-We refer to this as \emph{pivoting} the label $l(i)$, as we pivot the 1 associated with $l(i)$ across the odd run.
-Clearly the GEC is still satisfied after a pivot, however $l$ may not be fully labeled anymore as one label may be duplicate and thus one label missing.
-We call a bit string which satisfies the GEC and where exactly one label is duplicate an \emph{almost Gale} string.
-%That is, an almost Gale string satisfies the Gale evenness condition from before and the almost labeled condition. this is double
-That is, an almost Gale string $s$ satisfies the GEC; furthermore the number of 1's in $s$ is equal to $d$ and $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
-%That is the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$. second part is follows from the last condition.
-\begin{comment}
-\begin{enumerate}
-\item (\emph{Gale evenness condition}) all maximal substrings of 1's in $s$ with indices considered modulo $n$  %is this a good formal definition?
-have even length;
-\item (\emph{almost labeled condition}) the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
-\end{enumerate}
-\end{comment}
-
-A pivot for an almost Gale string is defined similarly as dropping a duplicate label, assuring that the resulting string is again an almost Gale string or Gale string.  % must not pick up a new label for some strings
-In a Gale string we may drop any label $l(i)$ which satisfies $s(i) = 1$.
-We refer to these as \emph{free} labels.
-
-Note that a pivot is reversible.
-Suppose we just picked up a label $l(i)$ by dropping a label $l(j)$.
-Clearly, $s(i)$ must be at the end of a run and $s(j)$ is equal to 0 and adjacent to the opposite side of the run where $l(i)$ was picked up.
-By pivoting $l(i)$ we must pick $l(j)$, making the pivot reversible.
-We now describe the Lemke-Howson for Gale algorithm,
-
-
-
-As there are only a finite number of possible bit strings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
-Cycling is not possible due to the following observations.
-Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
-Then at this bit assignment of $s$, because each pivot is reversible, we would have to be able to pick up two labels.
-This, however, is ruled out by the GEC as only one of the adjacent runs of the dropped label is odd.
-Returning to initial position is only possible by reversing the initial pivot which is not allowed.
-The only free choice we have is at the beginning of the algorithm where we drop one free label.
-From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string. As this initial choice is somewhat arbitrary the resulting Gale strings and NE for different first steps can vary.
-
-%% until here
-
-\end{proof}
-
-It holds for odd $d$ as well but we assume throughout that $d$ is even.
-
-
-
-Theorem~\ref{t-even} implies that if there is one completely
-labeled Gale string, there is also a second one.
-The following function problem asks to compute a completely
-labeled Gale string if one such string is already given.
 
 \noindent
 \textsc{Another completely labeled Gale string}
@@ -518,6 +376,142 @@ and a completely labeled Gale string $s$ in $G(d,n)$.
 A completely labeled Gale string $s'$ in
 $G(d,n)$ where $s'\ne s$.
 \par}
+
+\section{Main Complexity Results}
+\label{main-thm-sect}
+% \section{The Complexity of \anothergale}
+% \section{Complexity Results}
+
+\subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
+
+\begin{definition}\label{almost-completely-labeled}
+(\emph{almost labeled condition}) the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
+\end{definition}
+
+\normalsize
+
+\begin{definition}\label{pivoting}
+
+We define as {\em pivoting} the operation defined in algorithm
+\ref{pivoting-algorithm}, where we consider the Gale strings as ``loops'' by
+identifying position $i$ with any position $i+kn$
+
+\begin{algorithm}\label{pivoting-algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{A string of labels $l$ of length~$n$; a Gale string $s$ that describes
+a a complete or almost complete labeling of~$l$; $i \in [n]$ such that
+$s(i)=1$}
+\Output{A different Gale string $s'$ that describes a complete or almost
+complete labeling of~$l$.}
+\BlankLine
+set $s' = s$ \\
+set $s'(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
+let $j$ be the length of the odd maximal run of $1$s created by this \\
+\If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
+{ set $s'(i+j+1)=1$ }
+\Else
+{ set $s'(i-j-1)=1$ }
+\Return $s'$
+\caption{Pivoting}
+\end{algorithm}
+\end{definition}
+
+Note that, by the Gale evenness condition, we must have an the odd maximal
+run of $1$s either on the right or on the left of position $i$.
+
+If the Gale string in the pivoting algorithm is completely labeled, we can
+drop any label $l(i)$ such that $s(i) = 1$. We refer to these labels as {\em
+free labels}.
+
+Each pivoting can be seen as a step of a ``path'' between (almost) completely
+labeled Gale strings. If the first and last step of the path are completely
+labeled Gale strings, the path is described by algorithm \ref{lhg-algorithm},
+the {\em Lemke-Howson algorithm}:
+
+\begin{algorithm}\label{lhg-algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely labeled Gale string $s$ associated with $l$.}
+\Output{A Gale string $s'\neq s$ associated with $l$.}
+\BlankLine
+set $s' = s$ \\
+pivot any free label of s' \\
+\While{ $s'$ is an almost completely labeled Gale string }
+{pivot the duplicate label, not picked up by the previous pivot}
+\Return $s'$
+\caption{Lemke-Howson for Gale Algorithm}
+\end{algorithm}
+
+\begin{example}
+\end{example}
+
+Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
+Gale strings.
+
+\begin{theorem}\label{even-number-gale}
+For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
+the number of completely labeled Gale strings associated with $l$ is even.
+\end{theorem}
+
+\begin{proof}
+If there are no completely labeled Gale strings associated with $l$, the
+theorem holds trivially.
+
+Suppose now that there is at least one completely labeled Gale strings
+associated with $l$.
+
+First of all, note that a pivot is reversible. Suppose that we pivot on the
+(almost) completely labeled Gale string $s$ by dropping the label $l(i)$ and
+picking up the label $l(j)$. Then $s(j) = 0$ and it is adjacent to the opposite
+side of the odd maximal run of $1$s starting at $i$ that was created by
+dropping $l(i)$. Let $s'$ be the (almost) completely labeled Gale string
+obtained from this pivot. Analogously, if we pivot on $s'$ by dropping
+$l(j)$, we will have to pick up the label $l(i)$. The pivoting is therefore
+reversible by simply dropping the label that was picked up.
+
+% zig-zag image!!!
+
+As there are only a finite number of possible bitstrings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
+Cycling is not possible due to the following observations.
+Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
+Then at this bit assignment of $s$, because each pivot is reversible, we would have to be able to pick up two labels.
+This, however, is ruled out by the GEC as only one of the adjacent runs of the dropped label is odd.
+Returning to initial position is only possible by reversing the initial pivot which is not allowed.
+The only free choice we have is at the beginning of the algorithm where we drop one free label.
+From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string. As this initial choice is somewhat arbitrary the resulting Gale strings and NE for different first steps can vary.
+
+\end{proof}
+
+Theorem \ref{even-number-gale} holds for odd $d$ as well.
+
+% expand - or cut?
+
+% graphs of LHG paths - if not in proof too?
+% graphs of endpoints of LHG - that will be used in Further Results for mentioning index? (and anyway it's something)
+
+\subsection{The Complexity of \gale and \anothergale}\label{main-thm-subsect}
+
+We consider the following decision problem.
+
+\einr 5em
+
+\noindent
+\gale
+{\parskip0pt
+\abs{\textbf{Input}:}
+A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
+\abs{\textbf{Question}:}
+Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
+$l$?
+\par}
+
+
+Theorem~\ref{even-number-gale} implies that if there is one completely
+labeled Gale string, there is also a second one.
+The following function problem asks to compute a completely
+labeled Gale string if one such string is already given.
+
 
 We now show that both \gale and \anothergale
 can be solved in polynomial time.
