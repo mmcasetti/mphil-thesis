@@ -12,27 +12,17 @@
 \usepackage{verbatim}
 
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}
 
 \newenvironment{proof}[1][Proof]
 {\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}
 {\end{trivlist}}
 
-\newenvironment{definition}[1][Definition]
-{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}
-{\end{trivlist}}
-
 \newenvironment{example}[1][Example]
-{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}
-{\end{trivlist}}
-
-\newenvironment{remark}[1][Remark]
 {\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}
 {\end{trivlist}}
@@ -120,7 +110,9 @@ the equilibrium found in polynomial time.
 \section{Bimatrix Games and Polytopes}
 \label{gamespoly}
 
-\tiny
+\small
+
+TODO
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
@@ -209,6 +201,8 @@ Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
 
+UNTIL HERE
+
 \section{Cyclic Polytopes and Gale Strings}
 
 \normalsize
@@ -268,7 +262,9 @@ From this point forward, we will assume that $d$ is even.
 %% give something to generalise to odd case
 %% even case used to define orientation
 
-\tiny
+\small
+
+TODO
 
 \subsection{Cyclic Polytopes and Labeling}
 
@@ -389,6 +385,8 @@ $G(d,n)$ where $s'\ne s$.
 \begin{definition}\label{almost-completely-labeled}
 (\emph{almost labeled condition}) the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
 \end{definition}
+
+UNTIL HERE
 
 \normalsize
 
@@ -552,12 +550,17 @@ From then on the process of the algorithm is uniquely determined, thus terminati
 
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
 
+\small
+
+TODO from here
+
 % expand - or cut?
 
 % graphs of LHG paths - if not in proof too?
 % graphs of endpoints of LHG - that will be used in Further Results for mentioning index? (and anyway it's something)
 
-\subsection{The Complexity of \gale and \anothergale}\label{main-thm-subsect}
+\subsection{The Complexity of \gale and \anothergale}
+\label{main-thm-subsection}
 
 We consider the following decision problem.
 
