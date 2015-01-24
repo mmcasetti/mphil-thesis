@@ -16,7 +16,7 @@
 
 
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{property}{Property}[section]
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{definition}{Definition}
 
@@ -61,7 +61,6 @@
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
 \begin{abstract}
-
 This thesis presents a report on original research,
 published as joint work with Merschen and von Stengel in
 {\em Electronic Notes in Discrete Mathematics} (2010). Our result
@@ -97,21 +96,15 @@ perfect matching in a graph, solved by Edmonds (1965).
 Further results by Merschen (2012) and V\'{e}gh and von
 Stengel (2014) solved the open problem of the {\em sign} of
 the equilibrium found in polynomial time.
-
 \end{abstract}
-
-
-\section{Introduction}
-
-% What, why
-
-
-\section{Bimatrix Games and Polytopes}
-\label{gamespoly}
 
 \small
 
 TODO
+
+\section{Introduction}
+
+\section{Bimatrix Games and Polytopes}\label{gamespoly}
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
@@ -199,16 +192,15 @@ set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
-
 UNTIL HERE
 
 \normalsize
 
-\section{Cyclic Polytopes and the \anothergale  Problem}
+\section{Cyclic Polytopes and the Problem \anothergale}
 \subsection{Cyclic Polytopes and Gale Strings}
 
 A special case of games is obtained by taking a particular case of best
-response polytope.
+response polytope in theorem \ref{t-unitv}.
 
 \begin{definition}\label{cyclic-polytope}
 A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$ vertices is the
@@ -269,14 +261,14 @@ odd-length run.
 
 This leads to an important consequence when~$d$ is even.
 
-\begin{lemma}\label{even-d-gs}
+\begin{property}\label{even-d-gs}
 Let $d$ be even, and let $s$ in $G(d,n)$. Then if $s$ starts with an odd run
 it will also end with an odd run, and if $s$ starts with an even run it will
 end with an even run.
 
 That is, the set of Gale strings of even dimension is therefore invariant
 under a cyclic shift of the strings.
-\end{lemma}
+\end{property}
 
 We can then consider the Gale strings in $G(d,n)$ with even $d$ as a ``loop''
 obtained by ``glueing together'' the extremes of the string to form an even
@@ -308,7 +300,6 @@ F = \conv\{\mu(t_i)\mid i\in 1(s)\} \qquad \hbox{ for some }s\in G(d,n)
 \]
 \end{theorem}
 
-
 From this point forward, we will assume that $d$ is even.
 
 %% give something to generalise to odd case
@@ -317,23 +308,17 @@ From this point forward, we will assume that $d$ is even.
 
 TODO
 
-\subsection{Cyclic Polytopes and Labeling}
-
-
-% NOW! labels, connection to polytopes used for specific games
+\subsection{Labeling and the Problem \anothergale}
 
 % def: "completely labeled GS *associated with* labeling" (it makes writing  style more pleasant)
 
-% def of ALMOST COMPLETELY
-
-
-Given a set $G$ of bit strings of length $n$ and a parameter
-$d$, a {\em labeling\/} is a function $l:[n]\to[d]$.
-Given a labeling, a string $s$ in $G$ is called
+\begin{definition}
+Given a set $G$ of bitstrings of length $n$ and a parameter $d$, a
+{\em labeling\/} is a function $l:[n]\to[d]$. A string $s$ in $G$ is called
 {\em completely labeled\/} if $l(1(s))=[d]$, that is, if
 every label in $[d]$ appears as $l(i)$ for at least one bit
 $s(i)$ so that $s(i)=1$.
-
+\end{definition}
 
 Clearly, if $s$ is completely labeled, then $s$ has
 at least $d$ bits that are~$1$, and
@@ -351,31 +336,37 @@ for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
 
+UNTIL HERE
+
 % from here...
 
 For example, given the string of labels $l=123432$, we see that there are
 four associated completely labeled Gale strings: $111100$, $110110$, $100111$
 and $101101$.\\
 
+\begin{center}
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|c|c|c|c|}
 \hline
-\textbf{\underline{1234}}32 &
-\textbf{\underline{12}}3\textbf{\underline{43}}2 &
-\textbf{\underline{1}}23\textbf{\underline{432}} &
-\textbf{\underline{1}}2\textbf{\underline{34}}3\textbf{\underline{2}} \\
+\textbf{1234}32 &
+\textbf{12}3\textbf{43}2 &
+\textbf{1}23\textbf{432} &
+\textbf{1}2\textbf{34}3\textbf{2} \\
 \hline
-111100 &
-110110 &
-100111 &
-101101 \\
+\textbf{1111}00 &
+\textbf{11}0\textbf{11}0 &
+\textbf{1}00\textbf{111} &
+\textbf{1}0\textbf{11}0\textbf{1} \\
 \hline
 \end{tabular}
 }\\
+\end{center}
 
 For $l = 121314$, there are no completely labeled Gale strings.
 
 % until here: checked
+
+TODO
 
 Special games are obtained by using cyclic polytopes in
 Theorem~\ref{t-unitv}, suitably affinely transformed with
@@ -428,7 +419,6 @@ UNTIL HERE
 \normalsize
 
 \begin{definition}\label{pivoting}
-
 We define as {\em pivoting} the operation defined in algorithm
 \ref{pivoting-algorithm}, where we consider the Gale strings as ``loops'' by
 identifying position $i$ with any position $i+kn$
@@ -459,37 +449,56 @@ Let $l = 123432$, and let's consider the associated completely labeled Gale
 string $s = 111100$. Then dropping the label $1$ we pivot to the almost
 completely labeled Gale string $011110$.\\
 
+\begin{center}
 {\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|}
+\begin{tabular}{|c|l|}
 \hline
-\textbf{\underline{1}234}32 \\
+\textbf{\underline{1}234}32 &
+drop \textbf{\underline{1}} from $l$ \\
 \hline
-\textbf{\underline{1}111}00 \\
+\textbf{\underline{1}111}00 &
+take the corresponding \underline{1} in $s$ \\
 \hline
-\underline{0}\textbf{111\underline{1}}0 \\
+\underline{0}\textbf{111}00 &
+set it to \underline{0} \\
 \hline
-1\textbf{234\underline{3}}2 \\
+\underline{0}\textbf{111\underline{1}}0 &
+and set the other end of the odd run in $s$ to \underline{1} \\
+\hline
+1\textbf{234\underline{3}}2 &
+the labels \textbf{2}, \textbf{3} (twice) and \textbf{4} in $l$ correspond to
+a 1 in $s$ \\
 \hline
 \end{tabular}
 }\\
+\end{center}
 
 By dropping the label $2$ instead, we pivot to the completely labeled Gale
 string $101110$.\\
 
+\begin{center}
 {\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|}
+\begin{tabular}{|c|l|}
 \hline
-\textbf{1\underline{2}34}32 \\
+\textbf{1\underline{2}34}32 &
+drop \textbf{\underline{2}} from $l$ \\
 \hline
-\textbf{1\underline{1}11}00 \\
+\textbf{1\underline{1}11}00 &
+take the corresponding \underline{1} in $s$ \\
 \hline
-\textbf{1}\underline{0}\textbf{11}0\textbf{\underline{1}} \\
+\textbf{1}\underline{0}\textbf{11}00 &
+set it to \underline{0} \\
 \hline
-\textbf{1}23\textbf{4}3\textbf{\underline{2}} \\
+\textbf{1}\underline{0}\textbf{11}0\textbf{\underline{1}} &
+and set the other end of the odd run (on the loop) in
+$s$ to \underline{1} \\
+\hline
+\textbf{1}2\textbf{34}3\textbf{\underline{2}} &
+\textbf{all the labels} in $l$ correspond to a 1 in $s$ \\
 \hline
 \end{tabular}
 }\\
-
+\end{center}
 \end{example}
 
 Note that, by the Gale evenness condition, we must have an the odd maximal
@@ -524,28 +533,41 @@ labeled Gale string $s = 111100$, as in example \ref{pivoting-example}.
 The Lemke-Howson for Gale algorithm using $1$ as free label returns the
 completely labeled Gale string $s' = 110110$.\\
 
+\begin{center}
 {\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|}
+\begin{tabular}{|r|c|l|}
 \hline
-\textbf{\underline{1}234}32 \\
+ &
+\textbf{\underline{1}234}32 &
+drop \textbf{1}  \\
 \hline
-\textbf{\underline{1}111}00 \\
+ &
+\textbf{\underline{1}111}00 &
+pivot \\
+\cline{2-2}
+ &
+\underline{0}\textbf{111\underline{1}}0 &
+ \\
 \hline
-\underline{0}\textbf{111\underline{1}}0 \\
+pick \textbf{3}, duplicate &
+1\textbf{2\underline{3}4\underline{3}}2 &
+drop the other \textbf{3} \\
 \hline
-1\textbf{234\underline{3}}2 \\
+ &
+0\textbf{1\underline{1}11}0 &
+pivot \\
+\cline{2-2}
+ &
+\textbf{\underline{1}1}\underline{0}\textbf{11}0 &
+ \\
 \hline
-1\textbf{2\underline{3}43}2 \\
-\hline
-0\textbf{1\underline{1}11}0 \\
-\hline
-\textbf{\underline{1}1}\underline{0}\textbf{11}0 \\
-\hline
-\textbf{\underline{1}2}3\textbf{43}2 \\
+pick \textbf{1}, starting label &
+\textbf{\underline{1}2}3\textbf{43}2 &
+end \\
 \hline
 \end{tabular}
 }\\
-
+\end{center}
 \end{example}
 
 Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
@@ -599,20 +621,26 @@ TODO from here
 \subsection{The Complexity of \gale and \anothergale}
 \label{main-thm-subsection}
 
-We consider the following decision problem.
-
-\einr 5em
+We consider the following decision problem.\\
 
 \noindent
-\gale
-{\parskip0pt
-\abs{\textbf{Input}:}
-A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
-\abs{\textbf{Question}:}
+\begin{tabular}{|c|}
+\hline
+\begin{tabular}{|l|}
+\hline
+\gale \\
+\hline
+\hline
+\textbf{input}:
+A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$. \\
+\hline
+\textbf{question}:
 Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
-$l$?
-\par}
-
+$l$? \\
+\hline
+\end{tabular} \\
+\hline
+\end{tabular}\\
 
 Theorem~\ref{even-number-gale} implies that if there is one completely
 labeled Gale string, there is also a second one.
