@@ -39,11 +39,6 @@
   \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
 
 
-\newdimen\einr\einr2em
-\def\abs#1{\par\hangafter=1\hangindent=\einr
-  \noindent\hbox to\einr{\ignorespaces#1\hfill}\ignorespaces}
-
-
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
 \def\conv{{\rm conv}}
@@ -336,8 +331,6 @@ for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
 
-UNTIL HERE
-
 % from here...
 
 For example, given the string of labels $l=123432$, we see that there are
@@ -366,8 +359,6 @@ For $l = 121314$, there are no completely labeled Gale strings.
 
 % until here: checked
 
-TODO
-
 Special games are obtained by using cyclic polytopes in
 Theorem~\ref{t-unitv}, suitably affinely transformed with
 a completely labeled facet $F_0$.
@@ -385,21 +376,28 @@ String} defines exactly the problem of finding a Nash
 equilibrium of the unit vector game $(I,B)$.
 Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
-$d+n$ vertices of a cyclic polytope in dimension~$d$.
-
+$d+n$ vertices of a cyclic polytope in dimension~$d$.\\
 
 \noindent
-\textsc{Another completely labeled Gale string}
-{\parskip0pt
-\abs{\textbf{Input}:}
-% Positive integers $n,d$, where $d$ is even and $d<n$, and
-% a string of {\em labels} $l:[n]\to[d]$.
-A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
-and a completely labeled Gale string $s$ in $G(d,n)$.
-\abs{\textbf{Output}:}
-A completely labeled Gale string $s'$ in
-$G(d,n)$ where $s'\ne s$.
-\par}
+\begin{tabular}{|c|}
+\hline
+\begin{tabular}{|p{33em}|}
+\hline
+\anothergale \\
+\hline
+\hline
+\textbf{input:} \\
+A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
+completely labeled Gale string $s$ in $G(d,n)$. \\
+\hline
+\textbf{output:} \\
+A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
+that $s'\ne s$. \\
+\hline
+\end{tabular} \\
+\hline
+\end{tabular}\\
+
 
 \section{Main Complexity Results}
 \label{main-thm-sect}
@@ -626,19 +624,19 @@ We consider the following decision problem.\\
 \noindent
 \begin{tabular}{|c|}
 \hline
-\begin{tabular}{|l|}
+\begin{tabular}{|p{33em}|}
 \hline
 \gale \\
 \hline
 \hline
-\textbf{input}:
+\textbf{input:} \\
 A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$. \\
 \hline
-\textbf{question}:
+\textbf{question:} \\
 Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
 $l$? \\
 \hline
-\end{tabular} \\
+\end{tabular}\\
 \hline
 \end{tabular}\\
 
@@ -647,21 +645,30 @@ labeled Gale string, there is also a second one.
 The following function problem asks to compute a completely
 labeled Gale string if one such string is already given.
 
-
 We now show that both \gale and \anothergale
 can be solved in polynomial time.
 The proof uses a reduction to the following problem,
 which was first shown to be solvable in polynomial time by
-Edmonds~\cite{edm}.
+Edmonds~\cite{edm}.\\
 
-\noindent \textsc{Perfect Matching}
-{\parskip0pt
-\abs{\textbf{Input}:} Graph $G = (V,E)$.
-\abs{\textbf{Question}:}
-Is there a set $M\subseteq E$ of pairwise non-adjacent edges
-so that every vertex $v \in V$ is incident to exactly one
-edge in~$M$?
-\par}
+\noindent
+\begin{tabular}{|c|}
+\hline
+\begin{tabular}{|p{33em}|}
+\hline
+\textsc{Perfect Matching} \\
+\hline
+\hline
+\textbf{input:} \\
+A graph $G = (V,E)$. \\
+\hline
+\textbf{question:} \\
+Is there a set $M\subseteq E$ of pairwise non-adjacent edges so that
+every vertex $v \in V$ is incident to exactly one edge in~$M$? \\
+\hline
+\end{tabular} \\
+\hline
+\end{tabular}\\
 
 \begin{theorem}
 \label{t-main}
