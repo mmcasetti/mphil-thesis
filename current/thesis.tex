@@ -1,5 +1,15 @@
-\documentclass[preprint,12pt]{article}
-\linespread{1.2}
+\documentclass[12pt]{article}
+
+%% linespread
+\linespread{1.5}
+
+%% page measurements
+\setlength{\hoffset}{0mm}
+\setlength{\oddsidemargin}{25mm}
+\setlength{\textwidth}{130mm}
+
+
+% check packages used
 
 \usepackage{amssymb}
 \usepackage[ruled,vlined]{algorithm2e}
@@ -38,7 +48,6 @@
 \def\tombstone{\hbox{\lower.4pt\vbox{\hrule\hbox{\vrule
   \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
 
-
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
 \def\conv{{\rm conv}}
@@ -49,7 +58,6 @@
 
 \def\gale{\textsc{Gale}}
 \def\anothergale{\textsc{Another Gale}}
-
 
 \begin{document}
 
@@ -371,8 +379,7 @@ In other words, the string of labels $l(1)\cdots l(n)$ is
 just prefixed with the string $1\,2\cdots d$ to give $l'$.
 Then $l'$ has a trivial completely labeled Gale string
 $1^d0^n$ which defines the facet $F_0$.
-Then the problem \textsc{Another completely labeled Gale
-String} defines exactly the problem of finding a Nash
+Then the problem \anothergale\ defines exactly the problem of finding a Nash
 equilibrium of the unit vector game $(I,B)$.
 Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
@@ -381,7 +388,7 @@ $d+n$ vertices of a cyclic polytope in dimension~$d$.\\
 \noindent
 \begin{tabular}{|c|}
 \hline
-\begin{tabular}{|p{33em}|}
+\begin{tabular}{|p{120mm}|}
 \hline
 \anothergale \\
 \hline
@@ -449,7 +456,7 @@ completely labeled Gale string $011110$.\\
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|l|}
+\begin{tabular}{|c|p{100mm}|}
 \hline
 \textbf{\underline{1}234}32 &
 drop \textbf{\underline{1}} from $l$ \\
@@ -476,7 +483,7 @@ string $101110$.\\
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|l|}
+\begin{tabular}{|c|p{100mm}|}
 \hline
 \textbf{1\underline{2}34}32 &
 drop \textbf{\underline{2}} from $l$ \\
@@ -592,7 +599,9 @@ obtained from this pivot. Analogously, if we pivot on $s'$ by dropping
 $l(j)$, we will have to pick up the label $l(i)$. The pivoting is therefore
 reversible by simply dropping the label that was picked up.
 
-% see example pivoting-example
+\small
+
+TODO from here (edit rest of proof)
 
 As there are only a finite number of possible bitstrings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
 Cycling is not possible due to the following observations.
@@ -605,18 +614,16 @@ From then on the process of the algorithm is uniquely determined, thus terminati
 
 \end{proof}
 
+
+% graphs of LHG paths - in proof too?
+% graphs of endpoints of LHG
+
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
-
-\small
-
-TODO from here
 
 % expand - or cut?
 
-% graphs of LHG paths - if not in proof too?
-% graphs of endpoints of LHG - that will be used in Further Results for mentioning index? (and anyway it's something)
 
-\subsection{The Complexity of \gale and \anothergale}
+\subsection{The Complexity of \gale\ and \anothergale}
 \label{main-thm-subsection}
 
 We consider the following decision problem.\\
@@ -624,7 +631,7 @@ We consider the following decision problem.\\
 \noindent
 \begin{tabular}{|c|}
 \hline
-\begin{tabular}{|p{33em}|}
+\begin{tabular}{|p{120mm}|}
 \hline
 \gale \\
 \hline
@@ -645,7 +652,7 @@ labeled Gale string, there is also a second one.
 The following function problem asks to compute a completely
 labeled Gale string if one such string is already given.
 
-We now show that both \gale and \anothergale
+We now show that both \gale\ and \anothergale\
 can be solved in polynomial time.
 The proof uses a reduction to the following problem,
 which was first shown to be solvable in polynomial time by
@@ -654,7 +661,7 @@ Edmonds~\cite{edm}.\\
 \noindent
 \begin{tabular}{|c|}
 \hline
-\begin{tabular}{|p{33em}|}
+\begin{tabular}{|p{120mm}|}
 \hline
 \textsc{Perfect Matching} \\
 \hline
@@ -701,7 +708,7 @@ reduces to \textsc{Perfect Matching}.
 Finding a perfect matching, or deciding that $G$ has none,
 can be done in polynomial time~\cite{edm}.
 
-The reduction for \textsc{Another completely labeled Gale string}
+The reduction for \anothergale\
 is an extension of this.
 Consider the given completely labeled Gale string $s$ and
 the matching $M$ for it.
