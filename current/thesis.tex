@@ -4,9 +4,9 @@
 \linespread{1.5}
 
 %% page measurements
-\setlength{\hoffset}{0mm}
-\setlength{\oddsidemargin}{25mm}
-\setlength{\textwidth}{130mm}
+% \setlength{\hoffset}{0mm}
+% \setlength{\oddsidemargin}{25mm}
+% \setlength{\textwidth}{130mm}
 
 
 % check packages used
@@ -195,7 +195,7 @@ set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
-UNTIL HERE
+TODO - UNTIL HERE
 
 \normalsize
 
@@ -206,9 +206,9 @@ A special case of games is obtained by taking a particular case of best
 response polytope in theorem \ref{t-unitv}.
 
 \begin{definition}\label{cyclic-polytope}
-A {\em cyclic polytope\/} $P$ in dimension~$d$ with $n$ vertices is the
+A {\em cyclic polytope} $P$ in dimension~$d$ with $n$ vertices is the
 convex hull of distinct points $\mu(t_j)$, where $j\in [n]$ and $\mu$ is the
-{\em moment curve\/}
+{\em moment curve}
 \[
 \mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top
 \]
@@ -307,43 +307,24 @@ From this point forward, we will assume that $d$ is even.
 
 %% give something to generalise to odd case
 
-\small
-
-TODO
-
 \subsection{Labeling and the Problem \anothergale}
-
-% def: "completely labeled GS *associated with* labeling" (it makes writing  style more pleasant)
 
 \begin{definition}
 Given a set $G$ of bitstrings of length $n$ and a parameter $d$, a
-{\em labeling\/} is a function $l:[n]\to[d]$. A string $s$ in $G$ is called
-{\em completely labeled\/} if $l(1(s))=[d]$, that is, if
-every label in $[d]$ appears as $l(i)$ for at least one bit
-$s(i)$ so that $s(i)=1$.
+{\em labeling} is a function $l:[n]\to[d]$. A string $s$ in $G(d,n)$ is
+{\em completely labeled} if $l(1(s))=[d]$. Any $l(i)\in [d]$ is called a
+{\em label}
 \end{definition}
 
-Clearly, if $s$ is completely labeled, then $s$ has
-at least $d$ bits that are~$1$, and
-if exactly $d$ bits in $s$ are~$1$, then every label
-in $[d]$ occurs exactly once.
+If $s$ is a completely labeled Gale string $s$ associated with the labeling
+$l:[n]\to[d]$, then for each label $l(i)$ there is a bit $s(i)=1$; therefore,
+we have at least $d$ bits such that $s(i)=1$, that is $|l(1(s))|=d$.
+Furthermore, there are exactly $d$ bits such that $s(i)=1$ if and only if
+for each label $l(i)$ there is exactly one bit $s(i)=1$.
 
-
-% Essentially, this holds because any set $S\subset [n]$
-% the moment curve defines a unique hyperplane which is crossed
-% (and not just touched) by the moment curve; if the bitstring
-% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
-For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
-be understood as a label $l(j)$ for each vertex $\mu(t_j)$
-for $j\in [n]$.
-A completely labeled Gale string $s$ therefore represents a
-facet $F$ of $P$ that is completely labeled.
-
-% from here...
-
-For example, given the string of labels $l=123432$, we see that there are
-four associated completely labeled Gale strings: $111100$, $110110$, $100111$
-and $101101$.\\
+\begin{example}
+Given the string of labels $l=123432$, there are four associated completely
+labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
@@ -363,9 +344,27 @@ and $101101$.\\
 }\\
 \end{center}
 
-For $l = 121314$, there are no completely labeled Gale strings.
+\end{example}
 
-% until here: checked
+\begin{example}
+For $l = 121314$, there are no completely labeled Gale strings.
+\end{example}
+
+
+TODO - FROM HERE
+
+% Essentially, this holds because any set $S\subset [n]$
+% the moment curve defines a unique hyperplane which is crossed
+% (and not just touched) by the moment curve; if the bitstring
+% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
+For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
+be understood as a label $l(j)$ for each vertex $\mu(t_j)$
+for $j\in [n]$.
+A completely labeled Gale string $s$ therefore represents a
+facet $F$ of $P$ that is completely labeled.
+
+
+% graphic of Cyclic polytope - w/labels (maybe one w/out after def of CP)
 
 Special games are obtained by using cyclic polytopes in
 Theorem~\ref{t-unitv}, suitably affinely transformed with
@@ -406,6 +405,9 @@ that $s'\ne s$. \\
 \end{tabular}\\
 
 
+TODO - UNTIL HERE
+
+
 \section{Main Complexity Results}
 \label{main-thm-sect}
 % \section{The Complexity of \anothergale}
@@ -413,15 +415,20 @@ that $s'\ne s$. \\
 
 \subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
 
-% results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
-
 \begin{definition}\label{almost-completely-labeled}
-(\emph{almost labeled condition}) the number of 1's in $s$ is equal to $d$ and $\left\{l(i)|s(i) = 1\right\} \subset \left\{1,\ldots,d\right\}$ with $|\left\{l(i)|s(i) = 1\right\}|=d-1$.
+Let $l:[d]\to [n]$ be a labeling. An {\em almost completely labeled} Gale
+string associated with $l$ is $s\in G(d,n)$ such that $|l(1(s))|=d-1$
 \end{definition}
 
-UNTIL HERE
+If $s$ is an almost completely labeled Gale string $s$ associated with the
+labeling $l:[n]\to[d]$, then for each label $l(i)$ but one there is a bit
+$s(i)=1$. Furthermore, there will be exactly one ``duplicate'' label $l(i)$
+such that $s(i)=s(j)=1$ for exactly one $j\neq i$
 
-\normalsize
+Completely and almost completely labeled Gale strings are used to build two
+fundamental algorithms: the {\em pivoting algorithm} and the
+{\em Lemke-Howson for Gale algorithm}, that uses the pivoting as a
+subroutine.
 
 \begin{definition}\label{pivoting}
 We define as {\em pivoting} the operation defined in algorithm
@@ -515,13 +522,14 @@ free labels}.
 
 Each pivoting can be seen as a step of a ``path'' between (almost) completely
 labeled Gale strings. If the first and last step of the path are completely
-labeled Gale strings, the path is described by algorithm \ref{lhg-algorithm},
-the {\em Lemke-Howson algorithm}.
+labeled Gale strings, the path is described by the Lemke-Howson for Gale
+algorithm.
 
 \begin{algorithm}\label{lhg-algorithm}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
-\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely labeled Gale string $s$ associated with $l$.}
+\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely
+labeled Gale string $s$ associated with $l$.}
 \Output{A Gale string $s'\neq s$ associated with $l$.}
 \BlankLine
 set $s' = s$ \\
@@ -618,9 +626,12 @@ From then on the process of the algorithm is uniquely determined, thus terminati
 % graphs of LHG paths - in proof too?
 % graphs of endpoints of LHG
 
+
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
 
 % expand - or cut?
+
+% results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
 
 
 \subsection{The Complexity of \gale\ and \anothergale}
