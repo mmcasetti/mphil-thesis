@@ -1,7 +1,10 @@
 \documentclass[12pt]{article}
 
 %% linespread
-\linespread{1.5}
+% final
+% \linespread{1.5}
+% drafts
+\linespread{1.2}
 
 %% page measurements
 % \setlength{\hoffset}{0mm}
@@ -47,6 +50,8 @@
 \def\endproof{\hfill\strut\nobreak\hfill\tombstone\par\medbreak}
 \def\tombstone{\hbox{\lower.4pt\vbox{\hrule\hbox{\vrule
   \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
+
+% check which ones are in use
 
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
@@ -277,7 +282,7 @@ We can then consider the Gale strings in $G(d,n)$ with even $d$ as a ``loop''
 obtained by ``glueing together'' the extremes of the string to form an even
 run.
 
-\begin{example}
+\begin{example}\label{gs-example}
 We consider $G(4,6)$. We have
 \[
 G(4,6) = \{111100, 111001, 110011, 100111, 001111, 011110, 110110, 101101, 011011\}
@@ -607,31 +612,77 @@ obtained from this pivot. Analogously, if we pivot on $s'$ by dropping
 $l(j)$, we will have to pick up the label $l(i)$. The pivoting is therefore
 reversible by simply dropping the label that was picked up.
 
+As there are only a finite number of possible bitstrings for each label
+string,  if cycling is not possible the algorithm must terminate by finding
+another completely labeled Gale string in a finite number of steps.
+
 \small
 
-TODO from here (edit rest of proof)
+TODO: edit rest of proof
 
-As there are only a finite number of possible bitstrings for each label string and if cycling is not possible the algorithm must terminate by finding another Gale string in a finite number of steps.
 Cycling is not possible due to the following observations.
 Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
 Then at this bit assignment of $s$, because each pivot is reversible, we would have to be able to pick up two labels.
 This, however, is ruled out by the GEC as only one of the adjacent runs of the dropped label is odd.
 Returning to initial position is only possible by reversing the initial pivot which is not allowed.
 The only free choice we have is at the beginning of the algorithm where we drop one free label.
-From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string. As this initial choice is somewhat arbitrary the resulting Gale strings and NE for different first steps can vary.
+From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string.
 
 \end{proof}
 
+The reversibility of the pivoting steps leads to the following property
 
-% graphs of LHG paths - in proof too?
-% graphs of endpoints of LHG
+\begin{property}\label{lhg-labels-property}
+Let $s\in G(d,n)$ be a completely labeled Gale string for a labeling $l$,
+and let $s'$ be the completely labeled Gale string obtained by running the
+Lemke-Howson algorithm on $s$ by dropping the label $l(i)$. Then running
+the Lemke-Howson algorithm on $s'$ by dropping the label $l(i)$ returns $s$.
 
+The converse does not hold: it's possible for two Gale strings $s$ and $s'$
+to be the endpoints of the path given by the Lemke-Howson algorithm run by
+dropping both the label $l(i)$ and $l(j)\neq l(i)$. This is trivially true
+since it's possible that $|\{s\in G(d,n) completely labeled for l \}| < d$.
+\end{property}
+
+An interesting example is the following.
+
+\begin{example}
+For the labeling $l=12342314$, the completely labeled Gale strings in
+$G(4,8)$ are 11110000, 00011110, 00001111, 11100001, 01100011, 10001101.
+They are related as endpoints of the Lemke-Howson algorithm as shown in the
+following graph:
+
+TODO: graph more readable
+
+\begin{displaymath}
+\xymatrix{
+11110000\ar[r]^1\ar[dr]^{2,4}\ar[ddr] &
+00011110\ar[l]\ar[dl]\ar[ddl] \\
+01100011\ar[ur]_2\ar[r]\ar[dr]|-4 &
+11100001\ar[ul]\ar[l] \\
+00001111\ar[uur]\ar[r]_{1,2} &
+10001101\ar[uul]\ar[ul]\ar[l] \\
+}
+\end{displaymath}
+
+Note that the graph is bipartite: this holds in general, as it will be shown
+in section \ref{further-section}.
+
+Note also that it's not a complete bipartite graph: to reach 1110001 from
+0000111 we must apply the algorithm three times.
+
+To our knowledge it is an open question if the graph has to be connected.
+\end{example}
+
+% results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
+
+Note that the parity result of theorem \ref{even-number-gale} is about
+{\em completely labeled} Gale strings, not Gale strings $s\in G(d,n)$ in
+general. For example, $|G(4,6)|=9$, as shown in \ref{gs-example}.
 
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
 
 % expand - or cut?
-
-% results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
 
 
 \subsection{The Complexity of \gale\ and \anothergale}
@@ -762,9 +813,9 @@ The remainder of this paper contains only known results.
 %% see below).
 
 
-\section{Further results}
+\section{Further results}\label{further-section}
 
-% The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS)
+% The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag
 
 % Open problems (?)
 
