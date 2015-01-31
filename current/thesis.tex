@@ -652,26 +652,38 @@ $G(4,8)$ are 11110000, 00011110, 00001111, 11100001, 01100011, 10001101.
 They are related as endpoints of the Lemke-Howson algorithm as shown in the
 following graph:
 
-TODO: graph more readable
-
 \begin{displaymath}
-\xymatrix{
-11110000\ar[r]^1\ar[dr]^{2,4}\ar[ddr] &
-00011110\ar[l]\ar[dl]\ar[ddl] \\
-01100011\ar[ur]_2\ar[r]\ar[dr]|-4 &
-11100001\ar[ul]\ar[l] \\
-00001111\ar[uur]\ar[r]_{1,2} &
-10001101\ar[uul]\ar[ul]\ar[l] \\
+\xymatrix
+@1
+@M=5pt
+{
+11110000
+\ar@{<->}[rr] |{1}
+\ar@{<->}[drr] |<<<<<<<<{2,4}
+\ar@{<->}[ddrr] |>>>>>>>>{3}
+& & 00011110 \\
+01100011
+\ar@{<->}[urr] |>>>>>>{2}
+\ar@{<->}[rr] |>>>>>>{1,3}
+\ar@{<->}[drr] |{4}
+& & 11100001 \\
+00001111
+\ar@{<->}[uurr] |<<<<<<{3,4}
+\ar@{<->}[rr] |{1,2}
+& & 10001101
 }
 \end{displaymath}
+
+
 
 Note that the graph is bipartite: this holds in general, as it will be shown
 in section \ref{further-section}.
 
-Note also that it's not a complete bipartite graph: to reach 1110001 from
-0000111 we must apply the algorithm three times.
+Note also that it's not a complete bipartite graph: there isn't an edge
+between 1110001 and 00001111.
 
 To our knowledge it is an open question if the graph has to be connected.
+% = There are some equilibria not reacheable via LHG from artificial equilibrium
 \end{example}
 
 % results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
