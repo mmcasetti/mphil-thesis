@@ -1,10 +1,15 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, draft]{article}
+
+% For draft:
+\usepackage[inline,marginclue]{fixme}
+
+\linespread{1.2}
+
+
+%% TYPESETTING
 
 %% linespread
-% final
 % \linespread{1.5}
-% drafts
-\linespread{1.2}
 
 %% page measurements
 % \setlength{\hoffset}{0mm}
@@ -12,6 +17,7 @@
 % \setlength{\textwidth}{130mm}
 
 
+%% PACKAGES
 % check packages used
 
 \usepackage{amssymb}
@@ -27,6 +33,8 @@
 \include{pstricks}
 \include{cases}
 
+%% ENVIRONMENTS (theorems or otherwise)
+% PBL: WE HAVE TWO DEFs OF \proof!!!
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{property}{Property}[section]
@@ -38,7 +46,7 @@
 \item[\hskip \labelsep {\bfseries #1}]}
 {\end{trivlist}}
 
-% WE HAVE TWO DEFs OF \proof!!!
+% Proof: TO CHECK!
 
 \newenvironment{proof}[1][Proof]
 {\begin{trivlist}
@@ -51,7 +59,9 @@
 \def\tombstone{\hbox{\lower.4pt\vbox{\hrule\hbox{\vrule
   \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
 
-% check which ones are in use
+%% SHORTCUTS
+
+% definitions
 
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
@@ -61,14 +71,20 @@
 \def\T{^{\top}}
 \def\rone{{\1\T}}
 
+% use to choose whether to use GALE or COMPLETELY LABELED GALE STRING
+
 \def\gale{\textsc{Gale}}
 \def\anothergale{\textsc{Another Gale}}
+
+%%% END PREAMBLE
 
 \begin{document}
 
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
 \begin{abstract}
+\fxnote{include MSc result. Max word count: 300.}
+
 This thesis presents a report on original research,
 published as joint work with Merschen and von Stengel in
 {\em Electronic Notes in Discrete Mathematics} (2010). Our result
@@ -106,11 +122,12 @@ Stengel (2014) solved the open problem of the {\em sign} of
 the equilibrium found in polynomial time.
 \end{abstract}
 
-\small
-
-TODO
 
 \section{Introduction}
+
+\tiny
+
+\fxnote{game-theoretic part - TODO}
 
 \section{Bimatrix Games and Polytopes}\label{gamespoly}
 
@@ -199,8 +216,6 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
-
-TODO - UNTIL HERE
 
 \normalsize
 
@@ -310,7 +325,7 @@ F = \conv\{\mu(t_i)\mid i\in 1(s)\} \qquad \hbox{ for some }s\in G(d,n)
 
 From this point forward, we will assume that $d$ is even.
 
-%% give something to generalise to odd case
+\fxnote{give something to generalise to odd case}
 
 \subsection{Labeling and the Problem \anothergale}
 
@@ -356,7 +371,7 @@ For $l = 121314$, there are no completely labeled Gale strings.
 \end{example}
 
 
-TODO - FROM HERE
+\fxnote{game theory and polytopes - TODO, again}
 
 % Essentially, this holds because any set $S\subset [n]$
 % the moment curve defines a unique hyperplane which is crossed
@@ -410,13 +425,12 @@ that $s'\ne s$. \\
 \end{tabular}\\
 
 
-TODO - UNTIL HERE
+\fxnote{end game theory part}
 
 
 \section{Main Complexity Results}
 \label{main-thm-sect}
-% \section{The Complexity of \anothergale}
-% \section{Complexity Results}
+\fxnote{alt. titles: The Complexity of \anothergale? Complexity Results?}
 
 \subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
 
@@ -616,9 +630,7 @@ As there are only a finite number of possible bitstrings for each label
 string,  if cycling is not possible the algorithm must terminate by finding
 another completely labeled Gale string in a finite number of steps.
 
-\small
-
-TODO: edit rest of proof
+\fxnote{TODO: edit rest of proof}
 
 Cycling is not possible due to the following observations.
 Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
@@ -628,7 +640,13 @@ Returning to initial position is only possible by reversing the initial pivot wh
 The only free choice we have is at the beginning of the algorithm where we drop one free label.
 From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string.
 
+\fxnote{end proof}
+
 \end{proof}
+
+Theorem \ref{even-number-gale} holds for odd $d$ as well.
+
+\fxnote{expand - or cut?}
 
 The reversibility of the pivoting steps leads to the following property
 
@@ -674,28 +692,23 @@ following graph:
 }
 \end{displaymath}
 
-
-
-Note that the graph is bipartite: this holds in general, as it will be shown
-in section \ref{further-section}.
+Note that the graph is bipartite: this holds in general, a property related
+to further results that we will discuss in section \ref{further-section}.
 
 Note also that it's not a complete bipartite graph: there isn't an edge
 between 1110001 and 00001111.
 
-To our knowledge it is an open question if the graph has to be connected.
-% = There are some equilibria not reacheable via LHG from artificial equilibrium
+To our knowledge, it is an open question if the graph has to be connected.
+\fxnote{If this were the case, there would be Nash equilibria not reachable via LHG from artificial equilibrium}
 \end{example}
-
-% results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run)
 
 Note that the parity result of theorem \ref{even-number-gale} is about
 {\em completely labeled} Gale strings, not Gale strings $s\in G(d,n)$ in
 general. For example, $|G(4,6)|=9$, as shown in \ref{gs-example}.
 
-Theorem \ref{even-number-gale} holds for odd $d$ as well.
+\fxnote{results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run). The first one plays a part in main thms}
 
-% expand - or cut?
-
+\newpage
 
 \subsection{The Complexity of \gale\ and \anothergale}
 \label{main-thm-subsection}
@@ -824,23 +837,33 @@ The remainder of this paper contains only known results.
 %% can be exponential (a result due to Morris \cite{morris},
 %% see below).
 
+\newpage
+
+\tiny
 
 \section{Further results}\label{further-section}
 
-% The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag
-
-% Open problems (?)
-
+\fxnote{The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag. Open problems (?)}
 
 \section*{Appendix A: Notation}
 
-For a matrix $A$ we denote its transpose with $A^T$. We treat vectors $u,v$ in $\reals^d$ as column vectors, so $u^T v$ is their scalar product. By $\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s. A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$. Inequalities like $u\ge\0$ hold for all components. For a set of points $S$ we denote its convex hull by $\conv\,S$.
+For a matrix $A$ we denote its transpose with $A^T$.
+
+Vectors $u,v$ in $\reals^d$ as column vectors
+
+$u^T v$ is their scalar product.
+
+$\0$ we denote a vector of all $0$'s, of suitable dimension, by $\1$ a vector of all $1$'s.
+
+A unit vector, which has a 1 in its $i$th component and 0 otherwise, is denoted by $e_i$.
+
+Inequalities like $u\ge\0$ hold for all components.
+
+For a set of points $S$ we denote its convex hull by $\conv\,S$.
 
 For $n \in \naturals$ we denote $[n] = {1,2,\ldots,n}$
 
 \section*{Appendix B: A result about PPAD completeness of \textsc{Nash}}
-
-% the result of MSc dissertation
 
 \begin{thebibliography}{00}
 
