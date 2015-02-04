@@ -41,12 +41,14 @@
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{definition}{Definition}
 
+% Example: what about newthm?
+
 \newenvironment{example}[1][Example]
 {\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}
 {\end{trivlist}}
 
-% Proof: TO CHECK!
+% Proof: TO CHECK! (it's already in package!) (same for theorem?)
 
 \newenvironment{proof}[1][Proof]
 {\begin{trivlist}
@@ -122,14 +124,13 @@ Stengel (2014) solved the open problem of the {\em sign} of
 the equilibrium found in polynomial time.
 \end{abstract}
 
+\newpage
 
 \section{Introduction}
 
-\tiny
-
-\fxnote{game-theoretic part - TODO}
-
 \section{Bimatrix Games and Polytopes}\label{gamespoly}
+
+\fxnote{game-theoretic part - all section TODO How general? What do I give for granted? subsection 1 on games, subsection 2 on games and polytopes?}
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
@@ -217,7 +218,7 @@ set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
-\normalsize
+\newpage
 
 \section{Cyclic Polytopes and the Problem \anothergale}
 \subsection{Cyclic Polytopes and Gale Strings}
@@ -370,8 +371,7 @@ labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 For $l = 121314$, there are no completely labeled Gale strings.
 \end{example}
 
-
-\fxnote{game theory and polytopes - TODO, again}
+\fxnote{game theory and polytopes - TODO, until end of section. graphic of Cyclic polytope - w/labels (maybe one w/out after def of CP) would be nice}
 
 % Essentially, this holds because any set $S\subset [n]$
 % the moment curve defines a unique hyperplane which is crossed
@@ -382,9 +382,6 @@ be understood as a label $l(j)$ for each vertex $\mu(t_j)$
 for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
-
-
-% graphic of Cyclic polytope - w/labels (maybe one w/out after def of CP)
 
 Special games are obtained by using cyclic polytopes in
 Theorem~\ref{t-unitv}, suitably affinely transformed with
@@ -424,9 +421,7 @@ that $s'\ne s$. \\
 \hline
 \end{tabular}\\
 
-
-\fxnote{end game theory part}
-
+\newpage
 
 \section{Main Complexity Results}
 \label{main-thm-sect}
@@ -640,8 +635,6 @@ Returning to initial position is only possible by reversing the initial pivot wh
 The only free choice we have is at the beginning of the algorithm where we drop one free label.
 From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string.
 
-\fxnote{end proof}
-
 \end{proof}
 
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
@@ -672,7 +665,6 @@ following graph:
 
 \begin{displaymath}
 \xymatrix
-@1
 @M=5pt
 {
 11110000
@@ -713,7 +705,38 @@ general. For example, $|G(4,6)|=9$, as shown in \ref{gs-example}.
 \subsection{The Complexity of \gale\ and \anothergale}
 \label{main-thm-subsection}
 
-We consider the following decision problem.\\
+We will now give our main result: \anothergale\ can be solved in polynomial
+time. Therefore, it takes polynomial time to find a Nash Equilibrium of a
+bimatrix game for which the best response polytope is cyclic.
+
+Our proof will be based on a simple graph construction, and it will exploit
+the following result by Edmonds \ref{edm-flowers}.
+
+\begin{theorem}\label{pm-poly}\ref{edm-flowers}
+We define \textsc{Perfect Matching} as follows:\\
+\noindent
+\begin{tabular}{|c|}
+\hline
+\begin{tabular}{|p{120mm}|}
+\hline
+\textsc{Perfect Matching} \\
+\hline
+\hline
+\textbf{input:} \\
+A graph $G = (V,E)$. \\
+\hline
+\textbf{question:} \\
+Is there a set $M\subseteq E$ of pairwise non-adjacent edges so that
+every vertex $v \in V$ is incident to exactly one edge in~$M$? \\
+\hline
+\end{tabular} \\
+\hline
+\end{tabular}\\
+Then \textsc{Perfect Matching} is solvable in polynomial time.
+\end{theorem}
+
+We begin by considering the accessory problem \gale, and proving that it is
+solvable in polynomial time.\\
 
 \noindent
 \begin{tabular}{|c|}
@@ -734,45 +757,13 @@ $l$? \\
 \hline
 \end{tabular}\\
 
-Theorem~\ref{even-number-gale} implies that if there is one completely
-labeled Gale string, there is also a second one.
-The following function problem asks to compute a completely
-labeled Gale string if one such string is already given.
-
-We now show that both \gale\ and \anothergale\
-can be solved in polynomial time.
-The proof uses a reduction to the following problem,
-which was first shown to be solvable in polynomial time by
-Edmonds~\cite{edm}.\\
-
-\noindent
-\begin{tabular}{|c|}
-\hline
-\begin{tabular}{|p{120mm}|}
-\hline
-\textsc{Perfect Matching} \\
-\hline
-\hline
-\textbf{input:} \\
-A graph $G = (V,E)$. \\
-\hline
-\textbf{question:} \\
-Is there a set $M\subseteq E$ of pairwise non-adjacent edges so that
-every vertex $v \in V$ is incident to exactly one edge in~$M$? \\
-\hline
-\end{tabular} \\
-\hline
-\end{tabular}\\
-
-\begin{theorem}
-\label{t-main}
-The problems
-\textsc{Completely labeled Gale string} and
-\textsc{Almost completely labeled Gale string}
-can be solved in polynomial time.
+\begin{theorem}\label{gale-p-thm}
+The problem \gale\ is solvable in polynomial time.
 \end{theorem}
+\begin{proof}
 
-\proof
+\fxnote{proof from old draft: edit!}
+
 We give a rather simple reduction to \textsc{Perfect Matching}.
 Given the labeling $l:[n]\to[d]$, construct the
 (multi-)graph $G$ with vertex set $V=[d]$ and up to $n$
@@ -793,7 +784,110 @@ is completely labeled.
 This shows how \textsc{Completely labeled Gale string}
 reduces to \textsc{Perfect Matching}.
 Finding a perfect matching, or deciding that $G$ has none,
-can be done in polynomial time~\cite{edm}.
+can be done in polynomial time~\cite{edm-flowers}.
+\end{proof}
+
+Two examples of the construction used in theorem \ref{gale-p-thm} follows.
+In the first one, there is a perfect matching and a corresponding Gale
+string.
+
+\begin{example}
+Let $l=12343122$ be a string of labels. Then we have the edges $e_i$ as
+follows:
+\begin{center}
+\[
+\underbrace{
+1\overbrace{\phantom{1}}^{e_1}
+2\overbrace{\phantom{1}}^{e_2}
+3\overbrace{\phantom{1}}^{e_3}
+4\overbrace{\phantom{1}}^{e_4}
+3\overbrace{\phantom{1}}^{e_5}
+1\overbrace{\phantom{1}}^{e_6}
+2\overbrace{\phantom{1}}^{\mbox{\tiny cycle}}
+2
+}_{e_7}
+\]
+\end{center}
+
+So the graph $G$ will be:
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+1
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{-}[rr] |{e_6}
+\ar@/_1pc/@{-}[rr] |{e_7}
+\ar@{-}[ddrr] |{e_5}
+& & 2
+\ar@{-}[dd] |{e_2}
+\\
+\\
+3
+\ar@{-}[rr] |{e_3}
+\ar@/_1pc/@{-}[rr] |{e_4}
+& & 4
+}
+\end{displaymath}
+
+A possible completely labeled Gale string for $l$ is $11110000$, which
+corresponds to $e_1, e_3$ in $G$:
+
+\[
+\underbrace{
+\overbrace{
+1\underbrace{\overbrace{\phantom{1}}^{e_1}}_{1}
+2\underbrace{\overbrace{\phantom{1}}^{e_2}}_{1}
+3\underbrace{\overbrace{\phantom{1}}^{e_3}}_{1}
+4\underbrace{\overbrace{\phantom{1}}^{e_4}}_{1}
+3\underbrace{\overbrace{\phantom{1}}^{e_5}}_{0}
+1\underbrace{\overbrace{\phantom{1}}^{e_6}}_{0}
+2\underbrace{\overbrace{\phantom{1}}^{\mbox{\tiny cycle}}}_0
+2
+}^{e_7}
+}_{0}
+\]
+\end{example}
+
+An example where there isn't a perfect matching, and therefore there isn't
+any possible Gale string for the labeling is the following.
+
+\begin{example}
+Let us consider the labeling $l=121314$. The associated graph $G$ will be
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+1
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{-}[rr] |{e_2}
+\ar@/^1pc/@{-}[ddrr] |{e_3}
+\ar@{-}[ddrr] |{e_4}
+\ar@{-}[dd] |{e_5}
+\ar@/_1pc/@{-}[dd] |{e_6}
+& & 2
+\\
+\\
+3
+& & 4
+}
+\end{displaymath}
+
+It's trivial to see that it's not possible to find a perfect matching for
+$G$.
+\end{example}
+
+We finally extend the proof of theorem \ref{gale-p-thm} to show that
+\anothergale\ is polynomial-time solvable.
+
+\begin{theorem}\label{gale-p-thm}
+The problem \anothergale\ is solvable in polynomial time.
+\end{theorem}
+\begin{proof}
+
+\fxnote{proof from old draft: to edit!}
 
 The reduction for \anothergale\
 is an extension of this.
@@ -813,37 +907,21 @@ of the edges of $M$ removed has a perfect matching $M'$,
 which is a perfect matching of $G$, and which defines
 a completely labeled Gale string $s'$ different from~$s$.
 The search for $M'$ takes again polynomial time.
-\endproof
-
-% Theorem~\ref{t-main} has a simple proof which raises some
-% interesting observations on its own.
-The significance of Theorem~\ref{t-main} is to be understood
-in the context of equilibrium computation for games, which
-we discuss next.
-The remainder of this paper contains only known results.
-
-%% In addition, the multigraph $G$ in the proof of
-%% Theorem~\ref{t-main} is of interest of its own:
-%% It is a Euler graph (each node is the endpoint of an even
-%% number of edges), which is also known as a 1-oik (see
-%% Edmonds \cite{je07}), and its perfect matchings are known as
-%% room partitions.
-%% The set of such room partitions is even, shown by the
-%% ``exchange algorithm'', also due to Edmonds \cite{je07}.
-%% This provides an alternative proof of Theorem~\ref{t-even}.
-%% However, the exchange algorithm for perfect matchings of Euler
-%% graphs is different (and apparently faster) than the
-%% Lemke--Howson algorithm for labeled Gale strings, which
-%% can be exponential (a result due to Morris \cite{morris},
-%% see below).
+\end{proof}
 
 \newpage
 
-\tiny
-
 \section{Further results}\label{further-section}
 
-\fxnote{The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag. Open problems (?)}
+\fxnote{TODO - all section}
+
+The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag.
+
+Graph of proof: Euler graph, 1-oik, so PM=room partition.
+
+Exchange algorithm in general; alt proof of parity of GS; contrast w/ Morris that shows exp cases for LHG.
+
+Open problems (?)
 
 \section*{Appendix A: Notation}
 
