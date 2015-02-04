@@ -1,65 +1,35 @@
-\documentclass[12pt, draft]{article}
-
-% For draft:
-\usepackage[inline,marginclue]{fixme}
-
-\linespread{1.2}
-
+\documentclass[11pt, draft]{article}
 
 %% TYPESETTING
 
+% For draft:
+\usepackage[inline,marginclue]{fixme}
+\linespread{1.2}
+
+% For final
 %% linespread
 % \linespread{1.5}
-
 %% page measurements
 % \setlength{\hoffset}{0mm}
 % \setlength{\oddsidemargin}{25mm}
 % \setlength{\textwidth}{130mm}
 
-
 %% PACKAGES
-% check packages used
 
 \usepackage{amssymb}
-\usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{mathptmx}
-\usepackage[latin1]{inputenc}
-\usepackage{graphicx}
+\usepackage{amsthm}
+
 \usepackage[all]{xy}
-\usepackage{verbatim}
 
-\include{pstricks}
-\include{cases}
+\usepackage[ruled,vlined]{algorithm2e}
 
-%% ENVIRONMENTS (theorems or otherwise)
-% PBL: WE HAVE TWO DEFs OF \proof!!!
+%% THEOREMS and ENVIRONMENTS
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{property}{Property}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{definition}{Definition}
-
-% Example: what about newthm?
-
-\newenvironment{example}[1][Example]
-{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}
-{\end{trivlist}}
-
-% Proof: TO CHECK! (it's already in package!) (same for theorem?)
-
-\newenvironment{proof}[1][Proof]
-{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}
-{\end{trivlist}}
-
-\def\proof{\noindent{\em Proof.\enspace}}
-\def\proofof#1{\noindent{\em Proof of #1.\enspace}}
-\def\endproof{\hfill\strut\nobreak\hfill\tombstone\par\medbreak}
-\def\tombstone{\hbox{\lower.4pt\vbox{\hrule\hbox{\vrule
-  \kern7.6pt\vrule height7.6pt}\hrule}\kern.5pt}}
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{remark}\newtheorem{example}{Example}[section]
 
 %% SHORTCUTS
 
@@ -73,7 +43,7 @@
 \def\T{^{\top}}
 \def\rone{{\1\T}}
 
-% use to choose whether to use GALE or COMPLETELY LABELED GALE STRING
+% to choose whether to use GALE or COMPLETELY LABELED GALE STRING
 
 \def\gale{\textsc{Gale}}
 \def\anothergale{\textsc{Another Gale}}
@@ -312,7 +282,7 @@ $011011$.
 The relation between cyclic polytopes and Gale strings is given by the
 following theorem by Gale \ref{gale}.
 
-\begin{theorem}\label{cp-gs-gale}\ref{gale}
+\begin{theorem}[\ref{gale}]\label{cp-gs-gale}
 For any positive integer $n$, assume that $t_1 < t_2 < \cdots < t_n$ and let
 P be the cyclic polytope obtained by taking $t_j$, where $j \in [n]$, in
 definition \ref{cyclic-polytope}.
@@ -712,7 +682,7 @@ bimatrix game for which the best response polytope is cyclic.
 Our proof will be based on a simple graph construction, and it will exploit
 the following result by Edmonds \ref{edm-flowers}.
 
-\begin{theorem}\label{pm-poly}\ref{edm-flowers}
+\begin{theorem}[\ref{edm-flowers}]\label{pm-poly}
 We define \textsc{Perfect Matching} as follows:\\
 \noindent
 \begin{tabular}{|c|}
