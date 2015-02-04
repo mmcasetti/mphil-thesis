@@ -764,20 +764,19 @@ string.
 \begin{example}
 Let $l=12343122$ be a string of labels. Then we have the edges $e_i$ as
 follows:
-\begin{center}
+
 \[
 \underbrace{
-1\overbrace{\phantom{1}}^{e_1}
-2\overbrace{\phantom{1}}^{e_2}
-3\overbrace{\phantom{1}}^{e_3}
-4\overbrace{\phantom{1}}^{e_4}
-3\overbrace{\phantom{1}}^{e_5}
-1\overbrace{\phantom{1}}^{e_6}
-2\overbrace{\phantom{1}}^{\mbox{\tiny cycle}}
+1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
+2\overbrace{\phantom{\scriptscriptstyle 1}}^{e_2}
+3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_3}
+4\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
+3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_5}
+1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_6}
+2\overbrace{\phantom{\scriptscriptstyle 1}}^{\scriptscriptstyle cycle}
 2
 }_{e_7}
 \]
-\end{center}
 
 So the graph $G$ will be:
 
@@ -801,23 +800,23 @@ So the graph $G$ will be:
 }
 \end{displaymath}
 
-A possible completely labeled Gale string for $l$ is $11110000$, which
-corresponds to $e_1, e_3$ in $G$:
+A possible completely labeled Gale string for $l$ is $11011000$, which
+corresponds to $e_1, e_4$ in $G$:
 
 \[
 \underbrace{
-\overbrace{
-1\underbrace{\overbrace{\phantom{1}}^{e_1}}_{1}
-2\underbrace{\overbrace{\phantom{1}}^{e_2}}_{1}
-3\underbrace{\overbrace{\phantom{1}}^{e_3}}_{1}
-4\underbrace{\overbrace{\phantom{1}}^{e_4}}_{1}
-3\underbrace{\overbrace{\phantom{1}}^{e_5}}_{0}
-1\underbrace{\overbrace{\phantom{1}}^{e_6}}_{0}
-2\underbrace{\overbrace{\phantom{1}}^{\mbox{\tiny cycle}}}_0
-2
-}^{e_7}
-}_{0}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+0
+}
 \]
+
+
 \end{example}
 
 An example where there isn't a perfect matching, and therefore there isn't
