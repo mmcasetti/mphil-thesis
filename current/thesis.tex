@@ -680,10 +680,9 @@ time. Therefore, it takes polynomial time to find a Nash Equilibrium of a
 bimatrix game for which the best response polytope is cyclic.
 
 Our proof will be based on a simple graph construction, and it will exploit
-the following result by Edmonds \ref{edm-flowers}.
+the following result by Edmonds \ref{edm-flowers} on the problem
+\textsc{Perfect Matching}, defined as follows.\\
 
-\begin{theorem}[\ref{edm-flowers}]\label{pm-poly}
-We define \textsc{Perfect Matching} as follows:\\
 \noindent
 \begin{tabular}{|c|}
 \hline
@@ -702,7 +701,9 @@ every vertex $v \in V$ is incident to exactly one edge in~$M$? \\
 \end{tabular} \\
 \hline
 \end{tabular}\\
-Then \textsc{Perfect Matching} is solvable in polynomial time.
+
+\begin{theorem}[\ref{edm-flowers}]\label{pm-poly}
+The problem \textsc{Perfect Matching} is solvable in polynomial time.
 \end{theorem}
 
 We begin by considering the accessory problem \gale, and proving that it is
@@ -877,6 +878,8 @@ which is a perfect matching of $G$, and which defines
 a completely labeled Gale string $s'$ different from~$s$.
 The search for $M'$ takes again polynomial time.
 \end{proof}
+
+\fxnote{examples for second PM (one w/ double edges, one without)}
 
 \newpage
 
