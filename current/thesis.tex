@@ -3,8 +3,8 @@
 %% TYPESETTING
 
 % For draft:
-\usepackage[inline,marginclue]{fixme}
 \linespread{1.2}
+\usepackage{todonotes}
 
 % For final
 %% linespread
@@ -55,7 +55,8 @@
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
 \begin{abstract}
-\fxnote{include MSc result. Max word count: 300.}
+\todo[inline]{not games, but representation of games (Gale, not games,
+although Savani - thesis - has link)}
 
 This thesis presents a report on original research,
 published as joint work with Merschen and von Stengel in
@@ -100,7 +101,13 @@ the equilibrium found in polynomial time.
 
 \section{Bimatrix Games and Polytopes}\label{gamespoly}
 
-\fxnote{game-theoretic part - all section TODO How general? What do I give for granted? subsection 1 on games, subsection 2 on games and polytopes?}
+\tiny
+
+\todo[inline]{All section}
+\todo[inline]{What do I give for granted? subsection 1 on games, subsection 2
+on games and polytopes?}
+
+\todo[inline]{read: unit games article on vS website}
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
@@ -189,6 +196,8 @@ Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
 
 \newpage
+
+\normalsize
 
 \section{Cyclic Polytopes and the Problem \anothergale}
 \subsection{Cyclic Polytopes and Gale Strings}
@@ -296,7 +305,7 @@ F = \conv\{\mu(t_i)\mid i\in 1(s)\} \qquad \hbox{ for some }s\in G(d,n)
 
 From this point forward, we will assume that $d$ is even.
 
-\fxnote{give something to generalise to odd case}
+\todo[inline]{give something to generalise to odd case}
 
 \subsection{Labeling and the Problem \anothergale}
 
@@ -341,7 +350,8 @@ labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 For $l = 121314$, there are no completely labeled Gale strings.
 \end{example}
 
-\fxnote{game theory and polytopes - TODO, until end of section. graphic of Cyclic polytope - w/labels (maybe one w/out after def of CP) would be nice}
+\todo[inline]{game theory and polytopes, until end of section. graphic of
+Cyclic polytope - w/labels (maybe one w/out after def of CP) would be nice}
 
 % Essentially, this holds because any set $S\subset [n]$
 % the moment curve defines a unique hyperplane which is crossed
@@ -395,7 +405,7 @@ that $s'\ne s$. \\
 
 \section{Main Complexity Results}
 \label{main-thm-sect}
-\fxnote{alt. titles: The Complexity of \anothergale? Complexity Results?}
+\todo{alt. titles?}
 
 \subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
 
@@ -595,7 +605,7 @@ As there are only a finite number of possible bitstrings for each label
 string,  if cycling is not possible the algorithm must terminate by finding
 another completely labeled Gale string in a finite number of steps.
 
-\fxnote{TODO: edit rest of proof}
+\todo[inline]{edit rest of proof}
 
 Cycling is not possible due to the following observations.
 Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
@@ -609,7 +619,7 @@ From then on the process of the algorithm is uniquely determined, thus terminati
 
 Theorem \ref{even-number-gale} holds for odd $d$ as well.
 
-\fxnote{expand - or cut?}
+\todo[inline]{expand - or cut?}
 
 The reversibility of the pivoting steps leads to the following property
 
@@ -661,14 +671,14 @@ Note also that it's not a complete bipartite graph: there isn't an edge
 between 1110001 and 00001111.
 
 To our knowledge, it is an open question if the graph has to be connected.
-\fxnote{If this were the case, there would be Nash equilibria not reachable via LHG from artificial equilibrium}
+\todo[inline]{If this were the case, there would be Nash equilibria not reachable via LHG from artificial equilibrium}
 \end{example}
 
 Note that the parity result of theorem \ref{even-number-gale} is about
 {\em completely labeled} Gale strings, not Gale strings $s\in G(d,n)$ in
 general. For example, $|G(4,6)|=9$, as shown in \ref{gs-example}.
 
-\fxnote{results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run). The first one plays a part in main thms}
+\todo[inline]{results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run). The first one plays a part in main thms}
 
 \newpage
 
@@ -733,7 +743,7 @@ The problem \gale\ is solvable in polynomial time.
 \end{theorem}
 \begin{proof}
 
-\fxnote{proof from old draft: edit!}
+\todo[inline]{proof from old draft: edit!}
 
 We give a rather simple reduction to \textsc{Perfect Matching}.
 Given the labeling $l:[n]\to[d]$, construct the
@@ -857,7 +867,7 @@ The problem \anothergale\ is solvable in polynomial time.
 \end{theorem}
 \begin{proof}
 
-\fxnote{proof from old draft: to edit!}
+\todo[inline]{proof from old draft: to edit!}
 
 The reduction for \anothergale\
 is an extension of this.
@@ -879,13 +889,15 @@ a completely labeled Gale string $s'$ different from~$s$.
 The search for $M'$ takes again polynomial time.
 \end{proof}
 
-\fxnote{examples for second PM (one w/ double edges, one without)}
+\todo[inline]{examples for second PM (one w/ double edges, one without)}
 
 \newpage
 
 \section{Further results}\label{further-section}
 
-\fxnote{TODO - all section}
+\tiny
+
+\todo[inline]{all section}
 
 The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag.
 
