@@ -55,44 +55,42 @@
 \title{The Gale String Problem for Equilibrium Computation in Games}
 
 \begin{abstract}
-\todo[inline]{not games, but representation of games (Gale, not games,
-although Savani - thesis - has link)}
+This thesis presents a report on original research, published
+as joint work with Merschen and von Stengel in {\em Electronic Notes
+in Discrete Mathematics} (2010). Our result shows a polynomial time
+algorithm to solve two problems related to labeled Gale strings, a
+combinatorial structure consisting a string of labels and a bitstring
+satisfying certain conditions.
 
-This thesis presents a report on original research,
-published as joint work with Merschen and von Stengel in
-{\em Electronic Notes in Discrete Mathematics} (2010). Our result
-shows a polynomial time algorithm to find a Nash equilibrium
-for a particular class of games, which was previously used
-by Savani and von Stengel (2006) as an example of exponential
-time for the classical Lemke-Howson algorithm for bimatrix
-games (1964).
+Gale strings can be used in the representation of a particular class
+of games that Savani and von Stengel (2006) used as an example of
+exponential running time for the classical Lemke-Howson algorithm to
+find a Nash equilibrium of a bimatrix game (1964). It was conjectured
+that solving these games via the Lemke-Howson algorithm was complete
+in the class PPAD (Proof by Parity Argument, Directed version). A
+major motivation for the definition of this class by Papadimitriou
+(1994) was, in turn, to capture the pivoting technique of many
+results related to the Nash equilibrium, including the Lemke-Howson
+algorithm.
 
-It was conjectured that solving these games via the
-Lemke-Howson algorithm was complete in the class
-$\mathrm{PPAD}$ (Proof by Parity Argument, Directed
-version). A major motivation for the definition of this
-class by Papadimitriou (1994) was, in turn, to capture the
-pivoting technique of many results related to the Nash
-equilibrium, including the Lemke-Howson algorithm. A
-$\mathrm{PPAD}$-completeness proof of the games we consider
-would have provided a traceable proof of the Daskalakis,
-Goldberg and Papaditrimiou (2005) and Chen and Deng (2009)
-results about the $\mathrm{PPAD}$-completeness of every
-normal form game. Our result of polynomial-time solvability,
-on the other hand, indicates the existence of a special
-class of games, unless $\mathrm{PPAD} = \mathrm{P}$.
+Our result, on the contrary, sets apart this class of games as a case
+for which there is a polynomial-time algorithm to find a Nash
+equilibrium. Since Daskalakis, Goldberg and Papaditrimiou (2005) and
+Chen and Deng (2009) proved the PPAD-completeness of finding a Nash
+equilibrium in general normal-form games, we have a special class of
+games, unless PPAD = P.
 
-Our proof exploits two results. The first one is the
-representation of the Nash equilibria of these games as a
-string of labels and an associated string of $0$s and $1$s
-satisfying some conditions, called \textit{Gale conditions},
-as seen in Savani and von Stengel (2006). The second one is
-the polynomial-time solvability of the problem of finding a
-perfect matching in a graph, solved by Edmonds (1965).
+Our proof exploits two results. The first one is the representation
+of the Nash equilibria of these games as a string of labels and a
+bitstring, as seen in Savani and von Stengel (2006). The second one
+is the polynomial-time solvability of the problem of finding a perfect
+matching in a graph, solved by Edmonds (1965).
 
-Further results by Merschen (2012) and V\'{e}gh and von
-Stengel (2014) solved the open problem of the {\em sign} of
-the equilibrium found in polynomial time.
+Further results by Merschen (2012) and V\'{e}gh and von Stengel (2014)
+will be mentioned.
+
+An appendix relates an amendment to the proof of the PPAD-completeness
+result by Daskalakis, Goldberg and Papaditrimiou (2005).
 \end{abstract}
 
 \newpage
