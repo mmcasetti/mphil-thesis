@@ -2,14 +2,14 @@
 
 %% TYPESETTING
 
-% For draft:
+% draft:
 \linespread{1.2}
 \usepackage{todonotes}
 
-% For final
-%% linespread
+% final (?) TODO: check with LSE requirements
+% linespread
 % \linespread{1.5}
-%% page measurements
+% page measurements
 % \setlength{\hoffset}{0mm}
 % \setlength{\oddsidemargin}{25mm}
 % \setlength{\textwidth}{130mm}
@@ -26,10 +26,40 @@
 
 %% THEOREMS and ENVIRONMENTS
 
+% theorems
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{property}{Property}[section]
 \theoremstyle{definition}\newtheorem{definition}{Definition}
 \theoremstyle{remark}\newtheorem{example}{Example}[section]
+
+% environments
+
+% computational problem
+% TODO check p{textwidth}
+
+\newenvironment{problem}[3]
+{
+\noindent
+\begin{tabular}{p{122mm}}
+\hline
+\noindent
+\textsc{#1} \\
+\hline
+\noindent \textbf{input:\ } #2 \\
+\hline
+\noindent \textbf{output:\ } #3 \\
+\hline
+}
+{\end{tabular}\\}
+
+% use:
+% \begin{problem}
+% {name of problem}
+% {input of problem}
+% {output of problem}
+% \end{problem}
+
 
 %% SHORTCUTS
 
@@ -43,7 +73,7 @@
 \def\T{^{\top}}
 \def\rone{{\1\T}}
 
-% to choose whether to use GALE or COMPLETELY LABELED GALE STRING
+% to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
 
 \def\gale{\textsc{Gale}}
 \def\anothergale{\textsc{Another Gale}}
@@ -380,25 +410,13 @@ Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
 $d+n$ vertices of a cyclic polytope in dimension~$d$.\\
 
-\noindent
-\begin{tabular}{|c|}
-\hline
-\begin{tabular}{|p{120mm}|}
-\hline
-\anothergale \\
-\hline
-\hline
-\textbf{input:} \\
-A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
-completely labeled Gale string $s$ in $G(d,n)$. \\
-\hline
-\textbf{output:} \\
-A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
-that $s'\ne s$. \\
-\hline
-\end{tabular} \\
-\hline
-\end{tabular}\\
+\begin{problem}
+{\anothergale}
+{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
+completely labeled Gale string $s$ in $G(d,n)$.}
+{A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
+that $s'\ne s$.}
+\end{problem}
 
 \newpage
 
@@ -692,24 +710,12 @@ Our proof will be based on a simple graph construction, and it will exploit
 the following result by Edmonds \ref{edm-flowers} on the problem
 \textsc{Perfect Matching}, defined as follows.\\
 
-\noindent
-\begin{tabular}{|c|}
-\hline
-\begin{tabular}{|p{120mm}|}
-\hline
-\textsc{Perfect Matching} \\
-\hline
-\hline
-\textbf{input:} \\
-A graph $G = (V,E)$. \\
-\hline
-\textbf{question:} \\
-Is there a set $M\subseteq E$ of pairwise non-adjacent edges so that
-every vertex $v \in V$ is incident to exactly one edge in~$M$? \\
-\hline
-\end{tabular} \\
-\hline
-\end{tabular}\\
+\begin{problem}
+{\textsc{Perfect Matching}}
+{A graph $G = (V,E)$.}
+{Whether there is a set $M\subseteq E$ of pairwise non-adjacent edges so that
+every vertex $v \in V$ is incident to exactly one edge in~$M$.}
+\end{problem}
 
 \begin{theorem}[\ref{edm-flowers}]\label{pm-poly}
 The problem \textsc{Perfect Matching} is solvable in polynomial time.
@@ -718,24 +724,12 @@ The problem \textsc{Perfect Matching} is solvable in polynomial time.
 We begin by considering the accessory problem \gale, and proving that it is
 solvable in polynomial time.\\
 
-\noindent
-\begin{tabular}{|c|}
-\hline
-\begin{tabular}{|p{120mm}|}
-\hline
-\gale \\
-\hline
-\hline
-\textbf{input:} \\
-A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$. \\
-\hline
-\textbf{question:} \\
-Is there a completely labeled Gale string~$s$ in~$G(d,n)$ associated with
-$l$? \\
-\hline
-\end{tabular}\\
-\hline
-\end{tabular}\\
+\begin{problem}
+{\gale}
+{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.}
+{Whether there is a completely labeled Gale string~$s$ in~$G(d,n)$
+associated with $l$.}
+\end{problem}
 
 \begin{theorem}\label{gale-p-thm}
 The problem \gale\ is solvable in polynomial time.
@@ -906,7 +900,9 @@ Exchange algorithm in general; alt proof of parity of GS; contrast w/ Morris tha
 
 Open problems (?)
 
-\section*{Appendix A: Notation}
+\section*{Appendix A: A result about PPAD completeness of \textsc{Nash}}
+
+\section*{Appendix B: Notation}
 
 For a matrix $A$ we denote its transpose with $A^T$.
 
@@ -924,7 +920,6 @@ For a set of points $S$ we denote its convex hull by $\conv\,S$.
 
 For $n \in \naturals$ we denote $[n] = {1,2,\ldots,n}$
 
-\section*{Appendix B: A result about PPAD completeness of \textsc{Nash}}
 
 \begin{thebibliography}{00}
 

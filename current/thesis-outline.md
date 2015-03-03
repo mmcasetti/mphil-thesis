@@ -9,8 +9,13 @@
 What, why and overview of tools used
 
 ## Bimatrix games and polytopes
+### Games and Nash equilibria
 
-Nash Equilibria, Best response polytopes
+Notation for games, Nash Equilibria
+
+### Best response polytopes
+
+Best response polytopes
 
 Polytopes to games (NE can be found via polytopes, polytopes can be used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 
@@ -59,8 +64,8 @@ issue of the *sign* of an index (Merschen, VvS)
 
 Open problems (?)
 
+## Appendix: result on PPAD-completeness proof
+
 ## Appendix: Notation
 
 [Maybe]
-
-## Appendix: result on PPAD-completeness proof
