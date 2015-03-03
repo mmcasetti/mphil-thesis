@@ -1,4 +1,4 @@
-# The Gale String Problem for Equilibrium Computation in Games
+# Complexity of the Gale String Problem for Equilibrium Computation in Games
 
 ## Abstract
 
