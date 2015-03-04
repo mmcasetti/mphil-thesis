@@ -41,12 +41,12 @@
 \newenvironment{problem}[3]
 {
 \noindent
-\begin{tabular}{p{122mm}}
+\begin{tabular}{p{13mm} @{} c @{ } p{105mm}}
 \hline
-\noindent \textsc{#1} \\
+\multicolumn{3}{l}{\noindent \textsc{#1}} \\
 \hline
-\noindent \textbf{input:} #2 \\
-\noindent \textbf{output:} #3 \\
+\textbf{input} & \textbf{:} & #2 \\
+\textbf{output} & \textbf{:} & #3 \\
 \hline
 \end{tabular}
 }
