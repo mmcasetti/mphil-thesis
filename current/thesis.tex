@@ -22,7 +22,7 @@
 
 \usepackage[all]{xy}
 
-\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 %% THEOREMS and ENVIRONMENTS
 
@@ -41,12 +41,12 @@
 \newenvironment{problem}[3]
 {
 \noindent
-\begin{tabular}{p{13mm} @{} c @{ } p{105mm}}
+\begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
 \hline
-\multicolumn{3}{l}{\noindent \textsc{#1}} \\
+\multicolumn{2}{l}{\noindent \textsc{#1}} \\
 \hline
-\textbf{input} & \textbf{:} & #2 \\
-\textbf{output} & \textbf{:} & #3 \\
+\textbf{input} & #2 \\
+\textbf{output} & #3 \\
 \hline
 \end{tabular}
 }
@@ -231,7 +231,7 @@ equivalent under a cyclic shift, as are the strings $110110$, $101101$ and
 $011011$.
 \end{example}
 
-\todo{here to end subsect: polytopes}
+\todo[inline]{here to end subsect: polytopes}
 
 The relation between cyclic polytopes and Gale strings is given by the
 following theorem by Gale \cite{gale-cyclicpoly}.
@@ -340,9 +340,8 @@ that $s' \neq s$.}
 
 \newpage
 
-\section{Main Complexity Results}
+\section{Algorithmic and Complexity Results}
 \label{main-thm-sect}
-\todo{alt. titles?}
 
 \subsection{Pivoting, Parity and the Lemke-Howson Algorithm}\label{lhg-sect}
 
@@ -356,15 +355,19 @@ labeling $l:[n]\to[d]$, then for each label $l(i)$ but one there is a bit
 $s(i)=1$. Furthermore, there will be exactly one ``duplicate'' label $l(i)$
 such that $s(i)=s(j)=1$ for exactly one $j\neq i$
 
-Completely and almost completely labeled Gale strings are used to build two
-fundamental algorithms: the {\em pivoting algorithm} and the
-{\em Lemke-Howson for Gale algorithm}, that uses the pivoting as a
-subroutine.
+Completely and almost completely labeled Gale strings are used to build the
+{\em Lemke-Howson for Gale algorithm}. We first define its fundamental
+subroutine, the {\em pivoting algorithm}.
+
+\todo[inline]{pivoting for *almost* completely labeled GS, with example!
+(replacing the GS to GS example).}
 
 \begin{definition}\label{pivoting}
 We define as {\em pivoting} the operation defined in algorithm
 \ref{pivoting-algorithm}, where we consider the Gale strings as ``loops'' by
 identifying position $i$ with any position $i+kn$
+
+\todo[inline]{use "modulo" notation}
 
 \begin{algorithm}\label{pivoting-algorithm}
 \SetKwInOut{Input}{input}
@@ -376,7 +379,7 @@ $s(i)=1$}
 complete labeling of~$l$.}
 \BlankLine
 set $s' = s$ \\
-set $s'(i)=0$ (we call this {\em dropping the label} $l(i)$) \\
+set $s'(i)=0$ \\
 let $j$ be the length of the odd maximal run of $1$s created by this \\
 \If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
 { set $s'(i+j+1)=1$ }
@@ -385,59 +388,59 @@ let $j$ be the length of the odd maximal run of $1$s created by this \\
 \Return $s'$
 \caption{Pivoting}
 \end{algorithm}
+
+The operation where we set $s'(i)=0$ (in line 2) is called {\em dropping
+label $i$}.
+
 \end{definition}
 
 \begin{example}\label{pivoting-example}
 Let $l = 123432$, and let's consider the associated completely labeled Gale
 string $s = 111100$. Then dropping the label $1$ we pivot to the almost
-completely labeled Gale string $011110$.\\
+completely labeled Gale string $011110$.
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|c|p{100mm}|}
 \hline
-\textbf{\underline{1}234}32 &
-drop \textbf{\underline{1}} from $l$ \\
-\hline
-\textbf{\underline{1}111}00 &
-take the corresponding \underline{1} in $s$ \\
-\hline
-\underline{0}\textbf{111}00 &
-set it to \underline{0} \\
-\hline
-\underline{0}\textbf{111\underline{1}}0 &
-and set the other end of the odd run in $s$ to \underline{1} \\
-\hline
-1\textbf{234\underline{3}}2 &
-the labels \textbf{2}, \textbf{3} (twice) and \textbf{4} in $l$ correspond to
-a 1 in $s$ \\
+\textbf{123\underline{4}}32 &
+drop the label \textbf{4} from $l$ \\
+\textbf{111\underline{1}}00 &
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{1110}00 &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{111}00\textbf{1} &
+set the other end of the odd run in $s$ to \textbf{1} \\
+\cline{2-2}
+\textbf{123}43\textbf{2} &
+there is a \textbf{1} in $s$ in a position corresponding to the labels
+\textbf{1}, \textbf{2} {\bf (twice)} and \textbf{3} in $l$; there are only
+\textbf{0}'s in all the positions corresponding to the label \textbf{4} in $l$ \\
 \hline
 \end{tabular}
 }\\
 \end{center}
 
 By dropping the label $2$ instead, we pivot to the completely labeled Gale
-string $101110$.\\
+string $101110$.
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|c|p{100mm}|}
 \hline
 \textbf{1\underline{2}34}32 &
-drop \textbf{\underline{2}} from $l$ \\
-\hline
+drop the label \textbf{2} from $l$ \\
 \textbf{1\underline{1}11}00 &
-take the corresponding \underline{1} in $s$ \\
-\hline
-\textbf{1}\underline{0}\textbf{11}00 &
-set it to \underline{0} \\
-\hline
-\textbf{1}\underline{0}\textbf{11}0\textbf{\underline{1}} &
-and set the other end of the odd run (on the loop) in
-$s$ to \underline{1} \\
-\hline
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{1\underline{0}11}00 &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{1}0\textbf{11}0\textbf{1} &
+set the other end of the odd run (on the loop) in $s$ to \textbf{1} \\
+\cline{2-2}
 \textbf{1}2\textbf{34}3\textbf{\underline{2}} &
-\textbf{all the labels} in $l$ correspond to a 1 in $s$ \\
+{\bf all the labels} in $l$ correspond to a \textbf{1} in $s$ \\
 \hline
 \end{tabular}
 }\\
@@ -445,16 +448,20 @@ $s$ to \underline{1} \\
 \end{example}
 
 Note that, by the Gale evenness condition, we must have an the odd maximal
-run of $1$s either on the right or on the left of position $i$.
+run of $1$'s either on the right or on the left of position $i$.
 
 If the Gale string in the pivoting algorithm is completely labeled, we can
 drop any label $l(i)$ such that $s(i) = 1$. We refer to these labels as {\em
 free labels}.
 
-Each pivoting can be seen as a step of a ``path'' between (almost) completely
+Each pivoting can be seen as a step of a ``path'' through (almost) completely
 labeled Gale strings. If the first and last step of the path are completely
-labeled Gale strings, the path is described by the Lemke-Howson for Gale
-algorithm.
+labeled Gale strings, the path is described by the {\em Lemke-Howson for Gale
+algorithm}.
+
+\begin{definition}\cite{lhg-ref}
+
+We define the {\em Lemke-Howson for Gale} algorithm as follows:
 
 \begin{algorithm}\label{lhg-algorithm}
 \SetKwInOut{Input}{input}
@@ -471,6 +478,8 @@ pivot any free label of s' \\
 \caption{Lemke-Howson for Gale Algorithm}
 \end{algorithm}
 
+\end{definition}
+
 \begin{example}\label{lhg-example}
 Let's consider the label string $l = 123432$ and the associated completely
 labeled Gale string $s = 111100$, as in example \ref{pivoting-example}.
@@ -481,30 +490,32 @@ completely labeled Gale string $s' = 110110$.\\
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|r|c|l|}
 \hline
- &
+start &
 \textbf{\underline{1}234}32 &
 drop \textbf{1}  \\
-\hline
+\cline{1-1}
+\cline{3-3}
  &
 \textbf{\underline{1}111}00 &
 pivot \\
-\cline{2-2}
  &
 \underline{0}\textbf{111\underline{1}}0 &
  \\
-\hline
+\cline{1-1}
+\cline{3-3}
 pick \textbf{3}, duplicate &
 1\textbf{2\underline{3}4\underline{3}}2 &
 drop the other \textbf{3} \\
-\hline
+\cline{1-1}
+\cline{3-3}
  &
 0\textbf{1\underline{1}11}0 &
 pivot \\
-\cline{2-2}
  &
 \textbf{\underline{1}1}\underline{0}\textbf{11}0 &
  \\
-\hline
+\cline{1-1}
+\cline{3-3}
 pick \textbf{1}, starting label &
 \textbf{\underline{1}2}3\textbf{43}2 &
 end \\
@@ -514,8 +525,14 @@ end \\
 \end{center}
 \end{example}
 
+Note how the last label that is picked up is the one dropped at the start,
+that's been missing in all the intermediate step; otherwise, we would have
+reached a completely labeled Gale string at an earlier iteration.
+
 Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
 Gale strings.
+
+\todo{edited from paper notes until here}
 
 \begin{theorem}\label{even-number-gale}
 For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
