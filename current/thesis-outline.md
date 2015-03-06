@@ -50,6 +50,13 @@ Labeling, which gives the reason for studying ANOTHER GALE
 Path on Gale Strings // Cyclic polytopes - without labels
 
 ### The Lemke-Howson Algorithm and Parity
+new outline:
+* almost completely labeled GS
+* LH for Gale
+* even no of CLGS
+- holds for d odd too (?)
+- not for GS in general
+* examples (by pf thm that GS + label => unique, ex show that converse not true)
 
 Lemke-Howson for Gale // on Poly - we add labels
 
@@ -64,16 +71,13 @@ and PPAD in appendix]
 PPAD? it goes off topic...
 
 ### The complexity of GALE and ANOTHER GALE
-
-GALE introduced as accessory problem,
-
-PERFECT MATCHING
-
-Main theorem on GALE
-
-Main theorem on ANOTHER GALE
-
-[A lot of graphics, please!]
+outline:
+* GALE introduced as accessory problem
+* PM def
+* main thm for GALE
+* ex of construction: if there is / there isn't PM
+* main theorem for ANOTHER GALE
+* ex: double edge / all edges in PM are single / all single edges
 
 ## Further results
 
@@ -87,5 +91,6 @@ Open problems (?)
 ## Appendix: result on PPAD-completeness proof
 
 ## Appendix: Notation
-
 [Maybe]
+
+## Biblio
