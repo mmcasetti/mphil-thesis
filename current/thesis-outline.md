@@ -8,19 +8,22 @@
 
 What, why and overview of tools used
 
-## Bimatrix games and polytopes
+Intro to idea of PPAD goes in here
+
+## Games, Polytopes and Gale Strings
+[definitions & background]
+
 ### Games and Nash equilibria
 
 Notation for games, Nash Equilibria
 
-### Best response polytopes
+### Best Response Polytopes
 
 Best response polytopes
 
 Polytopes to games (NE can be found via polytopes, polytopes can be used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 
-## Cyclic polytopes and the ANOTHER GALE problem
-### Cyclic polytopes and Gale strings
+### Cyclic Polytopes and Gale strings
 
 Special case: cyclic polytopes.
 
@@ -30,20 +33,28 @@ Cyclic polytopes can be represented w/ a combinatorial structure - Gale strings.
 
 Labeling, which gives the reason for studying ANOTHER GALE
 
-## The complexity of GALE and ANOTHER GALE
-### Pivoting, parity and the Lemke-Howson algorithm
+## Algorithms and Complexity Results
+[main results: thms]
 
-Lemke-Howson for Gale
+### Pivoting
+
+Path on Gale Strings // Cyclic polytopes - without labels
+
+### The Lemke-Howson Algorithm and Parity
+
+Lemke-Howson for Gale // on Poly - we add labels
 
 [A lot of tabulars and graphics! to show running pivoting and LHG between two
 (A)CLGS]
 
-Theorem: if there's a GS, there's another one
+[Theorem: if there's a GS, there's another one
 * will be used in next section
 * will be used to talk about sign in further results
-and PPAD in appendix
+and PPAD in appendix]
 
-### Main results
+PPAD? it goes off topic...
+
+### The complexity of GALE and ANOTHER GALE
 
 GALE introduced as accessory problem,
 
