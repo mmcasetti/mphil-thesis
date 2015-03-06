@@ -359,9 +359,6 @@ Completely and almost completely labeled Gale strings are used to build the
 {\em Lemke-Howson for Gale algorithm}. We first define its fundamental
 subroutine, the {\em pivoting algorithm}.
 
-\todo[inline]{pivoting for *almost* completely labeled GS, with example!
-(replacing the GS to GS example).}
-
 \begin{definition}\label{pivoting}
 We define as {\em pivoting} the operation defined in algorithm
 \ref{pivoting-algorithm}, where we consider the Gale strings as ``loops'' by
@@ -369,82 +366,116 @@ identifying position $i$ with any position $i+kn$
 
 \todo[inline]{use "modulo" notation}
 
+\todo[inline]{for clgs, is dropped label necessarily double one?}
+
 \begin{algorithm}\label{pivoting-algorithm}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
-\Input{A string of labels $l$ of length~$n$; a Gale string $s$ that describes
-a a complete or almost complete labeling of~$l$; $i \in [n]$ such that
-$s(i)=1$}
-\Output{A different Gale string $s'$ that describes a complete or almost
-complete labeling of~$l$.}
+\Input{A string of labels $l$ of length~$n$; a completely or almost
+completely labeled Gale string for $l$; $i \in [n]$ such that $s(i)=1$}
+\Output{A complete or almost complete Gale string for $l$.}
 \BlankLine
-set $s' = s$ \\
-set $s'(i)=0$ \\
+set $s(i)=0$ \\
 let $j$ be the length of the odd maximal run of $1$s created by this \\
 \If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
-{ set $s'(i+j+1)=1$ }
+{ set $s(i+j+1)=1$ }
 \Else
-{ set $s'(i-j-1)=1$ }
-\Return $s'$
-\caption{Pivoting}
+{ set $s(i-j-1)=1$ }
+\Return $s$
+\caption{Pivoting on completely labeled Gale strings}
 \end{algorithm}
 
-The operation where we set $s'(i)=0$ (in line 2) is called {\em dropping
+The operation where we set $s(i)=0$ (line 1) is called {\em dropping
 label $i$}.
 
 \end{definition}
 
-\begin{example}\label{pivoting-example}
-Let $l = 123432$, and let's consider the associated completely labeled Gale
-string $s = 111100$. Then dropping the label $1$ we pivot to the almost
-completely labeled Gale string $011110$.
+\begin{example}
+Let $l = 123432$. The Lemke-Howson for Gale algorithm applied to the
+completely labeled Gale string $s = 111100$ and the label
+\underline{\underline{4}} in position 4 returns the almost completely labeled
+Gale string $011110$.
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|c|p{100mm}|}
 \hline
-\textbf{123\underline{4}}32 &
+\underline{123\underline{4}}32 &
 drop the label \textbf{4} from $l$ \\
 \textbf{111\underline{1}}00 &
 taking the corresponding \textbf{1} in $s$ \\
-\textbf{1110}00 &
+\textbf{111}\underline{0}00 &
 and setting it to \textbf{0} \\
 \cline{2-2}
 \textbf{111}00\textbf{1} &
 set the other end of the odd run in $s$ to \textbf{1} \\
 \cline{2-2}
-\textbf{123}43\textbf{2} &
+\underline{1\underline{2}3}43\underline{\underline{2}} &
 there is a \textbf{1} in $s$ in a position corresponding to the labels
-\textbf{1}, \textbf{2} {\bf (twice)} and \textbf{3} in $l$; there are only
-\textbf{0}'s in all the positions corresponding to the label \textbf{4} in $l$ \\
+\textbf{1}, \textbf{2} \underline{(twice)} and \textbf{3} in $l$;
+there are only \textbf{0}'s in all the positions corresponding to the
+label \textbf{4} in $l$ \\
 \hline
 \end{tabular}
 }\\
 \end{center}
 
-By dropping the label $2$ instead, we pivot to the completely labeled Gale
-string $101110$.
+\end{example}
+
+\begin{example}
+Let $l = 123424$. The Lemke-Howson for Gale algorithm applied to the almost
+completely labeled Gale string $s = 110011$ and the duplicate label
+\underline{\underline{2}} in position 2 returns the almost completely
+labeled Gale string $100111$.
 
 \begin{center}
 {\renewcommand{\tabcolsep}{2ex}
 \begin{tabular}{|c|p{100mm}|}
 \hline
-\textbf{1\underline{2}34}32 &
-drop the label \textbf{2} from $l$ \\
-\textbf{1\underline{1}11}00 &
+\underline{1\underline{2}}34\underline{24} &
+drop the label \textbf{2} in position 2 from $l$ \\
+\textbf{11}00\textbf{11} &
 taking the corresponding \textbf{1} in $s$ \\
-\textbf{1\underline{0}11}00 &
+\textbf{1}\underline{0}00\textbf{11} &
 and setting it to \textbf{0} \\
 \cline{2-2}
-\textbf{1}0\textbf{11}0\textbf{1} &
+\textbf{1}00\textbf{111} &
 set the other end of the odd run (on the loop) in $s$ to \textbf{1} \\
 \cline{2-2}
-\textbf{1}2\textbf{34}3\textbf{\underline{2}} &
-{\bf all the labels} in $l$ correspond to a \textbf{1} in $s$ \\
+\underline{1}23\underline{\underline{4}2\underline{4}} &
+there is a \textbf{1} in $s$ in a position corresponding to the labels
+\textbf{1}, \textbf{2} and \textbf{4} \underline{(twice)} in $l$;
+there are only \textbf{0}'s in all the positions corresponding to the
+label \textbf{3} in $l$ \\
 \hline
 \end{tabular}
 }\\
 \end{center}
+
+If we drop duplicate label \underline{\underline{2}} in position 5 instead,
+the algorithm returns the completely labeled Gale string $111001$.
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|c|p{100mm}|}
+\hline
+\underline{12}34\underline{\underline{2}4} &
+drop the label \textbf{2} in position 5 from $l$ \\
+\textbf{11}00\underline{\underline{1}1} &
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{11}00\underline{0}\textbf{1} &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{111}00\textbf{1} &
+set the other end of the odd run (on the loop) in $s$ to \textbf{1} \\
+\cline{2-2}
+\underline{123}42\underline{4} &
+\underline{all the labels} in $l$ correspond to a \textbf{1} in $s$ \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+
 \end{example}
 
 Note that, by the Gale evenness condition, we must have an the odd maximal
