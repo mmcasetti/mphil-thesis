@@ -24,6 +24,15 @@ Best response polytopes
 Polytopes to games (NE can be found via polytopes, polytopes can be used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 
 ### Cyclic Polytopes and Gale strings
+new outline:
+* def CP
+* def GS
+* example GS, d even
+* exmple GS, d odd
+* thm Gale (true for d even and odd!)
+* graphics to go w/ thm
+* prop even d (use modulo, then find a nice notation & drop it)
+* assume that from now on d even (unless o/w spec - if parity thm for odd d too)
 
 Special case: cyclic polytopes.
 
