@@ -100,4 +100,4 @@ TODO - **all**
 [Maybe]
 
 ## Biblio
-TODO - **all**
+TODO - cfr biblio-notes.md
