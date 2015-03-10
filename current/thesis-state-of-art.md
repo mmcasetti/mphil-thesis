@@ -1,7 +1,7 @@
 # Complexity of the Gale String Problem for Equilibrium Computation in Games
 
 ## Abstract
-TODO - no dates but biblio refs
+DONE
 
 ## Introduction
 TODO - **all**
@@ -90,7 +90,7 @@ TODO
 * examples for ANOTHER GALE
 
 ## Further Results
-here PPAD comes back, the "D" being in sign...
+here PPAD comes back from intro, the "D" being in sign...
 TODO - **all**
 
 ## Appendix: a Result on the PPAD-completeness of NASH
