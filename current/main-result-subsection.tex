@@ -1,0 +1,319 @@
+\documentclass[11pt, draft]{article}
+
+%% TYPESETTING
+
+% draft:
+\linespread{1.3}
+\usepackage{todonotes}
+
+% final (?) TODO: check with LSE requirements
+% page measurements
+% \setlength{\hoffset}{0mm}
+% \setlength{\oddsidemargin}{25mm}
+% \setlength{\textwidth}{130mm}
+
+%% PACKAGES
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage[all]{xy}
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+%% THEOREMS and ENVIRONMENTS
+
+% theorems
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{property}{Property}[section]
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{remark}\newtheorem{example}{Example}[section]
+
+% environments
+
+% computational problem
+% TODO check p{textwidth} in final version
+
+\newenvironment{problem}[3]
+{
+\noindent
+\begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
+\hline
+\multicolumn{2}{l}{\noindent \textsc{#1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{output} & #3 \\
+\hline
+\end{tabular}
+}
+{\\}
+
+% use:
+% \begin{problem}
+% {name of problem}
+% {input of problem}
+% {output of problem}
+% \end{problem}
+
+
+%% SHORTCUTS
+
+% definitions
+
+\def\reals{{\mathbb R}}
+\def\naturals{{\mathbb N}}
+\def\conv{{\rm conv}}
+\def\0{{\bf0}}
+\def\1{{\bf1}}
+\def\T{^{\top}}
+\def\rone{{\1\T}}
+
+% to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
+
+\def\gale{{\sc{Gale}}}
+\def\anothergale{{\sc{Another Gale}}}
+
+
+%%% END PREAMBLE
+
+\begin{document}
+
+\subsection{The Complexity of \gale\ and \anothergale}
+\label{main-thm-subsection}
+
+We will now give our main result: \anothergale\ can be solved in polynomial
+time. Therefore, it takes polynomial time to find a Nash Equilibrium of a
+bimatrix game for which the best response polytope is cyclic.
+
+Our proof will be based on a simple graph construction, and it will exploit
+the following result by Edmonds \ref{edm-flowers} on the problem
+\textsc{Perfect Matching}, defined as follows.\\
+
+\begin{problem}
+{\textsc{Perfect Matching}}
+{A graph $G = (V,E)$.}
+{Whether there is a set $M\subseteq E$ of pairwise non-adjacent edges so that
+every vertex $v \in V$ is incident to exactly one edge in~$M$.}
+\end{problem}
+
+\begin{theorem}[\ref{edm-flowers}]\label{pm-poly}
+The problem \textsc{Perfect Matching} is solvable in polynomial time.
+\end{theorem}
+
+We begin by considering the accessory problem \gale, and proving that it is
+solvable in polynomial time.\\
+
+\begin{problem}
+{\gale}
+{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.}
+{Whether there is a completely labeled Gale string~$s$ in~$G(d,n)$
+associated with $l$.}
+\end{problem}
+
+\begin{theorem}\label{gale-p-thm}
+The problem \gale\ is solvable in polynomial time.
+\end{theorem}
+\begin{proof}
+
+\todo[inline]{proof from old draft: edit!}
+
+We give a rather simple reduction to \textsc{Perfect Matching}.
+Given the labeling $l:[n]\to[d]$, construct the
+(multi-)graph $G$ with vertex set $V=[d]$ and up to $n$
+(possibly parallel) edges with endpoints $l(i),l(i+1)$ for
+$i\in [n]$ whenever these endpoints are distinct (so $G$ has
+no loops); here we let $n+1=1$ (``modulo~$n$'') so that
+$n,n+1$ is to be understood as $n,1$.
+Then a completely labeled Gale string $s$ in $G(d,n)$ splits
+into a number of runs which are uniquely split into $d/2$
+pairs $i,i+1$ so that the labels $l(i)$ and $l(i+1)$ are
+distinct, and all labels $1,\ldots,n$ occur among them.
+So this defines a perfect matching for~$G$.
+
+Conversely, a perfect matching $M$ of $G$ defines a Gale
+string $s$ where $s(i)=s({i+1})=1$ if the edge that joins
+$l(i)$ and $l(i+1)$ is in $M$ and $s(i)=0$ otherwise, so $s$
+is completely labeled.
+This shows how \textsc{Completely labeled Gale string}
+reduces to \textsc{Perfect Matching}.
+Finding a perfect matching, or deciding that $G$ has none,
+can be done in polynomial time~\cite{edm-flowers}.
+\end{proof}
+
+Two examples of the construction used in theorem \ref{gale-p-thm} follows.
+In the first one, there is a perfect matching and a corresponding Gale
+string.
+
+\begin{example}
+Let $l=12343122$ be a string of labels. Then we have the edges $e_i$ as
+follows:
+
+\[
+\underbrace{
+1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
+2\overbrace{\phantom{\scriptscriptstyle 1}}^{e_2}
+3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_3}
+4\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
+3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_5}
+1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_6}
+2\overbrace{\phantom{\scriptscriptstyle 1}}^{\scriptscriptstyle cycle}
+2
+}_{e_7}
+\]
+
+So the graph $G$ will be:
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+1
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{-}[rr] |{e_6}
+\ar@/_1pc/@{-}[rr] |{e_7}
+\ar@{-}[ddrr] |{e_5}
+& & 2
+\ar@{-}[dd] |{e_2}
+\\
+\\
+3
+\ar@{-}[rr] |{e_3}
+\ar@/_1pc/@{-}[rr] |{e_4}
+& & 4
+}
+\end{displaymath}
+
+A possible completely labeled Gale string for $l$ is $11011000$, which
+corresponds to $e_1, e_4$ in $G$:
+
+\[
+\underbrace{
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
+\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+0\overbrace{\phantom{\scriptscriptstyle 1}}
+0
+}
+\]
+
+
+\end{example}
+
+An example where there isn't a perfect matching, and therefore there isn't
+any possible Gale string for the labeling is the following.
+
+\begin{example}
+Let us consider the labeling $l=121314$. The associated graph $G$ will be
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+1
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{-}[rr] |{e_2}
+\ar@/^1pc/@{-}[ddrr] |{e_3}
+\ar@{-}[ddrr] |{e_4}
+\ar@{-}[dd] |{e_5}
+\ar@/_1pc/@{-}[dd] |{e_6}
+& & 2
+\\
+\\
+3
+& & 4
+}
+\end{displaymath}
+
+It's trivial to see that it's not possible to find a perfect matching for
+$G$.
+\end{example}
+
+We finally extend the proof of theorem \ref{gale-p-thm} to show that
+\anothergale\ is polynomial-time solvable.
+
+\begin{theorem}\label{gale-p-thm}
+The problem \anothergale\ is solvable in polynomial time.
+\end{theorem}
+\begin{proof}
+
+\todo[inline]{proof from old draft: to edit!}
+
+The reduction for \anothergale\
+is an extension of this.
+Consider the given completely labeled Gale string $s$ and
+the matching $M$ for it.
+If $G$ has multiple edges between two nodes and one of them
+is in $M$, simply replace that edge by a parallel edge to
+obtain another completely labeled Gale string~$s'$.
+Hence, we can assume that $M$ has no edges that have a
+parallel edge.
+Another completely labeled Gale string $s'$ exists by
+Theorem~\ref{t-even}.
+The corresponding matching $M'$ does not use at least one
+edge in $M$.
+Hence, at least one of the $d/2$ graphs $G$ which have one
+of the edges of $M$ removed has a perfect matching $M'$,
+which is a perfect matching of $G$, and which defines
+a completely labeled Gale string $s'$ different from~$s$.
+The search for $M'$ takes again polynomial time.
+\end{proof}
+
+\todo[inline]{examples for second PM (one w/ double edges, one without)}
+
+\newpage
+
+\begin{thebibliography}{00}
+
+\frenchspacing\parskip-1ex
+\small
+
+\bibitem{main} M. M. Casetti, J. Merschen, B. von Stengel (2010).
+Finding Gale Strings.
+\emph{Electronic Notes in Discrete Mathematics}
+\todo[inline]{issue, pp. n--m.}
+
+\bibitem{cd} X. Chen, X. Deng (2006).
+Settling the complexity of two-player Nash equilibrium.
+\emph{Proc. 47th FOCS}, pp. 261--272.
+
+\bibitem{dgp} C. Daskalakis, P. W. Goldberg, C. H. Papadimitriou (2006).
+The complexity of computing a Nash equilibrium.
+\emph{Proc. Ann. 38th STOC}, pp. 71--78.
+\todo[inline]{change ref to econometrica(?)}
+
+\bibitem{edm} J. Edmonds (1965).
+Paths, trees, and flowers.
+\emph{Canad. J. Math.} 17, pp. 449--467.
+
+\bibitem{gale} D. Gale (1963),
+Neighborly and cyclic polytopes.
+\emph{Convexity, Proc. Symposia in Pure Math.}, Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
+\todo[inline]{check if right typography}
+
+\bibitem{jm} J. Merschen (2012).
+\todo[inline]{thesis}
+
+\bibitem{lh} C. E. Lemke, J. T. Howson, Jr. (1964).
+Equilibrium points of bimatrix games.
+\emph{J.  Soc. Indust. Appl. Mathematics} 12, pp.  413--423.
+
+\bibitem{ppad} C. H. Papadimitriou (1994).
+On the complexity of the parity argument and other inefficient proofs of existence.
+\emph{J. Comput. System Sci.} 48, pp. 498--532.
+
+\bibitem{svs} R. Savani, B. von Stengel (2006).
+Hard-to-solve bimatrix games.
+\emph{Econometrica} 74, pp. 397--429.
+
+\bibitem{vvs} L. V\'{egh}, B. von Stengel
+\todo[inline]{ref}
+
+
+\end{thebibliography}
+
+\end{document}
