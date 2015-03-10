@@ -30,7 +30,6 @@ Paths, trees, and flowers.
 Neighborly and cyclic polytopes.
 In: Convexity, Proc. Symposia in Pure Math., Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
 
-
 \bibitem{jm} J. Merschen (2012).
 \todo[inline]{thesis}
 
