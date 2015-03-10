@@ -39,7 +39,7 @@ DONE
 * def GS
 * one example GS (even)
 
-### Labeling and ANOTHER GALE
+### Labeling and the Problem ANOTHER GALE
 TODO
 * labeled polytopes
 * & NE as compl labeled vertices
