@@ -38,17 +38,20 @@
 
 \newenvironment{problem}[3]
 {
+\vspace{2.5ex}
 \noindent
 \begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
 \hline
-\multicolumn{2}{l}{\noindent \textsc{#1}} \\
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
 \textbf{input} & #2 \\
 \textbf{output} & #3 \\
 \hline
 \end{tabular}
 }
-{\\}
+{
+\vspace{1.5ex}
+}
 
 % use:
 % \begin{problem}
@@ -338,7 +341,7 @@ Then the problem \anothergale\ defines exactly the problem of finding a Nash
 equilibrium of the unit vector game $(I,B)$.
 Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
-$d+n$ vertices of a cyclic polytope in dimension~$d$.\\
+$d+n$ vertices of a cyclic polytope in dimension~$d$.
 
 \begin{problem}
 {\anothergale}
@@ -688,7 +691,7 @@ bimatrix game for which the best response polytope is cyclic.
 
 Our proof will be based on a simple graph construction, and it will exploit
 the following result by Edmonds \ref{edm-flowers} on the problem
-\textsc{Perfect Matching}, defined as follows.\\
+\textsc{Perfect Matching}, defined as follows.
 
 \begin{problem}
 {\textsc{Perfect Matching}}
@@ -702,7 +705,7 @@ The problem \textsc{Perfect Matching} is solvable in polynomial time.
 \end{theorem}
 
 We begin by considering the accessory problem \gale, and proving that it is
-solvable in polynomial time.\\
+solvable in polynomial time.
 
 \begin{problem}
 {\gale}
