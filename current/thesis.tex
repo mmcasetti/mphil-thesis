@@ -834,7 +834,6 @@ A perfect matching for $G$ is given by $M=\{e_1, e_4\}$.
 }
 \end{displaymath}
 
-
 In turn, this corresponds to the completely labeled Gale string $11011000$.
 
 \begin{displaymath}
@@ -968,23 +967,24 @@ A case in which all the edges in every perfect matching don't have a
 parallel edge is the following; note that $G$ is a multigraph.
 
 \begin{example}
-We consider the labeling $l=123142$; the corresponding graph $G$ is the
-following, with only two possible perfect matchings, $M=\{e_2,e_5\}$ and
-$M'=\{e_4,e_6\}$.
+We consider the labeling $l=123142$. There are only two possible perfect
+matchings for the corresponding graph: $M=\{e_2,e_4\}$, that corresponds to
+the completely labeled Gale string $s=011110$, and $M'=\{e_3,e_5\}$, that
+corresponds to $s'=001111$.
 
 \begin{displaymath}
 \xymatrix
 @M=5pt
 {
 *+[o][F-]{1}
-\ar@/^1pc/@{.}[rr] |{e_7}
+\ar@/^1pc/@{.}[rr] |{e_6}
 \ar@{.}[rr] |{e_1}
-\ar@{--}[dd] |{e_5}
-\ar@{-}[ddrr] |>>>>>>{e_4}
+\ar@{--}[dd] |{e_4}
+\ar@{-}[ddrr] |>>>>>>{e_3}
 & &
 *+[o][F-]{2}
 \ar@{--}[dd] |{e_2}
-\ar@{-}[ddll] |>>>>>>{e_6}
+\ar@{-}[ddll] |>>>>>>{e_5}
 \\
 &
 &
