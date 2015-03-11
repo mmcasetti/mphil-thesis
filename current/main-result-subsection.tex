@@ -182,20 +182,20 @@ Let $l=12343122$ be a string of labels. Then the egdes $e_i$ of the graph
 $G$ obtained from the construction in the proof of theorem  \ref{gale-thm}
 will be as follow:
 
-\todo[inline]{find a better graphic representation}
-
-\[
-\underbrace{
-1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
-2\overbrace{\phantom{\scriptscriptstyle 1}}^{e_2}
-3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_3}
-4\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
-3\overbrace{\phantom{\scriptscriptstyle 1}}^{e_5}
-1\overbrace{\phantom{\scriptscriptstyle 1}}^{e_6}
-2\overbrace{\phantom{\scriptscriptstyle 1}}^{\scriptscriptstyle cycle}
-2
-}_{e_7}
-\]
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+*+[o][F-]{1} \ar@/^1pc/@{-}[r] |{e_1} &
+*+[o][F-]{2} \ar@/^1pc/@{-}[r] |{e_2} &
+*+[o][F-]{3} \ar@/^1pc/@{-}[r] |{e_3} &
+*+[o][F-]{4} \ar@/^1pc/@{-}[r] |{e_4} &
+*+[o][F-]{3} \ar@/^1pc/@{-}[r] |{e_5} &
+*+[o][F-]{1} \ar@/^1pc/@{-}[r] |{e_6} &
+*+[o][F-]{2} \ar@/^1pc/@{-}[r] |{cycle} &
+*+[o][F-]{2} \ar@/^2pc/@{-}[lllllll] |{e_7} \\
+}
+\end{displaymath}
 
 Given the vertices $v\in [4]$, the graph $G$ will be:
 
@@ -250,18 +250,21 @@ A perfect matching for $G$ is given by $M=\{e_1, e_4\}$.
 
 In turn, this corresponds to the completely labeled Gale string $11011000$.
 
-\[
-\underbrace{
-\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_1}
-\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
-0\overbrace{\phantom{\scriptscriptstyle 1}}
-\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}^{e_4}
-\mathbf{1}\overbrace{\phantom{\scriptscriptstyle 1}}
-0\overbrace{\phantom{\scriptscriptstyle 1}}
-0\overbrace{\phantom{\scriptscriptstyle 1}}
-0
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+*+<1em>[F-:<12pt>]{\txt{1 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{{\bf e_1}} &
+*+<1em>[F-:<12pt>]{\txt{2 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{e_2} &
+*+<1em>[F-:<12pt>]{\txt{3 \\ 0}} \ar@/^1pc/@{-}[r] |{e_3} &
+*+<1em>[F-:<12pt>]{\txt{4 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{{\bf e_4}} &
+*+<1em>[F-:<12pt>]{\txt{3 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{e_5} &
+*+<1em>[F-:<12pt>]{\txt{1 \\ 0}} \ar@/^1pc/@{-}[r] |{e_6} &
+*+<1em>[F-:<12pt>]{\txt{2 \\ 0}} \ar@/^1pc/@{-}[r] |{cycle} &
+*+<1em>[F-:<12pt>]{\txt{2 \\ 0}} \ar@/^3pc/@{-}[lllllll] |{e_7} \\
 }
-\]
+\end{displaymath}
+
 \end{example}
 
 A perfect matching for a graph, and therefore a Gale string for a labeling,
