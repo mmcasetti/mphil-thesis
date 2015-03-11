@@ -11,7 +11,7 @@
 
 ## Games, Polytopes and Gale Strings
 
-### Games and Nash equilibria
+### Normal Form Games and Nash Equilibria
 
 * basic definitions: game, NE
 
