@@ -91,6 +91,11 @@
 For $l = 121314$, there are no completely labeled Gale strings.
 \end{example}
 
+\begin{theorem}\label{even-number-gale}
+For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
+the number of completely labeled Gale strings associated with $l$ is even.
+\end{theorem}
+
 \end{verbatim}
 
 \subsection{The Complexity of \gale\ and \anothergale}
@@ -172,10 +177,12 @@ one, can therefore be done in polynomial time.
 
 We give two examples of the construction used in theorem \ref{gale-thm}.
 
-\begin{example}
+\begin{example}\label{gs-pm-ex}
 Let $l=12343122$ be a string of labels. Then the egdes $e_i$ of the graph
 $G$ obtained from the construction in the proof of theorem  \ref{gale-thm}
 will be as follow:
+
+\todo[inline]{find a better graphic representation}
 
 \[
 \underbrace{
@@ -196,24 +203,52 @@ Given the vertices $v\in [4]$, the graph $G$ will be:
 \xymatrix
 @M=5pt
 {
-1
+*+[o][F-]{1}
 \ar@/^1pc/@{-}[rr] |{e_1}
 \ar@{-}[rr] |{e_6}
 \ar@/_1pc/@{-}[rr] |{e_7}
 \ar@{-}[ddrr] |{e_5}
-& & 2
+& &
+*+[o][F-]{2}
 \ar@{-}[dd] |{e_2}
 \\
 \\
-3
+*+[o][F-]{3}
 \ar@{-}[rr] |{e_3}
 \ar@/_1pc/@{-}[rr] |{e_4}
-& & 4
+& &
+*+[o][F-]{4}
 }
 \end{displaymath}
 
-The perfect matching for $G$ given by $M=\{e_1, e_4\}$ will then correspond
-to the completely labeled Gale string $11011000$.
+A perfect matching for $G$ is given by $M=\{e_1, e_4\}$.
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+*+[o][F-]{1}
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{.}[rr] |{e_6}
+\ar@/_1pc/@{.}[rr] |{e_7}
+\ar@{.}[ddrr] |{e_5}
+& &
+*+[o][F-]{2}
+\ar@{.}[dd] |{e_2}
+\\
+&
+&
+\\
+*+[o][F-]{3}
+\ar@{.}[rr] |{e_3}
+\ar@/_1pc/@{-}[rr] |{e_4}
+& &
+*+[o][F-]{4}
+}
+\end{displaymath}
+
+
+In turn, this corresponds to the completely labeled Gale string $11011000$.
 
 \[
 \underbrace{
@@ -263,34 +298,114 @@ $l$.
 We finally extend the proof of theorem \ref{gale-thm} to show that
 \anothergale\ is polynomial-time solvable.
 
-\begin{theorem}\label{gale-p-thm}
+\begin{theorem}\label{anothergale-thm}
 The problem \anothergale\ is solvable in polynomial time.
-\end{theorem}
+
 \begin{proof}
 
-\todo[inline]{proof from old draft: to edit!}
+Let $l:[n]\to [d]$ be a labeling, and let $s\in G(d,n)$ be a completely
+labeled Gale string for $l$. Let $G=(V,E)$ be the graph constructed from $l$
+as in the proof of theorem \ref{gale-thm}, and let $M$ be its perfect
+matching for $G$ corresponding to $s$.
 
-The reduction for \anothergale\
-is an extension of this.
-Consider the given completely labeled Gale string $s$ and
-the matching $M$ for it.
-If $G$ has multiple edges between two nodes and one of them
-is in $M$, simply replace that edge by a parallel edge to
-obtain another completely labeled Gale string~$s'$.
-Hence, we can assume that $M$ has no edges that have a
-parallel edge.
-Another completely labeled Gale string $s'$ exists by
-Theorem~\ref{t-even}.
-The corresponding matching $M'$ does not use at least one
-edge in $M$.
-Hence, at least one of the $d/2$ graphs $G$ which have one
-of the edges of $M$ removed has a perfect matching $M'$,
-which is a perfect matching of $G$, and which defines
-a completely labeled Gale string $s'$ different from~$s$.
-The search for $M'$ takes again polynomial time.
+If there is an edge $e=(l(i),l(i+1))\in M$ and there is an edge
+$e'\neq e$ in $G$ such that $e'=(l(i),l(i+1))$ (recall that $G$ can be a
+multigraph), we simply consider the matching
+$M'=M\setminus \{e\} \cup \{e'\}$. Let $s'$ be the completely labeled
+Gale string corresponding to $M'$; the 1's corresponding to the labels
+$l(i),l(i+1)$, that in $s$ were in the position given by the edge $e$, for
+$s'$ are in the position given by $e'\neq e$. Therefore, we have
+a completely labeled Gale string that is different from the one in the
+input of the problem.
+
+We now assume that all the edges in every perfect matching $M$ for $G$
+don't have a parallel edge. Note that this condition is only on the
+edges in the matching; $G$ can still be a multigraph.
+
+Theorem \ref{even-number-gale} guarantees the existence of a completely
+labeled Gale string $s'\neq s$; since the two strings are different, the
+perfect matching $M'\neq M$ corresponding to one of these $s'$ does not
+use at least one edge $e\in M$. There are $d/2$ possible graphs
+$G_i'=(V,E_i')$, where $E_i'=E\setminus \{e_i\}$ for each $e_i\in M$; since
+$V(G)=V(G')$ and $E(G)\subset E(G')$, every perfect matching for $G'$
+is a perfect matching for $G$ as well.
+The existence of $s'$ implies that there is at least one graph $G'$
+with a perfect matching $M'\neq M$.
+With a brute force
+approach, the time to find this $G'$ and the corresponding $M'$ will
+be given by the time to find a perfect matching multiplied by a factor
+$O(d)$. Therefore, searching for a completely labeled Gale string $s'\neq s$
+takes again polynomial time.
 \end{proof}
+\end{theorem}
 
-\todo[inline]{examples for second PM (one w/ double edges, one without)}
+We give two examples of the construction of theorem \ref{anothergale-thm}.
+
+\begin{example}
+We consider the labeling the string of labels $l=1234312$. We have found in
+example \ref{gs-pm-ex} the completely labeled Gale string $1101100$,
+corresponding to the perfect matching $M=\{e_1, e_4\}$ in the graph $G$.
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+*+[o][F-]{1}
+\ar@/^1pc/@{-}[rr] |{e_1}
+\ar@{--}[rr] |{e_6}
+\ar@/_1pc/@{.}[rr] |{e_7}
+\ar@{.}[ddrr] |{e_5}
+& &
+*+[o][F-]{2}
+\ar@{.}[dd] |{e_2}
+\\
+&
+&
+\\
+*+[o][F-]{3}
+\ar@{.}[rr] |{e_3}
+\ar@/_1pc/@{-}[rr] |{e_4}
+& &
+*+[o][F-]{4}
+}
+\end{displaymath}
+
+If instead of $e_1$ we take the parallel edge $e_6$, the resulting matching
+is still perfect.
+\end{example}
+
+A case in which all the edges in every perfect matching don't have a
+parallel edge is the following; note that $G$ is a multigraph.
+
+\begin{example}
+We consider the labeling $l=123142$; the corresponding graph $G$ is the
+following, with only two possible perfect matchings, $M=\{e_2,e_5\}$ and
+$M'=\{e_4,e_6\}$.
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+*+[o][F-]{1}
+\ar@/^1pc/@{.}[rr] |{e_7}
+\ar@{.}[rr] |{e_1}
+\ar@{--}[dd] |{e_5}
+\ar@{-}[ddrr] |>>>>>>{e_4}
+& &
+*+[o][F-]{2}
+\ar@{--}[dd] |{e_2}
+\ar@{-}[ddll] |>>>>>>{e_6}
+\\
+&
+&
+\\
+*+[o][F-]{3}
+& &
+*+[o][F-]{4}
+}
+\end{displaymath}
+
+\end{example}
 
 \newpage
 
