@@ -3,12 +3,10 @@
 %% TYPESETTING
 
 % draft:
-\linespread{1.2}
+\linespread{1.3}
 \usepackage{todonotes}
 
 % final (?) TODO: check with LSE requirements
-% linespread
-% \linespread{1.5}
 % page measurements
 % \setlength{\hoffset}{0mm}
 % \setlength{\oddsidemargin}{25mm}
@@ -22,7 +20,7 @@
 
 \usepackage[all]{xy}
 
-\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 %% THEOREMS and ENVIRONMENTS
 
@@ -36,22 +34,24 @@
 % environments
 
 % computational problem
-% TODO check p{textwidth}
+% TODO check p{textwidth} in final version
 
 \newenvironment{problem}[3]
 {
+\vspace{2.5ex}
 \noindent
-\begin{tabular}{p{122mm}}
+\begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
 \hline
-\noindent
-\textsc{#1} \\
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
-\noindent \textbf{input:\ } #2 \\
+\textbf{input} & #2 \\
+\textbf{output} & #3 \\
 \hline
-\noindent \textbf{output:\ } #3 \\
-\hline
+\end{tabular}
 }
-{\end{tabular}\\}
+{
+\vspace{1.5ex}
+}
 
 % use:
 % \begin{problem}
@@ -75,20 +75,20 @@
 
 % to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
 
-\def\gale{\textsc{Gale}}
-\def\anothergale{\textsc{Another Gale}}
+\def\gale{{\sc{Gale}}}
+\def\anothergale{{\sc{Another Gale}}}
+
 
 %%% END PREAMBLE
 
 \begin{document}
 
-\section{Introduction}
-
-\section{Bimatrix Games and Polytopes}\label{gamespoly}
+\subsection{Bimatrix Games and Best Response Polytopes}
 
 \todo[inline]{What do I give for granted? subsection 1 on games, subsection 2
 on games and polytopes?}
 \todo[inline]{read: unit games article on vS website}
+
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no $d+1$ of them are on a common hyperplane.
 
@@ -175,22 +175,5 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
-
-\section{Further results}\label{further-section}
-
-The framework provided by our result led to further questions, related to the issue of the *sign* of an index - and so on (Merschen, VvS) - graph of lhg zig-zag.
-
-Graph of proof: Euler graph, 1-oik, so PM=room partition.
-
-Exchange algorithm in general; alt proof of parity of GS; contrast w/ Morris that shows exp cases for LHG.
-
-Brightwell on finding how many - but it's already about Euler
-graphs, right? Does it go in further?
-
-
-
-Open problems (?)
-
-\section*{Appendix A: A result about PPAD completeness of \textsc{Nash}}
 
 \end{document}

@@ -75,7 +75,11 @@ PPAD? it goes off topic...
 
 ## Further results
 
-[Euler graphs --> oiks]
+[Euler graphs --> oiks. Graph of proof: Euler graph, 1-oik, so
+PM=room partition.]
+
+[Exchange algorithm in general; alt proof of parity of GS; contrast
+w/ Morris that shows exp cases for LHG.]
 
 [PPAD comes back - "D" in sign]
 
