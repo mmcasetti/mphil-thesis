@@ -2,29 +2,27 @@
 
 ## Abstract
 
-(See other file)
+(max 300 words)
 
 ## Introduction
 
-What, why and overview of tools used
-
-Intro to idea of PPAD goes in here
+* why what how - the usual
+* PPAD (it won't come back until appendix but it's in the background)
 
 ## Games, Polytopes and Gale Strings
-[definitions & background]
 
 ### Games and Nash equilibria
 
-Notation for games, Nash Equilibria
+* basic definitions: game, NE
 
-### Best Response Polytopes
+### Bimatrix Games and Best Response Polytopes
 
-Best response polytopes
-
-Polytopes to games (NE can be found via polytopes, polytopes can be used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
+* Idea: Polytopes to games (NE can be found via polytopes, polytopes can be
+used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
+* see all articles vS & past theses
 
 ### Cyclic Polytopes and Gale strings
-new outline:
+
 * def CP
 * def GS
 * example GS, d even
@@ -32,25 +30,21 @@ new outline:
 * thm Gale (true for d even and odd!)
 * graphics to go w/ thm
 * prop even d (use modulo, then find a nice notation & drop it)
-* assume that from now on d even (unless o/w spec - if parity thm for odd d too)
-
-Special case: cyclic polytopes.
-
-Cyclic polytopes can be represented w/ a combinatorial structure - Gale strings.
+* assume that from now on d even (unless o/w spec - if parity thm for odd d
+too)
 
 ### Labeling and ANOTHER GALE
 
-Labeling, which gives the reason for studying ANOTHER GALE
+[labeling in GS and on CP; the problem ANOTHER GALE]
 
 ## Algorithms and Complexity Results
-[main results: thms]
 
 ### Pivoting
 
-Path on Gale Strings // Cyclic polytopes - without labels
+[Path on Gale Strings // Cyclic polytopes - without labels]
 
 ### The Lemke-Howson Algorithm and Parity
-new outline:
+
 * almost completely labeled GS
 * LH for Gale
 * even no of CLGS
@@ -71,7 +65,7 @@ and PPAD in appendix]
 PPAD? it goes off topic...
 
 ### The complexity of GALE and ANOTHER GALE
-outline:
+
 * GALE introduced as accessory problem
 * PM def
 * main thm for GALE
@@ -81,16 +75,22 @@ outline:
 
 ## Further results
 
-The framework provided by our result led to further questions, related to the
-issue of the *sign* of an index (Merschen, VvS)
+[Euler graphs --> oiks]
 
-[Graphics of endpoints of LHG on all CLGS for G(d,n)]
+[PPAD comes back - "D" in sign]
 
-Open problems (?)
+[Brightwell on finding number of matchings (in Euler?) #P-complete.]
+
+[*sign* of an index (Merschen, VvS)]
+
+[Open problems (?)]
 
 ## Appendix: result on PPAD-completeness proof
 
+* see MSc thesis
+
 ## Appendix: Notation
+
 [Maybe]
 
 ## Biblio
