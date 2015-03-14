@@ -9,7 +9,11 @@
 * why what how - the usual
 * PPAD (it won't come back until appendix but it's in the background)
 
-## Games, Polytopes and Gale Strings
+## Complexity, Games, Polytopes and Gale Strings
+
+### The Complexity Classes P and PPAD
+
+Computational complexity background!
 
 ### Normal Form Games and Nash Equilibria
 
@@ -62,7 +66,9 @@ Lemke-Howson for Gale // on Poly - we add labels
 * will be used to talk about sign in further results
 and PPAD in appendix]
 
-PPAD? it goes off topic...
+### Exponentially Long Paths
+
+PPAD: DGP & CD + SvS results = why ANOTHER GALE in P is important!
 
 ### The complexity of GALE and ANOTHER GALE
 

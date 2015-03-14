@@ -7,9 +7,13 @@
 
 TODO - **all**
 
-## Games, Polytopes and Gale Strings
+## Complexity, Games, Polytopes and Gale Strings
 
-### Games and Nash equilibria
+### The Complexity Classes P and PPAD
+
+TODO - **all**
+
+### Normal Form Games and Nash equilibria
 
 TODO - **all**
 
