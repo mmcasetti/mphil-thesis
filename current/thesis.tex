@@ -36,11 +36,32 @@
 % computational problem
 % TODO check p{textwidth} in final version
 
-\newenvironment{problem}[3]
+% decision problem
+
+\newenvironment{decproblem}[3]
 {
 \vspace{2.5ex}
 \noindent
-\begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
+\begin{tabular}{p{18mm} @{\textbf{:} } p{100mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{question} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% function problem
+
+\newenvironment{fctproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{15mm} @{\textbf{:} } p{102mm}}
 \hline
 \multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
@@ -346,13 +367,13 @@ Note again that $B$ is here not a general matrix (which would
 define a general game) but obtained from the last $n$ of
 $d+n$ vertices of a cyclic polytope in dimension~$d$.
 
-\begin{problem}
+\begin{fctproblem}
 {\anothergale}
 {A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
 completely labeled Gale string $s$ in $G(d,n)$.}
 {A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
 that $s' \neq s$.}
-\end{problem}
+\end{fctproblem}
 
 \newpage
 
@@ -702,11 +723,11 @@ exactly one edge in~$M$.
 
 We define the problem {\sc Perfect Matching} as follows:
 
-\begin{problem}
+\begin{decproblem}
 {Perfect Matching}
 {A graph $G = (V,E)$.}
-{A perfect matching for $G$.}
-\end{problem}
+{Is there a perfect matching for $G$?}
+\end{decproblem}
 
 \end{definition}
 
@@ -720,11 +741,12 @@ The problem {\sc Perfect Matching} is solvable in polynomial time.
 We will first consider the accessory problem \gale, and we will show that
 it is solvable in polynomial time by using theorem \ref{pm-thm}.\\
 
-\begin{problem}
+\begin{decproblem}
 {\gale}
 {A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.}
-{A completely labeled Gale string~$s$ in~$G(d,n)$ associated with $l$.}
-\end{problem}
+{Does there exists a completely labeled Gale string~$s$ in~$G(d,n)$ associated
+with $l$?}
+\end{decproblem}
 
 \begin{theorem}\label{gale-thm}
 The problem \gale\ is solvable in polynomial time.
@@ -833,6 +855,7 @@ A perfect matching for $G$ is given by $M=\{e_1, e_4\}$.
 *+[o][F-]{4}
 }
 \end{displaymath}
+
 
 In turn, this corresponds to the completely labeled Gale string $11011000$.
 
@@ -994,7 +1017,6 @@ corresponds to $s'=001111$.
 *+[o][F-]{4}
 }
 \end{displaymath}
-
 \end{example}
 
 \newpage
