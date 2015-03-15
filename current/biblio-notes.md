@@ -4,7 +4,7 @@
 \bibitem{je07}
 J. Edmonds (2007). Euler complexes. Manuscript,  5 pp.
 
-
+article on #P-complete no. of matchings for Euler graphs
 
 ## in text
 
