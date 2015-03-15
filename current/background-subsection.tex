@@ -28,7 +28,7 @@
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{property}{Property}[section]
-\theoremstyle{definition}\newtheorem{definition}{Definition}
+% \theoremstyle{definition}\newtheorem{definition}{Definition}
 \theoremstyle{remark}\newtheorem{example}{Example}[section]
 
 % environments
@@ -106,9 +106,67 @@
 
 \section{Complexity, Games, Polytopes and Gale Strings}
 
-\subsection{The Complexity Classes P and PPAD}
+\subsection{Some Complexity Classes}
 
+A {\em computational problem} is given by the combination of an {\em input}
+and a related {\em output}. A specific input gives an {\em instance} of the
+problem.
 
+Computational problems can be classified
+according to the form of their output: for instance, the output of
+{\em decision problems} is either ``YES'' or ``NO''. A
+{\em function problem}, on the other hand, has a more generic output $y$
+related to the input $x$ by a $R(x,y)$ given by the problem.
+
+An example of decision problem could be ``(input) given a graph, (question)
+is it possible to find an {\em Euler tour}, that is, a path through the
+input graph that starts and end at the same vertex that traverses each
+edge exactly once?'' On the other hand, a function problem could be
+``(input) given a graph, (output) return an Euler tour.''
+
+\todo[inline]{check: search problems - def}
+
+{\em Search problems} return either an output $y$ satisfying a given relation
+$R(x,y)$, where $x$ is the input of the problem, or ``NO'', if it's not
+possible to find any such $y$. If $y$ is guaranteed to exist, the problem
+is called a {\em total function problem}. {\em Counting problems}, finally,
+return the {\em number} of $y$'s that satisfy $R(x,y)$; given a problem $R$
+we denote the associated counting problem $\# R$.
+
+Computational problems are also classified according to their
+{\em computational complexity}, given by the {\em reducibility} from each
+other.
+
+\todo[inline]{Turing machines: here}
+
+Let $P_1$ be a computational problem. For an instance $x$ of $P_1$, let
+$|x|$ be the the number of bits needed to encode $x$. $P_1$ {\em reduces to
+the problem $P_2$ in polynomial time}, denoted $P_1\leq_P P_2$, if there
+exists a {\em polynomial-time reduction}, that is, a function
+$f: \{0,1\}^\ast \to \{0,1\}^\ast$ and a {\em Turing machine} $\mathcal{M}$
+such that for all $x\in\{0,1\}^\ast$
+
+\begin{itemize}
+\item $x\in P_1\quad\iff\quad f(x)\in P_2$
+\item $\mathcal{M}$ computes $f(x)$
+\item $\mathcal{M}$ stops after $p(|x|)$ steps, where $p$ is a polynomial
+\end{itemize}
+
+The complexity class $\mathrm{P}$ contains all the polynomially decidable
+problems, that is, all problems $P$ such that there exists a Turing machine
+$\mathcal{M}$ that outputs either ``YES'' or ``NO''  for all inputs
+$x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps, where $p$ is a polynomial.
+problems in $P$ are often described as {\em efficient}. The class
+$\mathrm{FP}$ of all the function problems that can be solved in polynomial
+time is analogously defined.
+
+\todo[inline]{
+NP - finding certificates
+
+counting certificates of NP: \# P
+
+FNP / TFNP $\Rightarrow$ PPA(D)
+}
 
 \subsection{Normal Form Games and Nash Equilibria}
 
