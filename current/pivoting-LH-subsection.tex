@@ -1,0 +1,512 @@
+\documentclass[11pt, draft]{article}
+
+%% TYPESETTING
+
+% draft:
+\linespread{1.3}
+\usepackage{todonotes}
+
+% final (?) TODO: check with LSE requirements
+% page measurements
+% \setlength{\hoffset}{0mm}
+% \setlength{\oddsidemargin}{25mm}
+% \setlength{\textwidth}{130mm}
+
+%% PACKAGES
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage[all]{xy}
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+%% THEOREMS and ENVIRONMENTS
+
+% theorems
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{property}{Property}[section]
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{remark}\newtheorem{example}{Example}[section]
+
+% environments
+
+% computational problems
+% TODO check p{textwidth} in final version
+
+% decision problem
+
+\newenvironment{decproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{18mm} @{\textbf{:} } p{100mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{question} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% function problem
+
+\newenvironment{fctproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{15mm} @{\textbf{:} } p{102mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{output} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% use:
+% \begin{problem}
+% {name of problem}
+% {input of problem}
+% {output of problem}
+% \end{problem}
+
+
+%% SHORTCUTS
+
+% definitions
+
+\def\reals{{\mathbb R}}
+\def\naturals{{\mathbb N}}
+\def\conv{{\rm conv}}
+\def\0{{\bf0}}
+\def\1{{\bf1}}
+\def\T{^{\top}}
+\def\rone{{\1\T}}
+
+% to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
+
+\def\gale{{\sc{Gale}}}
+\def\anothergale{{\sc{Another Gale}}}
+
+
+%%% END PREAMBLE
+
+\begin{document}
+
+\section{Introduction}
+
+\section{Complexity, Games, Polytopes and Gale Strings}
+
+\subsection{The Complexity Classes P and PPAD}
+
+\subsection{Normal Form Games and Nash Equilibria}
+
+\todo[inline]{file: background-subsection}
+
+\subsection{Bimatrix Games and Best Response Polytopes}
+
+\todo[inline]{file: polytopes-subsection}
+
+\subsection{Cyclic Polytopes and Gale Strings}\label{gs-ssect}
+
+\subsection{Labeling and the Problem \anothergale}
+
+\todo[inline]{file: gale-def-subsection}
+
+\section{Algorithmic and Complexity Results}
+\label{main-thm-sect}
+
+\subsection{Pivoting}
+
+\subsection{The Lemke-Howson Algorithm and Parity}
+
+\begin{definition}\label{almost-completely-labeled}
+Let $l:[d]\to [n]$ be a labeling. An {\em almost completely labeled} Gale
+string associated with $l$ is $s\in G(d,n)$ such that $|l(1(s))|=d-1$
+\end{definition}
+
+If $s$ is an almost completely labeled Gale string $s$ associated with the
+labeling $l:[n]\to[d]$, then for each label $l(i)$ but one there is a bit
+$s(i)=1$. Furthermore, there will be exactly one ``duplicate'' label $l(i)$
+such that $s(i)=s(j)=1$ for exactly one $j\neq i$
+
+Completely and almost completely labeled Gale strings are used to build the
+{\em Lemke-Howson for Gale algorithm}. We first define its fundamental
+subroutine, the {\em pivoting algorithm}.
+
+\begin{definition}\label{pivoting}
+We define as {\em pivoting} the operation defined in algorithm
+\ref{pivoting-algorithm}, where we consider the Gale strings as ``loops'' by
+identifying position $i$ with any position $i+kn$
+
+\todo[inline]{use "modulo" notation}
+
+\todo[inline]{for clgs, is dropped label necessarily double one?}
+
+\begin{algorithm}\label{pivoting-algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{A string of labels $l$ of length~$n$; a completely or almost
+completely labeled Gale string for $l$; $i \in [n]$ such that $s(i)=1$}
+\Output{A complete or almost complete Gale string for $l$.}
+\BlankLine
+set $s(i)=0$ \\
+let $j$ be the length of the odd maximal run of $1$s created by this \\
+\If{ the odd maximal run of $1$s is on the \textbf{right} of position $i$ }
+{ set $s(i+j+1)=1$ }
+\Else
+{ set $s(i-j-1)=1$ }
+\Return $s$
+\caption{Pivoting on completely labeled Gale strings}
+\end{algorithm}
+
+The operation where we set $s(i)=0$ (line 1) is called {\em dropping
+label $i$}.
+
+\end{definition}
+
+\begin{example}
+Let $l = 123432$. The Lemke-Howson for Gale algorithm applied to the
+completely labeled Gale string $s = 111100$ and the label
+\underline{\underline{4}} in position 4 returns the almost completely labeled
+Gale string $011110$.
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|c|p{100mm}|}
+\hline
+\underline{123\underline{4}}32 &
+drop the label \textbf{4} from $l$ \\
+\textbf{111\underline{1}}00 &
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{111}\underline{0}00 &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{111}00\textbf{1} &
+set the other end of the odd run in $s$ to \textbf{1} \\
+\cline{2-2}
+\underline{1\underline{2}3}43\underline{\underline{2}} &
+there is a \textbf{1} in $s$ in a position corresponding to the labels
+\textbf{1}, \textbf{2} \underline{(twice)} and \textbf{3} in $l$;
+there are only \textbf{0}'s in all the positions corresponding to the
+label \textbf{4} in $l$ \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+
+\end{example}
+
+\begin{example}
+Let $l = 123424$. The Lemke-Howson for Gale algorithm applied to the almost
+completely labeled Gale string $s = 110011$ and the duplicate label
+\underline{\underline{2}} in position 2 returns the almost completely
+labeled Gale string $100111$.
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|c|p{100mm}|}
+\hline
+\underline{1\underline{2}}34\underline{24} &
+drop the label \textbf{2} in position 2 from $l$ \\
+\textbf{11}00\textbf{11} &
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{1}\underline{0}00\textbf{11} &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{1}00\textbf{111} &
+set the other end of the odd run (on the loop) in $s$ to \textbf{1} \\
+\cline{2-2}
+\underline{1}23\underline{\underline{4}2\underline{4}} &
+there is a \textbf{1} in $s$ in a position corresponding to the labels
+\textbf{1}, \textbf{2} and \textbf{4} \underline{(twice)} in $l$;
+there are only \textbf{0}'s in all the positions corresponding to the
+label \textbf{3} in $l$ \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+
+If we drop duplicate label \underline{\underline{2}} in position 5 instead,
+the algorithm returns the completely labeled Gale string $111001$.
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|c|p{100mm}|}
+\hline
+\underline{12}34\underline{\underline{2}4} &
+drop the label \textbf{2} in position 5 from $l$ \\
+\textbf{11}00\underline{\underline{1}1} &
+taking the corresponding \textbf{1} in $s$ \\
+\textbf{11}00\underline{0}\textbf{1} &
+and setting it to \textbf{0} \\
+\cline{2-2}
+\textbf{111}00\textbf{1} &
+set the other end of the odd run (on the loop) in $s$ to \textbf{1} \\
+\cline{2-2}
+\underline{123}42\underline{4} &
+\underline{all the labels} in $l$ correspond to a \textbf{1} in $s$ \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+
+\end{example}
+
+Note that, by the Gale evenness condition, we must have an the odd maximal
+run of $1$'s either on the right or on the left of position $i$.
+
+If the Gale string in the pivoting algorithm is completely labeled, we can
+drop any label $l(i)$ such that $s(i) = 1$. We refer to these labels as {\em
+free labels}.
+
+Each pivoting can be seen as a step of a ``path'' through (almost) completely
+labeled Gale strings. If the first and last step of the path are completely
+labeled Gale strings, the path is described by the {\em Lemke-Howson for Gale
+algorithm}.
+
+\begin{definition}\cite{lhg-ref}
+
+We define the {\em Lemke-Howson for Gale} algorithm as follows:
+
+\begin{algorithm}\label{lhg-algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{A $n$-string $l \in [n]$ where $d$ is even and $d< n$; a completely
+labeled Gale string $s$ associated with $l$.}
+\Output{A Gale string $s'\neq s$ associated with $l$.}
+\BlankLine
+set $s' = s$ \\
+pivot any free label of s' \\
+\While{ $s'$ is an almost completely labeled Gale string }
+{pivot the duplicate label, not picked up by the previous pivot}
+\Return $s'$
+\caption{Lemke-Howson for Gale Algorithm}
+\end{algorithm}
+
+\end{definition}
+
+\begin{example}\label{lhg-example}
+Let's consider the label string $l = 123432$ and the associated completely
+labeled Gale string $s = 111100$, as in example \ref{pivoting-example}.
+The Lemke-Howson for Gale algorithm using $1$ as free label returns the
+completely labeled Gale string $s' = 110110$.\\
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|r|c|l|}
+\hline
+start &
+\textbf{\underline{1}234}32 &
+drop \textbf{1}  \\
+\cline{1-1}
+\cline{3-3}
+ &
+\textbf{\underline{1}111}00 &
+pivot \\
+ &
+\underline{0}\textbf{111\underline{1}}0 &
+ \\
+\cline{1-1}
+\cline{3-3}
+pick \textbf{3}, duplicate &
+1\textbf{2\underline{3}4\underline{3}}2 &
+drop the other \textbf{3} \\
+\cline{1-1}
+\cline{3-3}
+ &
+0\textbf{1\underline{1}11}0 &
+pivot \\
+ &
+\textbf{\underline{1}1}\underline{0}\textbf{11}0 &
+ \\
+\cline{1-1}
+\cline{3-3}
+pick \textbf{1}, starting label &
+\textbf{\underline{1}2}3\textbf{43}2 &
+end \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+\end{example}
+
+Note how the last label that is picked up is the one dropped at the start,
+that's been missing in all the intermediate step; otherwise, we would have
+reached a completely labeled Gale string at an earlier iteration.
+
+Using algorithm \ref{lhg-algorithm} we can show a fundamental property of
+Gale strings.
+
+\todo{edited from paper notes until here}
+
+\begin{theorem}\label{even-number-gale}
+For any labeling $l:[n]\to[d]$, where $d$ is even and $d<n$,
+the number of completely labeled Gale strings associated with $l$ is even.
+\end{theorem}
+
+\begin{proof}
+If there are no completely labeled Gale strings associated with $l$, the
+theorem holds trivially.
+
+Suppose now that there is at least one completely labeled Gale strings
+associated with $l$.
+
+First of all, note that a pivot is reversible. Suppose that we pivot on the
+(almost) completely labeled Gale string $s$ by dropping the label $l(i)$ and
+picking up the label $l(j)$. Then $s(j) = 0$ and it is adjacent to the opposite
+side of the odd maximal run of $1$s starting at $i$ that was created by
+dropping $l(i)$. Let $s'$ be the (almost) completely labeled Gale string
+obtained from this pivot. Analogously, if we pivot on $s'$ by dropping
+$l(j)$, we will have to pick up the label $l(i)$. The pivoting is therefore
+reversible by simply dropping the label that was picked up.
+
+As there are only a finite number of possible bitstrings for each label
+string,  if cycling is not possible the algorithm must terminate by finding
+another completely labeled Gale string in a finite number of steps.
+
+\todo[inline]{edit rest of proof}
+
+Cycling is not possible due to the following observations.
+Suppose the algorithm returns to a bit assignment of $s$ other than the initial Gale string.
+Then at this bit assignment of $s$, because each pivot is reversible, we would have to be able to pick up two labels.
+This, however, is ruled out by the GEC as only one of the adjacent runs of the dropped label is odd.
+Returning to initial position is only possible by reversing the initial pivot which is not allowed.
+The only free choice we have is at the beginning of the algorithm where we drop one free label.
+From then on the process of the algorithm is uniquely determined, thus terminating in a finite number of steps at another Gale string.
+
+\end{proof}
+
+Theorem \ref{even-number-gale} holds for odd $d$ as well.
+
+\todo[inline]{expand - or cut?}
+
+The reversibility of the pivoting steps leads to the following property
+
+\begin{property}\label{lhg-labels-property}
+Let $s\in G(d,n)$ be a completely labeled Gale string for a labeling $l$,
+and let $s'$ be the completely labeled Gale string obtained by running the
+Lemke-Howson algorithm on $s$ by dropping the label $l(i)$. Then running
+the Lemke-Howson algorithm on $s'$ by dropping the label $l(i)$ returns $s$.
+
+The converse does not hold: it's possible for two Gale strings $s$ and $s'$
+to be the endpoints of the path given by the Lemke-Howson algorithm run by
+dropping both the label $l(i)$ and $l(j)\neq l(i)$. This is trivially true
+since it's possible that $|\{s\in G(d,n) completely labeled for l \}| < d$.
+\end{property}
+
+An interesting example is the following.
+
+\begin{example}
+For the labeling $l=12342314$, the completely labeled Gale strings in
+$G(4,8)$ are 11110000, 00011110, 00001111, 11100001, 01100011, 10001101.
+They are related as endpoints of the Lemke-Howson algorithm as shown in the
+following graph:
+
+\begin{displaymath}
+\xymatrix
+@M=5pt
+{
+11110000
+\ar@{<->}[rr] |{1}
+\ar@{<->}[drr] |<<<<<<<<{2,4}
+\ar@{<->}[ddrr] |>>>>>>>>{3}
+& & 00011110 \\
+01100011
+\ar@{<->}[urr] |>>>>>>{2}
+\ar@{<->}[rr] |>>>>>>{1,3}
+\ar@{<->}[drr] |{4}
+& & 11100001 \\
+00001111
+\ar@{<->}[uurr] |<<<<<<{3,4}
+\ar@{<->}[rr] |{1,2}
+& & 10001101
+}
+\end{displaymath}
+
+Note that the graph is bipartite: this holds in general, a property related
+to further results that we will discuss in section \ref{further-section}.
+
+Note also that it's not a complete bipartite graph: there isn't an edge
+between 1110001 and 00001111.
+
+To our knowledge, it is an open question if the graph has to be connected.
+\todo[inline]{If this were the case, there would be Nash equilibria not reachable via LHG from artificial equilibrium}
+\end{example}
+
+Note that the parity result of theorem \ref{even-number-gale} is about
+{\em completely labeled} Gale strings, not Gale strings $s\in G(d,n)$ in
+general. For example, $|G(4,6)|=9$, as shown in \ref{gs-example}.
+
+\todo[inline]{results on 11234 = 1234 and 12345236 = 123423 (can delete successive double - any length of run, can delete single occurrences if in odd run). The first one plays a part in main thms}
+
+\todo[inline]{until here}
+
+\subsection{The Complexity of \gale\ and \anothergale}
+\label{main-result-subsection}
+
+\todo[inline]{file: main-result-subsection}
+
+\newpage
+
+\begin{thebibliography}{00}
+
+\frenchspacing\parskip-1ex
+\small
+
+\bibitem{main} M. M. Casetti, J. Merschen, B. von Stengel (2010).
+Finding Gale Strings.
+\emph{Electronic Notes in Discrete Mathematics}
+\todo[inline]{issue, pp. n--m.}
+
+\bibitem{cd} X. Chen, X. Deng (2006).
+Settling the complexity of two-player Nash equilibrium.
+\emph{Proc. 47th FOCS}, pp. 261--272.
+
+\bibitem{dgp} C. Daskalakis, P. W. Goldberg, C. H. Papadimitriou (2006).
+The complexity of computing a Nash equilibrium.
+\emph{Proc. Ann. 38th STOC}, pp. 71--78.
+\todo[inline]{change ref to econometrica(?)}
+
+\bibitem{edm} J. Edmonds (1965).
+Paths, trees, and flowers.
+\emph{Canad. J. Math.} 17, pp. 449--467.
+
+\bibitem{gale} D. Gale (1963),
+Neighborly and cyclic polytopes.
+\emph{Convexity, Proc. Symposia in Pure Math.}, Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
+\todo[inline]{check if right typography}
+
+\bibitem{jm} J. Merschen (2012).
+\todo[inline]{thesis}
+
+\bibitem{lh} C. E. Lemke, J. T. Howson, Jr. (1964).
+Equilibrium points of bimatrix games.
+\emph{J.  Soc. Indust. Appl. Mathematics} 12, pp.  413--423.
+
+\bibitem{ppad} C. H. Papadimitriou (1994).
+On the complexity of the parity argument and other inefficient proofs of existence.
+\emph{J. Comput. System Sci.} 48, pp. 498--532.
+
+\bibitem{svs} R. Savani, B. von Stengel (2006).
+Hard-to-solve bimatrix games.
+\emph{Econometrica} 74, pp. 397--429.
+
+\bibitem{vvs} L. V\'{egh}, B. von Stengel
+\todo[inline]{ref}
+
+
+\end{thebibliography}
+
+\end{document}

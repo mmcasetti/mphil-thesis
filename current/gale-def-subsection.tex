@@ -1,0 +1,372 @@
+\documentclass[11pt, draft]{article}
+
+%% TYPESETTING
+
+% draft:
+\linespread{1.3}
+\usepackage{todonotes}
+
+% final (?) TODO: check with LSE requirements
+% page measurements
+% \setlength{\hoffset}{0mm}
+% \setlength{\oddsidemargin}{25mm}
+% \setlength{\textwidth}{130mm}
+
+%% PACKAGES
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage[all]{xy}
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+%% THEOREMS and ENVIRONMENTS
+
+% theorems
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{property}{Property}[section]
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{remark}\newtheorem{example}{Example}[section]
+
+% environments
+
+% computational problems
+% TODO check p{textwidth} in final version
+
+% decision problem
+
+\newenvironment{decproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{18mm} @{\textbf{:} } p{100mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{question} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% function problem
+
+\newenvironment{fctproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{15mm} @{\textbf{:} } p{102mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{output} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% use:
+% \begin{problem}
+% {name of problem}
+% {input of problem}
+% {output of problem}
+% \end{problem}
+
+
+%% SHORTCUTS
+
+% definitions
+
+\def\reals{{\mathbb R}}
+\def\naturals{{\mathbb N}}
+\def\conv{{\rm conv}}
+\def\0{{\bf0}}
+\def\1{{\bf1}}
+\def\T{^{\top}}
+\def\rone{{\1\T}}
+
+% to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
+
+\def\gale{{\sc{Gale}}}
+\def\anothergale{{\sc{Another Gale}}}
+
+
+%%% END PREAMBLE
+
+\begin{document}
+
+\section{Introduction}
+
+\section{Complexity, Games, Polytopes and Gale Strings}
+
+\subsection{The Complexity Classes P and PPAD}
+
+\subsection{Normal Form Games and Nash Equilibria}
+
+\subsection{Bimatrix Games and Best Response Polytopes}
+
+\subsection{Cyclic Polytopes and Gale Strings}\label{gs-ssect}
+
+A special case of games is obtained by taking a particular case of best
+response polytope in theorem \ref{t-unitv}.
+
+\begin{definition}\label{cyclic-polytope}
+A {\em cyclic polytope} $P$ in dimension~$d$ with $n$ vertices is the
+convex hull of distinct points $\mu(t_j)$, where $j\in [n]$ and $\mu$ is the
+{\em moment curve}
+\[
+\mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top
+\]
+\end{definition}
+
+Cyclic polytopes can be represented through a combinatorial structure, the
+{\em Gale strings}. This makes their study particularly interesting, and, as
+we will see, it can be used to obtain very elegant proofs.
+
+\begin{definition}\label{bitstring-def}
+For any integer $k$ and any set $S$, we can represent the function
+$f_s:[k]\to S$ as the string $s = s(1)s(2)\cdots s(k)$. If $S=\{0,1\}$ we
+denote
+\begin{align*}
+\mathnormal{1}(s) & = s^{-1}(1) \\
+     & = \{j\in [k]\mid s(j)=1\}
+\end{align*}
+
+The indicator function of $\mathnormal{1}(s)$ will then correspond to a
+{\em bitstring} $s$, a sequence of $0$'s and $1$'s.
+
+A maximal substring of consecutive $1$'s in a bitstring is called a
+{\em run}.
+\end{definition}
+
+\begin{example}
+Let $k = 6$, and let $f_s(j)=0$ if $j$ is even and $f_s(j)=1$ if $j$ is odd.
+Then $s = 101010$ and $1(s) = {1,3,5}$.
+\end{example}
+
+We can now give the definition of {\em Gale string}.
+
+\begin{definition}\label{gs-def}
+We denote as $G(d,n)$ the set of all bitstrings $s$ of length $n$ such that
+
+\begin{enumerate}
+\item exactly $d$ bits in $s$ are $1$ and
+\item $s$ fulfills the {\em Gale evenness condition}:
+\[
+01^k0\hbox{ is a substring of }s\quad{\Rightarrow}\quad k\hbox{ is even.}
+\]
+\end{enumerate}
+
+An element of of $G(d,n)$ is called a {\em Gale string of dimension~$d$ and
+length~$n$}.
+\end{definition}
+
+Definition \ref{gs-def} characterises Gale strings as bitstrings of length~$n$ with exactly~$d$ elements equal to $1$, such that {\em interior}
+runs (that is, runs bounded on both sides by~$0$s) must be of even length.
+Note that this condition allows Gale strings to start or end with an
+odd-length run.
+
+This leads to an important consequence when~$d$ is even.
+
+\begin{property}\label{even-d-gs}
+Let $d$ be even, and let $s$ in $G(d,n)$. Then if $s$ starts with an odd run
+it will also end with an odd run, and if $s$ starts with an even run it will
+end with an even run.
+
+\todo[inline]{use "modulo" - even more than "cyclic shift"}
+That is, the set of Gale strings of even dimension is therefore invariant
+under a cyclic shift of the strings.
+\end{property}
+
+We can then consider the Gale strings in $G(d,n)$ with even $d$ as a ``loop''
+obtained by ``glueing together'' the extremes of the string to form an even
+run.
+
+\begin{example}\label{gs-example}
+We consider $G(4,6)$. We have
+\begin{align*}
+G(4,6) = \{ & 111100, \\
+        & 111001, \\
+        & 110011, \\
+        & 100111, \\
+        & 001111, \\
+        & 011110, \\
+        & 110110, \\
+        & 101101, \\
+        & 011011\}
+\end{align*}
+
+\todo[inline]{change mention of "cyclic shift" if not used before}
+The strings $111100$, $111001$, $110011$, $100111$, $001111$ and $011110$ are
+equivalent under a cyclic shift, as are the strings $110110$, $101101$ and
+$011011$.
+\end{example}
+
+\todo[inline]{here to end subsect: polytopes}
+
+The relation between cyclic polytopes and Gale strings is given by the
+following theorem by Gale \cite{gale-cyclicpoly}.
+
+\begin{theorem}[\cite{gale-cyclicpoly}]\label{cp-gs-gale}
+For any positive integer $n$, assume that $t_1 < t_2 < \cdots < t_n$ and let
+P be the cyclic polytope obtained by taking $t_j$, where $j \in [n]$, in
+definition \ref{cyclic-polytope}.
+
+Then the facets of $P$ are encoded by $G(d,n)$; that is, $F$ is a facet of
+$P$ if and only if
+\[
+F = \conv\{\mu(t_i)\mid i\in 1(s)\} \qquad \hbox{ for some }s\in G(d,n)
+\]
+\end{theorem}
+
+\todo[inline]{sketch of pf if not too long and it uses relevant techniques}
+
+\todo[inline]{graphics of cyclic polytope - cfr vS articles and talks}
+
+From this point forward, we will assume that $d$ is even.
+
+\todo[inline]{give something to generalise to odd case}
+
+\subsection{Labeling and the Problem \anothergale}
+
+\begin{definition}
+Given a set $G$ of bitstrings of length $n$ and a parameter $d$, a
+{\em labeling} is a function $l:[n]\to[d]$. A string $s$ in $G(d,n)$ is
+{\em completely labeled} if $l(\mathnormal{1}(s))=[d]$. Any $l(i)\in [d]$
+is called a {\em label}
+\end{definition}
+
+If $s \in G(d,n)$ is completely labeled for the labeling $l:[n]\to[d]$, then
+for each label $l(i)$ there is a bit $s(i)=1$. We therefore have exactly
+$d$ positions $i$ for which $s(i)=1$; hence, $|l(\mathnormal{1}(s))|=d$.
+
+\begin{example}
+Given the string of labels $l=123432$, there are four associated completely
+labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
+
+\begin{center}
+{\renewcommand{\tabcolsep}{2ex}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{1234}32 &
+\textbf{12}3\textbf{43}2 &
+\textbf{1}23\textbf{432} &
+\textbf{1}2\textbf{34}3\textbf{2} \\
+\textbf{1111}00 &
+\textbf{11}0\textbf{11}0 &
+\textbf{1}00\textbf{111} &
+\textbf{1}0\textbf{11}0\textbf{1} \\
+\hline
+\end{tabular}
+}\\
+\end{center}
+
+\end{example}
+
+Sometimes there aren't any completely labeled Gale strings that are
+associated with a given labeling.
+
+\begin{example}
+For $l = 121314$, there are no completely labeled Gale strings.
+\end{example}
+
+\todo[inline]{here to end subsect: polytopes}
+\todo[inline]{graphics of labeled cyclic polytope}
+
+% Essentially, this holds because any set $S\subset [n]$
+% the moment curve defines a unique hyperplane which is crossed
+% (and not just touched) by the moment curve; if the bitstring
+% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
+For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
+be understood as a label $l(j)$ for each vertex $\mu(t_j)$
+for $j\in [n]$.
+A completely labeled Gale string $s$ therefore represents a
+facet $F$ of $P$ that is completely labeled.
+
+Special games are obtained by using cyclic polytopes in
+Theorem~\ref{t-unitv}, suitably affinely transformed with
+a completely labeled facet $F_0$.
+When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
+vertices, then the string of labels $l(1)\cdots l(n)$ in
+Theorem~\ref{t-unitv} defines a labeling $l':[d+n]\to [d]$
+where $l'(i)=i$ for $i\in [d]$ and
+$l'(d+j)=l(j)$ for $j\in [n]$.
+In other words, the string of labels $l(1)\cdots l(n)$ is
+just prefixed with the string $1\,2\cdots d$ to give $l'$.
+Then $l'$ has a trivial completely labeled Gale string
+$1^d0^n$ which defines the facet $F_0$.
+Then the problem \anothergale\ defines exactly the problem of finding a Nash
+equilibrium of the unit vector game $(I,B)$.
+Note again that $B$ is here not a general matrix (which would
+define a general game) but obtained from the last $n$ of
+$d+n$ vertices of a cyclic polytope in dimension~$d$.
+
+\begin{fctproblem}
+{\anothergale}
+{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
+completely labeled Gale string $s$ in $G(d,n)$.}
+{A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
+that $s' \neq s$.}
+\end{fctproblem}
+
+\newpage
+
+\begin{thebibliography}{00}
+
+\frenchspacing\parskip-1ex
+\small
+
+\bibitem{main} M. M. Casetti, J. Merschen, B. von Stengel (2010).
+Finding Gale Strings.
+\emph{Electronic Notes in Discrete Mathematics}
+\todo[inline]{issue, pp. n--m.}
+
+\bibitem{cd} X. Chen, X. Deng (2006).
+Settling the complexity of two-player Nash equilibrium.
+\emph{Proc. 47th FOCS}, pp. 261--272.
+
+\bibitem{dgp} C. Daskalakis, P. W. Goldberg, C. H. Papadimitriou (2006).
+The complexity of computing a Nash equilibrium.
+\emph{Proc. Ann. 38th STOC}, pp. 71--78.
+\todo[inline]{change ref to econometrica(?)}
+
+\bibitem{edm} J. Edmonds (1965).
+Paths, trees, and flowers.
+\emph{Canad. J. Math.} 17, pp. 449--467.
+
+\bibitem{gale} D. Gale (1963),
+Neighborly and cyclic polytopes.
+\emph{Convexity, Proc. Symposia in Pure Math.}, Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
+\todo[inline]{check if right typography}
+
+\bibitem{jm} J. Merschen (2012).
+\todo[inline]{thesis}
+
+\bibitem{lh} C. E. Lemke, J. T. Howson, Jr. (1964).
+Equilibrium points of bimatrix games.
+\emph{J.  Soc. Indust. Appl. Mathematics} 12, pp.  413--423.
+
+\bibitem{ppad} C. H. Papadimitriou (1994).
+On the complexity of the parity argument and other inefficient proofs of existence.
+\emph{J. Comput. System Sci.} 48, pp. 498--532.
+
+\bibitem{svs} R. Savani, B. von Stengel (2006).
+Hard-to-solve bimatrix games.
+\emph{Econometrica} 74, pp. 397--429.
+
+\bibitem{vvs} L. V\'{egh}, B. von Stengel
+\todo[inline]{ref}
+
+
+\end{thebibliography}
+
+\end{document}
