@@ -88,108 +88,9 @@
 
 \subsection{Normal Form Games and Nash Equilibria}
 
-\todo[inline]{file: background-subsection}
+\todo[inline]{file: background}
 
-\subsection{Bimatrix Games and Best Response Polytopes}
-
-\todo[inline]{What do I give for granted? subsection 1 on games, subsection 2
-on games and polytopes?}
-\todo[inline]{read: unit games article on vS website}
-
-
-A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set
-of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no
-$d+1$ of them are on a common hyperplane.
-
-If a point $v$ cannot be omitted from these points without changing $P$ then
-$v$ is called a {\em vertex} of $P$. A {\em facet} of $P$ is the convex hull
-$\conv\,F$ of a set $F$ of $d$ vertices of $P$ that lie on a hyperplane
-$\{ x\in \reals^d\mid a^T x=a_0\}$ so that $a^T u<a_0$ for all other vertices
-$u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the
-{\em normal vector} of the facet. We often identify the facet with its set of
-vertices~$F$.
-
-
-The following theorem, due to Balthasar and von Stengel
-\cite{B09,BvS10}, establishes a connection between general
-labeled polytopes and equilibria of certain $d\times n$
-bimatrix games $(U,B)$.
-
-THIS FROM VvS
-
-\begin{theorem}\label{t-unitv}
-Consider a labeled  $d$-dimensional simplicial polytope $Q$ with $\0$ in
-its interior, with vertices $-e_1,\ldots,-e_d,c_1,\ldots,c_n$,
-% We need to assume that the c_i are pairwise distinct, otherwise
-% a vertex can have several labels.
-% We need to assume that c_i vertex of Q for the following reason:
-% the definition of completely labeled facet is difficult if
-% c_i is in a facet but not vertex of the facet.
-so that % $F_0$ in {\rm(\ref{F0})}
-$F_0=\conv\{-e_1,\ldots,-e_d\}$
-is a facet of $Q$.
-Let $-e_i$ have label $i$ for $i\in[d]$, and let $c_j$
-have label $l(j)\in[d]$ for $j\in[n]$.
-Let $(U,B)$ be the $d\times n$ bimatrix game with
-$U=[e_{l(1)}\cdots\,e_{l(n)}]$ and $B=[b_1\,\cdots\,b_n]$,
-where $b_j=c_j/(1+\rone c_j)$ for $j\in[n]$.
-Then the completely labeled facets $F$ of $Q$, with the
-exception of~$F_0$, are in one-to-one correspondence to the
-Nash equilibria $(x,y)$ of the game $(U,B)$ as follows:
-if $v$ is the normal vector of $F$, then
-$x=(v+\1)/\rone (v+\1)$,
-and $x_i=0$ if and only if $-e_i\in F$ for $i\in[d]$;
-any other label~$j$ of $F$, so that $c_j$ is a
-vertex of~$F$, represents a pure best reply to~$x$.
-The mixed strategy $y$ is the uniform distribution on
-the set of pure best replies to~$x$.
-\end{theorem}
-
-In the preceding theorem, any simplicial polytope can take
-the role of $Q$ as long as it has one completely labeled
-facet~$F_0$.
-Then an affine transformation, which does not change the
-incidences of the facets of $Q$, can be used to map $F_0$ to
-the negative unit vectors $-e_1,\ldots,-e_d$ as described,
-with $Q$ if necessary expanded in the direction $\1$ so that
-$\0$ is in its interior.
-
-A $d\times n$ bimatrix game $(U,B)$ is a {\em unit vector game}
-if all columns of $U$ are unit vectors.
-For such a game $B$ with $B=[b_1\cdots b_n]$, the columns
-$b_j$ for $j\in[n]$ can be obtained from $c_j$ as in
-Theorem~\ref{t-unitv} if $b_j>\0$ and $\1^T b_j<1$.
-This is always possible via a positive-affine transformation
-of the payoffs in~$B$, which does not change the game.
-The unit vectors $e_{l(j)}$ that constitute the columns of
-$U$ define the labels of the vertices $c_j$.
-The corresponding polytope with these vertices is simplicial
-if the game $(U,B)$ is nondegenerate \cite{vS02}, which here
-means that no mixed strategy $x$ of the row player has more
-than $|\{i\in[d]\mid x_i>0\}|$ pure best replies.
-Any game can be made nondegenerate by a suitable
-``lexicographic'' perturbation of $B$, which can be
-implemented symbolically.
-
-Unit vector games encode arbitrary bimatrix games:
-An $m\times n$ bimatrix game $(A,B)$ with (w.l.o.g.{})
-positive payoff matrices $A,B$ can be symmetrized so
-that its Nash equilibria are in one-to-correspondence to the
-symmetric equilibria of the $(m+n)\times(m+n)$
-symmetric game $(C^T,C)$ where
-\[
-\label{symmetrize}
-C=\biggl(\begin{matrix} 0 & B\cr A^\top & 0\cr\end{matrix}\biggr).
-\]
-In turn, as shown by McLennan and Tourky \cite{mt},
-the symmetric equilibria $(x,x)$ of any symmetric game
-$(C^T,C)$ are in one-to-one correspondence to the Nash
-equilibria $(x,y)$ of the ``imitation game'' $(I,C)$ where
-$I$ is the identity matrix; the mixed strategy $y$ of the
-second player is simply the uniform distribution on the
-set $\{i\mid x_i>0\}$.
-Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
-special unit vector game.
+\input{polytopes}
 
 \todo[inline]{until here}
 
@@ -197,7 +98,7 @@ special unit vector game.
 
 \subsection{Labeling and the Problem \anothergale}
 
-\todo[inline]{file: gale-def-subsection}
+\todo[inline]{file: gale-def}
 
 \newpage
 
