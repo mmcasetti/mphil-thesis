@@ -115,6 +115,8 @@ A {\em computational problem} is given by the combination of an {\em input}
 and a related {\em output}. A specific input gives an {\em instance} of the
 problem.
 
+\todo[inline]{complement of a problem - needed for co-NP}
+
 Computational problems can be classified according to the form of their
 output. A {\em decision problems} outputs either ``YES'' or ``NO''. An
 instance $x$ {\em function problem}, on the other hand, returns a more
@@ -139,13 +141,14 @@ Computational problems are also classified according to their
 {\em computational complexity}, given by the {\em reducibility} from each
 other.
 
-\todo[inline]{Turing machines: here}
+\todo[inline]{Turing machines: here - not that in the following deterministic
+TM}
 
 Let $P_1$ be a computational problem. For an instance $x$ of $P_1$, let
 $|x|$ be the the number of bits needed to encode $x$. $P_1$ {\em reduces to
 the problem $P_2$ in polynomial time}, denoted $P_1\leq_P P_2$, if there
 exists a {\em polynomial-time reduction}, that is, a function
-$f: \{0,1\}^\ast \to \{0,1\}^\ast$ and a {\em Turing machine} $\mathcal{M}$
+$f: \{0,1\}^\ast \to \{0,1\}^\ast$ and a Turing machine $\mathcal{M}$
 such that for all $x\in\{0,1\}^\ast$
 
 \begin{enumerate}
@@ -161,13 +164,10 @@ there exists a Turing machine $\mathcal{M}$ that outputs either ``YES'' or
 $p$ is a polynomial. Intuitively, a decision problem is in
 $\mathrm{\mathbf{P}}$ if the answer to its question can be found in a number
 of steps that is polynomial in the input of the problem.
-The class $\mathrm{\mathbf{FP}}$ of all the function problems that can
-be solved in polynomial time is analogously defined.
 
-The class $\mathrm{\mathbf{NP}}$,
-{\em non-deterministic polynomial-time problems}, is the class of problems
-$P$ such that there exists a Turing machine $\mathcal{M}$ and polynomials
-$p_1,p_2$ such that
+A problem $P$ belongs to the class $\mathrm{\mathbf{NP}}$,
+{\em non-deterministic polynomial-time problems}, if there exists a
+Turing machine $\mathcal{M}$ and polynomials $p_1,p_2$ such that
 
 \begin{enumerate}
 \item for all $x\in P$ there exists a {\em certificate} $y\in \{0,1\}^\ast$
@@ -180,9 +180,15 @@ that $\mathcal{M}$ accepts the combined input $xy$.
 
 Intuitively: a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
-indeed, a correct answer to the question posed by the problem.
+indeed, a correct answer to the question posed by the problem. A problem is
+in the class $\mathrm{\mathbf{co-NP}}$ if its em complement is in
+$\mathrm{\mathbf{NP}}$.
+The class $\mathrm{\mathbf{\# P}}$ captures the problem of counting the
+number of possible certificates for a problem in $\mathrm{\mathbf{NP}}$.
 
-\todo[inline]{\# P}
+\todo[inline]{Formally, $\mathrm{\mathbf{\# P}}$ is defined as...}
+
+In \cite{megiddo-papad}
 
 The class $\mathrm{\mathbf{FNP}}$, {\em function non-deterministic
 polynomial}, is defined as the class of binary
@@ -197,6 +203,8 @@ function and total function form.
 
 
 \todo[inline]{
+Cite: Papadimitriou / Megiddo 1991 - def of (T)FNP
+
 More on TFNP: no complete pbls unless NP=co-NP (def co-NP)
 
 $\Rightarrow$
@@ -226,53 +234,6 @@ merge in one section "Gale strings" or "CP and GS"?}
 
 \newpage
 
-\begin{thebibliography}{00}
-
-\frenchspacing\parskip-1ex
-\small
-
-\bibitem{main} M. M. Casetti, J. Merschen, B. von Stengel (2010).
-Finding Gale Strings.
-\emph{Electronic Notes in Discrete Mathematics}
-\todo[inline]{issue, pp. n--m.}
-
-\bibitem{cd} X. Chen, X. Deng (2006).
-Settling the complexity of two-player Nash equilibrium.
-\emph{Proc. 47th FOCS}, pp. 261--272.
-
-\bibitem{dgp} C. Daskalakis, P. W. Goldberg, C. H. Papadimitriou (2006).
-The complexity of computing a Nash equilibrium.
-\emph{Proc. Ann. 38th STOC}, pp. 71--78.
-\todo[inline]{change ref to econometrica(?)}
-
-\bibitem{edm} J. Edmonds (1965).
-Paths, trees, and flowers.
-\emph{Canad. J. Math.} 17, pp. 449--467.
-
-\bibitem{gale} D. Gale (1963),
-Neighborly and cyclic polytopes.
-\emph{Convexity, Proc. Symposia in Pure Math.}, Vol. 7, ed. V. Klee, American Math. Soc., Providence, Rhode Island, pp. 225--232.
-\todo[inline]{check if right typography}
-
-\bibitem{jm} J. Merschen (2012).
-\todo[inline]{thesis}
-
-\bibitem{lh} C. E. Lemke, J. T. Howson, Jr. (1964).
-Equilibrium points of bimatrix games.
-\emph{J.  Soc. Indust. Appl. Mathematics} 12, pp.  413--423.
-
-\bibitem{ppad} C. H. Papadimitriou (1994).
-On the complexity of the parity argument and other inefficient proofs of existence.
-\emph{J. Comput. System Sci.} 48, pp. 498--532.
-
-\bibitem{svs} R. Savani, B. von Stengel (2006).
-Hard-to-solve bimatrix games.
-\emph{Econometrica} 74, pp. 397--429.
-
-\bibitem{vvs} L. V\'{egh}, B. von Stengel
-\todo[inline]{ref}
-
-
-\end{thebibliography}
+\include{bibliography}
 
 \end{document}
