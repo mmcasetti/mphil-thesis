@@ -28,7 +28,6 @@
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{property}{Property}[section]
-\theoremstyle{definition}\newtheorem{definition}{Definition}
 \theoremstyle{remark}\newtheorem{example}{Example}[section]
 
 % environments
@@ -150,15 +149,15 @@ We will now give our main result: \anothergale\ can be solved in polynomial
 time. Therefore, it takes polynomial time to find a Nash Equilibrium of a
 bimatrix game for which the best response polytope is cyclic.
 
-Our proof will be based on a simple graph construction.
+Our proof will be based on a simple graph construction, based on the idea of
+{\em perfect matching} and a theorem by Edmonds (\cite{edm}).
 
-\begin{definition}
-
-A {\em perfect matching} for a graph $G=(V,E)$ is a set $M\subseteq E$ of
+A perfect matching for a graph $G=(V,E)$ is a set $M\subseteq E$ of
 pairwise non-adjacent edges so that every vertex $v \in V$ is incident to
 exactly one edge in~$M$.
 
-We define the problem {\sc Perfect Matching} as follows:
+\begin{theorem}[\cite{edm}]\label{pm-thm}
+The problem {\sc Perfect Matching}, defined as
 
 \begin{decproblem}
 {Perfect Matching}
@@ -166,13 +165,7 @@ We define the problem {\sc Perfect Matching} as follows:
 {Is there a perfect matching for $G$?}
 \end{decproblem}
 
-\end{definition}
-
-The complexity of {\sc Perfect Matching} has been proven to be in P by
-Edmonds \cite{edm}.
-
-\begin{theorem}[\cite{edm}]\label{pm-thm}
-The problem {\sc Perfect Matching} is solvable in polynomial time.
+is solvable in polynomial time.
 \end{theorem}
 
 We will first consider the accessory problem \gale, and we will show that
