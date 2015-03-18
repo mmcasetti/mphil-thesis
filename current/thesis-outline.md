@@ -25,6 +25,7 @@ Computational complexity background!
 used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 * see all articles vS & past theses
 
+
 ### Cyclic Polytopes and Gale strings
 
 * def CP
@@ -43,11 +44,9 @@ too)
 
 ## Algorithms and Complexity Results
 
-### Pivoting
+### Pivoting and the LH algorithm
 
 [Path on Gale Strings // Cyclic polytopes - without labels]
-
-### The Lemke-Howson Algorithm and Parity
 
 * almost completely labeled GS
 * LH for Gale
@@ -88,6 +87,8 @@ PM=room partition.]
 w/ Morris that shows exp cases for LHG.]
 
 [PPAD comes back - "D" in sign]
+
+[note that w/ oiks not always oriented - example RPs of octahedron]
 
 [Brightwell on finding number of matchings (in Euler?) #P-complete.]
 
