@@ -1,14 +1,12 @@
 
 \subsection{Some Complexity Classes}
 
-\todo[inline]{reference - take Papadimitriou (book) for general, then article
-Megiddo and Papadimitriou (1991) for (T)FNP and Papadimitriou 1994 for PPAD}
+\todo[inline]{references - cite Papadimitriou (book) for general;
+Papadimitriou 1994 for PPAD}
 
 A {\em computational problem} is given by the combination of an {\em input}
 and a related {\em output}. A specific input gives an {\em instance} of the
 problem.
-
-\todo[inline]{complement of a problem - needed for co-NP}
 
 Computational problems can be classified according to the form of their
 output. A {\em function problem} $P$ returns for an intance $x$ an output
@@ -54,10 +52,13 @@ $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
 \item $\mathcal{M}$ stops after $p(|x|)$ steps, where $p$ is a polynomial.
 \end{enumerate}
 
-For any class $C$ of decision problems, the class of all complements of
-the problems in $C$ is the {\em complement class} $co-C$.
-
-\todo[inline]{C-completeness}
+For any class $\mathrm{C}$ of decision problems, the class of all complements
+of the problems in $C$ is the {\em complement class} $\mathrm{co-C}$.
+A problem $P$ is {\em hard} for a class $\mathrm{C}$ if for every problem
+$P_C$ in $\mathrm{C}$ there is a polynomial-time reduction to $P$; that is,
+if $P$ is hard to solve at least as every problem in $\mathrm{C}$. A
+$\mathrm{C}-hard$ problem in $\mathrm{C}$ is {\em complete} for
+$\mathrm{C}$.
 
 The complexity class $\mathrm{\mathbf{P}}$ contains all the
 {\em polynomially decidable problems}, that is, all problems $P$ such that
@@ -80,39 +81,41 @@ $p_2(|x| + |y|)$ steps;
 that $\mathcal{M}$ accepts the combined input $xy$.
 \end{enumerate}
 
-Intuitively: a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
+This means that a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
-indeed, a correct answer to the question posed by the problem. A problem is
-in the class $\mathrm{\mathbf{co-NP}}$ if its em complement is in
-$\mathrm{\mathbf{NP}}$.
-The class $\mathrm{\mathbf{\# P}}$ is the class of all problems of
-counting the number of possible certificates for a problem in
-$\mathrm{\mathbf{NP}}$.
+indeed, a correct answer to the question posed by the problem.
+The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
+the number of possible certificates for a problem in $\mathrm{\mathbf{NP}}$.
 
 \todo[inline]{check formal def of \# P}
 
 In \cite{megiddo-papad}, Megiddo and Papadimitriou introduce the classes
-$\mathrm{\mathbf{FNP}}$,
-{\em function non-deterministic polynomial}, and $\mathrm{\mathbf{TFNP}}$,
-{\em total function non-deterministic polynomial}. The former is defined
-as the class of binary relations $R(x,y)$ such that there is a
-polynomial-time algorithm that decides whether $R(x,y)$ holds for
-given $x,y$ satisfying $|y|\leq p(|x|)$, where $p$ is a polynomial. The
+$\mathrm{\mathbf{FNP}}$, {\em function non-deterministic polynomial}, and
+$\mathrm{\mathbf{TFNP}}$, {\em total function non-deterministic polynomial}.
+The former is defined as the class of binary relations $R(x,y)$ such that
+there is a polynomial-time algorithm that decides whether $R(x,y)$ holds
+for given $x,y$ satisfying $|y|\leq p(|x|)$, where $p$ is a polynomial. The
 latter is the class of all such problems for which $y$ is guaranteed to
-exist.
-That is, $\mathrm{\mathbf{FNP}}$ and $\mathrm{\mathbf{TFNP}}$ are analogous
-to $\mathrm{\mathbf{NP}}$, but they allow for problems of (respectively)
-function and total function form.
+exist. Intuitively, $\mathrm{\mathbf{FNP}}$ and $\mathrm{\mathbf{TFNP}}$ are
+similar to $\mathrm{\mathbf{NP}}$, but they allow for problems of
+(respectively) function and total function form.
 
+In \cite{megiddo-papad}, Megiddo and Papadimitriou also prove that, unless
+$\mathrm{\mathbf{NP}}=\mathrm{\mathbf{co-NP}}$, it's impossible to find a
+$\mathrm{\mathbf{TFNP}}$-complete problem.
+% sketch of proof: in Julian's thesis. Needed? Going OT?
+
+To study some problems in $\mathrm{\mathbf{TFNP}}$, Papadimitriou
+(\cite{ppad}) introduced
 
 \todo[inline]{
-
-More on TFNP: no complete pbls unless NP=co-NP (def co-NP)
-
-still: NASH in TFNP so... (we don't have NASH yet - give general idea here,
-then show on NASH in next subsection)
 
 definition of PPA(D)
 }
 
 \subsection{Normal Form Games and Nash Equilibria}
+
+
+\todo[inline]{n-NASH in TFNP & typical problem pushing the def of PPAD
+(\cite{ppad}); in fact, PPAD-complete (\cite{dgp} for $n\geq 3$, \cite{cd}
+for $n=2$).}
