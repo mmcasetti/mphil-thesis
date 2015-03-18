@@ -11,7 +11,7 @@
 
 ## Complexity, Games, Polytopes and Gale Strings
 
-### The Complexity Classes P and PPAD
+### Some complexity classes
 
 Computational complexity background!
 
