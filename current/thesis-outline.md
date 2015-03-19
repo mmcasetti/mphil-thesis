@@ -38,7 +38,7 @@ used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 * assume that from now on d even (unless o/w spec - if parity thm for odd d
 too)
 
-### Labeling and ANOTHER GALE
+#### Labeling and ANOTHER GALE
 
 [labeling in GS and on CP; the problem ANOTHER GALE]
 
@@ -65,7 +65,7 @@ Lemke-Howson for Gale // on Poly - we add labels
 * will be used to talk about sign in further results
 and PPAD in appendix]
 
-### Exponentially Long Paths
+#### Exponentially Long Paths
 
 PPAD: DGP & CD + SvS results = why ANOTHER GALE in P is important!
 
