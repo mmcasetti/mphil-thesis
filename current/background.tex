@@ -122,27 +122,27 @@ $P$ and $S$ are finite,
 is a model of a strategic interaction.
 Each {\em player} $p\in P$ chooses a probability distribution
 $x^p=(x_1,\ldots,x_{|S_p|})$ over a set of {\em strategies} $s^p\in S_p$.
-Since $x^p$ is a probability distribution, we have ${x_s}^p\geq 0$ and
-$\sum_{s}{x_s}^p$ for every $p\in P$ and $s\in S_p$.
-If ${x_s}^p = 0$ for every strategy $s^p$ but $\bar{s^p}$, the strategy
-$x^p$ is the {\em pure strategy} $\bar{s^p}$; otherwise, $x^p$ is a
+Since $x^p$ is a probability distribution, we have $x_s^p\geq 0$ and
+$\sum_{s} x_s^p$ for every $p\in P$ and $s\in S_p$.
+If $x_s^p = 0$ for every strategy $s^p$ but $\bar{s}^p$, the strategy
+$x^p$ is the {\em pure strategy} $\bar{s}^p$; otherwise, $x^p$ is a
 {\em mixed strategy}.
 The {\em strategy profile} $(x^1,\ldots,x^{|P|})$ influences the
 {\em payoff} $u^p: S\to\reals$ of each player $p$. For each player
 $p$ we denote the set of strategy profiles of all his
-opponents as $S_{-p}=\times_{q\neq p}{x_s}^q$, and for $s\in S_{-p}$ we
+opponents as $S_{-p}=\times_{q\neq p} x_s^q$, and for $s\in S_{-p}$ we
 denote
 
-\todo[inline]{(what exactly is this?!) as $x_s=\prod_{q\neq p} {x_{s_q}}^q$}
+\todo[inline]{(what exactly is this?!) as $x_s=\prod_{q\neq p} x_{s_q}^q$}
 
 A {\em Nash equilibrium} of a game is a strategy profile in which each
 player cannot improve his expected payoff by unilaterally changing his
 strategy. Formally, a Nash equilibrium is a strategy profile $x$ such that
-for every $p\in P$ and every $i,j\in S_p$
+for every $p\in P$ and every $s_i^p,s_j^p\in S_p$
 \[
-\sum_{s\in S_{-p}} u^p(j,s) x_s > \sum_{s\in S_{-p}} u^p(k,s) x_s
+\sum_{s\in S_{-p}} u^p(s_i^p,s) x_s > \sum_{s\in S_{-p}} u^p(s_j^p,s) x_s
 \Rightarrow
-{x_k}^p = 0
+x_j^p = 0
 \]
 
 The existence of a Nash equilibrium is guaranteed by the following theorem
