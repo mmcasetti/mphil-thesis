@@ -109,14 +109,53 @@ is proved by a ``parity argument'', introducing the classes
 $\mathrm{\mathbf{PPA}}$ ({\em Proof by Parity Argument}) and
 $\mathrm{\mathbf{PPAD}}$ ({\em Proof by Parity Argument, Directed version}).
 
-\todo[inline]{
+\todo[inline]{definition of PPA(D): one in Papadimitriou 1994 and one in DGP
+the second w END OF THE LINE, use that one.}
 
-definition of PPA(D): one in Papadimitriou 1994 and one in DGP - the second
-w END OF THE LINE, use that one.
-}
+\todo[inline]{as an example, BROUWER, SPERNER (look at Papadimitriou 1994)}
 
 \subsection{Normal Form Games and Nash Equilibria}
 
+A {\em finite normal-form game} $\Gamma=(P,S,u)$,
+where $S=\times_{p\in P} S_p$ and $u=\times_{p\in P} u^p$, and both
+$P$ and $S$ are finite,
+is a model of a strategic interaction.
+Each {\em player} $p\in P$ chooses a probability distribution
+$x^p=(x_1,\ldots,x_{|S_p|})$ over a set of {\em strategies} $s^p\in S_p$.
+Since $x^p$ is a probability distribution, we have ${x_s}^p\geq 0$ and
+$\sum_{s}{x_s}^p$ for every $p\in P$ and $s\in S_p$.
+If ${x_s}^p = 0$ for every strategy $s^p$ but $\bar{s^p}$, the strategy
+$x^p$ is the {\em pure strategy} $\bar{s^p}$; otherwise, $x^p$ is a
+{\em mixed strategy}.
+The {\em strategy profile} $(x^1,\ldots,x^{|P|})$ influences the
+{\em payoff} $u^p: S\to\reals$ of each player $p$. For each player
+$p$ we denote the set of strategy profiles of all his
+opponents as $S_{-p}=\times_{q\neq p}{x_s}^q$, and for $s\in S_{-p}$ we
+denote
+
+\todo[inline]{(what exactly is this?!) as $x_s=\prod_{q\neq p} {x_{s_q}}^q$}
+
+A {\em Nash equilibrium} of a game is a strategy profile in which each
+player cannot improve his expected payoff by unilaterally changing his
+strategy. Formally, a Nash equilibrium is a strategy profile $x$ such that
+for every $p\in P$ and every $i,j\in S_p$
+\[
+\sum_{s\in S_{-p}} u^p(j,s) x_s > \sum_{s\in S_{-p}} u^p(k,s) x_s
+\Rightarrow
+{x_k}^p = 0
+\]
+
+The existence of a Nash equilibrium is guaranteed by the following theorem
+by Nash (\cite{nash}).
+
+\begin{theorem}\label{nash-thm}(\cite{nash})
+Every finite game in normal form has a Nash equilibrium.
+\end{theorem}
+
+\todo[inline]{sketch of pf, brouwer}
+
+\todo[inline]{as example, (generalised) matching pennies, used in DGP, incl
+appendix here}
 
 \todo[inline]{n-NASH in TFNP and typical problem pushing the def of PPAD
 (\cite{ppad}); in fact, PPAD-complete (\cite{dgp} for $n\geq 3$, \cite{cd}
