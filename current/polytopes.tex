@@ -5,27 +5,41 @@
 Nash equilibria can be analysed from a geometrical point of view, using
 polytopes.
 
-In the following, we will consider vectors $u,v\in\reals^d$ as column
-vectors, so $u\T v$ is their scalar product. A vector in $\reals^d$ for
-which all components are $0$'s will be denoted as $\0$; similarly, a
-vectors for which all components are $1$'s will be denoted as $\1$.
-The $i$-th component of the {\em unit vector} $e_i$ is $1$, whereas all
-the other components are $0$'s. An inequality of the form $u\geq v$ (and
-analogous) holds for every component; that is, $u_i\geq v_i$ for all
+We denote the transpose of a matrix $A$ as $A^\T$.
+We consider vectors $u,v\in\reals^d$ as column vectors, so $u\T v$ is
+their scalar product. A vector in $\reals^d$ for which all components
+are $0$'s will be denoted as $\0$; similarly, a vectors for which all
+components are $1$'s will be denoted as $\1$.
+The {\em unit vector} $e_i$ is the vector that has $i$-th component
+\smash{${e_i}_i = 1$} and \smash{${e_i}_j=0$} for all other components.
+When writing an inequality of the form $u\geq v$ (and analogous), we mean
+that it holds for every component; that is, $u_i\geq v_i$ for all
 $i\in [d]$.
 
-An {\em affine combination} of points in an Euclidean space $z_1,\ldots,z_k$
+An {\em affine combination} of points in an Euclidean space $z_1,\ldots,z_n$
 is
 \[
-\sum_{i=1}^k \lambda_i z_i \quad \text{where }\lambda_i\in\reals
-\text{ such that }\sum_{i=1}^k \lambda_i = 1
+\sum_{i=1}^n \lambda_i z_i \quad \text{where }\lambda_i\in\reals
+\text{ such that }\sum_{i=1}^n \lambda_i = 1
 \]
 
-If furthermore $\lambda_i\geq 0$ for all $i\in [k]$
+If furthermore $\lambda_i\geq 0$ for all $i\in [n]$, the points $z_i$ form
+a {\em convex combination}. Note that such $\lambda_i$'s can be seen as
+a probability distribution over the $z_i$'s.
 
-An affine combination of points z1,...,zk in some Euclidean space is of the form ∑ki=1 ziλi where λ1,...,λk are reals with ∑ki=1 λi = 1. It is called a convex combination if λi ≥ 0 for all i. A set of points is convex if it is closed under forming convex combinations. Given points are affinely independent if none of these points is an affine combination of the others. A convex set has dimension d if and only if it has d + 1, but no more, affinely independent points.
+The points $z_1,\ldots,z_n$ are {\em affinely independent} if none of them
+is an affine combination of the others. The set $Z$ is
+{\em convex} if it is closed under forming convex combinations, that is,
+for every $\bar{z}=\sum_{i=1}^n \lambda_i z_i$  where $z_i\in Z$
+and $\lambda_i\geq 0$ and $\sum_{i=1}^n \lambda_i = 1$ we have
+$\bar{z}\in Z$. A convex set has {\em dimension} $d$ if it has exactly
+$d + 1$ affinely independent points.
 
 
+\todo[inline]{convex hull; pow hyperplanes}
+
+
+\todo[inline]{from here: notes - copy-paste}
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set
 of at least $d+1$ points $v$ in $\reals^d$ in general position, that is, no
@@ -120,8 +134,3 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
-
-
-BEARSTEARD Blue
-
-Nina Watson
