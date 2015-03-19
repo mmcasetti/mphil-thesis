@@ -1,8 +1,30 @@
 \subsection{Bimatrix Games and Best Response Polytopes}
 
-\todo[inline]{What do I give for granted? subsection 1 on games, subsection 2
-on games and polytopes?}
 \todo[inline]{read: unit games article on vS website}
+
+Nash equilibria can be analysed from a geometrical point of view, using
+polytopes.
+
+In the following, we will consider vectors $u,v\in\reals^d$ as column
+vectors, so $u\T v$ is their scalar product. A vector in $\reals^d$ for
+which all components are $0$'s will be denoted as $\0$; similarly, a
+vectors for which all components are $1$'s will be denoted as $\1$.
+The $i$-th component of the {\em unit vector} $e_i$ is $1$, whereas all
+the other components are $0$'s. An inequality of the form $u\geq v$ (and
+analogous) holds for every component; that is, $u_i\geq v_i$ for all
+$i\in [d]$.
+
+An {\em affine combination} of points in an Euclidean space $z_1,\ldots,z_k$
+is
+\[
+\sum_{i=1}^k \lambda_i z_i \quad \text{where }\lambda_i\in\reals
+\text{ such that }\sum_{i=1}^k \lambda_i = 1
+\]
+
+If furthermore $\lambda_i\geq 0$ for all $i\in [k]$
+
+An affine combination of points z1,...,zk in some Euclidean space is of the form ∑ki=1 ziλi where λ1,...,λk are reals with ∑ki=1 λi = 1. It is called a convex combination if λi ≥ 0 for all i. A set of points is convex if it is closed under forming convex combinations. Given points are affinely independent if none of these points is an affine combination of the others. A convex set has dimension d if and only if it has d + 1, but no more, affinely independent points.
+
 
 
 A ($d$-dimensional) {\em simplicial polytope} $P$ is the convex hull of a set
@@ -26,7 +48,7 @@ bimatrix games $(U,B)$.
 THIS FROM VvS
 
 \begin{theorem}\label{t-unitv}
-Consider a labeled  $d$-dimensional simplicial polytope $Q$ with $\0$ in
+Consider a labeled  $d$-dimensional simplicial polytope $Q$ with ${\bf 0}$ in
 its interior, with vertices $-e_1,\ldots,-e_d,c_1,\ldots,c_n$,
 % We need to assume that the c_i are pairwise distinct, otherwise
 % a vertex can have several labels.
@@ -40,12 +62,12 @@ Let $-e_i$ have label $i$ for $i\in[d]$, and let $c_j$
 have label $l(j)\in[d]$ for $j\in[n]$.
 Let $(U,B)$ be the $d\times n$ bimatrix game with
 $U=[e_{l(1)}\cdots\,e_{l(n)}]$ and $B=[b_1\,\cdots\,b_n]$,
-where $b_j=c_j/(1+\rone c_j)$ for $j\in[n]$.
+where $b_j=c_j/(1+{\bf 1}^\top c_j)$ for $j\in[n]$.
 Then the completely labeled facets $F$ of $Q$, with the
 exception of~$F_0$, are in one-to-one correspondence to the
 Nash equilibria $(x,y)$ of the game $(U,B)$ as follows:
 if $v$ is the normal vector of $F$, then
-$x=(v+\1)/\rone (v+\1)$,
+$x=(v+{\bf 1}){\bf 1}^\top(v+{\bf 1})$,
 and $x_i=0$ if and only if $-e_i\in F$ for $i\in[d]$;
 any other label~$j$ of $F$, so that $c_j$ is a
 vertex of~$F$, represents a pure best reply to~$x$.
@@ -59,14 +81,14 @@ facet~$F_0$.
 Then an affine transformation, which does not change the
 incidences of the facets of $Q$, can be used to map $F_0$ to
 the negative unit vectors $-e_1,\ldots,-e_d$ as described,
-with $Q$ if necessary expanded in the direction $\1$ so that
-$\0$ is in its interior.
+with $Q$ if necessary expanded in the direction ${\bf 1}$ so that
+${\bf 0}$ is in its interior.
 
 A $d\times n$ bimatrix game $(U,B)$ is a {\em unit vector game}
 if all columns of $U$ are unit vectors.
 For such a game $B$ with $B=[b_1\cdots b_n]$, the columns
 $b_j$ for $j\in[n]$ can be obtained from $c_j$ as in
-Theorem~\ref{t-unitv} if $b_j>\0$ and $\1^T b_j<1$.
+Theorem~\ref{t-unitv} if $b_j>{\bf 0}$ and ${\bf 1}^T b_j<1$.
 This is always possible via a positive-affine transformation
 of the payoffs in~$B$, which does not change the game.
 The unit vectors $e_{l(j)}$ that constitute the columns of
@@ -98,3 +120,8 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
+
+
+BEARSTEARD Blue
+
+Nina Watson
