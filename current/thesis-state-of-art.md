@@ -1,5 +1,7 @@
 # Complexity of the Gale String Problem for Equilibrium Computation in Games
 
+TODO: graphs not with the horrible xy-pic package but with eps + include
+
 ## Abstract
 **DONE - all!**
 
@@ -9,19 +11,38 @@ TODO - **all**
 
 ## Complexity, Games, Polytopes and Gale Strings
 
-### The Complexity Classes P and PPAD
+### Some Complexity Classes
 
-TODO - **all**
+TODO:
+
+* Turing Machine - def
+* hash-P - formal def (?)
+* PPA(D) - def, example SPERNER and/or BROUWER
 
 ### Normal Form Games and Nash equilibria
 
-TODO - **all**
+TODO:
+
+* sketch proof Nash thm, noticing Brouwer
+* ex: generalised matiching pennies, used in DGP (appendix)
+* NASH from pow complexity: TFNP (obv), PPAD (sketch pf), PPAD-complete
+(thm - without pf, of course, don't even mention graphical games and so on!)
 
 ### Bimatrix Games and Best Response Polytopes
 
-TODO - **all**
+TODO:
+
+* convex hull, hyperplanes, polytope - def
+
+TODO: not nec in this order...
+
+* relation: equilibria of bimatrix games / labeled polytopes (originally in
+BvS, more recent in VvS)
+* unit vector games
 
 ### Cyclic Polytopes and Gale strings
+
+** TODO: maybe one section with labeling **
 
 TODO
 * thm by Gale relating the two,
@@ -33,7 +54,7 @@ DONE
 * def GS
 * one example GS (even)
 
-### Labeling and the Problem ANOTHER GALE
+#### Labeling and the Problem ANOTHER GALE
 
 TODO
 * labeled polytopes
@@ -76,4 +97,4 @@ TODO - **all**
 
 ## Biblio
 
-*In progress* - cfr also biblio-notes.md
+*In progress*

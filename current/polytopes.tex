@@ -23,16 +23,17 @@ is
 \text{ such that }\sum_{i=1}^n \lambda_i = 1
 \]
 
-If furthermore $\lambda_i\geq 0$ for all $i\in [n]$, the points $z_i$ form
-a {\em convex combination}. Note that such $\lambda_i$'s can be seen as
-a probability distribution over the $z_i$'s.
-
 The points $z_1,\ldots,z_n$ are {\em affinely independent} if none of them
-is an affine combination of the others. The set $Z$ is
-{\em convex} if it is closed under forming convex combinations, that is,
-for every $\bar{z}=\sum_{i=1}^n \lambda_i z_i$  where $z_i\in Z$
-and $\lambda_i\geq 0$ and $\sum_{i=1}^n \lambda_i = 1$ we have
-$\bar{z}\in Z$. A convex set has {\em dimension} $d$ if it has exactly
+is an affine combination of the others.
+
+A {\em convex combination} of points $z_1,\ldots,z_n$ is an affine
+combination where $\lambda_i\geq 0$ for all $i\in [n]$.
+Note that such $\lambda_i$'s can be seen as a probability distribution over
+the $z_i$'s.
+A set of point $Z$ is {\em convex} if it is closed under forming convex 
+combinations, that is, if $\bar{z}=\sum_{i=1}^n \lambda_i z_i$,
+where $z_i\in Z$, $\lambda_i\geq 0$ and $\sum_{i=1}^n \lambda_i = 1$,
+then $\bar{z}\in Z$. A convex set has {\em dimension} $d$ if it has exactly
 $d + 1$ affinely independent points.
 
 
@@ -134,3 +135,4 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
+§
