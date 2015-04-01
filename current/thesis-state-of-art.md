@@ -9,7 +9,7 @@ TODO: graphs not with the horrible xy-pic package but with eps + include
 
 TODO - **all**
 
-## Complexity, Games, Polytopes and Gale Strings
+## Complexity, Games, Labels, Polytopes, and Gale Strings
 
 ### Some Complexity Classes
 
@@ -28,7 +28,9 @@ TODO:
 * NASH from pow complexity: TFNP (obv), PPAD (sketch pf), PPAD-complete
 (thm - without pf, of course, don't even mention graphical games and so on!)
 
-### Bimatrix Games and Best Response Polytopes
+### Bimatrix Games, Labels and Polytopes
+
+
 
 TODO:
 
@@ -40,9 +42,9 @@ TODO: not nec in this order...
 BvS, more recent in VvS)
 * unit vector games
 
-### Cyclic Polytopes and Gale strings
+### Cyclic Polytopes and Gale Strings
 
-** TODO: maybe one section with labeling **
+** TODO: maybe one section with GS and labeled GS **
 
 TODO
 * thm by Gale relating the two,
@@ -54,7 +56,7 @@ DONE
 * def GS
 * one example GS (even)
 
-#### Labeling and the Problem ANOTHER GALE
+**merge** Labeling and the Problem ANOTHER GALE
 
 TODO
 * labeled polytopes
@@ -78,7 +80,11 @@ TODO - rewrite **all**, with a lot of tabulars and graphics
 
 ### The Complexity of GALE and ANOTHER GALE
 
-**DONE: all!**
+TODO:
+
+* graphs as eps included
+
+DONE: all!
 
 *Would be nice* - in "intermediate" graph in example, first & last label
 connected with "hook" edge.
