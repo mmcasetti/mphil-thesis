@@ -1,9 +1,9 @@
-\subsection{Bimatrix Games and Best Response Polytopes}
+\subsection{Some Geometrical Notation}
 
-\todo[inline]{read: unit games article on vS website}
+\todo[inline]{so results in next section don't get lost in boredom, and
+each section in background is about 150-200 lines (see: getting lost).
 
-Nash equilibria can be analysed from a geometrical point of view, using
-polytopes.
+Maybe turn this into an appendix?}
 
 We denote the transpose of a matrix $A$ as $A^\T$.
 We consider vectors $u,v\in\reals^d$ as column vectors, so $u\T v$ is
@@ -30,14 +30,22 @@ A {\em convex combination} of points $z_1,\ldots,z_n$ is an affine
 combination where $\lambda_i\geq 0$ for all $i\in [n]$.
 Note that such $\lambda_i$'s can be seen as a probability distribution over
 the $z_i$'s.
-A set of point $Z$ is {\em convex} if it is closed under forming convex 
+
+\todo[inline]{def simplex: here?}
+
+A set of point $Z$ is {\em convex} if it is closed under forming convex
 combinations, that is, if $\bar{z}=\sum_{i=1}^n \lambda_i z_i$,
 where $z_i\in Z$, $\lambda_i\geq 0$ and $\sum_{i=1}^n \lambda_i = 1$,
 then $\bar{z}\in Z$. A convex set has {\em dimension} $d$ if it has exactly
 $d + 1$ affinely independent points.
 
 
-\todo[inline]{convex hull; pow hyperplanes}
+\todo[inline]{def simplex: here?}
+
+
+\todo[inline]{convex hull; pow hyperplanes; polyhedron, polyopes; needed?
+yes, for cyclic poly!}
+
 
 
 \todo[inline]{from here: notes - copy-paste}
@@ -55,12 +63,25 @@ $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the
 vertices~$F$.
 
 
+\subsection{Bimatrix Games, Labels and Polytopes}
+
+In the rest of this thesis we will focus on two-player normal-form games,
+also called {\em bimatrix games}. Their Nash equilibria can be analysed
+from a geometrical point of view using {\em labels}.
+
+
+
+
+
+
+
+
+\todo[inline]{this from VvS}
+
 The following theorem, due to Balthasar and von Stengel
 \cite{B09,BvS10}, establishes a connection between general
 labeled polytopes and equilibria of certain $d\times n$
 bimatrix games $(U,B)$.
-
-THIS FROM VvS
 
 \begin{theorem}\label{t-unitv}
 Consider a labeled  $d$-dimensional simplicial polytope $Q$ with ${\bf 0}$ in
@@ -135,4 +156,3 @@ second player is simply the uniform distribution on the
 set $\{i\mid x_i>0\}$.
 Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
 special unit vector game.
-§
