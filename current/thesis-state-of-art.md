@@ -30,21 +30,14 @@ TODO:
 
 ### Bimatrix Games, Labels and Polytopes
 
+TODO: nondegenerate games
 
+TODO: example (from SvS 2015)
 
-TODO:
-
-* convex hull, hyperplanes, polytope - def
-
-TODO: not nec in this order...
-
-* relation: equilibria of bimatrix games / labeled polytopes (originally in
-BvS, more recent in VvS)
-* unit vector games
+TODO (as appendix? as section before this?): notation / basic definition of
+polytopes
 
 ### Cyclic Polytopes and Gale Strings
-
-** TODO: maybe one section with GS and labeled GS **
 
 TODO
 * thm by Gale relating the two,
@@ -55,8 +48,6 @@ TODO
 DONE
 * def GS
 * one example GS (even)
-
-**merge** Labeling and the Problem ANOTHER GALE
 
 TODO
 * labeled polytopes
@@ -83,11 +74,13 @@ TODO - rewrite **all**, with a lot of tabulars and graphics
 TODO:
 
 * graphs as eps included
+* property --> proposition (if used)
+
 
 DONE: all!
 
 *Would be nice* - in "intermediate" graph in example, first & last label
-connected with "hook" edge.
+connected with "hook" edge. Done once used eps instead of xy-pic
 
 ## Further Results
 

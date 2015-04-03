@@ -1,17 +1,24 @@
 
 \subsection{Bimatrix Games, Labels and Polytopes}
 
-In the rest of this thesis we will focus on two-player normal-form games,
+In the rest of this thesis we will focus on two-player normal-form games.
+For sake of readability, we will use feminine pronouns when referring to
+player 1 and masculine pronouns when referring to player 2.
+
+Two-player normal-form games are
 also called {\em bimatrix games}, since they can be characterized by the
-payoff matrices by the two players. The Nash equilibria of these games can be
-analysed from a combinatorial point of view using {\em labels}. This method is
-due to Shapley \cite{shapley}, in a study building on ideas introduced in a
+$m \times n$ payoff matrices $A$ and $B$, where $a_{ij}$ and $b_{ij}$ are
+the payoffs of player 1 and 2 when she plays her $i$th pure strategy
+and he plays his $j$th pure strategy.
+We will assume that $(A,B)$ are non-negative, and that $A$ and $B\T$ have
+no zero column. This can be easily obtained without loss of generality via
+an affine transformation that will not affect the equilibria of the game.
+
+The Nash equilibria of bimatrix games can be analysed from a combinatorial
+point of view using {\em labels}. This method is due to Shapley
+\cite{shapley}, in a study building on ideas introduced in a
 paper by Lemke and Howson \cite{lh}.
 
-From here on, we will assume that the payoff matrices $(A,B)$ of both
-players are non-negative, and that $A$ and $B\T$ have no zero column. This
-can be easily obtained without loss of generality via an affine
-transformation that will not affect the equilibria of the game.
 
 Let $(A,B)$ be bimatrix game. The mixed-strategy simplices of player 1 and 2
 are, respectively
@@ -91,18 +98,17 @@ the polyhedra
 \bar{Q} = \{ (y,u)\in Y\times\reals | A y\leq\1 u \}.
 \end{equation}
 
-These facets are defined as the points $(x,v)$ such that $b_i\T x = v$ in
-$\bar{P}$; these correspond to the strategies $x\in X$ of player 1 that
-give exactly payoff $v$ to player 2. Analogously, in $\bar{Q}$, the facets
-are the points $(y,u)$ such that $a_j y = u$.
-
-
-\todo[inline]{labels on these facets - that then are on projection = brreg}
-
+These facets in $\bar{P}$ are defined as the points $(x,v)\in X\times\reals$
+such that $b_j\T x = v$. These points represent the strategies $x\in X$ of
+player 1 that give exactly payoff $v$ to player 2 when he plays strategy $j$.
+The projection of the facet defined by $b_j\T x = v$ to $X$ will have
+label $j$. Analogously, in $\bar{Q}$, the facets are the points
+$(y,u)\in Y\times\reals$ such that $a_i y = u$, and their projection to $Y$
+will be the best-response region with label $i$.
 
 \begin{example}
 
-\todo[inline]{cont of ex above, page 4--5}
+\todo[inline]{cont of ex above, page 4--5, image on page 5 left}
 
 \end{example}
 
@@ -111,19 +117,100 @@ change coordinates to $x_i / v$ and $y_j / u$ and replace $\bar{P}$ and
 $\bar{Q}$ with the {\em best-response polytopes}
 
 \begin{equation}\label{br-polytopes}
-P = \{ x\in\reals^m | x\geq\0 B\T x\leq\1 \},\quad
-Q = \{ y\in\reals^n | y\geq\0 A y\leq\1 \},\quad
+P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \},\quad
+Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \},\quad
 \end{equation}
 
-\todo[inline]{labels on facets, ex cont'd}
+Each one of these polytope is defined by half spaces corresponding to
+either the player's own strategy that is not being played or the other
+player's best response; each one of the facets of the polytope is labeled
+by the strategy corresponding to the relative half-space.
 
-\todo[inline]{compl label + 0 = equil
+This means that a point in $P$ has label $k$ if and only if either
+$x_k = 0$ for $k\in \{ 1,\ldots,m \}$ or $(B\T x)_{k - m} = 0$ for
+$k\in \{ m+1,\ldots,m+n \}$;
+analogously, a point in $Q$ has label $k$ if and only if either
+$y_{k - m} = 0$ for $k\in \{ m+1,\ldots,m+n \}$ or $(A y)_{k}$ for
+$k\in \{ m+1,\ldots,m+n \}$. A point $(x,y)\in P\times Q$ is
+{\em completely labeled} if every $k\in [m + n]$ is a label of $x$ or $y$.
+Note that the point $(\0,\0)$ is completely labeled. Rescaling back to
+$\bar{P}$ and $\bar{Q}$, all the non-zero completely labeled points give
+exactly all the equilibria of $(A,B)$. In this construction, we will
+call $(\0,\0)$ {\em artificial equilibrium}.
 
-compl and orth conditions
+\begin{example}
 
-symmetric games; vice versa, imitation games; ex pg 8
+\todo[inline]{ex in Savani, von Stengel, image on page 5 right}
 
-nondegeneracy; ex pg 9; odd no eq, mention homotopy method (find ref)
+\end{example}
+
+A characterization of the completely labeled pairs in $P\times Q$ can be
+given as follows.
+
+\begin{proposition}\label{compl-orth-cond}
+The pair $(x,y)\in P\times Q$ is completely labeled if and only if one of
+the following condition holds:
+\begin{itemize}
+\item {\em (Complementarity condition)}
+
+\begin{equation}
+x_i = 0\text{ or }(Ay)_i = 1\text{ for all }i\in [m],\quad
+y_j = 0\text{ or }(B\T x)_j\text{ for all }j\in [n]
+\end{equation}
+
+\item {\em (Orthogonality condition)}
+
+\begin{equation}
+x\T (\1 - Ay) = 0,\quad
+y\T (\1 - B\T x) = 0
+\end{equation}
+\end{itemize}
+\end{proposition}
+
+Proposition \ref{compl-orth-cond} can be used to prove a useful property:
+{\em symmetric games}, that is, games that have payoff matrix of the form
+$(C,C\T)$ for some matrix $C$, can be used to study generic bimatrix games
+without loss of generality. The result is due to Gale, Kuhn and Tucker
+\cite{gale-kuhn-tucker} for zero-sum games; its extension to non-zero-sum
+games is a folklore result.
+
+\begin{proposition}
+Let $(A,B)$ be a bimatrix game and $(x,y)$ be one of its Nash equilibria.
+Then $(z,z)$, where $z=(x,y)$, is a Nash equilibrium of the symmetric game
+$(C,C\T)$, where
+
+\[
+C = \left(
+    \begin{array}{cc}
+    0 & A \\
+    B\T & 0
+    \end{array}
+    \right).
+\]
+\end{proposition}
+
+The converse has been proved by McLennan and Tourky \ref{mclennan-tourky} in
+their study of {\em imitiation games}, that is, bimatrix games of the form
+$(I,B)$.
+
+\begin{proposition}
+The pair $(x,x)$ is a symmetric Nash equilibrium of the symmetric bimatrix
+game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
+Nash equilibrium of the imitation game $(I,C\T)$.
+\end{proposition}
+
+\begin{example}
+Consider the symmetric game $(C,C\T)$, where $C\T = B$ in the previous
+examples.
+
+\todo[inline]{ex Savani, von Stengel, pg 8}
+
+\end{example}
+
+\todo[inline]{
+nondegeneracy; made nondegenerate by ``lexicographic'' perurbation
+(what does it mean?);
+ex pg 9; odd no eq, mention homotopy method (find ref)
 (tie with Nash, again?)}
 
 
@@ -194,87 +281,3 @@ $\{ x\in \reals^d\mid a^T x=a_0\}$ so that $a^T u<a_0$ for all other vertices
 $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the
 {\em normal vector} of the facet. We often identify the facet with its set of
 vertices~$F$.
-
-
-\newpage
-
-\todo[inline]{this from VvS}
-
-The following theorem, due to Balthasar and von Stengel
-\cite{B09,BvS10}, establishes a connection between general
-labeled polytopes and equilibria of certain $d\times n$
-bimatrix games $(U,B)$.
-
-\begin{theorem}\label{t-unitv}
-Consider a labeled  $d$-dimensional simplicial polytope $Q$ with ${\bf 0}$ in
-its interior, with vertices $-e_1,\ldots,-e_d,c_1,\ldots,c_n$,
-% We need to assume that the c_i are pairwise distinct, otherwise
-% a vertex can have several labels.
-% We need to assume that c_i vertex of Q for the following reason:
-% the definition of completely labeled facet is difficult if
-% c_i is in a facet but not vertex of the facet.
-so that % $F_0$ in {\rm(\ref{F0})}
-$F_0=\conv\{-e_1,\ldots,-e_d\}$
-is a facet of $Q$.
-Let $-e_i$ have label $i$ for $i\in[d]$, and let $c_j$
-have label $l(j)\in[d]$ for $j\in[n]$.
-Let $(U,B)$ be the $d\times n$ bimatrix game with
-$U=[e_{l(1)}\cdots\,e_{l(n)}]$ and $B=[b_1\,\cdots\,b_n]$,
-where $b_j=c_j/(1+{\bf 1}^\top c_j)$ for $j\in[n]$.
-Then the completely labeled facets $F$ of $Q$, with the
-exception of~$F_0$, are in one-to-one correspondence to the
-Nash equilibria $(x,y)$ of the game $(U,B)$ as follows:
-if $v$ is the normal vector of $F$, then
-$x=(v+{\bf 1}){\bf 1}^\top(v+{\bf 1})$,
-and $x_i=0$ if and only if $-e_i\in F$ for $i\in[d]$;
-any other label~$j$ of $F$, so that $c_j$ is a
-vertex of~$F$, represents a pure best reply to~$x$.
-The mixed strategy $y$ is the uniform distribution on
-the set of pure best replies to~$x$.
-\end{theorem}
-
-In the preceding theorem, any simplicial polytope can take
-the role of $Q$ as long as it has one completely labeled
-facet~$F_0$.
-Then an affine transformation, which does not change the
-incidences of the facets of $Q$, can be used to map $F_0$ to
-the negative unit vectors $-e_1,\ldots,-e_d$ as described,
-with $Q$ if necessary expanded in the direction ${\bf 1}$ so that
-${\bf 0}$ is in its interior.
-
-A $d\times n$ bimatrix game $(U,B)$ is a {\em unit vector game}
-if all columns of $U$ are unit vectors.
-For such a game $B$ with $B=[b_1\cdots b_n]$, the columns
-$b_j$ for $j\in[n]$ can be obtained from $c_j$ as in
-Theorem~\ref{t-unitv} if $b_j>{\bf 0}$ and ${\bf 1}^T b_j<1$.
-This is always possible via a positive-affine transformation
-of the payoffs in~$B$, which does not change the game.
-The unit vectors $e_{l(j)}$ that constitute the columns of
-$U$ define the labels of the vertices $c_j$.
-The corresponding polytope with these vertices is simplicial
-if the game $(U,B)$ is nondegenerate \cite{vS02}, which here
-means that no mixed strategy $x$ of the row player has more
-than $|\{i\in[d]\mid x_i>0\}|$ pure best replies.
-Any game can be made nondegenerate by a suitable
-``lexicographic'' perturbation of $B$, which can be
-implemented symbolically.
-
-Unit vector games encode arbitrary bimatrix games:
-An $m\times n$ bimatrix game $(A,B)$ with (w.l.o.g.{})
-positive payoff matrices $A,B$ can be symmetrized so
-that its Nash equilibria are in one-to-correspondence to the
-symmetric equilibria of the $(m+n)\times(m+n)$
-symmetric game $(C^T,C)$ where
-\[
-\label{symmetrize}
-C=\biggl(\begin{matrix} 0 & B\cr A^\top & 0\cr\end{matrix}\biggr).
-\]
-In turn, as shown by McLennan and Tourky \cite{mt},
-the symmetric equilibria $(x,x)$ of any symmetric game
-$(C^T,C)$ are in one-to-one correspondence to the Nash
-equilibria $(x,y)$ of the ``imitation game'' $(I,C)$ where
-$I$ is the identity matrix; the mixed strategy $y$ of the
-second player is simply the uniform distribution on the
-set $\{i\mid x_i>0\}$.
-Clearly, $I$ is a matrix of unit vectors, so $(I,C)$ is a
-special unit vector game.
