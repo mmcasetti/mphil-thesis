@@ -9,7 +9,7 @@ TODO: graphs not with the horrible xy-pic package but with eps + include
 
 TODO - **all**
 
-## Complexity, Games, Labels, Polytopes, and Gale Strings
+## Complexity, Games, Labels, Polytopes, Strings
 
 ### Some Complexity Classes
 

@@ -1,11 +1,144 @@
+
+\subsection{Bimatrix Games, Labels and Polytopes}
+
+In the rest of this thesis we will focus on two-player normal-form games,
+also called {\em bimatrix games}, since they can be characterized by the
+payoff matrices by the two players. The Nash equilibria of these games can be
+analysed from a combinatorial point of view using {\em labels}. This method is
+due to Shapley \cite{shapley}, in a study building on ideas introduced in a
+paper by Lemke and Howson \cite{lh}.
+
+From here on, we will assume that the payoff matrices $(A,B)$ of both
+players are non-negative, and that $A$ and $B\T$ have no zero column. This
+can be easily obtained without loss of generality via an affine
+transformation that will not affect the equilibria of the game.
+
+Let $(A,B)$ be bimatrix game. The mixed-strategy simplices of player 1 and 2
+are, respectively
+
+\begin{equation}
+X = \{ x\in\reals^m | x\geq\0,\ \1\T x = 1 \},\quad
+Y = \{ y\in\reals^n | y\geq\0,\ \1\T y = 1 \}
+\end{equation}
+
+A {\em labeling} of the game is then given as follows:
+
+\begin{enumerate}
+\item the $m$ pure strategies of player 1 are identified by $1,\ldots,m$;
+\item the $n$ pure strategies of player 2 are identified by $m+1,\ldots,m+n$;
+\item each mixed strategy $x\in X$ of player 1 has
+    \begin{itemize}
+    \item label $i$ for each $i\in [m]$ such that $x_i = 0$, that is if in
+    $x$ player 1 does not play her $i$th pure strategy;
+    \item label $m + j$ for each $j\in [n]$ such that the $j$th pure strategy
+    of player 2 is a best response to $x$;
+    \end{itemize}
+\item each mixed strategy $y\in Y$ of player 2 has
+    \begin{itemize}
+    \item label $m + j$ for each $j\in [n]$ such that $y_j = 0$, that is if in
+    $y$ player 2 does not play his $j$th pure strategy;
+    \item label $i$ for each $i\in [m]$ such that the $i$th pure strategy
+    of player 1 is a best response to $y$;
+    \end{itemize}
+\end{enumerate}
+
+A strategy profile $(x,y)\in X\times Y$ is {\em completely labeled} if every
+label $1,\ldots,m+n$ is a label of either $x$ or $y$. We have the following
+theorem (Theorem 1 in \cite{shapley}):
+
+\begin{theorem}\label{comp-label-bimatrix-thm}
+Let $(x,y)\in X\times Y$; then $(x,y)$ is a Nash equilibrium of the bimatrix
+game $(A,B)$ if and only if $(x,y)$ is completely labeled.
+
+\begin{proof}
+The mixed strategy $x\in X$ has label $m + j$ for some $j\in [n]$ if and
+only if the $j$th pure strategy of player 2 is a best response to $x$; this,
+in turn, is a necessary and sufficient condition for player 2 to play his
+$j$th strategy at an equilibrium against $x$. Therefore, at an equilibrium
+$(x,y)$ all labels $m + 1,\ldots,m + n$ will appear either as labels of
+$x$ or of $y$. The analogous holds for the labels $i\in [n]$.
+\end{proof}
+\end{theorem}
+
+An useful geometrical representation of labels can be given on the mixed
+strategies simplices $X$ and $Y$. The outside of each simplex is
+labeled according to the player's own pure strategies that are {\em not}
+played; so, for instance, the outside of $X$ will have labels
+$1,\ldots,n$. The interior of each simplex is subdivided in closed polyhedral
+sets, called {\em best-response regions}. These are labeled according to
+the other player's pure strategy that is a best response in that set;
+so, for instance, the inside of $X$ will have labels $m + 1,\ldots,m + n$.
+
+We give an example of this construction.
+
+\begin{example}
+
+\todo[inline]{page 3--4 of Savani, von Stengel, Unit Vector Games.
+
+With graphics.}
+
+\end{example}
+
+We will now give a description of labeling on polytopes equivalent to
+the construction based on best-response regions.
+
+We begin by noticing that the best-response regions can be obtained as
+projections on $X$ and $Y$ of the {\em best-response facets} of
+the polyhedra
+
+\begin{equation}\label{br-polyhedron}
+\bar{P} = \{ (x,v)\in X\times\reals | B\T x\leq\1 v \},\quad
+\bar{Q} = \{ (y,u)\in Y\times\reals | A y\leq\1 u \}.
+\end{equation}
+
+These facets are defined as the points $(x,v)$ such that $b_i\T x = v$ in
+$\bar{P}$; these correspond to the strategies $x\in X$ of player 1 that
+give exactly payoff $v$ to player 2. Analogously, in $\bar{Q}$, the facets
+are the points $(y,u)$ such that $a_j y = u$.
+
+
+\todo[inline]{labels on these facets - that then are on projection = brreg}
+
+
+\begin{example}
+
+\todo[inline]{cont of ex above, page 4--5}
+
+\end{example}
+
+Given the assumptions on non-negativity of $A$ and $B\T$, we can give a
+change coordinates to $x_i / v$ and $y_j / u$ and replace $\bar{P}$ and
+$\bar{Q}$ with the {\em best-response polytopes}
+
+\begin{equation}\label{br-polytopes}
+P = \{ x\in\reals^m | x\geq\0 B\T x\leq\1 \},\quad
+Q = \{ y\in\reals^n | y\geq\0 A y\leq\1 \},\quad
+\end{equation}
+
+\todo[inline]{labels on facets, ex cont'd}
+
+\todo[inline]{compl label + 0 = equil
+
+compl and orth conditions
+
+symmetric games; vice versa, imitation games; ex pg 8
+
+nondegeneracy; ex pg 9; odd no eq, mention homotopy method (find ref)
+(tie with Nash, again?)}
+
+
+\newpage
+
 \subsection{Some Geometrical Notation}
 
-\todo[inline]{so results in next section don't get lost in boredom, and
-each section in background is about 150-200 lines (see: getting lost).
+\todo[inline]{so results in labels section - after this - don't get lost in
+boredom, and each section in background is about 150-200 lines (see: getting
+lost).
 
-Maybe turn this into an appendix?}
+Maybe turn this into an appendix? It would make sense if something more about
+proof of Nash}
 
-We denote the transpose of a matrix $A$ as $A^\T$.
+We denote the transpose of a matrix $A$ as $A\T$.
 We consider vectors $u,v\in\reals^d$ as column vectors, so $u\T v$ is
 their scalar product. A vector in $\reals^d$ for which all components
 are $0$'s will be denoted as $\0$; similarly, a vectors for which all
@@ -63,18 +196,7 @@ $u$ of $P$; the vector $a$ (unique up to a scalar multiple) is called the
 vertices~$F$.
 
 
-\subsection{Bimatrix Games, Labels and Polytopes}
-
-In the rest of this thesis we will focus on two-player normal-form games,
-also called {\em bimatrix games}. Their Nash equilibria can be analysed
-from a geometrical point of view using {\em labels}.
-
-
-
-
-
-
-
+\newpage
 
 \todo[inline]{this from VvS}
 
