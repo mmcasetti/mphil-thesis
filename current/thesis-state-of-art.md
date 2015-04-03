@@ -19,7 +19,7 @@ TODO:
 * hash-P - formal def (?)
 * PPA(D) - def, example SPERNER and/or BROUWER
 
-### Normal Form Games and Nash equilibria
+### Normal Form Games and Nash Equilibria
 
 TODO:
 
@@ -28,14 +28,17 @@ TODO:
 * NASH from pow complexity: TFNP (obv), PPAD (sketch pf), PPAD-complete
 (thm - without pf, of course, don't even mention graphical games and so on!)
 
+### Some Geometrical Notation
+
+TODO (as appendix? as section before this?): notation / basic definition of
+polytopes
+
 ### Bimatrix Games, Labels and Polytopes
 
 TODO: nondegenerate games
 
 TODO: example (from SvS 2015)
 
-TODO (as appendix? as section before this?): notation / basic definition of
-polytopes
 
 ### Cyclic Polytopes and Gale Strings
 
@@ -61,13 +64,14 @@ DONE
 
 ## Algorithms and Complexity Results
 
-### Pivoting
-
-TODO - rewrite **all**, with examples
-
-### The Lemke-Howson Algorithm and Parity
+### Pivoting and the Lemke-Howson Algorithm
 
 TODO - rewrite **all**, with a lot of tabulars and graphics
+
+#### Exponentially Long Paths
+
+PPAD: DGP & CD + SvS results = why ANOTHER GALE in P is important!
+
 
 ### The Complexity of GALE and ANOTHER GALE
 

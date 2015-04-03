@@ -9,7 +9,7 @@
 * why what how - the usual
 * PPAD (it won't come back until appendix but it's in the background)
 
-## Complexity, Games, Polytopes and Gale Strings
+## Complexity, Games, Labels, Polytopes, Strings
 
 ### Some complexity classes
 
@@ -19,14 +19,18 @@ Computational complexity background!
 
 * basic definitions: game, NE
 
-### Bimatrix Games and Best Response Polytopes
+### Some Geometrical Notation
+
+* polytopes
+
+### Bimatrix Games, Labels and Polytopes
 
 * Idea: Polytopes to games (NE can be found via polytopes, polytopes can be
 used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 * see all articles vS & past theses
 
 
-### Cyclic Polytopes and Gale strings
+### Cyclic Polytopes and Gale Strings
 
 * def CP
 * def GS
@@ -37,8 +41,6 @@ used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 * prop even d (use modulo, then find a nice notation & drop it)
 * assume that from now on d even (unless o/w spec - if parity thm for odd d
 too)
-
-#### Labeling and ANOTHER GALE
 
 [labeling in GS and on CP; the problem ANOTHER GALE]
 
@@ -96,7 +98,7 @@ w/ Morris that shows exp cases for LHG.]
 
 [Open problems (?)]
 
-## Appendix: result on PPAD-completeness proof
+## Appendix: a Result on the PPAD-completeness of NASH
 
 * see MSc thesis
 
