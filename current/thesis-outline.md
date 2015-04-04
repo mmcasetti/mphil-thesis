@@ -41,8 +41,10 @@ used to create games) (vS 1999 - nxn games w/ more than 2^n equilibria)
 * prop even d (use modulo, then find a nice notation & drop it)
 * assume that from now on d even (unless o/w spec - if parity thm for odd d
 too)
-
-[labeling in GS and on CP; the problem ANOTHER GALE]
+* labeling on GS
+* corresp to polytope
+* case odd, even just as ex (?)
+* ANOTHER GALE
 
 ## Algorithms and Complexity Results
 
