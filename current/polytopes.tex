@@ -167,9 +167,9 @@ the polyhedra
 \end{equation}
 
 These facets in $\bar{P}$ are defined as the points $(x,v)\in X\times\reals$
-such that $b_j\T x = v$. These points represent the strategies $x\in X$ of
+such that $(B\T x)_j = v$. These points represent the strategies $x\in X$ of
 player 1 that give exactly payoff $v$ to player 2 when he plays strategy $j$.
-The projection of the facet defined by $b_j\T x = v$ to $X$ will have
+The projection of the facet defined by $(B\T x)_j = v$ to $X$ will have
 label $j$. Analogously, in $\bar{Q}$, the facets are the points
 $(y,u)\in Y\times\reals$ such that $a_i y = u$, and their projection to $Y$
 will be the best-response region with label $i$.
@@ -277,12 +277,12 @@ examples.
 
 Balthasar \cite{balthasar} and V\'{e}gh and von Stengel \cite{vvs} extended
 proposition \ref{imitation-thm} to {\em unit vector games}, that is, games
-of the form $(U,C\T)$, where the columns of the matrix $U$ are unit vectors.
+of the form $(U,B)$, where the columns of the matrix $U$ are unit vectors.
 The form of the theorem that we give here follows the notation in Savani
 and von Stengel \cite{svs-15}.
 
 \begin{theorem}\label{unit-vect-thm}
-Let $l:[n]\to [m]$, and let $(U,C\T)$ be the unit vector game where
+Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
 $U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
 where
 
@@ -294,7 +294,7 @@ Q^l = \{ y\in\reals^n | y\geq\0,\
 where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$, and
 
 \begin{equation}
-P^l = \{ x\in\reals^m | x\geq\0,\ C\T x\leq\1 \}
+P^l = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}
 \end{equation}
 
 Label the $m + n$ inequalities in the definition of $P^l$ as follows,
@@ -302,12 +302,31 @@ and label every facet of $P^l$ according to the inequality defining it.
 
 \begin{itemize}
 \item $x_i\geq 0$ has label $i$, for $i\in [m]$
-\item $c_j\T x \leq 1$ has label $l(j)$, for $j\in [n]$
+\item $(B\T x)_j \leq 1$ has label $l(j)$, for $j\in [n]$
 \end{itemize}
 
 Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
 if and only if there is some $y\in Q^l$ such that, after scaling,
-the pair $(x,y)$ is a Nash equilibrium of $(U,C\T)$
+the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
+
+\begin{proof}
+Let $P,Q$ be the polytopes associated to the game $(U,B)$ as before.
+
+Let $(x,y)\in P\times Q\setminus\{ \0,\0 \}$ be a Nash equilibrium of
+$(U,C\T)$, therefore completely labeled in $[m + n]$.
+Then, if $x_i=0$, then $x$ has label $i\in m$.
+If $x_i > 0$ instead, then $y$ has label $i$, therefore $(Uy)_i = 1$,
+therefore for some $j\in [n]$ we have $y_j > 0$ and $U_j = e_i$, so $l(j)=i$.
+Since $y_j > 0$ and $(x,y)$ is completely labeled, $x\in P$ has label $m+j$,
+that is, $(B\T x)_j = 1$, therefore $x\in P^l$ has label $l(j) = i$.
+Hence, $x$ is a completely labeled point of $P^l$.
+
+Conversely, let $x\in P^l\setminus \{ \0 \}$ be completely labeled.
+If $x_i > 0$, then there is $j\in [m]$ such that $(B\T x) = j$ and
+$l(j) = i$, that is, $j\in N_i$. For all $i$ such that $x_i >0 $,
+define $y$ as follows: $y_h = 0$ for all $h\in N_i\setminus \{ j \}$,
+$y_j = 1$. Then $(x,y)\in P\times Q$ is completely labeled.
+\end{proof}
 \end{theorem}
 
 
