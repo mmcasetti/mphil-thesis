@@ -1,128 +1,134 @@
 \subsection{Cyclic Polytopes and Gale Strings}\label{gs-ssect}
 
-A special case of games is obtained by taking a particular case of best
-response polytope in theorem \ref{t-unitv}.
+We have now built a correspondence between labeled best response polytopes
+and bimatrix games. We now consider a special case of games, where the
+polytope in theorem \ref{unit-vector-thm} can be represented as a
+combinatorial structure. We first give the definition of these
+particular polytopes, called {\em cyclic polytopes}, then we define the
+combinatorial structure that we will use to study them, the
+{\em Gale strings}.
 
 A {\em cyclic polytope} $P$ in dimension~$d$ with $n$ vertices is the
-convex hull of distinct points $\mu(t_j)$, where $j\in [n]$ and $\mu$ is the
-{\em moment curve}
-\[
-\mu\colon t\mapsto(t,t^2,\ldots,t^d)^\top
-\]
+convex hull of $n$ distinct points $\mu_d (t_j)$ on the {\em moment curve}
+$\mu_d :\ t\mapsto (t,t^2,\ldots,t^d)\T$ for $j\in [n]$ such that
+$t_1 < t_2 < \cdots < t_n$.
 
-Restricting the study of best response polytopes to the case of cyclic
-polytopes gives an interesting case, since cyclic polytopes can be
-represented as a combinatorial structure, called {\em Gale strings}.
-These are a case of {\em bitstrings}, that is a string of $0$'s and $1$'s.
+\todo[inline]{example(s) with graphics!}
 
+A {\em bitstring} is a string of labels that are either $0$s or $1$s.
 Formally: given an integer $k$ and a set $S$, we can represent the function
-$f_s:[k]\to S$ as the string $s = s(1)s(2)\cdots s(k)$. In the case where
-$S=\{0,1\}$ we call $s$ a bitstring.
+$f_s:[k]\to S$ as the string $s = s(1)s(2)\cdots s(k)$; we have a bitstring
+in the case where $S=\{0,1\}$. A maximal substring of consecutive
+$1$'s in a bitstring is called a {\em run}.
 
-A maximal substring of consecutive $1$'s in a bitstring is called a {\em run}.
-
-We denote with $G(d,n)$ the set of all {\em Gale strings of length $n$ and
-dimension $d$}, defined as the set of all bitstrings $s$ of length $n$
-such that  {\em Gale string} is a
+A {\em Gale string of length $n$ and dimension $d$} is a bitstring of length
+$n$, denoted as $s\in G(d,n)$, such that
 
 \begin{enumerate}
 \item exactly $d$ bits in $s$ are $1$ and
-\item $s$ fulfills the {\em Gale evenness condition}:
-\[
-01^k0\hbox{ is a substring of }s\quad{\Rightarrow}\quad k\hbox{ is even.}
-\]
+\item ({\em Gale evenness condition})
+\begin{equation}
+01^k0\text{ is a substring of }s\quad
+{\Longrightarrow}\quad
+k\text{ is even.}
+\end{equation}
 \end{enumerate}
 
 The Gale evenness condition characterises Gale strings in $G(d,n)$ as
 the bitstrings of length~$n$ with exactly~$d$ elements equal to $1$,
 such that {\em interior} runs (that is, runs bounded on both sides by~$0$s)
 must be of even length. In general, this condition allows Gale strings to
-start or end with an odd-length run. When $d$ is even, on the other hand,
+start or end with an odd-length run; but when $d$ is even this means that
 $s$ starts with an odd run if and only if it ends with an odd run.
 We can then consider the Gale strings in $G(d,n)$ with even $d$ as a ``loop''
 obtained by ``glueing together'' the extremes of the string to form an even
-run; more formally, we can see the indices of the string as equivalence
-classes modulo $n$, so that we identify $s(i+n)=s(i)$. This also implies
-that the set of Gale strings of even dimension is therefore invariant
+run. Formally, we can see the indices of a Gale string $s\in G(d,n)$ with
+$d$ even as equivalence classes modulo $n$, identifying $s(i+n)=s(i)$.
+This also shows that the set of Gale strings of even dimension is invariant
 under a cyclic shift of the strings.
 
 \begin{example}\label{gs-example}
-We consider $G(4,6)$. We have
+For instance, as a case where $d$ is even, we have
+
 \begin{align*}
-G(4,6) = \{ & 111100, \\
-        & 111001, \\
-        & 110011, \\
-        & 100111, \\
-        & 001111, \\
-        & 011110, \\
-        & 110110, \\
-        & 101101, \\
-        & 011011\}
+G(4,6) = \{ & \1\1\1\100, \\
+            & \1\1\100\1, \\
+            & \1\100\1\1, \\
+            & \100\1\1\1, \\
+            & 00\1\1\1\1, \\
+            & 0\1\1\1\10, \\
+            & \1\10\1\10, \\
+            & \10\1\10\1, \\
+            & 0\1\10\1\1 \}
 \end{align*}
 
 The strings $111100$, $111001$, $110011$, $100111$, $001111$ and $011110$ are
-equivalent under a cyclic shift (if considering the strings as loops, the
+equivalent under a cyclic shift (if considering the strings as ``loops'', the
 $1$'s are all consecutive), as are the strings $110110$, $101101$ and
-$011011$ (if considering the strings as loops, the even runs of $1$'s are
+$011011$ (if considering the strings as ``loops'', the even runs of $1$'s are
 two couples separated by a single $0$).
 \end{example}
 
-\todo[inline]{here to end subsect: polytopes - edit all anyway}
+
+\begin{example}
+As a case where $d$ is odd, we consider
+
+\begin{align*}
+G(3,5) = \{ & \1\1\100, \\
+            & \10\1\10, \\
+            & \100\1\1, \\
+            & \1\100\1, \\
+            & 0\1\10\1, \\
+            & 00\1\1\1 \}
+\end{align*}
+
+Note how $01011$ is a cyclic shift of $10110$, but it is not a Gale string.
+\end{example}
 
 The relation between cyclic polytopes and Gale strings is given by the
-following theorem by Gale \cite{gale-cyclicpoly}.
+following theorem by Gale \cite{gale}.
 
-\begin{theorem}[\cite{gale-cyclicpoly}]\label{cp-gs-gale}
-For any positive integer $n$, assume that $t_1 < t_2 < \cdots < t_n$ and let
-P be the cyclic polytope obtained by taking $t_j$, where $j \in [n]$, in
-definition \ref{cyclic-polytope}.
+\begin{theorem}[\cite{gale}]\label{cp-gs-gale}
+For any positive integers $d,n$ let $P$ be the cyclic polytope in dimension
+$d$ with $n$ vertices. Then the facets of $P$ are encoded by $G(d,n)$;
+that is,
 
-Then the facets of $P$ are encoded by $G(d,n)$; that is, $F$ is a facet of
-$P$ if and only if
-\[
-F = \conv\{\mu(t_i)\mid i\in 1(s)\} \qquad \hbox{ for some }s\in G(d,n)
-\]
+\begin{align}
+& F\text{ is a facet of }P \nonumber & \\
+& \Longleftrightarrow & \\
+& F = \conv\{\mu(t_i)\mid i\in 1(s)\}\text{ for some }s\in G(d,n) & \nonumber
+\end{align}
+
 \end{theorem}
 
-\todo[inline]{sketch of pf if not too long and it uses relevant techniques}
+\todo[inline]{sketch of pf if not too long and it uses relevant techniques
 
-\todo[inline]{graphics of cyclic polytope - parallel to gale string}
+example of cyclic polytope + equivalent gale string - pg 35 JM has nice one}
 
 From this point forward, we will assume that $d$ is even.
 
 \todo[inline]{give something to generalise to odd case}
 
-\subsection{Labeling and the Problem \anothergale}
-
-Given a set $G$ of bitstrings of length $n$ and a parameter $d$, a
-{\em labeling} is a function $l:[n]\to[d]$. A string $s$ in $G(d,n)$ is
-{\em completely labeled} if $l(\mathnormal{1}(s))=[d]$. Any $l(i)\in [d]$
-is called a {\em label}
-
-If $s \in G(d,n)$ is completely labeled for the labeling $l:[n]\to[d]$, then
-for each label $l(i)$ there is a bit $s(i)=1$. We therefore have exactly
-$d$ positions $i$ for which $s(i)=1$; hence, $|l(\mathnormal{1}(s))|=d$.
+The labeling of a cyclic polytope has a straigtforward equivalent in
+its representation as a Gale string. A string $s$ is
+{\em completely labeled} for some labeling function $l:[n]\to[d]$ if
+$\{ \bar{l}\in [d] | s(i)=\bar{l}\text{ for some }i\in [n] \}=[d]$.
+If $s\in G(d,n)$, this implies that for every $\bar{l}\in [d]$ there is
+exactly one $s(i)$ such that $s(i) = 1$ and $l(i) = \bar{l}$,
+since there are exactly $d$ positions such that $s(i) = 1$.
 
 \begin{example}
 Given the string of labels $l=123432$, there are four associated completely
 labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 
-\begin{center}
-{\renewcommand{\tabcolsep}{2ex}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c}
+{\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2} \\
 \hline
-\textbf{1234}32 &
-\textbf{12}3\textbf{43}2 &
-\textbf{1}23\textbf{432} &
-\textbf{1}2\textbf{34}3\textbf{2} \\
-\textbf{1111}00 &
-\textbf{11}0\textbf{11}0 &
-\textbf{1}00\textbf{111} &
-\textbf{1}0\textbf{11}0\textbf{1} \\
-\hline
+\1 & \1 & \1 & \1 & \tdot & \tdot \\
+\1 & \1 & \tdot & \1 & \1 & \tdot \\
+\1 & \tdot & \tdot & \1 & \1 & \1 \\
+\1 & \tdot & \1 & \1 & \tdot & \1
 \end{tabular}
-}\\
-\end{center}
 
 \end{example}
 
@@ -131,10 +137,16 @@ associated with a given labeling.
 
 \begin{example}
 For $l = 121314$, there are no completely labeled Gale strings.
+
+The labels $l(i)=2,3,4$ appear only once in $l$, as $l(2),l(4),l(6)$
+respectively; therefore we must have $s(2)=s(4)=s(6)=1$. For every other
+$i\in [n]$ we have $l(i)=1$, so we have $l(i)=1$ for exactly one $i=1,3,5$.
+The candidate strings are then \1\1 0\1 0\1, 0\1\1\1 0\1, 0\1 0\1\1\1; but
+none of these satisfies the Gale evenness condition.
 \end{example}
 
-\todo[inline]{here to end subsect: polytopes}
-\todo[inline]{graphics of labeled cyclic polytope}
+\todo[inline]{from here: labeled cyclic polytopes and their correspondence
+to labeled GS}
 
 % Essentially, this holds because any set $S\subset [n]$
 % the moment curve defines a unique hyperplane which is crossed
@@ -146,12 +158,15 @@ for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
 
+\todo[inline]{graphics of labeled cyclic polytope}
+
+
 Special games are obtained by using cyclic polytopes in
-Theorem~\ref{t-unitv}, suitably affinely transformed with
+Theorem~\ref{unit-vector-thm}, suitably affinely transformed with
 a completely labeled facet $F_0$.
 When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
 vertices, then the string of labels $l(1)\cdots l(n)$ in
-Theorem~\ref{t-unitv} defines a labeling $l':[d+n]\to [d]$
+Theorem~\ref{unit-vector-thm} defines a labeling $l':[d+n]\to [d]$
 where $l'(i)=i$ for $i\in [d]$ and
 $l'(d+j)=l(j)$ for $j\in [n]$.
 In other words, the string of labels $l(1)\cdots l(n)$ is

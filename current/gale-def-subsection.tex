@@ -85,6 +85,8 @@
 
 % definitions
 
+% mathematics
+
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
 
@@ -94,6 +96,10 @@
 \def\1{{\bf 1}}
 
 \def\conv{{\rm conv}}
+
+% maths to text
+
+\def\tdot{$\cdot$}
 
 % to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
 
@@ -115,13 +121,43 @@
 
 \todo[inline]{file: background}
 
-\subsection{Bimatrix Games and Best Response Polytopes}
+\subsection{Some Geometrical Notation}
+
+\subsection{Bimatrix Games, Labels and Polytopes}
+
+\begin{theorem}\label{unit-vector-thm}
+Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
+where
+
+\begin{equation}
+Q^l = \{ y\in\reals^n | y\geq\0,\
+\sum_{\substack{j\in N_i \\ i\in [m]}} y_j\leq 1 \}
+\end{equation}
+
+where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$, and
+
+\begin{equation}
+P^l = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}
+\end{equation}
+
+Label the $m + n$ inequalities in the definition of $P^l$ as follows,
+and label every facet of $P^l$ according to the inequality defining it.
+
+\begin{itemize}
+\item $x_i\geq 0$ has label $i$, for $i\in [m]$
+\item $(B\T x)_j \leq 1$ has label $l(j)$, for $j\in [n]$
+\end{itemize}
+
+Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
+if and only if there is some $y\in Q^l$ such that, after scaling,
+the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
+
+\end{theorem}
 
 \todo[inline]{file: polytopes}
 
 \input{gale-def}
-
-\newpage
 
 \include{bibliography}
 
