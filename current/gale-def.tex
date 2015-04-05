@@ -49,18 +49,10 @@ This also shows that the set of Gale strings of even dimension is invariant
 under a cyclic shift of the strings.
 
 \begin{example}\label{gs-example}
-For instance, as a case where $d$ is even, we have
-
+As an example of $d$ even, we have
 \begin{align*}
-G(4,6) = \{ & \1\1\1\100, \\
-            & \1\1\100\1, \\
-            & \1\100\1\1, \\
-            & \100\1\1\1, \\
-            & 00\1\1\1\1, \\
-            & 0\1\1\1\10, \\
-            & \1\10\1\10, \\
-            & \10\1\10\1, \\
-            & 0\1\10\1\1 \}
+G(4,6) = \{ & \1\1\1\100, \1\1\100\1, \1\100\1\1, \100\1\1\1, 00\1\1\1\1, \\
+            & 0\1\1\1\10, \1\10\1\10, \10\1\10\1, 0\1\10\1\1 \}
 \end{align*}
 
 The strings $\1\1\1\100$, $\1\1\100\1$, $\1\100\1\1$, $\100\1\1\1$,
@@ -69,20 +61,11 @@ equivalent under a cyclic shift (if considering the strings as ``loops'', the
 $\1$'s are all consecutive), as are the strings $\1\10\1\10$, $\10\1\10\1$
 and $0\1\10\1\1$ (if considering the strings as ``loops'', the even runs of
 $\1$'s are two couples separated by a single $0$).
-\end{example}
 
-
-\begin{example}
-As a case where $d$ is odd, we consider
-
-\begin{align*}
-G(3,5) = \{ & \1\1\100, \\
-            & \10\1\10, \\
-            & \100\1\1, \\
-            & \1\100\1, \\
-            & 0\1\10\1, \\
-            & 00\1\1\1 \}
-\end{align*}
+As an example for $d$ odd, we have
+\[
+G(3,5) = \{ \1\1\100, \10\1\10, \100\1\1, \1\100\1, 0\1\10\1, 00\1\1\1 \}
+\]
 
 Note how $0\10\1\1$ is a cyclic shift of $\10\1\10$, but it is not a Gale
 string.
@@ -95,7 +78,6 @@ following theorem by Gale \cite{gale}.
 For any positive integers $d,n$ let $P$ be the cyclic polytope in dimension
 $d$ with $n$ vertices. Then the facets of $P$ are encoded by $G(d,n)$;
 that is,
-
 \begin{align}
 F \text{ is a} & \text{ facet of } P \nonumber \\
 & \Longleftrightarrow \nonumber \\
@@ -129,7 +111,7 @@ since there are exactly $d$ positions such that $s(i) = 1$.
 
 \begin{example}
 Given the string of labels $l=123432$, there are four associated completely
-labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
+labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.
 
 \begin{tabular}{c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c}
 {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2} \\
@@ -139,7 +121,6 @@ labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 \1 & \tdot & \tdot & \1 & \1 & \1 \\
 \1 & \tdot & \1 & \1 & \tdot & \1
 \end{tabular}
-
 \end{example}
 
 Sometimes it is not possible to find a completely labeled Gale string.
@@ -154,41 +135,56 @@ The candidate strings are then \1\10\10\1, 0\1\1\10\1, 0\10\1\1\1; but
 none of these satisfies the Gale evenness condition.
 \end{example}
 
+From now on, we will always consider labeling $l$ such that
+$l(i)\neq l(i+1)$; we now show that we can do it without loss of generality.
+In the case when $l(i)=\ldots=l(i+k)$, by Gale Evenness Condition
+we have $s(i+j)=0$ for $j\in [k-1]$; we can therefore ``simplify'' by
+deleting all indices $k$.
+Suppose now that $l(i - 1)\neq l(i)=l(i + 1)\neq l(i + 2)$ for some index,
+and let $s$ be a completely labeled Gale string for $l$. Then only one of
+$s(i)$ and $s(i+1)$ can be equal to \1 (note that it's possible that both
+are \0s). So $s(i)s(i+1)$ will never be a run of even length that
+``interferes'' with the Gale Evenness Condition, so we can ``simplify'' by
+deleting the index $i + 1$.
+
+\todo[inline]{geometrically? projection?}
+
+
+
+
+\todo[inline]{
+how labeled GS are corresponding to br cyclic polytopes
+
+NB: we have given DUAL version (SvS 15) of Balthasar!!! facets --> vertices
+(we must suppose a facet $F_0$ that maps to $\0$)
+
+
+graphics
+
+\anothergale }
+
 By theorem \ref{cp-gs-gale-thm}, the Gale strings $s\in G(d,n)$
 encode the facets of a cyclic polytope in dimension $d$ with $n$
-vertices. Let $S=P\times Q$ be the best-response polytope for a
-unit vector game $(U,B)$ as in theorem \ref{unit-vector-thm},
-
-
+vertices. We want to exploit this to study
 
 We now give a correspondence between the labeling of the facets of
 a cyclic polytope chosen as best-response polytope $Q$ for a
 unit vector game $(U,B)$ as in theorem \ref{unit-vector-thm} and a
 Gale string $s\in G(d,d + n)$.
 
-We look for: labeling $l:[d + n]\to [d]$
-for each vertex $\mu(t_j)$, where $j\in [d + n]$.
+We look for: labeling $l:[d+n]\to [d]$
+for each vertex $\mu(t_j)$ of $P^\Delta$, where $j\in [n]$,
+
+so we can look for a CL facet $F$ of $P^\Delta$
 
 
-\todo[inline]{
-how labeled GS are corresponding to br cyclic polytopes
 
-NB: we have given DUAL version (SvS 15) of Balthasar!!! vertices <-> facets
+When $P^\Delta$ is a cyclic polytope in dimension $d$ with $d+n$
+vertices,
+then the string of labels $l(1)\cdots l(n)$ in
+Theorem {\em balthasar}
 
-graphics
-
-\anothergale }
-
-For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
-be understood as a label $l(j)$ for each vertex $\mu(t_j)$
-for $j\in [n]$.
-A completely labeled Gale string $s$ therefore represents a
-facet $F$ of $P$ that is completely labeled.
-
-
-When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
-vertices, then the string of labels $l(1)\cdots l(n)$ in
-Theorem~\ref{unit-vector-thm} defines a labeling $l':[d+n]\to [d]$
+defines a labeling $l':[d+n]\to [d]$
 where $l'(i)=i$ for $i\in [d]$ and
 $l'(d+j)=l(j)$ for $j\in [n]$.
 In other words, the string of labels $l(1)\cdots l(n)$ is
