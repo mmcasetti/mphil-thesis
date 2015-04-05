@@ -2,7 +2,8 @@
 
 We have now built a correspondence between labeled best response polytopes
 and bimatrix games. We now consider a special case of games, where the
-polytope in theorem \ref{unit-vector-thm} can be represented as a
+polytope in theorem \ref{unit-vector-thm} is the dual of a
+particular kind of polytope that can be represented as a
 combinatorial structure. We first give the definition of these
 particular polytopes, called {\em cyclic polytopes}, then we define the
 combinatorial structure that we will use to study them, the
@@ -13,7 +14,7 @@ convex hull of $n$ distinct points $\mu_d (t_j)$ on the {\em moment curve}
 $\mu_d :\ t\mapsto (t,t^2,\ldots,t^d)\T$ for $j\in [n]$ such that
 $t_1 < t_2 < \cdots < t_n$.
 
-\todo[inline]{example(s) with graphics!}
+\todo[inline]{example(s) with graphics! There's one in Ziegler}
 
 A {\em bitstring} is a string of labels that are either $0$s or $1$s.
 Formally: given an integer $k$ and a set $S$, we can represent the function
@@ -62,11 +63,12 @@ G(4,6) = \{ & \1\1\1\100, \\
             & 0\1\10\1\1 \}
 \end{align*}
 
-The strings $111100$, $111001$, $110011$, $100111$, $001111$ and $011110$ are
+The strings $\1\1\1\100$, $\1\1\100\1$, $\1\100\1\1$, $\100\1\1\1$,
+$00\1\1\1\1$ and $0\1\1\1\10$ are
 equivalent under a cyclic shift (if considering the strings as ``loops'', the
-$1$'s are all consecutive), as are the strings $110110$, $101101$ and
-$011011$ (if considering the strings as ``loops'', the even runs of $1$'s are
-two couples separated by a single $0$).
+$\1$'s are all consecutive), as are the strings $\1\10\1\10$, $\10\1\10\1$
+and $0\1\10\1\1$ (if considering the strings as ``loops'', the even runs of
+$\1$'s are two couples separated by a single $0$).
 \end{example}
 
 
@@ -82,37 +84,45 @@ G(3,5) = \{ & \1\1\100, \\
             & 00\1\1\1 \}
 \end{align*}
 
-Note how $01011$ is a cyclic shift of $10110$, but it is not a Gale string.
+Note how $0\10\1\1$ is a cyclic shift of $\10\1\10$, but it is not a Gale
+string.
 \end{example}
 
 The relation between cyclic polytopes and Gale strings is given by the
 following theorem by Gale \cite{gale}.
 
-\begin{theorem}[\cite{gale}]\label{cp-gs-gale}
+\begin{theorem}[\cite{gale}]\label{cp-gs-gale-thm}
 For any positive integers $d,n$ let $P$ be the cyclic polytope in dimension
 $d$ with $n$ vertices. Then the facets of $P$ are encoded by $G(d,n)$;
 that is,
 
 \begin{align}
-& F\text{ is a facet of }P \nonumber & \\
-& \Longleftrightarrow & \\
-& F = \conv\{\mu(t_i)\mid i\in 1(s)\}\text{ for some }s\in G(d,n) & \nonumber
+F \text{ is a} & \text{ facet of } P \nonumber \\
+& \Longleftrightarrow \nonumber \\
+F = \conv\{ \mu(t_j)\ |\ s(j)=1 & \text{ for some }j\in[n]
+\text{ and }s\in G(d,n) \} \nonumber
 \end{align}
 
 \end{theorem}
 
-\todo[inline]{sketch of pf if not too long and it uses relevant techniques
+\todo[inline]{pf - see Ziegler
+
+\small
+Essentially, this holds because any set $S\subset [n]$
+the moment curve defines a unique hyperplane which is crossed
+(and not just touched) by the moment curve; if the bitstring
+$s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
+\normalsize
 
 example of cyclic polytope + equivalent gale string - pg 35 JM has nice one}
 
-From this point forward, we will assume that $d$ is even.
+We now give define a {\em labeling} for Gale strings, corresponding to
+the labeling of best-response polytopes.
 
-\todo[inline]{give something to generalise to odd case}
-
-The labeling of a cyclic polytope has a straigtforward equivalent in
-its representation as a Gale string. A string $s$ is
+A string $s$ is
 {\em completely labeled} for some labeling function $l:[n]\to[d]$ if
-$\{ \bar{l}\in [d] | s(i)=\bar{l}\text{ for some }i\in [n] \}=[d]$.
+$\{ \bar{l}\in [d] | s(i)=1\text{ and }l(i)=\bar{l}
+\text{ for some }i\in [n] \}=[d]$.
 If $s\in G(d,n)$, this implies that for every $\bar{l}\in [d]$ there is
 exactly one $s(i)$ such that $s(i) = 1$ and $l(i) = \bar{l}$,
 since there are exactly $d$ positions such that $s(i) = 1$.
@@ -132,8 +142,7 @@ labeled Gale strings: $111100$, $110110$, $100111$ and $101101$.\\
 
 \end{example}
 
-Sometimes there aren't any completely labeled Gale strings that are
-associated with a given labeling.
+Sometimes it is not possible to find a completely labeled Gale string.
 
 \begin{example}
 For $l = 121314$, there are no completely labeled Gale strings.
@@ -141,29 +150,42 @@ For $l = 121314$, there are no completely labeled Gale strings.
 The labels $l(i)=2,3,4$ appear only once in $l$, as $l(2),l(4),l(6)$
 respectively; therefore we must have $s(2)=s(4)=s(6)=1$. For every other
 $i\in [n]$ we have $l(i)=1$, so we have $l(i)=1$ for exactly one $i=1,3,5$.
-The candidate strings are then \1\1 0\1 0\1, 0\1\1\1 0\1, 0\1 0\1\1\1; but
+The candidate strings are then \1\10\10\1, 0\1\1\10\1, 0\10\1\1\1; but
 none of these satisfies the Gale evenness condition.
 \end{example}
 
-\todo[inline]{from here: labeled cyclic polytopes and their correspondence
-to labeled GS}
+By theorem \ref{cp-gs-gale-thm}, the Gale strings $s\in G(d,n)$
+encode the facets of a cyclic polytope in dimension $d$ with $n$
+vertices. Let $S=P\times Q$ be the best-response polytope for a
+unit vector game $(U,B)$ as in theorem \ref{unit-vector-thm},
 
-% Essentially, this holds because any set $S\subset [n]$
-% the moment curve defines a unique hyperplane which is crossed
-% (and not just touched) by the moment curve; if the bitstring
-% $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
+
+
+We now give a correspondence between the labeling of the facets of
+a cyclic polytope chosen as best-response polytope $Q$ for a
+unit vector game $(U,B)$ as in theorem \ref{unit-vector-thm} and a
+Gale string $s\in G(d,d + n)$.
+
+We look for: labeling $l:[d + n]\to [d]$
+for each vertex $\mu(t_j)$, where $j\in [d + n]$.
+
+
+\todo[inline]{
+how labeled GS are corresponding to br cyclic polytopes
+
+NB: we have given DUAL version (SvS 15) of Balthasar!!! vertices <-> facets
+
+graphics
+
+\anothergale }
+
 For this cyclic polytope $P$, a labeling $l:[n]\to[d]$ can
 be understood as a label $l(j)$ for each vertex $\mu(t_j)$
 for $j\in [n]$.
 A completely labeled Gale string $s$ therefore represents a
 facet $F$ of $P$ that is completely labeled.
 
-\todo[inline]{graphics of labeled cyclic polytope}
 
-
-Special games are obtained by using cyclic polytopes in
-Theorem~\ref{unit-vector-thm}, suitably affinely transformed with
-a completely labeled facet $F_0$.
 When $Q$ is a cyclic polytope in dimension $d$ with $d+n$
 vertices, then the string of labels $l(1)\cdots l(n)$ in
 Theorem~\ref{unit-vector-thm} defines a labeling $l':[d+n]\to [d]$
@@ -173,11 +195,12 @@ In other words, the string of labels $l(1)\cdots l(n)$ is
 just prefixed with the string $1\,2\cdots d$ to give $l'$.
 Then $l'$ has a trivial completely labeled Gale string
 $1^d0^n$ which defines the facet $F_0$.
+
+From this point forward, we will assume that $d$ is even.
+
 Then the problem \anothergale\ defines exactly the problem of finding a Nash
 equilibrium of the unit vector game $(I,B)$.
-Note again that $B$ is here not a general matrix (which would
-define a general game) but obtained from the last $n$ of
-$d+n$ vertices of a cyclic polytope in dimension~$d$.
+
 
 \begin{fctproblem}
 {\anothergale}
