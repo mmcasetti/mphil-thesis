@@ -123,39 +123,35 @@
 
 \subsection{Some Geometrical Notation}
 
+\todo[inline]{file: polytopes}
+
 \subsection{Bimatrix Games, Labels and Polytopes}
 
-\begin{theorem}\label{unit-vector-thm}
-Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
-$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
-where
+\todo[inline]{file: polytopes}
 
-\begin{equation}
-P^l = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}
-\end{equation}
+\begin{theorem}\label{unit-vector-dual-thm}
+Let $Q$ be a labeled $m$-dimensional simplicial polytope with \0 in
+its interior, with vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$, so that
+$F_0 = \conv\{ e_i\ |\ i\in [m] \}$ is a facet of $Q$.
 
-\begin{equation}
-Q^l = \{ y\in\reals^n | y\geq\0,\
-\sum_{\substack{j\in N_i \\ i\in [m]}} y_j\leq 1 \}
-\end{equation}
+Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game with
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$ and $B = (b_1\ \cdots\ b_n)$,
+where $b_j = \frac{c_j}{1 + \1\T c_j}$ for $j\in [n]$.
 
-where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$.
-
-Label every facet of $P^l$ according to the inequality defining it,
-as follows:
-
+Label the vertices of $Q$ as follows:
 \begin{itemize}
-\item $x_i\geq 0$ has label $i$, for $i\in [m]$
-\item $(B\T x)_j \leq 1$ has label $l(j)$, for $j\in [n]$
+\item $-e_i$ has label $i\in [m]$
+\item $c_j$ has label $l(j)$ for $j\in [n]$
 \end{itemize}
 
-Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
-if and only if there is some $y\in Q^l$ such that, after scaling,
-the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
-
+Then a facet $F\neq F_0$ of $Q$ with normal vector $v$ is completely
+labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where
+$x = \frac{v + \1}{\1\T (v + \1)}$,
+and $x_i = 0$ if and only if $−e_i\in F$ for $i\in [m]$.
+Any $j$ so that $c_j$ is a vertex of $F$ represents a pure best reply to $x$;
+the mixed strategy $y$ is the uniform distribution on the set of the pure best
+replies to $x$.
 \end{theorem}
-
-\todo[inline]{file: polytopes}
 
 \input{gale-def}
 

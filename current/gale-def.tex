@@ -135,33 +135,25 @@ The candidate strings are then \1\10\10\1, 0\1\1\10\1, 0\10\1\1\1; but
 none of these satisfies the Gale evenness condition.
 \end{example}
 
-From now on, we will always consider labeling $l$ such that
-$l(i)\neq l(i+1)$; we now show that we can do it without loss of generality.
-In the case when $l(i)=\ldots=l(i+k)$, by Gale Evenness Condition
-we have $s(i+j)=0$ for $j\in [k-1]$; we can therefore ``simplify'' by
-deleting all indices $k$.
-Suppose now that $l(i - 1)\neq l(i)=l(i + 1)\neq l(i + 2)$ for some index,
-and let $s$ be a completely labeled Gale string for $l$. Then only one of
+From this point forward, we will assume that $d$ is even.
+We will also assume that the labeling $l:[n]\to [d]$ is such
+that $l(i)\neq l(i+1)$; this can be done without loss of generality,
+given the following consideration.
+Suppose that $l(i)=l(i + 1)$ for some index $i$, and let $s$ be a
+completely labeled Gale string for $l$. Then only one of
 $s(i)$ and $s(i+1)$ can be equal to \1 (note that it's possible that both
 are \0s). So $s(i)s(i+1)$ will never be a run of even length that
-``interferes'' with the Gale Evenness Condition, so we can ``simplify'' by
-deleting the index $i + 1$.
+``interferes'' with the Gale Evenness Condition, so we can ``simplify''
+by identifying the indices $i$ and $i + 1$.
 
-\todo[inline]{geometrically? projection?}
-
+We will now exploit the encoding of the facets of a cyclic polytope as
+Gale strings given by theorem \ref{cp-gs-gale-thm} and the correspondence
+between completely labeled facets of a dual cyclic polytope and Nash
+equilibria of a game as seen in theorem \label{unit-vector-dual-thm}.
 
 
 
 \todo[inline]{
-how labeled GS are corresponding to br cyclic polytopes
-
-NB: we have given DUAL version (SvS 15) of Balthasar!!! facets --> vertices
-(we must suppose a facet $F_0$ that maps to $\0$)
-
-
-graphics
-
-\anothergale }
 
 By theorem \ref{cp-gs-gale-thm}, the Gale strings $s\in G(d,n)$
 encode the facets of a cyclic polytope in dimension $d$ with $n$
@@ -178,7 +170,6 @@ for each vertex $\mu(t_j)$ of $P^\Delta$, where $j\in [n]$,
 so we can look for a CL facet $F$ of $P^\Delta$
 
 
-
 When $P^\Delta$ is a cyclic polytope in dimension $d$ with $d+n$
 vertices,
 then the string of labels $l(1)\cdots l(n)$ in
@@ -192,11 +183,9 @@ just prefixed with the string $1\,2\cdots d$ to give $l'$.
 Then $l'$ has a trivial completely labeled Gale string
 $1^d0^n$ which defines the facet $F_0$.
 
-From this point forward, we will assume that $d$ is even.
 
 Then the problem \anothergale\ defines exactly the problem of finding a Nash
 equilibrium of the unit vector game $(I,B)$.
-
 
 \begin{fctproblem}
 {\anothergale}
@@ -205,3 +194,5 @@ completely labeled Gale string $s$ in $G(d,n)$.}
 {A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
 that $s' \neq s$.}
 \end{fctproblem}
+
+}
