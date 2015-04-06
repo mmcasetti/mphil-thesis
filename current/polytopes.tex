@@ -287,13 +287,13 @@ examples.
 
 \end{example}
 
-Balthasar \cite{balthasar} and V\'{e}gh and von Stengel \cite{vvs} extended
-proposition \ref{imitation-thm} to {\em unit vector games}, that is, games
+Savani and von Stengel \cite{uvg} extended proposition
+\ref{imitation-thm} to {\em unit vector games}, that is, games
 of the form $(U,B)$, where the columns of the matrix $U$ are unit vectors.
-The form of the theorem that we give here follows the version in Savani
-and von Stengel \cite{uvg}, dual to the one in Balthasar \cite{balthasar}.
+Their study relies on a theorem, first proved in dual form by
+Balthasar \cite{balthasar}, that exploits the techinque of labeling.
 
-\begin{theorem}\label{unit-vector-thm}
+\begin{theorem}\cite{uvg}\label{unit-vector-thm}
 Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
 $U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
 where
@@ -347,23 +347,26 @@ construction (see \cite{balthasar}).
 We translate the polytope $P^l$ in theorem \ref{unit-vector-thm} to
 $P = \{ x - \1\ |\ x\in P^l \}$. Multiplying all payoffs in $B$ by a
 constant if necessary (an operation that does not change the game),
-we can have \1 is in the interior of $P^l$; then we have that \0 is in
-the interior of $P$.
-
+we can have \1 is in the interior of $P^l$ and \0 in the interior of $P$.
 We have $x\in P$ if and only if $x + \1\geq\0$ and
 $B\T(x + \1)=(x + \1)\T B\leq\1$;
 that is, if and only if $-x_i\leq 1$ for $i\in [m]$ and
 $x\T \frac{b_j}{1 − \1\T b_j} \leq 1$ for $j\in [n]$.
+
 The polar of $P$ is then
 \begin{equation}
 P^\Delta = \conv(\{−e_i\ |\ i\in [m] \} \cup \{ \frac{b_j}{1 − \1\T b_j} \})
 \end{equation}
 
-Since \0 is in the interior of $P$, the facets of $P^\Delta$ correspond to
-the vertices of $P$ and vice versa; we can then label the vertices
-of $P\Delta$ with the labels of the corresponding facets in $P^l$, and we
-will have completely labeled facets of $P\Delta$ corresponding to
-completely labeled vertices $P^l$.
+\todo[inline]{$P$ is simple (why? show it before), so $P^\Delta$ is simplicial}
+
+Since \0 is in the interior of $P$, we have that $P^{\Delta\Delta}=P$,
+and the facets of $P^\Delta$ correspond to
+the vertices of $P$ and vice versa. We can then label the vertices
+of $P\Delta$ with the labels of the corresponding facets in $P^l$, so
+the completely labeled facets of $P\Delta$ will correspond to the
+completely labeled vertices of $P^l$.
+
 In particular, the facet corresponding to \0 is
 \begin{equation}
 F_0 = \{ x\in P^\Delta\ |\ -\1\T x = 1 \} = \conv\{ e_i\ |\ i\in [m] \}.
@@ -372,7 +375,7 @@ F_0 = \{ x\in P^\Delta\ |\ -\1\T x = 1 \} = \conv\{ e_i\ |\ i\in [m] \}.
 We therefore have the dual of theorem \ref{unit-vector-thm}, as enunciated
 in \cite{balthasar}.
 
-\begin{theorem}\label{unit-vector-dual-thm}
+\begin{theorem}\cite{balthasar}\label{unit-vector-dual-thm}
 Let $Q$ be a labeled $m$-dimensional simplicial polytope with \0 in
 its interior, with vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$, so that
 $F_0 = \conv\{ e_i\ |\ i\in [m] \}$ is a facet of $Q$.
@@ -396,7 +399,10 @@ the mixed strategy $y$ is the uniform distribution on the set of the pure best
 replies to $x$.
 \end{theorem}
 
+
 \todo[inline]{
+$F_0$ correspond to ``artificial'' equilibrium, as $(\0)$ before.
+
 see as comp problems: ANOTHER CL FACET / ANOTHER CL VERTEX
 sp case of 2-NASH
 
