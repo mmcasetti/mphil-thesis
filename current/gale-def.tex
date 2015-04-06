@@ -149,9 +149,7 @@ are 0s). So $s(i)s(i+1)$ will never be a run of even length that
 by identifying the indices $i$ and $i + 1$.
 
 We will now focus on the problem of finding the Nash equilibria of
-a unit vector game $(U,B)$
-\todo{not generic, via Savani-von Stengel \cite{uvg}?}
-  where the best-response polytope $Q$ is
+a unit vector game $(U,B)$ where the best-response polytope $Q$ is
 cyclic, exploiting theorems \ref{unit-vector-dual-thm} and
 \ref{cp-gs-gale-thm}.
 To do so, we must find a labeling $l$ such that the Gale strings
@@ -178,13 +176,20 @@ correspond exactly to the completely labeled facets of $Q$, with the
 facet $F_0$ corresponding to the ``trivial'' completely labeled
 string $\1^d 0$.
 
-Then the problem of finding a Nash equilibrium for a unit vector game
-$(U,B)$ is equivalent to the problem \anothergale, defined as follows.
+Then proposition \ref{ne-cl-pbl} becomes the following theorem.
+
+\begin{theorem}\label{ne-another-gale-pbl}
+The problem of finding a Nash equilibrium for a unit vector game is
+polynomial-time reducible
+\todo{do we have to prove ``polynomial''?}
+to the problem \anothergale, where
 
 \begin{fctproblem}
 {\anothergale}
-{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$, and an associated
-completely labeled Gale string $s$ in $G(d,n)$.}
-{A completely labeled Gale string $s'$ in $G(d,n)$ associated with $l$, such
-that $s' \neq s$.}
+{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
+A Gale string $s\in G(d,n)$, completely labeled by $l$.}
+{A Gale string $s'\in G(d,n)$, completely labeled by $l$,
+such that $s' \neq s$.}
 \end{fctproblem}
+
+\end{theorem}

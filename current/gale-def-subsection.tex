@@ -153,7 +153,32 @@ the mixed strategy $y$ is the uniform distribution on the set of the pure best
 replies to $x$.
 \end{theorem}
 
-\input{gale-def}
+\begin{proposition}\label{ne-cl-pbl}
+The problem 2-{\sc Nash} for unit vector games is
+polynomial-time reducible
+\todo{do we have to prove ``polynomial''?}
+to the problems {\sc Another Completely Labeled Vertex} and its dual
+{\sc Another Completely Labeled Facet}, where
+
+\begin{fctproblem}
+{\sc Another Completely Labeled Vertex}
+{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
+a labeling $l:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l$.}
+{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\begin{fctproblem}
+{\sc Another Completely Labeled Vertex}
+{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
+a labeling $l:[m+n]\to [n]$;
+a vertex $v_0$ of $S$, completely labeled by $l$.}
+{A vertex $v\neq v_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\end{proposition}
+
+\include{gale-def}
 
 \include{bibliography}
 

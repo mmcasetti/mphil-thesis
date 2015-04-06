@@ -51,6 +51,10 @@ $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
 \item $\mathcal{M}$ stops after $p(|x|)$ steps, where $p$ is a polynomial.
 \end{enumerate}
 
+Intuitively, if $P_1$ is polynomial-time reducible to $P_2$, it takes
+polynomial time to ``translate'' $P_1$ to $P_2$, and then to
+``translate back'' a solution of $P_2$ as a solution of $P_1$.
+
 For any class $\mathrm{C}$ of decision problems, the class of all complements
 of the problems in $C$ is the {\em complement class} $\mathrm{co-C}$.
 A problem $P$ is {\em hard} for a class $\mathrm{C}$ if for every problem

@@ -287,11 +287,11 @@ examples.
 
 \end{example}
 
-Savani and von Stengel \cite{uvg} extended proposition
-\ref{imitation-thm} to {\em unit vector games}, that is, games
-of the form $(U,B)$, where the columns of the matrix $U$ are unit vectors.
-Their study relies on a theorem, first proved in dual form by
-Balthasar \cite{balthasar}, that exploits the techinque of labeling.
+Savani and von Stengel \cite{uvg} extended the study of imitation games to
+{\em unit vector games} $(U,B)$, where the columns of the matrix $U$ are
+unit vectors. For these games, the use of labeling in polytopes to
+characterize Nash equilibria of the game is given by the following
+theorem, first proved in dual form by Balthasar \cite{balthasar}.
 
 \begin{theorem}\cite{uvg}\label{unit-vector-thm}
 Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
@@ -341,9 +341,13 @@ $y_j = 1$. Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
 \end{theorem}
 
-The dual version of theorem \ref{unit-vector-thm} is based on the following
-construction (see \cite{balthasar}).
+Theorem \ref{unit-vector-thm} gives a correspondence between the
+completely labeled vertices of the polytope $P^l$ and the equilibria
+of the unit vector game $(U,B)$, with an ``artificial''
+equilibrium corresponding to the vertex $\0$.
 
+The dual version of theorem \ref{unit-vector-thm}, given in
+\cite{balthasar}, is constructed as follows.
 We translate the polytope $P^l$ in theorem \ref{unit-vector-thm} to
 $P = \{ x - \1\ |\ x\in P^l \}$. Multiplying all payoffs in $B$ by a
 constant if necessary (an operation that does not change the game),
@@ -351,11 +355,10 @@ we can have \1 is in the interior of $P^l$ and \0 in the interior of $P$.
 We have $x\in P$ if and only if $x + \1\geq\0$ and
 $B\T(x + \1)=(x + \1)\T B\leq\1$;
 that is, if and only if $-x_i\leq 1$ for $i\in [m]$ and
-$x\T \frac{b_j}{1 − \1\T b_j} \leq 1$ for $j\in [n]$.
-
+$x\T \frac{b_j}{1 - \1\T b_j} \leq 1$ for $j\in [n]$.
 The polar of $P$ is then
 \begin{equation}
-P^\Delta = \conv(\{−e_i\ |\ i\in [m] \} \cup \{ \frac{b_j}{1 − \1\T b_j} \})
+P^\Delta = \conv(\{−e_i\ |\ i\in [m] \} \cup \{ \frac{b_j}{1 - \1\T b_j} \})
 \end{equation}
 
 \todo[inline]{$P$ is simple (why? show it before), so $P^\Delta$ is simplicial}
@@ -366,14 +369,11 @@ the vertices of $P$ and vice versa. We can then label the vertices
 of $P\Delta$ with the labels of the corresponding facets in $P^l$, so
 the completely labeled facets of $P\Delta$ will correspond to the
 completely labeled vertices of $P^l$.
-
 In particular, the facet corresponding to \0 is
 \begin{equation}
 F_0 = \{ x\in P^\Delta\ |\ -\1\T x = 1 \} = \conv\{ e_i\ |\ i\in [m] \}.
 \end{equation}
-
-We therefore have the dual of theorem \ref{unit-vector-thm}, as enunciated
-in \cite{balthasar}.
+Theorem \ref{unit-vector-thm} then translates as follows.
 
 \begin{theorem}\cite{balthasar}\label{unit-vector-dual-thm}
 Let $Q$ be a labeled $m$-dimensional simplicial polytope with \0 in
@@ -399,13 +399,40 @@ the mixed strategy $y$ is the uniform distribution on the set of the pure best
 replies to $x$.
 \end{theorem}
 
+In theorem \ref{unit-vector-dual-thm} we have a correspondence between
+the completely labeled facets of the polytope $Q$
+(the completely labeled vertices of $P^l$ in theorem \ref{unit-vector-thm})
+and the equilibria of the unit vector game $(U,B)$,
+with the ``artificial'' equilibrium corresponding to the
+facet $F_0$ (the vertex $\0$ in theorem \ref{unit-vector-thm}).
+This proves the following proposition.
+
+\begin{proposition}\label{ne-cl-pbl}
+The problem 2-{\sc Nash} for unit vector games is
+polynomial-time reducible
+\todo{do we have to prove ``polynomial''?}
+to the problems {\sc Another Completely Labeled Vertex} and its dual
+{\sc Another Completely Labeled Facet}, where
+
+\begin{fctproblem}
+{\sc Another Completely Labeled Vertex}
+{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
+a labeling $l:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l$.}
+{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\begin{fctproblem}
+{\sc Another Completely Labeled Vertex}
+{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
+a labeling $l:[m+n]\to [n]$;
+a vertex $v_0$ of $S$, completely labeled by $l$.}
+{A vertex $v\neq v_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\end{proposition}
 
 \todo[inline]{
-$F_0$ correspond to ``artificial'' equilibrium, as $(\0)$ before.
-
-see as comp problems: ANOTHER CL FACET / ANOTHER CL VERTEX
-sp case of 2-NASH
-
 nondegeneracy; made nondegenerate by ``lexicographic'' perurbation
 (what does it mean?);
 

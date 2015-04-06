@@ -32,14 +32,35 @@
 
 % environments
 
-% computational problem
+% computational problems
 % TODO check p{textwidth} in final version
 
-\newenvironment{problem}[3]
+% decision problem
+
+\newenvironment{decproblem}[3]
 {
 \vspace{2.5ex}
 \noindent
-\begin{tabular}{p{13mm} @{\textbf{:} } p{105mm}}
+\begin{tabular}{p{18mm} @{\textbf{:} } p{100mm}}
+\hline
+\multicolumn{2}{l}{\noindent {\sc #1}} \\
+\hline
+\textbf{input} & #2 \\
+\textbf{question} & #3 \\
+\hline
+\end{tabular}
+}
+{
+\vspace{1.5ex}
+}
+
+% function problem
+
+\newenvironment{fctproblem}[3]
+{
+\vspace{2.5ex}
+\noindent
+\begin{tabular}{p{15mm} @{\textbf{:} } p{102mm}}
 \hline
 \multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
