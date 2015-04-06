@@ -144,7 +144,7 @@ given the following consideration.
 Suppose that $l(i)=l(i + 1)$ for some index $i$, and let $s$ be a
 completely labeled Gale string for $l$. Then only one of
 $s(i)$ and $s(i+1)$ can be equal to \1 (note that it's possible that both
-are \0s). So $s(i)s(i+1)$ will never be a run of even length that
+are 0s). So $s(i)s(i+1)$ will never be a run of even length that
 ``interferes'' with the Gale Evenness Condition, so we can ``simplify''
 by identifying the indices $i$ and $i + 1$.
 
@@ -152,7 +152,7 @@ We will now focus on the problem of finding the Nash equilibria of
 a unit vector game $(U,B)$
 \todo{not generic, via Savani-von Stengel \cite{uvg}?}
   where the best-response polytope $Q$ is
-cyclic, exploiting theorems \label{unit-vector-dual-thm} and
+cyclic, exploiting theorems \ref{unit-vector-dual-thm} and
 \ref{cp-gs-gale-thm}.
 To do so, we must find a labeling $l$ such that the Gale strings
 $s\in G(d,d+n)$ encoding the completely labeled facets of the
@@ -160,7 +160,7 @@ corresponding cyclic $d$-polytope $Q$ with $d+n$ vertices are
 exactly the Gale strings of dimension $d$ and length $d+n$ that are
 completely labeled for $l$.
 
-Theorem \label{unit-vector-dual-thm} relies on a labeling of the
+Theorem \ref{unit-vector-dual-thm} relies on a labeling of the
 vertices $l_Q:[d+n]\to [d]$ defined as
 \begin{itemize}
 \item $l_Q(-e_i)=i$ for $i\in [d]$
