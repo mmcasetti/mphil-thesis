@@ -203,17 +203,23 @@ the mixed strategy $y$ is the uniform distribution on the set of the pure best
 replies to $x$.
 \end{theorem}
 
-
 \subsection{Cyclic Polytopes and Gale Strings}\label{gs-ssect}
 
 \subsection{Labeling and the Problem \anothergale}
 
 \todo[inline]{file: gale-def-subsection}
 
+\begin{eqnarray}\label{gs-labeling-unitv}
+l_s(i)=i\text{ for }i\in [d] \\
+l_s(d+j)=l(j)\text{ for }j\in [n].
+\end{eqnarray}
+
+\newpage
+
 \section{Algorithmic and Complexity Results}
 \label{main-thm-sect}
 
-\include{pivoting-LH}
+\input{pivoting-LH}
 
 \subsection{The Complexity of \gale\ and \anothergale}
 \label{main-result-subsection}

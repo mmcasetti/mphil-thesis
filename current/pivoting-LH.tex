@@ -9,14 +9,14 @@ first in version on simple polytopes with labeled facets,
 (name: Lemke-Howson;
 Lemke-Howson 1964, Shapley 1974 beautiful exposition)
 
-then in its corresponding version on Gale strings (name: Lemke-Howson for Gale,
-where???).
+then dual case with labeled vertices (name???? exchange? cite from???)
 
-We will also mention dual version on simplicial polytopes with labeled vertices
+then in special case Gale strings (name: Lemke-Howson for Gale,
+cite from???).
+
+Mention general version - or leave it further results? (maybe better)
 (name: exchange algorithm, Edmonds - Sanit\`{a}). (This case: index more
 problematic - see )
-
-Sth about why (exp lemke paths; conjecture)
 }
 
 
@@ -128,10 +128,10 @@ We {\em drop label $k$} and {\em pick up label $j$} when pivoting
 from a facet $F$ to a facet $G$ that shares with $F$ all vertices
 except a vertex $v$ with label $k$ that belongs to $F$ but not $G$,
 and another vertex $w$ with label $j$ that belongs to $G$ but not $F$.
-The Lemke-Howson algorithm then becomes the {\em exchange algorithm}
-\todo{reference!} as in \ref{exchange-alg}.
+The Lemke-Howson algorithm then becomes the theorem in \ref{lh-dual-alg}.
+\todo{reference!}
 
-\begin{algorithm}\label{exchange-alg}
+\begin{algorithm}\label{lh-dual-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
@@ -151,56 +151,48 @@ pivot from $F$ to $F'$ dropping duplicate label $j$, moving away from $F_0$ \\
 rename $F_0 = F$, $F = F'$
 }
 \Return $F$
-\caption{Exchange algorithm}
+\caption{Lemke-Howson algorithm on facets}
 \end{algorithm}
 
 Considering the dual of Lemke paths on (almost) completely labeled facets,
 we get the dual result to theorem \ref{lh-works-thm}.
 
-\begin{theorem}\label{exchange-works-thm}
-The exchange algorithm \ref{exchange-alg} returns a solution to the problem
+\begin{theorem}\label{lh-dual-works-thm}
+The algorithm \ref{lh-dual-alg} returns a solution to the problem
 {\sc Another Completely Labeled Facet}.
 \end{theorem}
 
-As before, we now consider the case where the simplicial polytope $Q$
-is cyclic, that is, the case that we can study from the point of view of
-Gale strings.
-
-
-
-
-\todo[inline]{
-sp case cycl poly leads to gs
-
-\ref{vert-labeling-unitv} in thm \ref{unit-vector-dual-thm}
-
-then gs:
-
-first we note a result on generic unit vector games (SvS 15)...
-
-(here? before? - it's on all games! - nowhere?)
-thm Savani '06 - pg 12 SvS-15:
-not only LH paths on $P\times Q$ simple
-path, but projection to simple paths on both $P$ and $Q$.
-}
-
-In the case of a unit vector game $(U,B)$, where
-$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$, let
-as in \ref{p-l-unitv}; theorem \ref{unit-vector-thm} then shows that
+To find a Nash equilibrium of a unit vector game $(U,B)$, where
+$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$,
+we can apply theorem \ref{unit-vector-thm} and algorithm \ref{lh-alg},
+or we can apply the dual theorem \ref{unit-vector-dual-thm} and
+algorithm \ref{lh-dual-alg}.
+The first case relies on the polytope
+$P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ defined
+in \ref{p-l-unitv}; theorem \ref{unit-vector-thm} shows that
 $P^l$ encodes all the Nash equilibria of $(U,B)$ as completely labeled
-vertices. We can apply the Lemke-Howson algorithm to both $P^l$ and
-to the product of the best response polytopes $P$ and $Q$.
+vertices, with an ``artificial'' equilibrium corresponding to the
+vertex $\0$.
+The second case relies on the polytope $Q$, defined
+as the convex hull of vertices $-e_i$ for $i\in [m]$ and
+$c_j=\frac{b_j}{1 - \1\T b_j}$ for $j\in [n]$; analogously, theorem
+\ref{unit-vector-dual-thm} shows that $Q$ encodes all the Nash equilibria
+of $(U,B)$ as completely labeled facets, with the ``artificial''
+equilibrium corresponding to the facet $F_0=\conv(-e_1,\ldots,-e_m)$.
+
+On the other hand, we can consider $(U,B)$ as any bimatrix game, and
+apply algorithm \ref{lh-alg} to the product of the best response
+polytopes $P$ and $Q$.
 The projection of a Lemke path for a missing label $i\in [m]$
 on $P\times Q$ to $P$ defines a Lemke path in $P^l$. \todo{how?}
 However, $P\times Q$ has $m+n$ labels, therefore there could be
 Lemke paths for a missing label $m+j$ with $j\in [n]$
 on $P\times Q$ that get lost in the projection on $P^l$.
-The following theorem, proved in Savani and von Stengel \cite{uvg},
-% theorem 5, page 12
+The following theorem, proved by Savani and von Stengel in \cite{uvg},
 shows that there is no loss of generality in studying Lemke paths on
-$P^l$.
+$P^l$; an analogous result holds for the dual case.
 
-\begin{theorem}
+\begin{theorem}\label{p-l-general}
 Let $(U,B)$ be a unit vector game, with
 $U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$;
 let $P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}$ and
@@ -212,9 +204,19 @@ for missing label $k$ if $k\in [m]$,
 and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
 \end{theorem}
 
+As before, we now consider the case of unit vector games
+where the simplicial polytope $Q$ is cyclic; that is,
+the case that we can study from the point of view of Gale strings.
+
+
+
+
 \todo[inline]{
-so if poly dual cyclic, when cons from pow gale strings
-we could take the str of labels $l(n+j)\cdots l(n+m)$
+sp case cycl poly leads to gs
+
+thanks to dual of theorem SvS-15 \ref{p-l-general}, when doing labeling
+as in \ref{gs-labeling-unitv}
+we can take the str of labels $l(n+j)\cdots l(n+m)$
 instead of $l(1)\cdots l(n+m)$,
 that is, we could cut the ``artificial'' first labels $12...n$.
 
