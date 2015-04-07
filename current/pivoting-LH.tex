@@ -13,19 +13,22 @@ then in its corresponding version on Gale strings (name: Lemke-Howson for Gale,
 where???).
 
 We will also mention dual version on simplicial polytopes with labeled vertices
-(name: exchange algorithm,
-Edmonds - Sanit\`{a}).
+(name: exchange algorithm, Edmonds - Sanit\`{a}). (This case: index more
+problematic - see )
 
 Sth about why (exp lemke paths; conjecture)
 }
 
 
-Consider a labeling $l:[n]\to [m]$, where $n\geq m$;
-then $x = \{ l(i)\in [n]\ |\ i\in [m] \}$ is {\em almost completely labeled}
-if $x = [m]\setminus \{ k \}$
-for exactly one {\em missing label} $k\in [m]$.
-Since $|x|=m$, this mean that all other labels appear once in $x$ except for
-one {\em duplicate label} $j$ that appears twice.
+Consider a labeling $l:[n]\to [m]$, for a set $X$ with $|X|=n$.
+Then $x=(x_1,\ldots,x_m)\in X^m$ is {\em almost completely labeled} if
+$|\{ j\in [n]\ |\ x_i=j\text{ for some }i\in [m]  \}|
+= [m]\setminus \{ k \}$ for exactly one $k\in [m]$.
+This mean that all labels appear once in $x$,
+except for the {\em missing label} $k$,
+and a {\em duplicate label} $\bar{k}\in [m]$ that appears twice.
+
+\todo[inline]{now we see in poly with labeled facets, cl vertices}
 
 Let $P$ be a simple polytope in dimension $m$ with $n$ facets.
 We define the operation of {\em pivoting on vertices} as moving from a
@@ -65,24 +68,24 @@ rename $y = y'$
 \caption{Lemke-Howson algorithm}
 \end{algorithm}
 
-\todo[inline]{
-no cycles (ref? from Lemke? LH? Of course well explained in Shapley...)
-which is condition for the alg to effectively return $y\neq x$
+The steps of the Lemke-Howson algorithm result in a {\em Lemke path}
+that connects two completely labeled vertices through
+{\em $k$-almost complementary} vertices and edges, that is,
+almost completely labeled vertices and edges where the only missing label
+is $k$.
+It remains to show that $y\neq x$. This comes from the fact that the Lemke
+paths are {\em simple paths}, that is, there are no ``loops'' where a vertex
+is visited more than once.
+This is not possible because at each vertex there are
+only two edges corresponding to the missing label $k$, since $P$ is not
+degenerate; one is the edge that is traversed to get to the vertex, one is
+the one that is traversed to leave it in the next step.
+This proves the following.
 
-
-thm: LH returns sol of ANOTHER CL VERTEX
-
-complexity considerations, PPAD
-(check def PPAD: do we need next step in P-time?)
-
-simple paths - Lemke paths: def so by Morris 94
-
-later: extend term ``Lemke paths'' to paths of every LH-style algorithms we
-see.
-...
-In this case, Lemke paths ``translate'' as / correspond to...
-
-}
+\begin{proposition}
+The Lemke-Howson algorithm returns a solution to the problem
+{\sc Another Completely Labeled Vertex}.
+\end{proposition}
 
 In the context of finding the Nash equilibrium of a bimatrix game $(A,B)$,
 there are two equivalent implementations of the Lemke-Howson algorithm.
@@ -112,14 +115,47 @@ BR polytopes.}
 
 \end{example}
 
-In the case of unit vector games $(U,B)$,
+\todo[inline]{
+(?) thm Savani '06 - pg 12 SvS-15: not only LH paths on $P\times Q$ simple
+path, but projection to simple paths on both $P$ and $Q$.
+}
+
+In the case of a unit vector game $(U,B)$, where
+$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$, let
+as in \ref{p-l-unitv}; theorem \ref{unit-vector-thm} then shows that
+$P^l$ encodes all the Nash equilibria of $(U,B)$ as completely labeled
+vertices. We can apply the Lemke-Howson algorithm to both $P^l$ and
+to the product of the best response polytopes $P$ and $Q$.
+The projection of a Lemke path for a missing label $i\in [m]$
+on $P\times Q$ to $P$ defines a Lemke path in $P^l$. \todo{how?}
+However, $P\times Q$ has $m+n$ labels, therefore there could be
+Lemke paths for a missing label $m+j$ with $j\in [n]$
+on $P\times Q$ that get lost in the projection on $P^l$.
+The following theorem, proved in Savani and von Stengel \cite{uvg},
+% theorem 5, page 12
+shows that there is no loss of generality in studying Lemke paths on
+$P^l$.
+
+\begin{theorem}
+Let $(U,B)$ be a unit vector game, with
+$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$;
+let $P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}$ and
+$Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \}$, as in \ref{br-polytopes};
+and let $P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$
+as in \ref{p-l-unitv}. Then the Lemke path on $P\times Q$ for the missing
+label $k$ projects to a path on $P$ that is the Lemke path on $P^l$
+for missing label $k$ if $k\in [m]$,
+and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
+\end{theorem}
+
+\todo[inline]{now gs: }
+
 
 \todo[inline]{
-(?) thm Savani: not only simple path, but projection to simple paths.
 
-note, thm SvS-15: $P^l$, dim $m$, is enough to study all.
-(we could take the str of labels for the gale pow
-$l(n+j)\cdots l(n+m)$ instead of $l(1)\cdots l(n+m)$,
+if poly dual cyclic, when cons from pow gale strings
+we could take the str of labels $l(n+j)\cdots l(n+m)$
+instead of $l(1)\cdots l(n+m)$,
 that is, we could cut the ``artificial'' first labels $12...n$.
 
 Do we go straight for this, or?
@@ -135,4 +171,19 @@ if we go with this we can take any NE to start looking for another,
 and we're sure to find a ``non-artificial'' one.
 Note: if we were looking for all NE, LH doesn't work anyway - see ex by
 Wilson in Shapley, where ``disconnected'' paths between equilibria.
+
+----
+
+complexity considerations, PPAD
+
+Needed for why result interesting;
+it can be done at the end, with Morris paths
+
+----
+
+extend term ``Lemke paths'' to paths of every LH-style algorithms we
+see.
+...
+In this case, Lemke paths ``translate'' as / correspond to...
+
 }
