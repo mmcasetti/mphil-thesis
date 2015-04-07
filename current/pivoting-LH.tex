@@ -36,33 +36,35 @@ vertex $x$ of $P$ to another vertex $y$ such that there is an edge
 between $x$ and $y$. Note that, since $P$ is simple, there are exactly
 $m$ possible choices for $y$.
 
-Now let $l:[n]\to [m]$ be a labeling of the facets of $P$ such that there
+Now let $l_f:[n]\to [m]$ be a labeling of the facets of $P$ such that there
 is at least one completely labeled vertex $x_0$ of $P$.
-Note that if we pivot from a vertex we ``leave behind''
-a facet, that has label $k$; we call this {\em dropping label $k$}.
-We will then reach a vertex that lies on a new facet, that has label $j$;
-we will call this {\em picking up label $j$}
-We give the {\em Lemke-Howson algorithm} \todo{reference!} as follows:
+Note that if we pivot from vertex $v$ we ``leave behind''
+a facet $F$, that has label $k$; we call this {\em dropping label $k$}.
+We will then reach a vertex $w$ that shares with $v$ all facets except
+$F$ (that contains $v$ but not $w$) and another facet $G$
+(that contains $w$ but not $v$) that has label $j$;
+we will call this {\em picking up label $j$}.
+We give the {\em Lemke-Howson algorithm} \todo{reference!}
+as in \ref{lh-alg}.
 
-\begin{algorithm}\label{lh-one-polytope}
+\begin{algorithm}\label{lh-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
 A simple $m$-polytope $P$ with $n$ facets.
-A labeling $l:[n]\to [m]$ of the facets of $P$.
-A vertex $x$ of $P$, completely labeled for $l$.
+A labeling $l_f:[n]\to [m]$ of the facets of $P$.
+A vertex $x_0$ of $P$, completely labeled for $l$.
 }
 \Output{
 A completely labeled vertex $y\neq x_0$ of $P$.
 }
 \BlankLine
 choose a label $k\in [n]$ \\
-pivot from $x$ to $y$ dropping label $k$ \\
+pivot from $x_0$ to $y$ dropping label $k$ \\
 \While{ $y$ is not completely labeled }
 {
-let $j$ be the duplicate label of $y$ \\
-pivot from $y$ to $y'$ dropping label $j$ {\em on the facet shared with $x$} \\
-rename $y = y'$
+pivot from $y$ to $y'$ dropping duplicate label $j$, moving away from $x_0$ \\
+rename $x_0 = y$, $y = y'$
 }
 \Return $y$
 \caption{Lemke-Howson algorithm}
@@ -73,7 +75,7 @@ that connects two completely labeled vertices through
 {\em $k$-almost complementary} vertices and edges, that is,
 almost completely labeled vertices and edges where the only missing label
 is $k$.
-It remains to show that $y\neq x$. This comes from the fact that the Lemke
+It remains to show that $y\neq x_0$. This comes from the fact that the Lemke
 paths are {\em simple paths}, that is, there are no ``loops'' where a vertex
 is visited more than once.
 This is not possible because at each vertex there are
@@ -82,10 +84,10 @@ degenerate; one is the edge that is traversed to get to the vertex, one is
 the one that is traversed to leave it in the next step.
 This proves the following.
 
-\begin{proposition}
-The Lemke-Howson algorithm returns a solution to the problem
+\begin{theorem}\label{lh-works-thm}
+The Lemke-Howson algorithm \ref{lh-alg} returns a solution to the problem
 {\sc Another Completely Labeled Vertex}.
-\end{proposition}
+\end{theorem}
 
 In the context of finding the Nash equilibrium of a bimatrix game $(A,B)$,
 there are two equivalent implementations of the Lemke-Howson algorithm.
@@ -115,8 +117,70 @@ BR polytopes.}
 
 \end{example}
 
+Theorem \ref{lh-works-thm} has a straightforward dual version.
+Let $Q$ be a simplicial polytope in dimension $m$ with $n$ vertices.
+We {\em pivot on facets} by moving from facet $F$ to facet $G$
+that shares an edge with $F$. Since $P$ is simplicial,
+there are exactly $m$ possible choices for $G$.
+Let $l_v:[n]\to [m]$ be a labeling of the vertices of $P$ such that there
+is at least one completely labeled facet $F_0$.
+We {\em drop label $k$} and {\em pick up label $j$} when pivoting
+from a facet $F$ to a facet $G$ that shares with $F$ all vertices
+except a vertex $v$ with label $k$ that belongs to $F$ but not $G$,
+and another vertex $w$ with label $j$ that belongs to $G$ but not $F$.
+The Lemke-Howson algorithm then becomes the {\em exchange algorithm}
+\todo{reference!} as in \ref{exchange-alg}.
+
+\begin{algorithm}\label{exchange-alg}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+A simplicial $m$-polytope $Q$ with $n$ vertices.
+A labeling $l_v:[n]\to [m]$ of the vertices of $P$.
+A vertex $F_0$ of $Q$, completely labeled for $l$.
+}
+\Output{
+A completely labeled facet $F\neq F_0$ of $Q$.
+}
+\BlankLine
+choose a label $k\in [n]$ \\
+pivot from $F_0$ to $F$ dropping label $k$ \\
+\While{ $F$ is not completely labeled }
+{
+pivot from $F$ to $F'$ dropping duplicate label $j$, moving away from $F_0$ \\
+rename $F_0 = F$, $F = F'$
+}
+\Return $F$
+\caption{Exchange algorithm}
+\end{algorithm}
+
+Considering the dual of Lemke paths on (almost) completely labeled facets,
+we get the dual result to theorem \ref{lh-works-thm}.
+
+\begin{theorem}\label{exchange-works-thm}
+The exchange algorithm \ref{exchange-alg} returns a solution to the problem
+{\sc Another Completely Labeled Facet}.
+\end{theorem}
+
+As before, we now consider the case where the simplicial polytope $Q$
+is cyclic, that is, the case that we can study from the point of view of
+Gale strings.
+
+
+
+
 \todo[inline]{
-(?) thm Savani '06 - pg 12 SvS-15: not only LH paths on $P\times Q$ simple
+sp case cycl poly leads to gs
+
+\ref{vert-labeling-unitv} in thm \ref{unit-vector-dual-thm}
+
+then gs:
+
+first we note a result on generic unit vector games (SvS 15)...
+
+(here? before? - it's on all games! - nowhere?)
+thm Savani '06 - pg 12 SvS-15:
+not only LH paths on $P\times Q$ simple
 path, but projection to simple paths on both $P$ and $Q$.
 }
 
@@ -148,23 +212,13 @@ for missing label $k$ if $k\in [m]$,
 and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
 \end{theorem}
 
-
-\todo[inline]{transl to facets (exch alg); sp case uvg leads to gs}
-
-\ref{vert-labeling-unitv}
-
-\todo[inline]{now gs: }
-
-
 \todo[inline]{
-
-if poly dual cyclic, when cons from pow gale strings
+so if poly dual cyclic, when cons from pow gale strings
 we could take the str of labels $l(n+j)\cdots l(n+m)$
 instead of $l(1)\cdots l(n+m)$,
 that is, we could cut the ``artificial'' first labels $12...n$.
 
-Do we go straight for this, or?
-YES!
+
 
 After all, in main we're studying ANOTHER GALE
 in general, not nec starting from $12...n$; and we're interested in finding
@@ -183,12 +237,4 @@ complexity considerations, PPAD
 
 Needed for why result interesting;
 it can be done at the end, with Morris paths
-
-----
-
-extend term ``Lemke paths'' to paths of every LH-style algorithms we
-see.
-...
-In this case, Lemke paths ``translate'' as / correspond to...
-
 }
