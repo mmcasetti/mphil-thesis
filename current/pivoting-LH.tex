@@ -1,1 +1,139 @@
-\subsection{The Lemke-Howson Algorithm}
+\subsection{Lemke Paths and the Lemke-Howson for Gale Algorithm}
+
+\todo[inline]{
+We have NEs $\Leftrightarrow$ completely labeled things (facets, vertices, GS)
+We give now different versions of fundam algorithm to deal with labeling
+looking for compl.label. - in particular in these cases
+
+first in version on simple polytopes with labeled facets,
+(name: Lemke-Howson;
+Lemke-Howson 1964, Shapley 1974 beautiful exposition)
+
+then in its corresponding version on Gale strings (name: Lemke-Howson for Gale,
+where???).
+
+We will also mention dual version on simplicial polytopes with labeled vertices
+(name: exchange algorithm,
+Edmonds - Sanit\`{a}).
+
+Sth about why (exp lemke paths; conjecture)
+}
+
+
+Consider a labeling $l:[n]\to [m]$, where $n\geq m$;
+then $x = \{ l(i)\in [n]\ |\ i\in [m] \}$ is {\em almost completely labeled}
+if $x = [m]\setminus \{ k \}$
+for exactly one {\em missing label} $k\in [m]$.
+Since $|x|=m$, this mean that all other labels appear once in $x$ except for
+one {\em duplicate label} $j$ that appears twice.
+
+Let $P$ be a simple polytope in dimension $m$ with $n$ facets.
+We define the operation of {\em pivoting on vertices} as moving from a
+vertex $x$ of $P$ to another vertex $y$ such that there is an edge
+between $x$ and $y$. Note that, since $P$ is simple, there are exactly
+$m$ possible choices for $y$.
+
+Now let $l:[n]\to [m]$ be a labeling of the facets of $P$ such that there
+is at least one completely labeled vertex $x_0$ of $P$.
+Note that if we pivot from a vertex we ``leave behind''
+a facet, that has label $k$; we call this {\em dropping label $k$}.
+We will then reach a vertex that lies on a new facet, that has label $j$;
+we will call this {\em picking up label $j$}
+We give the {\em Lemke-Howson algorithm} \todo{reference!} as follows:
+
+\begin{algorithm}\label{lh-one-polytope}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+A simple $m$-polytope $P$ with $n$ facets.
+A labeling $l:[n]\to [m]$ of the facets of $P$.
+A vertex $x$ of $P$, completely labeled for $l$.
+}
+\Output{
+A completely labeled vertex $y\neq x_0$ of $P$.
+}
+\BlankLine
+choose a label $k\in [n]$ \\
+pivot from $x$ to $y$ dropping label $k$ \\
+\While{ $y$ is not completely labeled }
+{
+let $j$ be the duplicate label of $y$ \\
+pivot from $y$ to $y'$ dropping label $j$ {\em on the facet shared with $x$} \\
+rename $y = y'$
+}
+\Return $y$
+\caption{Lemke-Howson algorithm}
+\end{algorithm}
+
+\todo[inline]{
+no cycles (ref? from Lemke? LH? Of course well explained in Shapley...)
+which is condition for the alg to effectively return $y\neq x$
+
+\begin{theorem}\label{no-cycles}
+LH returns sol of ANOTHER CL VERTEX
+\end{theorem}
+
+complexity considerations, PPAD
+(check def PPAD: do we need next step in P-time?)
+
+simple paths - Lemke paths: def so by Morris 94
+
+[later: extend term ``Lemke paths'' to paths of every LH-style algorithms we
+see.
+...
+In this case, Lemke paths ``translate'' as / correspond to...
+]
+}
+
+In the context of finding the Nash equilibrium of a bimatrix game $(A,B)$,
+there are two equivalent implementations of the Lemke-Howson algorithm.
+
+We can consider the game $C$ as in proposition \ref{symmetric-eq-thm},
+and the associated polytope
+$S = \{ z\in\reals^{m+n}\ |\ z\geq\0,\ Cz\leq\1 \}$,
+labeling the $2(m+n)$ inequalities defining the facets of of $S$
+as $1,\ldots,m+n,1,\ldots,m+n$.
+Then applying the Lemke-Howson algorithm starting from
+vertex $\0$ returns a Nash equilibrium $(z,z)$ of $C$ and a corresponding
+$(x,y)=z$ a Nash equilibrium of $(A,B)$.
+
+We can also follow the ``traditional'' version of the Lemke-Howson algorithm;
+a very clear exposition of this can be found in Shapley \cite{shapley}.
+Let $P$ and $Q$ be the best response polytopes of $(A,B)$ as in
+\ref{br-polytopes}. We then move alternately on $P$ and $Q$, starting from
+the couple of vertices $(\0,\0)$.
+Since we move in $\reals^m$ and $\reals^n$ instead of $\reals^{m+n}$,
+this version is more practical to visualize,
+as shown in the following example.
+
+\begin{example}
+
+\todo[inline]{ex Savani - von Stengel, pag. 11; fig 8 are Schegel diagrams of
+BR polytopes.}
+
+\end{example}
+
+In the case of unit vector games $(U,B)$,
+
+\todo[inline]{
+(?) thm Savani: not only simple path, but projection to simple paths.
+
+note, thm SvS-15: $P^l$, dim $m$, is enough to study all.
+(we could take the str of labels for the gale pow
+$l(n+j)\cdots l(n+m)$ instead of $l(1)\cdots l(n+m)$,
+that is, we could cut the ``artificial'' first labels $12...n$.
+
+Do we go straight for this, or?
+YES!
+
+After all, in main we're studying ANOTHER GALE
+in general, not nec starting from $12...n$; and we're interested in finding
+{\em one} eq that's not the one we started from
+(and is at other end of LPath, since index and so on),
+{\em not all equilibria};
+but the eq we started from is not nec the artificial one - actually,
+if we go with this we can take any NE to start looking for another,
+and we're sure to find a ``non-artificial'' one.
+Note: if we were looking for all NE, LH doesn't work anyway - see ex by
+Wilson in Shapley, where ``disconnected'' paths between equilibria.
+}
