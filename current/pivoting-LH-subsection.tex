@@ -90,8 +90,8 @@
 
 % vectors and polytopes
 \def\T{^{\top}}
-\def\0{\bf 0}
-\def\1{\bf 1}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
 
 \def\conv{{\rm conv}}
 
@@ -109,15 +109,75 @@
 
 \section{Complexity, Games, Polytopes and Gale Strings}
 
-\subsection{The Complexity Classes P and PPAD}
+\subsection{Some Complexity Classes}
 
 \subsection{Normal Form Games and Nash Equilibria}
 
 \todo[inline]{file: background-subsection}
 
-\subsection{Bimatrix Games and Best Response Polytopes}
+\subsection{Some Geometrical Notation}
+
+\subsection{Bimatrix Games, Labels and Polytopes}
 
 \todo[inline]{file: polytopes-subsection}
+
+\begin{equation}\label{br-polytopes}
+P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \},\quad
+Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \},\quad
+\end{equation}
+
+a point in $P$ has label $k$ iff
+$x_k = 0$ for $k\in \{ 1,\ldots,m \}$ or $(B\T x)_{k - m} = 0$ for
+$k\in \{ m+1,\ldots,m+n \}$;
+analogously, a point in $Q$ has label $k$ if and only if either
+$y_{k - m} = 0$ for $k\in \{ m+1,\ldots,m+n \}$ or $(A y)_{k}$ for
+$k\in \{ m+1,\ldots,m+n \}$.
+
+
+\begin{proposition}\label{symmetric-eq-thm}
+Let $(A,B)$ be a bimatrix game and $(x,y)$ be one of its Nash equilibria.
+Then $(z,z)$, where $z=(x,y)$, is a Nash equilibrium of the symmetric game
+$(C,C\T)$, where
+
+\[
+C = \left(
+    \begin{array}{cc}
+    0 & A \\
+    B\T & 0
+    \end{array}
+    \right).
+\]
+\end{proposition}
+
+\begin{theorem}\cite{uvg}\label{unit-vector-thm}
+Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
+where
+
+\begin{equation}
+P^l = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}
+\end{equation}
+
+\begin{equation}
+Q^l = \{ y\in\reals^n | y\geq\0,\
+\sum_{\substack{j\in N_i \\ i\in [m]}} y_j\leq 1 \}
+\end{equation}
+
+where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$.
+
+Label every facet of $P^l$ according to the inequality defining it,
+as follows:
+
+\begin{itemize}
+\item $x_i\geq 0$ has label $i$, for $i\in [m]$
+\item $(B\T x)_j \leq 1$ has label $l(j)$, for $j\in [n]$
+\end{itemize}
+
+Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
+if and only if there is some $y\in Q^l$ such that, after scaling,
+the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
+
+\end{theorem}
 
 \subsection{Cyclic Polytopes and Gale Strings}\label{gs-ssect}
 
