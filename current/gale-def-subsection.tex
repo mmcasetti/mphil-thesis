@@ -129,7 +129,7 @@
 
 \todo[inline]{file: polytopes}
 
-\begin{theorem}\label{unit-vector-dual-thm}
+\begin{theorem}\cite{balthasar}\label{unit-vector-dual-thm}
 Let $Q$ be a labeled $m$-dimensional simplicial polytope with \0 in
 its interior, with vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$, so that
 $F_0 = \conv\{ e_i\ |\ i\in [m] \}$ is a facet of $Q$.
@@ -139,10 +139,10 @@ $U=(e_{l(1)}\ \cdots\ e_{l(n)})$ and $B = (b_1\ \cdots\ b_n)$,
 where $b_j = \frac{c_j}{1 + \1\T c_j}$ for $j\in [n]$.
 
 Label the vertices of $Q$ as follows:
-\begin{itemize}
-\item $-e_i$ has label $i\in [m]$
-\item $c_j$ has label $l(j)$ for $j\in [n]$
-\end{itemize}
+\begin{eqnarray}\label{vert-labeling-unitv}
+l_v(-e_i)=i\text{ for }i\in [m] \\
+l_v(c_j)=l(j)\text{ for }j\in [n]
+\end{eqnarray}
 
 Then a facet $F\neq F_0$ of $Q$ with normal vector $v$ is completely
 labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where

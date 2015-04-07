@@ -149,7 +149,8 @@ are 0s). So $s(i)s(i+1)$ will never be a run of even length that
 by identifying the indices $i$ and $i + 1$.
 
 We will now focus on the problem of finding the Nash equilibria of
-a unit vector game $(U,B)$ where the best-response polytope $Q$ is
+a unit vector game $(U,B)$ where $U=(e_{l(1)}\cdots e_{l(d)})$ for
+some labeling $l:[n]\to [d]$ and the best-response polytope $Q$ is
 cyclic, exploiting theorems \ref{unit-vector-dual-thm} and
 \ref{cp-gs-gale-thm}.
 To do so, we must find a labeling $l$ such that the Gale strings
@@ -159,27 +160,25 @@ exactly the Gale strings of dimension $d$ and length $d+n$ that are
 completely labeled for $l$.
 
 Theorem \ref{unit-vector-dual-thm} relies on a labeling of the
-vertices $l_Q:[d+n]\to [d]$ defined as
-\begin{itemize}
-\item $l_Q(-e_i)=i$ for $i\in [d]$
-\item $l_Q(c_j)=l_U(j)$ for the vertices $c_j\neq -e_i$, for $j\in [n]$
-\end{itemize}
-where $l_U:[n]\to [d]$ is the the labeling associated to the unit
-vector game $(U,B)$.
+vertices $l_v:[d+n]\to [d]$ defined in \ref{vert-labeling-unitv}
+such that $l_v(-e_i)=i$ for $i\in [d]$,
+and $l_v(c_j)=l(j)$ for the vertices $c_j\neq -e_i$, where $j\in [n]$.
 We define the labeling $l:[d+n]\to [d]$ as follows:
-\begin{itemize}
-\item $l(i)=i$ for $i\in [d]$
-\item $l(d+j)=l_U(j)$ for $j\in [n]$
-\end{itemize}
-The Gale strings $s\in G(d,d+n)$ that are completely labeled for $l$
+\begin{eqnarray}\label{gs-labeling-unitv}
+l_s(i)=i\text{ for }i\in [d] \\
+l_s(d+j)=l(j)\text{ for }j\in [n].
+\end{eqnarray}
+
+The Gale strings $s\in G(d,d+n)$ that are completely labeled for $l_s$
 correspond exactly to the completely labeled facets of $Q$, with the
 facet $F_0$ corresponding to the ``trivial'' completely labeled
 string $\1^d 0$.
 
-Then proposition \ref{ne-cl-pbl} becomes the following theorem.
+Then, by proposition \ref{ne-cl-pbl}, we have the following theorem.
 
 \begin{theorem}\label{ne-another-gale-pbl}
-The problem of finding a Nash equilibrium for a unit vector game is
+The problem of finding a Nash equilibrium for a unit vector game
+for which the best response polytope is the dual of a cyclic polytope is
 polynomial-time reducible
 \todo{do we have to prove ``polynomial''?}
 to the problem \anothergale, where

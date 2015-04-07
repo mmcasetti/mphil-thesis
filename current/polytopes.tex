@@ -310,13 +310,13 @@ Q^l = \{ y\in\reals^n | y\geq\0,\
 
 where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$.
 
-Label every facet of $P^l$ according to the inequality defining it,
-as follows:
+Give a labeling $l_f$ of the facets of $P^l$ according to the
+inequality defining it, as follows:
 
-\begin{itemize}
-\item $x_i\geq 0$ has label $i$, for $i\in [m]$
-\item $(B\T x)_j \leq 1$ has label $l(j)$, for $j\in [n]$
-\end{itemize}
+\begin{eqnarray}\label{facet-labeling-unitv}
+x_i\geq 0\text{ has label }i\text{ for }i\in [m] \\
+(B\T x)_j \leq 1\text{ has label }l(j)\text{ for }j\in [n]
+\end{eqnarray}
 
 Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
 if and only if there is some $y\in Q^l$ such that, after scaling,
@@ -362,7 +362,8 @@ The polar of $P$ is then
 P^\Delta = \conv(\{−e_i\ |\ i\in [m] \} \cup \{ \frac{b_j}{1 - \1\T b_j} \})
 \end{equation}
 
-\todo[inline]{$P$ is simple (why? show it before), so $P^\Delta$ is simplicial}
+\todo[inline]{$P$ is simple (why? because game nondegenerate!
+show it before), so $P^\Delta$ is simplicial}
 
 Since \0 is in the interior of $P$, we have that $P^{\Delta\Delta}=P$,
 and the facets of $P^\Delta$ correspond to
@@ -386,10 +387,10 @@ $U=(e_{l(1)}\ \cdots\ e_{l(n)})$ and $B = (b_1\ \cdots\ b_n)$,
 where $b_j = \frac{c_j}{1 + \1\T c_j}$ for $j\in [n]$.
 
 Label the vertices of $Q$ as follows:
-\begin{itemize}
-\item $-e_i$ has label $i\in [m]$
-\item $c_j$ has label $l(j)$ for $j\in [n]$
-\end{itemize}
+\begin{eqnarray}\label{vert-labeling-unitv}
+l_v(-e_i)=i\text{ for }i\in [m] \\
+l_v(c_j)=l(j)\text{ for }j\in [n]
+\end{eqnarray}
 
 Then a facet $F\neq F_0$ of $Q$ with normal vector $v$ is completely
 labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where
