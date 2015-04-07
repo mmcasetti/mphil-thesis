@@ -1,12 +1,14 @@
 
 \subsection{Some Geometrical Notation}
 
+\todo[inline]{alt. title: Polyhedra, Simplexes and Polytopes; the next
+subsection becomes Bimatrix Games and Labels}
+
 \todo[inline]{so results in labels section - after this - don't get lost in
 boredom, and each section in background is about 150-200 lines (see: getting
 lost).
 
-Maybe turn this into an appendix? It would make sense if something more about
-proof of Nash}
+Maybe turn this into an appendix?}
 
 We denote the transpose of a matrix $A$ as $A\T$.
 We consider vectors $u,v\in\reals^d$ as column vectors, so $u\T v$ is
@@ -34,8 +36,6 @@ combination where $\lambda_i\geq 0$ for all $i\in [n]$.
 Note that such $\lambda_i$'s can be seen as a probability distribution over
 the $z_i$'s.
 
-\todo[inline]{def simplex: here?}
-
 A set of point $Z$ is {\em convex} if it is closed under forming convex
 combinations, that is, if $\bar{z}=\sum_{i=1}^n \lambda_i z_i$,
 where $z_i\in Z$, $\lambda_i\geq 0$ and $\sum_{i=1}^n \lambda_i = 1$,
@@ -43,14 +43,15 @@ then $\bar{z}\in Z$. A convex set has {\em dimension} $d$ if it has exactly
 $d + 1$ affinely independent points.
 
 
-\todo[inline]{def simplex: here?}
-
-
 \todo[inline]{convex hull (needed for def cyclic poly);
 
 pow hyperplanes;
 
-polyhedron, polytopes
+polyhedra, polytopes
+
+simplex
+
+simple and simplicial polytopes
 
 polar:
 $Q=\{ x\in\reals^d\ |\ x\T c_i\leq 1,\ i\in [k] \}$
@@ -254,7 +255,7 @@ without loss of generality. The result is due to Gale, Kuhn and Tucker
 \cite{gale-kuhn-tucker} for zero-sum games; its extension to non-zero-sum
 games is a folklore result.
 
-\begin{proposition}
+\begin{proposition}\label{symmetric-eq-thm}
 Let $(A,B)$ be a bimatrix game and $(x,y)$ be one of its Nash equilibria.
 Then $(z,z)$, where $z=(x,y)$, is a Nash equilibrium of the symmetric game
 $(C,C\T)$, where
