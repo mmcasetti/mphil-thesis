@@ -17,11 +17,12 @@ $t_1 < t_2 < \cdots < t_n$.
 
 \todo[inline]{example(s) with graphics! There's one in Ziegler}
 
-A {\em bitstring} is a string of labels that are either $0$s or $1$s.
+A {\em bitstring} is a string of labels that are either 0's or 1's.
 Formally: given an integer $k$ and a set $S$, we can represent the function
 $f_s:[k]\to S$ as the string $s = s(1)s(2)\cdots s(k)$; we have a bitstring
 in the case where $S=\{0,1\}$. A maximal substring of consecutive
-$1$'s in a bitstring is called a {\em run}.
+$1$'s in a bitstring is called a {\em run}. We denote a run of length
+$k$ as $\1^k$; and, analogously, a string of 0's of length $k$ as $0^k$.
 
 A {\em Gale string of length $n$ and dimension $d$} is a bitstring of length
 $n$, denoted as $s\in G(d,n)$, such that
@@ -178,8 +179,8 @@ Then, by proposition \ref{ne-cl-pbl}, we have the following theorem.
 
 \begin{theorem}\label{ne-another-gale-pbl}
 The problem of finding a Nash equilibrium for a unit vector game
-for which the best response polytope is the dual of a cyclic polytope is
-polynomial-time reducible
+for which the best response polytope is the dual of a cyclic polytope
+in dimension $d$, where $d$ is even, is polynomial-time reducible
 \todo{do we have to prove ``polynomial''?}
 to the problem \anothergale, where
 

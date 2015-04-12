@@ -82,11 +82,19 @@ This is not possible because at each vertex there are
 only two edges corresponding to the missing label $k$, since $P$ is not
 degenerate; one is the edge that is traversed to get to the vertex, one is
 the one that is traversed to leave it in the next step.
-This proves the following.
 
 \begin{theorem}\label{lh-works-thm}
 The Lemke-Howson algorithm \ref{lh-alg} returns a solution to the problem
 {\sc Another Completely Labeled Vertex}.
+
+Furthermore, the number of completely labeled vertices
+in a simple polytope with labeled facets is even.
+
+\begin{proof}
+
+\todo[inline]{pf parity via Lemke paths}
+
+\end{proof}
 \end{theorem}
 
 In the context of finding the Nash equilibrium of a bimatrix game $(A,B)$,
@@ -160,7 +168,16 @@ we get the dual result to theorem \ref{lh-works-thm}.
 \begin{theorem}\label{lh-dual-works-thm}
 The algorithm \ref{lh-dual-alg} returns a solution to the problem
 {\sc Another Completely Labeled Facet}.
+
+Furthermore, the number of completely labeled facets
+in a simplicial polytope with labeled vertices is even.
 \end{theorem}
+
+\begin{example}
+
+\todo[inline]{example! octahedron? so we're ready for index?}
+
+\end{example}
 
 To find a Nash equilibrium of a unit vector game $(U,B)$, where
 $U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$,
@@ -240,17 +257,36 @@ rename $s_0=s$, $s=s'$
 \caption{Lemke-Howson for Gale algorithm}
 \end{algorithm}
 
+Considering the Lemke paths defined by algorithm \ref{lhg-alg} we can
+prove that the Lemke-Howson for Gale algorithm works and a parity result,
+analogously to theorems \label{lh-works-thm} and \label{lh-dual-works-thm}.
+
+\begin{theorem}\label{lhg-works-thm}
+The Lemke-Howson for Gale algorithm \ref{lhg-alg} returns a
+solution to the problem \anothergale.
+
+Furthermore, the number of completely labeled Gale strings
+$s\in G(d,n)$, where $d$ is even, is even.
+\end{theorem}
+
+\begin{example}
+
+\todo[inline]{example}
+
+\end{example}
+
+In \ref{gs-labeling-unitv} we have given a labeling $l_s:[n+d]\to [d]$
+to study the Nash equilibria (including the ``artificial'' equilibrium)
+of the unit vector game $(U,B)$, where $U=(e_{l(1)}\cdots e_{l(n)})$
+and $l:[n]\to [d]$, as Gale strings $s\in G(n+d,d)$ that are completely
+labeled by $l_s$, with the ``artificial'' equilibrium corresponding to
+the string $1^d0^n$.
+
 
 
 \todo[inline]{
 
 check!
-
-Let $(U,B)$ be a unit vector game with dual cyclic best response polytope.
-Let $l:[n]\to [d]$ be the labeling such that $U=(e_{l(1)}\cdots e_{l(d)})$.
-In \ref{gs-labeling-unitv}, we have given a labeling $l_s:[n+d]\to [d]$;
-in this labeling the ``artificial'' equilibrium corresponded to the
-
 
 thanks to dual of theorem SvS-15 \ref{unit-paths}, when doing labeling
 we can take the str of labels $l(n+j)\cdots l(n+m)$
@@ -270,8 +306,10 @@ if we go with this we can take any NE to start looking for another,
 and we're sure to find a ``non-artificial'' one.
 Note: if we were looking for all NE, LH doesn't work anyway - see ex by
 Wilson in Shapley, where ``disconnected'' paths between equilibria.
+}
 
-----
+
+\todo[inline]{
 
 complexity considerations: PPAD complexity of GALE
 (also of ANOTHER CL VERTEX/FACET, analogous pf;
