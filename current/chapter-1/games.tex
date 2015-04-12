@@ -1,22 +1,22 @@
 \section{Normal Form Games and Nash Equilibria}
 
 We now give the game-theoretic background that will be used in this thesis.
-A {\em game}, as first defined by von Neumann in \cite{vnm28}, is a model
+A {\em game}, as first defined by von Neumann in \cite{vn28}, is a model
 of strategic interaction. A {\em finite normal form game} is
-$\Gamma=(P,S,u)$ with $S=\times_{p\in P} S_p$ and $u=\times_{p\in P}u^p$
-where both the set of {\em players} $P$ and the set of
-{\em pure strategies} $S_p$ for every player $p\in P$, and therefore the set
-of {\em pure strategy profiles} $S$, are finite. We will use the
-notation $S_{-p}=\times{q\neq p}S_p$.
+$\Gamma=(P,S=\times_{p\in P} S_p,u=\times_{p\in P}u^p)$
+where both the set of {\em players} $P$ and the sets of
+{\em pure strategies} $S_p$ (and therefore the set
+of {\em pure strategy profiles} $S$) are finite. We will use the
+notation $S_{-p}=\times_{q\neq p}S_p$.
 The purpose of each player $p\in P$ is to maximize her {\em payoff function}
 $u^p:S\to\reals$. In the following pages, by ``game'' we will always mean
 ``finite normal form game.'' If there are only two players, we will refer to
-player 1 using feminine pronouns and to player 2 using masculine ones.
-Such games are called {\em bimatrix games} since they can be characterized by
+player 1 using feminine pronouns and to player 2 using masculine ones; such
+games are called {\em bimatrix games} since they can be characterized by
 the $m \times n$ payoff matrices $A$ and $B$, where $a_{ij}$ and $b_{ij}$ are
-the payoffs of player 1 and 2 when the former plays her $i$th pure strategy
-and the latter plays his $j$th pure strategy. A bimatrix game is
-{\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
+the payoffs of respectively player 1 and of player 2 when the former plays
+her $i$th pure strategy and the latter plays his $j$th pure strategy.
+A bimatrix game is {\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
 
 A {\em mixed strategy} of player $p$ is a probability
 distribution on $S_P$; it can be described as a point
@@ -24,13 +24,12 @@ $x=(x^p_1,\ldots,x^p_{|S_p|})$ on the
 $(|S_p|-1)$-dimensional {\em mixed strategy simplex} $\Delta_p$;
 the {\em mixed strategy profiles} will be the simplicial polytope
 $\Delta=\times_{p\in P}\Delta_p$.
-We extend the payoff functions as $u^p:\Delta\to\reals$ by linearity.
+We extend the payoff functions to $u^p:\Delta\to\reals$ by linearity.
 
 A {\em Nash equilibrium} of a game is a strategy profile in which each
-player cannot improve his expected payoff by unilaterally changing her
-strategy. Such a strategy is called {\em best response strategy} (or simply
-{\em best response}); a strategy that is not a best response is called
-{\em dominated}.
+player cannot improve her expected payoff by unilaterally changing her
+strategy. Such a strategy is called a {\em best response}; a strategy
+that is not a best response is called {\em dominated}.
 Formally: for $s\in S_{-p}$ let $x_s=\prod_{q\neq p} x^q_{s_q}$;
 then a Nash equilibrium is a strategy profile
 $x$ such that for every $p\in P$ and every $\sigma,\tau\in S_p$
@@ -42,8 +41,10 @@ $x$ such that for every $p\in P$ and every $\sigma,\tau\in S_p$
 x_\tau^p = 0
 \end{equation}
 
-The existence of a Nash equilibrium is guaranteed by the fundamental theorem
-by Nash (\cite{nash}).
+Note that applying an affine transformation to all the payoffs does not
+change the Nash equilibria of the game. Note also that there might be more
+than one equilibrium. The existence of a Nash equilibrium is guaranteed by
+the fundamental theorem by Nash (\cite{nash}).
 
 \begin{theorem}\label{nash-thm}
 Every finite game in normal form has a Nash equilibrium.
@@ -52,10 +53,10 @@ Every finite game in normal form has a Nash equilibrium.
 We give a classic example of game: matching pennies.
 
 \begin{example}
-In the $n\times n$ bimatrix game {\em generalized matching pennies}, both
-players have payoff zero unless they pay the same strategy. In this case,
-player 1 (the {\em pursuer}) has payoff $1$ and player 2 (the \emph{evader}),
-has payoff $-1$. If $n=2$ the game (called simply {\em matching pennies}) is
+In the bimatrix game {\em matching pennies}, both players have payoff
+zero unless they pay the same strategy. In this case,
+player 1 (the {\em pursuer}) has payoff 1 and player 2 (the \emph{evader}),
+has payoff -1.
 
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
@@ -68,10 +69,9 @@ has payoff $-1$. If $n=2$ the game (called simply {\em matching pennies}) is
 }
 \end{center}
 
-At the unique equilibrium of generalised matching pennies, each player
-follows the uniform distribution over their strategies.
+At the unique equilibrium of the game, each player follows the uniform
+distribution over their strategies.
 \end{example}
-
 
 Consider the problem $n$-{\sc Nash}, as follows.
 
