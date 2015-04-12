@@ -1,39 +1,36 @@
-\documentclass[11pt, draft]{article}
+\documentclass[11pt, a4paper]{report}
+
+\usepackage{todonotes}
+
+\author{Marta Maria Casetti}
+
+\title{Complexity of the Gale String Problem for Equilibrium
+Computation in Games}
 
 %% TYPESETTING
 
-% draft:
-\linespread{1.3}
-\usepackage{todonotes}
-
-% final (?) TODO: check with LSE requirements
-% page measurements
-% \setlength{\hoffset}{0mm}
-% \setlength{\oddsidemargin}{25mm}
-% \setlength{\textwidth}{130mm}
+\linespread{1.5}
+\setlength{\textwidth}{13cm}
+\setlength{\oddsidemargin}{2.5cm}
 
 %% PACKAGES
 
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 \usepackage[all]{xy}
 
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-
 %% THEOREMS and ENVIRONMENTS
 
-% theorems
+%% theorems
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \theoremstyle{remark}\newtheorem{example}{Example}[section]
 
-% environments
-
-% computational problems
-% TODO check p{textwidth} in final version
+%% environments
 
 % decision problem
 
@@ -41,7 +38,7 @@
 {
 \vspace{2.5ex}
 \noindent
-\begin{tabular}{p{18mm} @{\textbf{:} } p{100mm}}
+\begin{tabular}{p{17mm} @{\textbf{:} } p{106mm}}
 \hline
 \multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
@@ -60,7 +57,7 @@
 {
 \vspace{2.5ex}
 \noindent
-\begin{tabular}{p{15mm} @{\textbf{:} } p{102mm}}
+\begin{tabular}{p{13mm} @{\textbf{:} } p{110mm}}
 \hline
 \multicolumn{2}{l}{\noindent {\sc #1}} \\
 \hline
@@ -81,28 +78,91 @@
 % \end{problem}
 
 
+% Macro created by Bernhard von Stengel
+% MACROS FOR CREATING bimatrix games
+% registers allocated once only
+\newcount\rows
+\newcount\cols
+\newcount\rowcoord
+\newcount\colcoord
+\newcount\m
+\newcount\n
+% the crucial variable-length-parameter macro \dosth
+\def\dosth#1{\ifx###1##\else\dofirst#1\anytoken\fi}
+\def\doagain#1\anytoken{\dosth{#1}}
+% example of \dofirst
+% \def\dofirst#1{{$\langle#1\rangle$}\doagain}
+% example of \dosth
+% \dosth{1234x{x^3}y}
+\def\payoffpairs#1#2#3{\m=#1\multiply\m by 4 \advance\m by -1 \n=1
+  \def\dofirst##1{\put(\n,-\m){\makebox(0,0){\strut##1}}\advance\n by 4 \doagain}%
+  \dosth{#2\strut}%
+  \m=#1\multiply\m by 4 \advance\m by -3 \n=3 \dosth{#3\strut}}
+\def\singlepayoffs#1#2{\m=#1\multiply\m by 4 \advance\m by -2 \n=2
+  \def\dofirst##1{\put(\n,-\m){\makebox(0,0){\strut##1}}\advance\n by 4 \doagain}%
+  {\large\dosth{#2\strut}}}
+% the bimatrix game command
+\newcommand{\bimatrixgame}[8]{%
+\setlength{\unitlength}{#1}%
+\rows=#2
+\cols=#3
+\rowcoord=\rows
+\colcoord=\cols
+\multiply\rowcoord by 4
+\multiply\colcoord by 4
+\m=\rowcoord
+\n=\colcoord
+\advance\m by 2 % 2 units left of payoff table
+\advance\n by 2 % 2 units above payoff table
+\begin{picture}(\n,\m)(-2,-\rowcoord)
+\m=\rows
+\n=\cols
+\advance\m by 1
+\advance\n by 1
+\thinlines
+\multiput(0,0)(0,-4){\m}{\line(1,0){\colcoord}}
+\multiput(0,0)(4,0){\n}{\line(0,-1){\rowcoord}}
+\put(0,0){\line(-1,1){2}}
+\put(-1.5,0.5){\makebox(0,0)[r]{#4}}  % name player I
+\put(-.7,1.7){\makebox(0,0)[l]{#5}}   % name player II
+%row annotations - even with long strategy names, stick out to the left
+\n=2
+\def\dofirst##1{\put(-0.8,-\n){\makebox(0,0)[r]{\strut##1}}\advance\n by 4
+   \doagain}
+\dosth{#6\strut}
+%column annotations
+\n=2
+\def\dofirst##1{\put(\n,1.0){\makebox(0,0){\strut##1}}\advance\n by 4
+   \doagain}
+\dosth{#7\strut}#8%
+\end{picture}}
+% example usage:
+% \def\mm#1{\makebox(0,0){\strut#1}}%
+%
+% \bimatrixgame{4mm}{3}{4}{I}{II}{TMB}{lcr{\it out}}
+% {
+% \payoffpairs{1}{00{$a^2$}0}{1{\fbox 3}{\fbox 3}2}
+% \payoffpairs{2}{0000}{1111}
+% \singlepayoffs{3}{5555}
+% % \multiput(0,-0.13)(.16,-.16){75}{\tiny.}
+% \put(10,-2){\mm{*}}
+% }
+
+
 %% SHORTCUTS
 
-% definitions
-
-% mathematics
-
+%% numerical sets
 \def\reals{{\mathbb R}}
 \def\naturals{{\mathbb N}}
 
-% vectors and polytopes
+%% vectors and polytopes
 \def\T{^{\top}}
 \def\0{{\bf 0}}
 \def\1{{\bf 1}}
-
 \def\conv{{\rm conv}}
 
-% maths to text
-
+%% useful
 \def\tdot{$\cdot$}
-
-% to choose the name of the problem - GALE or COMPLETELY LABELED GALE STRING
-
 \def\gale{{\sc{Gale}}}
 \def\anothergale{{\sc{Another Gale}}}
 
@@ -111,95 +171,137 @@
 
 \begin{document}
 
-\title{Complexity of the Gale String Problem for Equilibrium
-Computation in Games}
+\begin{center}
+\hspace{15cm}
 
-\begin{abstract} % 298 words!
+{\Large Complexity of the Gale String Problem for Equilibrium Computation
+in Games}
+
+\vspace*{4cm}
+
+{\large Marta Maria Casetti}
+
+\vspace*{7cm}
+
+Thesis submitted to the Department of Mathematics of the London
+School of Economics and Political Science for the degree of Master of
+Philosophy
+
+\vspace*{4cm}
+
+London, April 2015
+
+\end{center}
+
+\newpage
+
+\section*{Declaration}
+
+I certify that chapter \ref{main-chapter} of this thesis I have presented
+for examination for the MPhil degree of the London School of Economics and
+Political Science is based on joint work with Julian Merschen and Bernhard
+von Stengel, published in \cite{main}. The appendix was the
+result of previous study for the Master of Science degree I undertook at
+the London School of Economics and Political Science in 2008, see
+\cite{msc-diss}.
+
+The copyright of this thesis rests with the author. Quotation from it is
+permitted, provided that full acknowledgement is made. This thesis may not
+be reproduced without my prior written consent.
+
+I warrant that this authorisation does not, to the best of my belief,
+infringe the rights of any third party.
+
+
+\newpage
+
+\section*{Abstract}
+
 This thesis presents a report on original research, published as joint
-work with Merschen and von Stengel in {\em Electronic Notes in Discrete}
-\mbox{{\em Mathematics} \cite{main}.} Our result shows a polynomial time
+work with Merschen and von Stengel in {\em Electronic Notes in Discrete
+Mathematics}~\cite{main}. Our result shows a polynomial time
 algorithm to solve two problems related to labeled Gale strings, a
 combinatorial structure consisting a string of labels and a bitstring
 satisfying certain conditions introduced by Gale \mbox{in \cite{gale}.}
 
 Gale strings can be used in the representation of a particular class
-of games that Savani and von \mbox{Stengel \cite{svs}} used as an example
-of
-\linebreak[5]
-exponential running time for the classical \mbox{Lemke-Howson}
-algorithm to find a Nash equilibrium of a bimatrix \mbox{game \cite{lh}.}
-It was
-\linebreak[5]
-conjectured that solving these games via the Lemke-Howson
-\linebreak[5]
-algorithm
-was complete in the \mbox{class PPAD} (Proof by Parity
-\linebreak[5]
+of games that Savani and von Stengel~\cite{svs} used as an example
+of exponential running time for the classical \mbox{Lemke-Howson}
+algorithm to find a Nash equilibrium of a bimatrix game~\cite{lh}.
+It was conjectured that solving these games via the Lemke-Howson
+algorithm was complete in the class {\bf PPAD} (Proof by Parity
 Argument, Directed version). A major motivation for the definition of
-this class by \mbox{Papadimitriou \cite{ppad}} was, in turn, to capture
+this class by Papadimitriou~\cite{ppad} was, in turn, to capture
 the pivoting technique of many results related to the Nash equilibrium,
 including the Lemke-Howson algorithm.
 
 Our result, on the contrary, sets apart this class of games as a case
 for which there is a polynomial-time algorithm to find a Nash equilibrium.
-Since Daskalakis, Goldberg and \mbox{Papaditrimiou \cite{dgp}} and
-Chen and \mbox{Deng \cite{cd}} proved the \mbox{PPAD-completeness} of
+Since Daskalakis, Goldberg and Papaditrimiou~\cite{dgp} and
+Chen and Deng~\cite{cd} proved the \mbox{{\bf PPAD}-completeness} of
 finding a Nash equilibrium in general normal-form games, we have a special
-class of games, unless \mbox{PPAD = P}.
+class of games, unless \mbox{{\bf PPAD} = {\bf P}}.
 
 Our proof exploits two results. The first one is the representation
 of the Nash equilibria of these games as Gale strings, as seen in Savani
-and von \mbox{Stengel \cite{svs}.} The second one is the polynomial-time
+and von Stengel~\cite{svs}. The second one is the polynomial-time
 solvability of the problem of finding a perfect matching in a graph, proven
-by \mbox{Edmonds \cite{edm}.}
+by Edmonds~\cite{edm}.
 
-Further results by \mbox{Merschen \cite{jm}} and V\'{e}gh and von
-\mbox{Stengel \cite{vvs}} will be mentioned.
+Merschen~\cite{jm} and V\'{e}gh and von Stengel~\cite{vvs} expanded our
+technique to prove further interesting results.
 
 An appendix relates an amendment to the proof of the
-\linebreak[5]
-\mbox{PPAD-completeness} result by Daskalakis, Goldberg and
-\linebreak[5]
-\mbox{Papaditrimiou \cite{dgp}.}
-\end{abstract}
+\mbox{{\bf PPAD}-completeness} result by Daskalakis, Goldberg and
+Papaditrimiou~\cite{dgp}.
 
-\newpage
 
-\section{Introduction}
+\tableofcontents
 
-\section{Complexity, Games, Labels, Polytopes, Strings}
+\chapter*{Introduction}
 
-\input{background}
+\chapter{Complexity, Games, Labels and Gale Strings}
 
-\input{polytopes}
+\input{chapter-1/complexity-classes}
 
-\input{gale-def}
+\input{chapter-1/games}
 
-\newpage
+\input{chapter-1/labels}
 
-\section{Algorithmic and Complexity Results}
-\label{main-thm-sect}
+\input{chapter-1/gale-def}
 
-\subsection{Pivoting}
+\chapter{Algorithmic and Complexity Results}\label{main-chapter}
 
-\subsection{The Lemke-Howson Algorithm and Parity}
+\input{chapter-2/lemke-howson}
 
-\input{pivoting-LH}
+\input{chapter-2/main-result}
 
-\input{main-result}
+\chapter{Further results}
 
-\newpage
+\chapter*{A Note on the PPAD Completeness of {\sc Nash}}
+\addcontentsline{toc}{chapter}{Appendix: A Note on the PPAD Completeness of {\sc Nash}}
 
-\section{Further results}\label{further-section}
+\todo[inline]{appendix/ppad-msc}
 
-\newpage
+\chapter*{Polytopes}
+\addcontentsline{toc}{chapter}{Polytopes}
 
-\section*{A result about the PPAD completeness of \textsc{Nash}}
+\todo[inline]{change the title}
 
-\section*{Notation}
+\input{appendix/polytopes}
 
-\newpage
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
 
-\include{bibliography}
+\todo[inline]{appendix/acknowledgments}
+
+\chapter*{Index of Symbols}
+\addcontentsline{toc}{chapter}{Index of Symbols}
+
+\todo[inline]{appendix/symbols}
+
+\input{appendix/bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+
 
 \end{document}
