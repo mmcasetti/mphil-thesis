@@ -1,51 +1,50 @@
 \section{Cyclic Polytopes and Gale Strings}
 
-In the last section we have built a correspondence between labeling of
-best response polytopes and bimatrix games.
-We now focus on a special case of games, where the polytope in
-theorem \ref{unit-vector-dual-thm} is a {\em cyclic polytope}, a
-particular kind of polytope that can be represented as a
-combinatorial structure called {\em Gale string}.
-We give first the definition of cyclic polytope, then the definition
-of Gale string, and we show their relation as proven by Gale in
-\cite{gale}.
+In theorems \ref{unit-vector-thm} and \ref{unit-vector-dual-thm} we have
+built a correspondence between labeled polytopes and unit vector games,
+where Nash equilibria correspond to completely labeled vertices or facets.
+We now focus on a particular kind of simplicial polytopes, called
+{\em cyclic polytopes}, that can be represented as a combinatorial structure,
+the {\em Gale strings}. We will first give the definition of cyclic polytope,
+then of Gale string, then the theorem by Gale \cite{gale} about their
+correspondence.
 
-A {\em cyclic polytope} $P$ in dimension~$d$ with $n$ vertices is the
-convex hull of $n$ distinct points $\mu_d (t_j)$ on the {\em moment curve}
-$\mu_d :\ t\mapsto (t,t^2,\ldots,t^d)\T$ for $j\in [n]$ such that
-$t_1 < t_2 < \cdots < t_n$.
+The {\em moment curve} in dimension $d$ is defined as
+\begin{equation}
+\mu_d:\reals\longrightarrow\reals^d,\quad
+\mu_d:t\longmapsto (t,t^2,\ldots,t^d)\T .
+\end{equation}
+The {\em cyclic polytope} in dimension~$d$ with $n$ vertices, where $n>d$ is
+\begin{equation}
+C_d(n)=\conv\{ \mu_d(t_i)\text{ for }t_1<\ldots<t_n \}.
+\end{equation}
 
-\todo[inline]{example(s) with graphics! There's one in Ziegler}
-
-A {\em bitstring} is a string of labels that are either 0's or 1's.
-Formally: given an integer $k$ and a set $S$, we can represent the function
-$f_s:[k]\to S$ as the string $s = s(1)s(2)\cdots s(k)$; we have a bitstring
-in the case where $S=\{0,1\}$. A maximal substring of consecutive
-$1$'s in a bitstring is called a {\em run}. We denote a run of length
-$k$ as $\1^k$; and, analogously, a string of 0's of length $k$ as $0^k$.
-
-A {\em Gale string of length $n$ and dimension $d$} is a bitstring of length
-$n$, denoted as $s\in G(d,n)$, such that
-
+Given $k\in\naturals$ and a set $S$, we can represent the function
+$f:[k]\to S$ as the string $s=s(1)s(2)\cdots s(k)$; we have a {\em bitstring}
+\todo{bitstring already def in section complexity?}
+if $S=\{0,\1\}$. A maximal substring of consecutive
+\1's in a bitstring is called a {\em run}; an {\em interior} run is
+bounded on both sides by 0's. We will use the notation $\1^k$ for a
+run of length $k$, and $0^k$ for a string of 0's of length $k$
+A {\em Gale string of length $n$ and dimension $d$}, where $n>d$, is
+a bitstring $s\in G(d,n)$ satisfying the following conditions:
 \begin{enumerate}
-\item exactly $d$ bits in $s$ are $1$ and
+\item exactly $d$ bits in $s$ are $\1$ and
 \item ({\em Gale evenness condition})
 \begin{equation}
-01^k0\text{ is a substring of }s\quad
+0\1^k0\text{ is a substring of }s\quad
 {\Longrightarrow}\quad
 k\text{ is even.}
 \end{equation}
 \end{enumerate}
 
-The Gale evenness condition characterises Gale strings in $G(d,n)$ as
-the bitstrings of length~$n$ with exactly~$d$ elements equal to $1$,
-such that {\em interior} runs (that is, runs bounded on both sides by~$0$s)
-must be of even length. In general, this condition allows Gale strings to
-start or end with an odd-length run; but when $d$ is even this means that
-$s$ starts with an odd run if and only if it ends with an odd run.
-We can then consider the Gale strings in $G(d,n)$ with even $d$ as a ``loop''
-obtained by ``glueing together'' the extremes of the string to form an even
-run. Formally, we can see the indices of a Gale string $s\in G(d,n)$ with
+In general, the Gale evenness conditions allows for Gale strings that start
+or end with an odd-length run; but if $d$ is even then $s$ can start with
+an odd run if and only if it ends with an odd run.
+We can then consider the Gale strings in $G(d,n)$ with even $d$ as a
+the ``loops'' obtained by ``glueing together'' the extremes of the strings,
+so that all runs on the loops are even.
+Formally: we can see the indices of a Gale string $s\in G(d,n)$ with
 $d$ even as equivalence classes modulo $n$, identifying $s(i+n)=s(i)$.
 This also shows that the set of Gale strings of even dimension is invariant
 under a cyclic shift of the strings.
@@ -76,20 +75,22 @@ string.
 The relation between cyclic polytopes and Gale strings is given by the
 following theorem by Gale \cite{gale}.
 
-\begin{theorem}[\cite{gale}]\label{cp-gs-gale-thm}
-For any positive integers $d,n$ let $P$ be the cyclic polytope in dimension
-$d$ with $n$ vertices. Then the facets of $P$ are encoded by $G(d,n)$;
-that is,
-\begin{align}
-F \text{ is a} & \text{ facet of } P \nonumber \\
+\begin{theorem}{\rm (Gale \cite{gale})}\label{cp-gs-thm}
+For any positive integers $d,n$ with $n>d$\begin{align}
+F \text{ is a} & \text{ facet of } C_d(n) \nonumber \\
 & \Longleftrightarrow \nonumber \\
 F = \conv\{ \mu(t_j)\ |\ s(j)=1 & \text{ for some }j\in[n]
-\text{ and }s\in G(d,n) \} \nonumber
+\text{ and }s\in G(d,n) \}.
 \end{align}
 
 \end{theorem}
 
-\todo[inline]{pf - see Ziegler
+\todo[inline]{sketch of pf - see Ziegler - with drawing of moment curve +
+hyperplane
+
+CP simplicial
+
+CP does not depend on the choice of $t_i$'s
 
 \small
 Essentially, this holds because any set $S\subset [n]$
@@ -98,18 +99,74 @@ the moment curve defines a unique hyperplane which is crossed
 $s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
 \normalsize
 
-example of cyclic polytope + equivalent gale string - pg 35 JM has nice one}
+example of cyclic polytope + equivalent gale string (a simple one)}
 
-We now give define a {\em labeling} for Gale strings, corresponding to
-the labeling of best-response polytopes.
+From this point forward, we will assume that $d$ is even.
+We will also assume that the labeling $l:[n]\to [d]$ is such
+that $l(i)\neq l(i+1)$; this can be done without loss of generality,
+given the following consideration.
+Suppose that $l(i)=l(i + 1)$ for some index $i$, and let $s$ be a
+completely labeled Gale string for $l$. Then only one of
+$s(i)$ and $s(i+1)$ can be equal to \1 (note that it's possible that both
+are 0s). So $s(i)s(i+1)$ will never be a run of even length that
+``interferes'' with the Gale Evenness Condition, so we can ``simplify''
+by identifying the indices $i$ and $i + 1$.
 
-A string $s$ is
-{\em completely labeled} for some labeling function $l:[n]\to[d]$ if
-$\{ \bar{l}\in [d] | s(i)=1\text{ and }l(i)=\bar{l}
-\text{ for some }i\in [n] \}=[d]$.
-If $s\in G(d,n)$, this implies that for every $\bar{l}\in [d]$ there is
-exactly one $s(i)$ such that $s(i) = 1$ and $l(i) = \bar{l}$,
-since there are exactly $d$ positions such that $s(i) = 1$.
+Theorem \ref{cp-gs-thm} gives a correspondence between Gale strings and
+facets of cyclic polytopes; we have also seen that these polytopes are
+simplicial.
+On the other hand, theorem \ref{unit-vector-dual-thm} gives a correspondence
+between completely labeled facets of a simplicial polytopes and Nash
+equilibria of unit vector games. To exploit these connections, we now
+give a definition of labeling for Gale strings that will allow us to
+study the Nash equilibria of a unit vector game for which the best response
+polytope is the dual of a cyclic polytope (recall that the polytope in
+theorem \ref{unit-vector-thm} is the best response polytope, whereas
+theorem \ref{unit-vector-dual-thm} describes its dual version). This might
+seem a very specific case of bimatrix game; we will see in the next chapter
+that it leads to very interesting results.
+We therefore need a definition of ``completely labeled'' for Gale strings,
+and a labeling $l_s$ for $G(d,n)$ such that $s\in G(d,n)$ is completely
+labeled if and only if the corresponding facet in $C_d(n)$ is completely
+labeled by $l_v$ as given in theorem \ref{unit-vector-dual-thm}.
+
+We say that $s\in G(d,n)$ is a {\em completely labeled Gale string} if
+for some labeling function $l_s:[n]\to[d]$ the set
+$\{ i\in [n]\ |\ s(i)=\1 \}$ is completely labeled by $l_s$.
+Since $s\in G(d,n)$ has exacty $d$ bits equal to \1, this means that for
+each $j\in [d]$ there is exactly one
+$i\in [n]$ such that $s(i)=\1$ and $l_s(i)=j$.
+Note that it is not always possible to find a completely labeled Gale string.
+
+\begin{example}
+For $l = 121314$, there are no completely labeled Gale strings.
+
+The labels $l(i)=2,3,4$ appear only once in $l$, as $l(2),l(4),l(6)$
+respectively; therefore we must have $s(2)=s(4)=s(6)=1$. For every other
+$i\in [n]$ we have $l(i)=1$, so we have $l(i)=1$ for exactly one $i=1,3,5$.
+The candidate strings are then \1\10\10\1, 0\1\1\10\1, 0\10\1\1\1; but
+none of these satisfies the Gale evenness condition.
+\end{example}
+
+Let $(U,B)$, where $U=(e_{l(1),\ldots,e_{l(d)}})$ for some labeling
+$l:[n]\to [d]$, be a unit vector game for which the dual of the best
+response polytope is a cyclic polytope
+$Q=\conv\{ e_1,\ldots,e_d,c_1,\ldots,c_n \}$. Theorem
+\ref{unit-vector-dual-thm} gives a labeling $l_v$ of the $d+n$ vertices of
+$Q$ as in \ref{vert-labeling-unitv}:
+\begin{eqnarray*}
+l_v(-e_i)=i\text{ for }i\in [m]; \\
+l_v(c_j)=l(j)\text{ for }j\in [n].
+\end{eqnarray*}
+Let the labeling $l_s:[d+n]\to [d]$ be defined as follows:
+\begin{eqnarray}\label{gs-labeling-unitv}
+l_s(i)=i\text{ for }i\in [d]; \nonumber \\
+l_s(d+j)=l(j)\text{ for }j\in [n].
+\end{eqnarray}
+Then the Gale strings $s\in G(d,d+n)$ that are completely labeled for $l_s$
+correspond exactly to the completely labeled facets of $Q$, with the
+facet $F_0$ corresponding to the ``trivial'' completely labeled
+string $\1^d 0$.
 
 \begin{example}
 Given the string of labels $l=123432$, there are four associated completely
@@ -124,65 +181,12 @@ $\10\1\10\1$.
 \1 & \tdot & \tdot & \1 & \1 & \1 \\
 \1 & \tdot & \1 & \1 & \tdot & \1
 \end{tabular}
+
+\todo[inline]{draw polytope}
 \end{example}
 
-Sometimes it is not possible to find a completely labeled Gale string.
-
-\begin{example}
-For $l = 121314$, there are no completely labeled Gale strings.
-
-The labels $l(i)=2,3,4$ appear only once in $l$, as $l(2),l(4),l(6)$
-respectively; therefore we must have $s(2)=s(4)=s(6)=1$. For every other
-$i\in [n]$ we have $l(i)=1$, so we have $l(i)=1$ for exactly one $i=1,3,5$.
-The candidate strings are then \1\10\10\1, 0\1\1\10\1, 0\10\1\1\1; but
-none of these satisfies the Gale evenness condition.
-\end{example}
-
-From this point forward, we will assume that $d$ is even.
-We will also assume that the labeling $l:[n]\to [d]$ is such
-that $l(i)\neq l(i+1)$; this can be done without loss of generality,
-given the following consideration.
-Suppose that $l(i)=l(i + 1)$ for some index $i$, and let $s$ be a
-completely labeled Gale string for $l$. Then only one of
-$s(i)$ and $s(i+1)$ can be equal to \1 (note that it's possible that both
-are 0s). So $s(i)s(i+1)$ will never be a run of even length that
-``interferes'' with the Gale Evenness Condition, so we can ``simplify''
-by identifying the indices $i$ and $i + 1$.
-
-We will now focus on the problem of finding the Nash equilibria of
-a unit vector game $(U,B)$ where $U=(e_{l(1)}\cdots e_{l(d)})$ for
-some labeling $l:[n]\to [d]$ and the best-response polytope $Q$ is
-cyclic, exploiting theorems \ref{unit-vector-dual-thm} and
-\ref{cp-gs-gale-thm}.
-To do so, we must find a labeling $l$ such that the Gale strings
-$s\in G(d,d+n)$ encoding the completely labeled facets of the
-corresponding cyclic $d$-polytope $Q$ with $d+n$ vertices are
-exactly the Gale strings of dimension $d$ and length $d+n$ that are
-completely labeled for $l$.
-
-Theorem \ref{unit-vector-dual-thm} relies on a labeling of the
-vertices $l_v:[d+n]\to [d]$ defined in \ref{vert-labeling-unitv}
-such that $l_v(-e_i)=i$ for $i\in [d]$,
-and $l_v(c_j)=l(j)$ for the vertices $c_j\neq -e_i$, where $j\in [n]$.
-We define the labeling $l_s:[d+n]\to [d]$ as follows:
-\begin{eqnarray}\label{gs-labeling-unitv}
-l_s(i)=i\text{ for }i\in [d] \\
-l_s(d+j)=l(j)\text{ for }j\in [n].
-\end{eqnarray}
-
-The Gale strings $s\in G(d,d+n)$ that are completely labeled for $l_s$
-correspond exactly to the completely labeled facets of $Q$, with the
-facet $F_0$ corresponding to the ``trivial'' completely labeled
-string $\1^d 0$.
-
-Then, by proposition \ref{ne-cl-pbl}, we have the following theorem.
-
-\begin{theorem}\label{ne-another-gale-pbl}
-The problem of finding a Nash equilibrium for a unit vector game
-for which the best response polytope is the dual of a cyclic polytope
-in dimension $d$, where $d$ is even, is polynomial-time reducible
-\todo{do we have to prove ``polynomial''?}
-to the problem \anothergale, where
+From a computational point of view, we can define the problem \anothergale\
+and {\sc Unit Vector Cyclic Nash} as follows:
 
 \begin{fctproblem}
 {\anothergale}
@@ -192,4 +196,17 @@ A Gale string $s\in G(d,n)$, completely labeled by $l$.}
 such that $s' \neq s$.}
 \end{fctproblem}
 
-\end{theorem}
+\begin{fctproblem}
+{Unit Vector Cyclic Nash}
+{A unit vector game $\Gamma$ with dual cyclic best response polytope.}
+{A Nash equilibrium of $\Gamma$.}
+\end{fctproblem}
+
+\todo[inline]{prove that encoding GS is poly}
+
+Then, by proposition \ref{ne-cl-pbl}, we have the following theorem.
+
+\begin{proposition}\label{ne-another-gale-pbl}
+The problem {\sc Unit Vector Cyclic Nash} is polynomial-time reducible
+to the problem \anothergale.
+\end{proposition}
