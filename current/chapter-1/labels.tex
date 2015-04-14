@@ -1,27 +1,24 @@
 \section{Bimatrix Games and Labels}
 
-In the rest of this thesis we will focus on two-player normal-form games.
-For sake of readability, we will use feminine pronouns when referring to
-player 1 and masculine pronouns when referring to player 2.
-
-Two-player normal-form games are
-also called {\em bimatrix games}, since 
-We will assume that $(A,B)$ are non-negative, and that $A$ and $B\T$ have
-no zero column. This can be easily obtained without loss of generality via
-an affine transformation that will not affect the equilibria of the game.
+In the rest of this thesis we will focus bimatrix games.
+We will assume that the payoff matrices $(A,B)$ are non-negative,
+and that neither $A$ nor $B\T$ has a zero column, if necessary applying
+an affine transformation, which does not affect the equilibria of the game.
 
 The Nash equilibria of bimatrix games can be analysed from a combinatorial
 point of view using {\em labels}. This method is due to Shapley
 \cite{shapley}, in a study building on ideas introduced in a
 paper by Lemke and Howson \cite{lh}.
+Let $n,m\in\naturals$ with $n\leq m$, and consider a set $X$ with $|X|=m$.
+A {\em labeling} of $X$ is a function $l:X\to [n]$. An $n$-uple
+$x=(x_1,\ldots,x_n)\in X^n$ is {\em completely labeled} if
+$\{ i\in [n]\ |\ l(x_j)=i\text{ for some }j\in [n] \}=[n]$.
 
-
-Let $(A,B)$ be bimatrix game. The mixed-strategy simplices of player 1 and 2
-are, respectively
-
-\begin{equation}
-X = \{ x\in\reals^m | x\geq\0,\ \1\T x = 1 \},\quad
-Y = \{ y\in\reals^n | y\geq\0,\ \1\T y = 1 \}
+Let $(A,B)$ be bimatrix game, and let $X$ and $Y$ be the mixed strategy
+simplices of respectively player 1 and 2; that is
+\begin{equation}\label{mixed-strat-simplices}
+X = \{ x\in\reals^m\ |\ x\geq\0,\ \1\T x = 1 \};\quad
+Y = \{ y\in\reals^n\ |\ y\geq\0,\ \1\T y = 1 \}.
 \end{equation}
 
 A {\em labeling} of the game is then given as follows:
@@ -32,24 +29,23 @@ A {\em labeling} of the game is then given as follows:
 \item each mixed strategy $x\in X$ of player 1 has
     \begin{itemize}
     \item label $i$ for each $i\in [m]$ such that $x_i = 0$, that is if in
-    $x$ player 1 does not play her $i$th pure strategy;
+    $x$ player 1 does not play her $i$th pure strategy,
     \item label $m + j$ for each $j\in [n]$ such that the $j$th pure strategy
     of player 2 is a best response to $x$;
     \end{itemize}
 \item each mixed strategy $y\in Y$ of player 2 has
     \begin{itemize}
     \item label $m + j$ for each $j\in [n]$ such that $y_j = 0$, that is if in
-    $y$ player 2 does not play his $j$th pure strategy;
+    $y$ player 2 does not play his $j$th pure strategy,
     \item label $i$ for each $i\in [m]$ such that the $i$th pure strategy
-    of player 1 is a best response to $y$;
+    of player 1 is a best response to $y$.
     \end{itemize}
 \end{enumerate}
 
-A strategy profile $(x,y)\in X\times Y$ is {\em completely labeled} if every
-label $1,\ldots,m+n$ is a label of either $x$ or $y$. We have the following
-theorem (Theorem 1 in \cite{shapley}):
+The labeling of mixed strategy profiles can be used to characterize the
+Nash equilibria of the game.
 
-\begin{theorem}\label{comp-label-bimatrix-thm}
+\begin{theorem}{\rm (Shapley \cite{shapley})}\label{comp-label-thm}
 Let $(x,y)\in X\times Y$; then $(x,y)$ is a Nash equilibrium of the bimatrix
 game $(A,B)$ if and only if $(x,y)$ is completely labeled.
 
@@ -63,16 +59,11 @@ $x$ or of $y$. The analogous holds for the labels $i\in [n]$.
 \end{proof}
 \end{theorem}
 
-An useful geometrical representation of labels can be given on the mixed
-strategies simplices $X$ and $Y$. The outside of each simplex is
-labeled according to the player's own pure strategies that are {\em not}
-played; so, for instance, the outside of $X$ will have labels
-$1,\ldots,n$. The interior of each simplex is subdivided in closed polyhedral
-sets, called {\em best-response regions}. These are labeled according to
-the other player's pure strategy that is a best response in that set;
-so, for instance, the inside of $X$ will have labels $m + 1,\ldots,m + n$.
-
-We give an example of this construction.
+An useful graphical representation of labels on the simplices $X$ and $Y$.
+is done by labeling the outside of each simplex according to the player's own
+pure strategies that are {\em not} played, and by subdividing its interior
+in closed polyhedral sets corresponding to the other player's best response,
+called {\em best response regions}. We give an example of this construction.
 
 \begin{example}
 
@@ -82,25 +73,23 @@ With graphics.}
 
 \end{example}
 
-We will now give a description of labeling on polytopes equivalent to
-the construction based on best-response regions.
-
+The point of view of best response regions can be translated to an equivalent
+construction of {\em best response polytopes}.
 We begin by noticing that the best-response regions can be obtained as
 projections on $X$ and $Y$ of the {\em best-response facets} of
 the polyhedra
-
 \begin{equation}\label{br-polyhedron}
-\bar{P} = \{ (x,v)\in X\times\reals | B\T x\leq\1 v \},\quad
-\bar{Q} = \{ (y,u)\in Y\times\reals | A y\leq\1 u \}.
+\bar{P} = \{ (x,v)\in X\times\reals\ |\ B\T x\leq\1 v \};\quad
+\bar{Q} = \{ (y,u)\in Y\times\reals\ |\ A y\leq\1 u \}.
 \end{equation}
 
 These facets in $\bar{P}$ are defined as the points $(x,v)\in X\times\reals$
-such that $(B\T x)_j = v$. These points represent the strategies $x\in X$ of
-player 1 that give exactly payoff $v$ to player 2 when he plays strategy $j$.
-The projection of the facet defined by $(B\T x)_j = v$ to $X$ will have
-label $j$. Analogously, in $\bar{Q}$, the facets are the points
-$(y,u)\in Y\times\reals$ such that $a_i y = u$, and their projection to $Y$
-will be the best-response region with label $i$.
+such that $(B\T x)_j = v$, which in turn represent the strategies $x\in X$ of
+player 1 that give exactly payoff $v$ to player 2 when he plays strategy $j$;
+the projection of the facet defined by $(B\T x)_j = v$ to $X$ has then
+label $j$. Analogously, the facet of $\bar{Q}$ given by the points
+$(y,u)\in Y\times\reals$ such that $(A y)_i = u$ will project to the
+best-response region of $Y$ with label $i$.
 
 \begin{example}
 
@@ -111,28 +100,28 @@ will be the best-response region with label $i$.
 Given the assumptions on non-negativity of $A$ and $B\T$, we can give a
 change coordinates to $x_i / v$ and $y_j / u$ and replace $\bar{P}$ and
 $\bar{Q}$ with the {\em best-response polytopes}
-
 \begin{equation}\label{br-polytopes}
-P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \},\quad
-Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \},\quad
+P = \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \};\quad
+Q = \{ y\in\reals^n\ |\ y\geq\0,\ A y\leq\1 \}.
 \end{equation}
 
-Each one of these polytope is defined by half spaces corresponding to
-either the player's own strategy that is not being played or the other
-player's best response; each one of the facets of the polytope is labeled
-by the strategy corresponding to the relative half-space.
-
-This means that a point in $P$ has label $k$ if and only if either
-$x_k = 0$ for $k\in \{ 1,\ldots,m \}$ or $(B\T x)_{k - m} = 0$ for
-$k\in \{ m+1,\ldots,m+n \}$;
-analogously, a point in $Q$ has label $k$ if and only if either
-$y_{k - m} = 0$ for $k\in \{ m+1,\ldots,m+n \}$ or $(A y)_{k}$ for
-$k\in \{ m+1,\ldots,m+n \}$. A point $(x,y)\in P\times Q$ is
-{\em completely labeled} if every $k\in [m + n]$ is a label of $x$ or $y$.
-Note that the point $(\0,\0)$ is completely labeled. Rescaling back to
-$\bar{P}$ and $\bar{Q}$, all the non-zero completely labeled points give
-exactly all the equilibria of $(A,B)$. In this construction, we will
-call $(\0,\0)$ {\em artificial equilibrium}.
+The polytope $P$ is the intersection of $n+m$ half spaces, one for each
+inequality corresponding to either player 1 avoiding her $i$-th pure
+strategy, where $i\in [m]$, or to a best response of player 2 that gives
+non-zero probability to his $j$-th strategy, where $j\in [n]$.
+Formally, a point $x\in P$ has label $k$ if and only if either
+$x_k = 0$ for $k\in [m]$ or $(B\T x)_k = 0$ for $k\in [n]$.
+Analogously, a point in $Q$ has label $k$ if and only if either
+$y_k = 0$ for $k\in [n]$ or $(A y)_k$ for $k\in [m]$.
+Then a point $(x,y)\in P\times Q$ is completely labeled if and only if
+it satisfies the {\em complementarity condition}
+\begin{eqnarray}
+x_i = 0\text{ or }(Ay)_i = 1\text{ for all }i\in [m];\nonumber \\
+y_j = 0\text{ or }(B\T x)_j\text{ for all }j\in [n].
+\end{eqnarray}
+Then either he point corresponding to $(x,y)$ in $\bar{P}\times\bar{Q}$
+is a Nash equilibrium, or $(x,y)=(\0,\0)$; we will refer to the latter case
+as {\em artificial equilibrium}.
 
 \begin{example}
 
@@ -140,104 +129,89 @@ call $(\0,\0)$ {\em artificial equilibrium}.
 
 \end{example}
 
-A characterization of the completely labeled pairs in $P\times Q$ can be
-given as follows.
+\todo[inline]{
 
-\begin{proposition}\label{compl-orth-cond}
-The pair $(x,y)\in P\times Q$ is completely labeled if and only if one of
-the following condition holds:
-\begin{itemize}
-\item {\em (Complementarity condition)}
+nondegeneracy.
 
-\begin{equation}
-x_i = 0\text{ or }(Ay)_i = 1\text{ for all }i\in [m],\quad
-y_j = 0\text{ or }(B\T x)_j\text{ for all }j\in [n]
-\end{equation}
+in the following: equilibria are on vertices, not simply points
 
-\item {\em (Orthogonality condition)}
+$P$ is simple, so later $P^\Delta$ is simplicial.
 
-\begin{equation}
-x\T (\1 - Ay) = 0,\quad
-y\T (\1 - B\T x) = 0
-\end{equation}
-\end{itemize}
-\end{proposition}
+``lexicographic'' perurbation makes it non-degenerate (see AB).
 
-Proposition \ref{compl-orth-cond} can be used to prove a useful property:
-{\em symmetric games}, that is, games that have payoff matrix of the form
-$(C,C\T)$ for some matrix $C$, can be used to study generic bimatrix games
-without loss of generality. The result is due to Gale, Kuhn and Tucker
-\cite{gale-kuhn-tucker} for zero-sum games; its extension to non-zero-sum
-games is a folklore result.
+ex pg 9 SvS-15
 
-\begin{proposition}\label{symmetric-eq-thm}
+From now on, we assume nondegeneracy.
+}
+
+We note a useful property: any bimatrix game can be ``symmetrized.''
+The result is due to Gale, Kuhn and Tucker \cite{gale-kuhn-tucker} for
+zero-sum games; its extension to non-zero-sum games is a folklore result.
+
+\begin{proposition}\label{symmetrize-thm}
 Let $(A,B)$ be a bimatrix game and $(x,y)$ be one of its Nash equilibria.
 Then $(z,z)$, where $z=(x,y)$, is a Nash equilibrium of the symmetric game
 $(C,C\T)$, where
-
-\[
+\begin{equation}
 C = \left(
     \begin{array}{cc}
     0 & A \\
     B\T & 0
     \end{array}
     \right).
-\]
+\end{equation}
 \end{proposition}
 
-The converse has been proved by McLennan and Tourky \cite{mclennan-tourky} in
-their study of {\em imitiation games}, that is, bimatrix games of the form
-$(I,B)$.
+McLennan and Tourky \cite{mclennan-tourky} have proven a converse of
+proposition \ref{symmetrize-thm} for bimatrix games of the form $(I,B)$,
+called {\em imitiation games}.
 
-\begin{proposition}\label{imitation-thm}
+\begin{proposition}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
+\label{imitation-thm}
 The pair $(x,x)$ is a symmetric Nash equilibrium of the symmetric bimatrix
 game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
 Nash equilibrium of the imitation game $(I,C\T)$.
 \end{proposition}
 
 \begin{example}
-Consider the symmetric game $(C,C\T)$, where $C\T = B$ in the previous
-examples.
 
 \todo[inline]{ex Savani, von Stengel, pg 8}
 
 \end{example}
 
-Savani and von Stengel \cite{uvg} extended the study of imitation games to
-{\em unit vector games} $(U,B)$, where the columns of the matrix $U$ are
-unit vectors. For these games, the use of labeling in polytopes to
-characterize Nash equilibria of the game is given by the following
-theorem, first proved in dual form by Balthasar \cite{balthasar}.
+A generalization of imitation games is given by {\em unit vector games}.
+These are games of the form $(U,B)$, where the columns of the matrix $U$ are
+unit vectors. The correspondence between equilibria of a unit vector game
+and completely labeled points
+\todo{also in thm: vertices, if nondeg}
+of a polytope is given by the following
+theorem, first proved in dual form by Balthasar \cite{balthasar} and
+given here as in Savani and von Stengel \cite{uvg}.
 
-\begin{theorem}\cite{uvg}\label{unit-vector-thm}
+\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}\cite{uvg}\label{unit-vector-thm}
 Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
-$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Consider the polytopes $P^l$ and $Q^l$
-where
-
-\begin{equation}\label{p-l-unitv}
-P^l = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}
-\end{equation}
-
-\begin{equation}
-Q^l = \{ y\in\reals^n | y\geq\0,\
-\sum_{\substack{j\in N_i \\ i\in [m]}} y_j\leq 1 \}
-\end{equation}
-
-where $N_i = \{ j\in [n] | l(j)=i \}$ for $i\in [m]$.
-
-Give a labeling $l_f$ of the facets of $P^l$ according to the
-inequality defining it, as follows:
-
-\begin{eqnarray}\label{facet-labeling-unitv}
-x_i\geq 0\text{ has label }i\text{ for }i\in [m] \\
-(B\T x)_j \leq 1\text{ has label }l(j)\text{ for }j\in [n]
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let $N_i = \{ j\in [n]\ |\ l(j)=i \}$ for
+$i\in [m]$, and consider the polytopes $P^l$ and $Q^l$
+\begin{eqnarray}
+P^l = \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}; \label{p-l} \\
+Q^l = \{ y\in\reals^n\ |\ y\geq\0,\
+\sum_{\substack{j\in N_i \\ i\in [m]}} y_j\leq 1 \}. \label{q-l}
 \end{eqnarray}
 
-Then $x\in P^l$ is a completely labeled point of $P^l\setminus\{\0\}$
+Let $l_f$ be the labeling of the facets of $P^l$ defined as follows:
+\begin{eqnarray}\label{facet-labeling-unitv}
+x_i\geq 0\text{ has label }i\text{ for }i\in [m]; \nonumber \\
+(B\T x)_j \leq 1\text{ has label }l(j)\text{ for }j\in [n].
+\end{eqnarray}
+
+Then $x\in P^l$ is a completely labeled point
+\todo{vertex}
+of $P^l\setminus\{\0\}$
 if and only if there is some $y\in Q^l$ such that, after scaling,
 the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
 
 \begin{proof}
+\todo{check}
 Let $P,Q$ be the polytopes associated to the game $(U,B)$ as before.
 
 Let $(x,y)\in P\times Q\setminus\{ \0,\0 \}$ be a Nash equilibrium of
@@ -260,103 +234,95 @@ $y_j = 1$. Then $(x,y)\in P\times Q$ is completely labeled.
 Theorem \ref{unit-vector-thm} gives a correspondence between the
 completely labeled vertices of the polytope $P^l$ and the equilibria
 of the unit vector game $(U,B)$, with an ``artificial''
-equilibrium corresponding to the vertex $\0$.
-
-The dual version of theorem \ref{unit-vector-thm}, given in
-\cite{balthasar}, is constructed as follows.
-We translate the polytope $P^l$ in theorem \ref{unit-vector-thm} to
-$P = \{ x - \1\ |\ x\in P^l \}$. Multiplying all payoffs in $B$ by a
-constant if necessary (an operation that does not change the game),
-we can have \1 is in the interior of $P^l$ and \0 in the interior of $P$.
-We have $x\in P$ if and only if $x + \1\geq\0$ and
-$B\T(x + \1)=(x + \1)\T B\leq\1$;
-that is, if and only if $-x_i\leq 1$ for $i\in [m]$ and
-$x\T \frac{b_j}{1 - \1\T b_j} \leq 1$ for $j\in [n]$.
+equilibrium corresponding to the vertex $\0$. We will now construct its dual
+version given in \cite{balthasar}.
+We traslate the polytope $P^l$ as in \ref{p-l} to
+$P = \{ x - \1\ |\ x\in P^l \}$, and multiply all payoffs in $B$ by a
+constant, if necessary, so that $\0$ is in the interior of $P$.
+We have that
+\begin{align*}
+P & = \{ x + \1\geq\0,\ (x + \1)\T B\leq\1 \} = \\
+  & = \{ x\in\reals^m\ |\ -x_i\leq 1\text{ for }i\in [m],\
+    x\T (b_j/(1 - \1\T b_j)) \leq 1\text{ for }j\in [n] \}.
+\end{align*}
 The polar of $P$ is then
 \begin{equation}
-P^\Delta = \conv(\{−e_i\ |\ i\in [m] \} \cup \{ \frac{b_j}{1 - \1\T b_j} \})
+P^\Delta = \conv(\{−e_i\ |\ i\in [m] \}\ \cup\ \{ \frac{b_j}{1 - \1\T b_j} \})
 \end{equation}
 
-\todo[inline]{$P$ is simple (why? because game nondegenerate!
-show it before), so $P^\Delta$ is simplicial}
-
-Since \0 is in the interior of $P$, we have that $P^{\Delta\Delta}=P$,
-and the facets of $P^\Delta$ correspond to
+Since $P$ is a simple polytope with $\0$ in its interior, $P^\Delta$ is
+simplicial, $P^{\Delta\Delta}=P$, and the facets of $P^\Delta$ correspond to
 the vertices of $P$ and vice versa. We can then label the vertices
-of $P\Delta$ with the labels of the corresponding facets in $P^l$, so
-the completely labeled facets of $P\Delta$ will correspond to the
-completely labeled vertices of $P^l$.
-In particular, the facet corresponding to \0 is
-\begin{equation}
+of $P^\Delta$ as the corresponding facets in $P^l$; the completely
+labeled facets of $P^\Delta$ will then correspond to the completely
+labeled vertices of $P^l$.
+In particular, the facet corresponding to $\0$ will be
+\begin{equation}\label{f-0}
 F_0 = \{ x\in P^\Delta\ |\ -\1\T x = 1 \} = \conv\{ e_i\ |\ i\in [m] \}.
 \end{equation}
-Theorem \ref{unit-vector-thm} then translates as follows.
+Theorem \ref{unit-vector-thm} then translates as in the original version
+by Balthasar \cite{balthasar}.
 
-\begin{theorem}\cite{balthasar}\label{unit-vector-dual-thm}
+\begin{theorem}{\rm (Balthasar \cite{balthasar})}\label{unit-vector-dual-thm}
 Let $Q$ be a labeled $m$-dimensional simplicial polytope with \0 in
-its interior, with vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$, so that
+its interior and vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$ such that
 $F_0 = \conv\{ e_i\ |\ i\in [m] \}$ is a facet of $Q$.
-
-Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game with
-$U=(e_{l(1)}\ \cdots\ e_{l(n)})$ and $B = (b_1\ \cdots\ b_n)$,
-where $b_j = \frac{c_j}{1 + \1\T c_j}$ for $j\in [n]$.
-
-Label the vertices of $Q$ as follows:
+Let $(U,B)$ be a unit vector game, with $U=(e_{l(1)}\ \cdots\ e_{l(n)})$
+for a labeling $l:[n]\to [m]$ and $B = (b_1\ \cdots\ b_n)$ with
+$b_j = c_j/(1 + \1\T c_j)$ for $j\in [n]$. Let $l_v$ be a labeling
+of the vertices of $Q$ as follows:
 \begin{eqnarray}\label{vert-labeling-unitv}
-l_v(-e_i)=i\text{ for }i\in [m] \\
+l_v(-e_i)=i\text{ for }i\in [m] \nonumber \\
 l_v(c_j)=l(j)\text{ for }j\in [n]
 \end{eqnarray}
 
 Then a facet $F\neq F_0$ of $Q$ with normal vector $v$ is completely
 labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where
-$x = \frac{v + \1}{\1\T (v + \1)}$,
+$x = (v + \1) / (\1\T (v + \1))$
+\todo{??? here to end thm}
+,
 and $x_i = 0$ if and only if $−e_i\in F$ for $i\in [m]$.
 Any $j$ so that $c_j$ is a vertex of $F$ represents a pure best reply to $x$;
 the mixed strategy $y$ is the uniform distribution on the set of the pure best
 replies to $x$.
 \end{theorem}
 
-In theorem \ref{unit-vector-dual-thm} we have a correspondence between
+As in theorem \ref{unit-vector-thm} we have a correspondence between
+completely labeled vertices of $P^l$ and equilibria of the unit vector game
+$(U,B)$ with an ``artificial'' equilibrium corresponding to the vertex $\0$,
+in theorem \ref{unit-vector-dual-thm} we have a correspondence between
 the completely labeled facets of the polytope $Q$
-(the completely labeled vertices of $P^l$ in theorem \ref{unit-vector-thm})
-and the equilibria of the unit vector game $(U,B)$,
+and the equilibria of the unit vector game $(U,B)$
 with the ``artificial'' equilibrium corresponding to the
-facet $F_0$ (the vertex $\0$ in theorem \ref{unit-vector-thm}).
-This proves the following proposition.
+facet $F_0$.
 
-\begin{proposition}\label{ne-cl-pbl}
-The problem 2-{\sc Nash} for unit vector games is
-polynomial-time reducible
-\todo{do we have to prove ``polynomial''?}
-to the problems {\sc Another Completely Labeled Vertex} and its dual
-{\sc Another Completely Labeled Facet}, where
+\todo[inline]{prove polynomial encoding - therefore poly reduction
+
+edit from here}
+
+Consider now the problems
 
 \begin{fctproblem}
-{\sc Another Completely Labeled Vertex}
+{Another Completely Labeled Vertex}
 {A simple $m$-dimensional polytope $S$ with $m+n$ facets;
-a labeling $l:[m+n]\to [n]$;
-a facet $F_0$ of $S$, completely labeled by $l$.}
+a labeling $l_f:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_f$.}
 {A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
 \end{fctproblem}
 
 \begin{fctproblem}
-{\sc Another Completely Labeled Vertex}
+{Another Completely Labeled Facet}
 {A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
-a labeling $l:[m+n]\to [n]$;
-a vertex $v_0$ of $S$, completely labeled by $l$.}
-{A vertex $v\neq v_0$ of $S$, completely labeled by $l$.}
+a labeling $l_v:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_v$.}
+{A facet $F\neq F_0$ of $S$ completely labeled by $l_v$.}
 \end{fctproblem}
 
+
+
+\begin{proposition}\label{ne-cl-pbl}
+The problem 2-{\sc Nash} for unit vector games is
+polynomial-time reducible to the problems
+{\sc Another Completely Labeled Vertex} and its dual
+{\sc Another Completely Labeled Facet}.
 \end{proposition}
-
-\todo[inline]{
-nondegeneracy; made nondegenerate by ``lexicographic'' perurbation
-(what does it mean?);
-
-nondegeneracy -> br polytope $P$ is simple -> $P^\Delta$ is simplicial
-
-so: this goes before!
-
-ex pg 9; odd no eq, mention homotopy method (find ref)
-(tie with Nash, again?)
-}
