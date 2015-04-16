@@ -1,17 +1,26 @@
-\section{Oiks and index}
 
-oiks as in edmonds. lh is exchange on d - 2, lh dual is exchange on d - 1
-(or d-1 and d?) oik.
+Advantage of two dual cyclic polytopes as in SvS 06 over only one
+(and without "prefix" in labels for gale string) as seen in SvS 15 is:
+good example of exp on supports - see SvS 15
 
-pbl index:
+thanks to dual of theorem SvS-15 \ref{unit-paths}, when doing labeling
+we can take the str of labels $l(n+j)\cdots l(n+m)$
+instead of $l(1)\cdots l(n+m)$,
+that is, we could cut the ``artificial'' first labels $12...n$.
 
-endpoints of LHG have opposite sign (Z graph)
-so the graph of "what eq can you reach from eq" is bipartite (not nec connected,
-ex in shapley 74)
+%l_s(i)=i\text{ for }i\in [d] \\
+%l_s(d+j)=l(j)\text{ for }j\in [n].
 
-but - ex octahedron - every rp reachable from each other rp
+After all, in main we're studying ANOTHER GALE
+in general, not nec starting from $12...n$; and we're interested in finding
+{\em one} eq that's not the one we started from
+(and is at other end of LPath, since index and so on),
+{\em not all equilibria};
+but the eq we started from is not nec the artificial one - actually,
+if we go with this we can take any NE to start looking for another,
+and we're sure to find a ``non-artificial'' one.
+Note: if we were looking for all NE, LH doesn't work anyway - see ex by
+Wilson in Shapley, where ``disconnected'' paths between equilibria.
 
-
-\section{other results}
 
 \# P complexity of finding all (?)

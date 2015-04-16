@@ -1,89 +1,108 @@
+
+
 \section{Lemke Paths and the Lemke-Howson for Gale Algorithm}
 
-\todo[inline]{
-We have NEs $\Leftrightarrow$ completely labeled things (facets, vertices, GS)
-We give now different versions of fundam algorithm to deal with labeling
-looking for compl.label. - in particular in these cases
+In the previous chapter we have defined different, but related, problems
+of the form ``find another completely labeled\ldots'' In this section we
+will focus on different versions of a standard algorithm, first introduced
+by Lemke and Howson in \cite{lh}, that will solve these problems through
+an operation called {\em pivoting} and introducing {\em almost complete}
+labelings next to complete ones. In the next session we will tackle the
+issue of the computational complexity of these algorithms:
+{\sc Another Completely Labeled Facet} and
+{\sc Another Completely Labeled Vertex} are {\bf PPA},
+{\sc Nash} is {\bf PPAD}, as first shown in Papadimitriou \cite{ppad};
+furhermore, as shown by Morris \cite{morris} and by
+Savani and von Stengel \cite{svs}, there are cases of exponential running
+time. This had led us to conjecture that these problems could be exploited
+for a proof of {\bf PPAD} completeness, also considering that finding
+a completely labeled facet (or vertex, or the existence of a Nash
+equilibrium) is {\bf NP} in the case of a general labeled polytope, as
+proven by von Stengel \cite{vs-np-facet}
+\todo{check proof, citation}
+. In the last section we will finally present our original
+\todo{original? main?}
+result, that goes in the opposite direction: the problem \anothergale
+can be solved in polynomial time, that is, it is a problem in {\bf TFP}.
+Unit vector games with dual cyclic best response polytope present therefore
+a case apart, as expected, but not because they are harder than others, but
+because they are easier.
 
-first in version on simple polytopes with labeled facets,
-(name: Lemke-Howson;
-Lemke-Howson 1964, Shapley 1974 beautiful exposition)
+We begin this section with the definition of almost complete labeling; we
+then move on to the classic version of the Lemke-Howson algorithm
+for the problem {\sc Another Completely Labeled Vertex}, as given
+in the beautiful exposition by Shapley \cite{shapley}, and its dual
+version for {\sc Another Completely Labeled Facet}. Finally, we present
+the Lemke-Howson for Gale algorithm.
 
-then dual case with labeled vertices (name???? exchange? cite from???)
+Let $m,n\in \naturals$ with $m\leq n$; consider a set $X$ with $|X|=n$
+and a labeling $l:X\to [m]$. The $m$-uple $x=(x_1,\ldots,x_m)\in X^m$
+is {\em almost completely labeled} if
+$\{ j\in [n]\ |\ x_i=j\text{ for some }i\in [m] \}= [m]\setminus \{ k \}$
+for exactly one $k\in [m]$. That is, all labels appear once in $x$,
+except for the {\em missing label} $k$ and a {\em duplicate label}
+$h\in [m]$ that appears twice.
 
-then in special case Gale strings (name: Lemke-Howson for Gale,
-cite from???).
+Let $P$ be a simple polytope in dimension $d$ with $n$ facets.
+We {\em pivot on the vertices} of $P$ by moving from a
+vertex $x$ to another vertex $y$ connected to $x$ by an edge.
+Note that, since $P$ is simple, there are exactly
+$d$ possible choices for $y$.
+Analogously, we {\em pivot on the facets} of a simplicial polytope $Q$ in
+dimension $d$ by moving from a facet $F$ to a facet $G$ that share
+all vertices but one; and since $Q$ is simplicial, there are $d$ possible
+choices for $G$.
 
-Mention general version - or leave it further results? (maybe better)
-(name: exchange algorithm, Edmonds - Sanit\`{a}). (This case: index more
-problematic - see )
-}
+Suppose now that there is a labeling $l_f:[n]\to [d]$ of the facets of the
+simple polytope $P$.
+If we pivot from a vertex $x$ to a vertex $x'$ we ``leave behind'' a facet $F$
+with label $k$; so, if $x$ has labels $(l_1,\ldots,k,\ldots,l_d)$, then
+$x'$ has labels $(l_1,\ldots,h,\ldots,l_d)$, where $h$ is the label of the
+facet $F'$ that does not have $x$ as its vertex. We call this
+{\em dropping label $k$ and picking up label $h$}, or
+{\em pivoting on label $k$}.
+Analogously, if there is a labeling $l_v:[n]\to [d]$ of the vertices
+of the simplicial poytope $Q$
+and we pivot from a facet $F$ with labels $(l_1,\ldots,k,\ldots,l_d)$
+to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
+{\em drop label $k$ and pick up label $h$}, or that we
+{\em pivot on label $k$}.
 
-
-Consider a labeling $l:[n]\to [m]$, for a set $X$ with $|X|=n$.
-Then $x=(x_1,\ldots,x_m)\in X^m$ is {\em almost completely labeled} if
-$|\{ j\in [n]\ |\ x_i=j\text{ for some }i\in [m]  \}|
-= [m]\setminus \{ k \}$ for exactly one $k\in [m]$.
-This mean that all labels appear once in $x$,
-except for the {\em missing label} $k$,
-and a {\em duplicate label} $\bar{k}\in [m]$ that appears twice.
-
-\todo[inline]{now we see in poly with labeled facets, cl vertices}
-
-Let $P$ be a simple polytope in dimension $m$ with $n$ facets.
-We define the operation of {\em pivoting on vertices} as moving from a
-vertex $x$ of $P$ to another vertex $y$ such that there is an edge
-between $x$ and $y$. Note that, since $P$ is simple, there are exactly
-$m$ possible choices for $y$.
-
-Now let $l_f:[n]\to [m]$ be a labeling of the facets of $P$ such that there
-is at least one completely labeled vertex $x_0$ of $P$.
-Note that if we pivot from vertex $v$ we ``leave behind''
-a facet $F$, that has label $k$; we call this {\em dropping label $k$}.
-We will then reach a vertex $w$ that shares with $v$ all facets except
-$F$ (that contains $v$ but not $w$) and another facet $G$
-(that contains $w$ but not $v$) that has label $j$;
-we will call this {\em picking up label $j$}.
-We give the {\em Lemke-Howson algorithm} \todo{reference!}
-as in \ref{lh-alg}.
+We consider now the case of a simple polytope with labeled facets.
+Suppose that the labeling $l_f$ is such that there is at least one
+completely labeled vertex $x_0$ of $P$. Algorithm  \ref{lh-alg} then gives
+the {\em Lemke-Howson algorithm} algorithm (see Shapley in \cite{shapley}).
 
 \begin{algorithm}\label{lh-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
-A simple $m$-polytope $P$ with $n$ facets.
-A labeling $l_f:[n]\to [m]$ of the facets of $P$.
+A simple $d$-polytope $P$ with $n$ facets.
+A labeling $l_f:[n]\to [d]$ of the facets of $P$.
 A vertex $x_0$ of $P$, completely labeled for $l$.
 }
 \Output{
 A completely labeled vertex $x\neq x_0$ of $P$.
 }
 \BlankLine
-choose a label $k\in [n]$ \\
-pivot from $x_0$ to $x$ dropping label $k$ \\
+choose any label $k\in [d]$ \\
+pivot on label $k$ from $x_0$ to $x$ \\
 \While{ $x$ is not completely labeled }
 {
-pivot from $x$ to $x'\neq x_0$ dropping the duplicate label $j$ \\
-rename $x_0 = x$, $x = x'$
+pivot on the duplicate label $h$ from $x$ to $x'\neq x_0$  \\
+set $x_0 = x$, $x = x'$
 }
 \Return $x$
 \caption{Lemke-Howson algorithm}
 \end{algorithm}
 
-The steps of the Lemke-Howson algorithm result in a {\em Lemke path}
+Running the Lemke-Howson algorithm defines a {\em Lemke path}
 that connects two completely labeled vertices through
-{\em $k$-almost complementary} vertices and edges, that is,
 almost completely labeled vertices and edges where the only missing label
-is $k$.
-It remains to show that $y\neq x_0$. This comes from the fact that the Lemke
-paths are {\em simple paths}, that is, there are no ``loops'' where a vertex
-is visited more than once.
-This is not possible because at each vertex there are
-only two edges corresponding to the missing label $k$, since $P$ is not
-degenerate; one is the edge that is traversed to get to the vertex, one is
-the one that is traversed to leave it in the next step.
+is $k$. This is fundamental to show that the Lemke-Howson algorithm does,
+indeed, work.
 
-\begin{theorem}\label{lh-works-thm}
+\begin{proposition}\label{lh-works-thm}
 The Lemke-Howson algorithm \ref{lh-alg} returns a solution to the problem
 {\sc Another Completely Labeled Vertex}.
 
@@ -92,90 +111,99 @@ in a simple polytope with labeled facets is even.
 
 \begin{proof}
 
+The fact that $x$ is completely labeled is trivial;
+we must show that $x\neq x_0$.
+At each vertex $x'$ of the Lemke path there are only two edges corresponding to
+the missing label $k$, since $P$ is simple; one is the edge that has been
+traversed to get to $x'$, the other one will be traversed to leave it
+in the next step. Therefore, there are no ``loops'' where a vertex
+is visited more than once; Lemke paths are {\em simple paths}.
+
+Suppose now that there are an odd number of completely labeled vertices;
+that is, that there is an odd number of endpoints of Lemke paths.
+
 \todo[inline]{pf parity via Lemke paths}
 
 \end{proof}
+\end{proposition}
+
+Applying the parity result in proposition \ref{lh-works-thm} to the case of
+a bimatrix game (not necessarily a unit vector game)
+\todo{note: two polytopes, see todo at end section labels}
+, and remembering that
+the point $(\0,\0)$ corresponds to an
+``artificial'' equilibrium, we have the following result, due to Lemke and
+Howson \cite{lh}.
+
+\begin{theorem}{\rm (Lemke-Howson \cite{lh})}
+Every non-degenerate bimatrix game has an odd number of Nash equilibria.
 \end{theorem}
 
-In the context of finding the Nash equilibrium of a bimatrix game $(A,B)$,
-there are two equivalent implementations of the Lemke-Howson algorithm.
+\begin{example}
+We now give an example of implementing the Lemke-Howson algorithm to find
+a Nash equilibrium of a bimatrix game.
 
 We can consider the game $C$ as in proposition \ref{symmetric-eq-thm},
 and the associated polytope
 $S = \{ z\in\reals^{m+n}\ |\ z\geq\0,\ Cz\leq\1 \}$,
 labeling the $2(m+n)$ inequalities defining the facets of of $S$
 as $1,\ldots,m+n,1,\ldots,m+n$.
-Then applying the Lemke-Howson algorithm starting from
-vertex $\0$ returns a Nash equilibrium $(z,z)$ of $C$ and a corresponding
-$(x,y)=z$ a Nash equilibrium of $(A,B)$.
+Then we will apply the Lemke-Howson algorithm starting from
+vertex $\0$; this will eventually return a Nash equilibrium $(z,z)$ of
+$C$, and the corresponding Nash equilibrium $(x,y)=z$ of $(A,B)$.
 
 We can also follow the ``traditional'' version of the Lemke-Howson algorithm;
-a very clear exposition of this can be found in Shapley \cite{shapley}.
+a very clear exposition of this can be found (once again) in
+Shapley \cite{shapley}.
+
 Let $P$ and $Q$ be the best response polytopes of $(A,B)$ as in
 \ref{br-polytopes}. We then move alternately on $P$ and $Q$, starting from
 the couple of vertices $(\0,\0)$.
 Since we move in $\reals^m$ and $\reals^n$ instead of $\reals^{m+n}$,
-this version is more practical to visualize,
-as shown in the following example.
-
-\begin{example}
+this version is much easier to visualize.
 
 \todo[inline]{ex Savani - von Stengel, pag. 11; fig 8 are Schegel diagrams of
 BR polytopes.}
 
 \end{example}
 
-Theorem \ref{lh-works-thm} has a straightforward dual version.
-Let $Q$ be a simplicial polytope in dimension $m$ with $n$ vertices.
-We {\em pivot on facets} by moving from facet $F$ to facet $G$
-that shares an edge with $F$. Since $P$ is simplicial,
-there are exactly $m$ possible choices for $G$.
-Let $l_v:[n]\to [m]$ be a labeling of the vertices of $P$ such that there
-is at least one completely labeled facet $F_0$.
-We {\em drop label $k$} and {\em pick up label $j$} when pivoting
-from a facet $F$ to a facet $G$ that shares with $F$ all vertices
-except a vertex $v$ with label $k$ that belongs to $F$ but not $G$,
-and another vertex $w$ with label $j$ that belongs to $G$ but not $F$.
-The Lemke-Howson algorithm then becomes the theorem in \ref{lh-dual-alg}.
-\todo{reference!}
+The dual version of the Lemke-Howson algorithm \ref{lh-alg}
+and of proposition \ref{lh-works-thm} is quite straightforward.
 
 \begin{algorithm}\label{lh-dual-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
 A simplicial $m$-polytope $Q$ with $n$ vertices.
-A labeling $l_v:[n]\to [m]$ of the vertices of $P$.
+A labeling $l_v:[n]\to [d]$ of the vertices of $P$.
 A vertex $F_0$ of $Q$, completely labeled for $l$.
 }
 \Output{
 A completely labeled facet $F\neq F_0$ of $Q$.
 }
 \BlankLine
-choose a label $k\in [n]$ \\
-pivot from $F_0$ to $F$ dropping label $k$ \\
-\While{ $F$ is not completely labeled }
+choose any label $k\in [d]$ \\
+pivot on label $k$ from $F_0$ to $F$ \\
+\While{ $x$ is not completely labeled }
 {
-pivot from $F$ to $F'\neq F_0$ dropping the duplicate label $j$ \\
-rename $F_0 = F$, $F = F'$
+pivot on the duplicate label $h$ from $F$ to $F'\neq x_0$  \\
+set $F_0 = x$, $F = F'$
 }
-\Return $F$
+\Return $x$
 \caption{Lemke-Howson algorithm on facets}
 \end{algorithm}
 
-Considering the dual of Lemke paths on (almost) completely labeled facets,
-we get the dual result to theorem \ref{lh-works-thm}.
-
-\begin{theorem}\label{lh-dual-works-thm}
-The algorithm \ref{lh-dual-alg} returns a solution to the problem
+\begin{proposition}\label{lh-dual-works-thm}
+Algorithm \ref{lh-dual-alg} returns a solution to the problem
 {\sc Another Completely Labeled Facet}.
 
 Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
-\end{theorem}
+\end{proposition}
 
 \begin{example}
 
-\todo[inline]{example! octahedron? so we're ready for index?}
+\todo[inline]{example: octahedron! so we're ready for index!}
 
 \end{example}
 
