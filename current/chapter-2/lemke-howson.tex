@@ -207,33 +207,23 @@ in a simplicial polytope with labeled vertices is even.
 
 \end{example}
 
-To find a Nash equilibrium of a unit vector game $(U,B)$, where
-$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$,
-we can apply theorem \ref{unit-vector-thm} and algorithm \ref{lh-alg},
-or we can apply the dual theorem \ref{unit-vector-dual-thm} and
-algorithm \ref{lh-dual-alg}.
-The first case relies on the polytope
-$P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ defined
-in \ref{p-l-unitv}; theorem \ref{unit-vector-thm} shows that
-$P^l$ encodes all the Nash equilibria of $(U,B)$ as completely labeled
-vertices, with an ``artificial'' equilibrium corresponding to the
-vertex $\0$.
-The second case relies on the polytope $Q$, defined
-as the convex hull of vertices $-e_i$ for $i\in [m]$ and
-$c_j=\frac{b_j}{1 - \1\T b_j}$ for $j\in [n]$; analogously, theorem
-\ref{unit-vector-dual-thm} shows that $Q$ encodes all the Nash equilibria
-of $(U,B)$ as completely labeled facets, with the ``artificial''
-equilibrium corresponding to the facet $F_0=\conv(-e_1,\ldots,-e_m)$.
-
-On the other hand, we can consider $(U,B)$ as any bimatrix game, and
-apply algorithm \ref{lh-alg} to the product of the best response
-polytopes $P$ and $Q$.
+In the case of unit vector games, theorems \ref{unit-vector-thm} and
+\ref{unit-vector-dual-thm} imply that it is enough to apply
+algorithm \ref{lh-alg} to the polytope
+$P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ in (\ref{p-l-unitv}),
+or the dual algorithm \ref{lh-dual-alg} to the polytope
+$P^\Delta=\conv(\{ e_1,\ldots,e_m \})\ \cup\ \{ c_1,\ldots,c_n \})$ in
+\ref{p-l-dual}.
+This allows to find one Nash equilibrium by pivoting on $P^l$ or $P^\Delta$,
+instead of considering the product of the best response polytopes
+$P$ and $Q$.
 The projection of a Lemke path for a missing label $i\in [m]$
-on $P\times Q$ to $P$ defines a Lemke path in $P^l$. \todo{how?}
-However, $P\times Q$ has $m+n$ labels, therefore there could be
+on $P\times Q$ to $P$ defines a Lemke path in $P^l$;
+\todo{how?}
+however, $P\times Q$ has $m+n$ labels, therefore there could be
 Lemke paths for a missing label $m+j$ with $j\in [n]$
-on $P\times Q$ that get lost in the projection on $P^l$.
-The following theorem, proved by Savani and von Stengel in \cite{uvg},
+on $P\times Q$ that are ``lost'' in the projection on $P^l$.
+The following theorem, by Savani and von Stengel \cite{uvg},
 shows that there is no loss of generality in studying Lemke paths on
 $P^l$; an analogous result holds for the dual case.
 
@@ -249,19 +239,19 @@ for missing label $k$ if $k\in [m]$,
 and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
 \end{theorem}
 
-As before, we now focus on the case of unit vector games
+We finally focus on the case of unit vector games
 where the simplicial polytope $Q$ is cyclic; that is,
 the case that we can study from the point of view of Gale strings.
 
-Consider a Gale string $s\in G(m,n)$ with $d$ even, identifying the
-indices modulo $n$ (that is, considering the string as a ``loop'');
-let $s(k)=1$ for an index $k\in [n]$. Then, by Gale evenness condition,
+Consider $s\in G(m,n)$ with $d$ even as a ``loop'', and
+let $s(i)=1$ for an index $i\in [n]$. Then, by Gale evenness condition,
 there is an odd run of \1 's in $s$ either on the left or on the right
-of position $k$; let $j$ be the first index after this run.
-A {\em pivoting on $s$} is then defined as setting $s(k)=0$ and $s(j)=1$.
-Given a labeling $l_s:[n]\to [m]$, pivoting as above becomes
-{\em dropping label $k$} and {\em picking up label $j$}.
-The {\em Lemke-Howson for Gale algorithm} is defined as in \ref{lhg-alg}.
+of position $i$; let $j$ be the first index after this run.
+A {\em pivot on $s$} is then defined as setting $s(i)=0$ and $s(j)=1$.
+Given a labeling $l_s:[n]\to [m]$, we say that we
+{\em pivot on label $l(i)$}, {\em dropping label $l(i)$} and
+{\em picking up label $l(j)$}.
+The {\em Lemke-Howson for Gale algorithm} is defined in \ref{lhg-alg}.
 
 \begin{algorithm}\label{lhg-alg}
 \SetKwInOut{Input}{input}
@@ -275,88 +265,35 @@ A completely labeled Gale string $s\in G(d,n)$ such that $s\neq s_0$.
 }
 \BlankLine
 choose a label $k\in [d]$ \\
-pivot on $s_0$ dropping $k$, obtaining $s$ \\
+pivot on label $k$ from $s_0$ to $s$ \\
 \While{ $s$ is not completely labeled }
 {
-pivot from $s$ to $s'\neq s_0$ dropping the duplicate label $j$ \\
+pivot on the duplicate label $h$ from $s$ to $s'\neq s_0$ \\
 rename $s_0=s$, $s=s'$
 }
 \Return $s$
 \caption{Lemke-Howson for Gale algorithm}
 \end{algorithm}
 
-Considering the Lemke paths defined by algorithm \ref{lhg-alg} we can
-prove that the Lemke-Howson for Gale algorithm works and a parity result,
-analogously to theorems \label{lh-works-thm} and \label{lh-dual-works-thm}.
+The analogous of propositions \ref{l-h-works-thm} and
+\ref{l-h-dual-works-thm} is the following.
 
-\begin{theorem}\label{lhg-works-thm}
+\begin{proposition}\label{lhg-works-thm}
 The Lemke-Howson for Gale algorithm \ref{lhg-alg} returns a
 solution to the problem \anothergale.
 
 Furthermore, the number of completely labeled Gale strings
 $s\in G(d,n)$, where $d$ is even, is even.
-\end{theorem}
+\end{proposition}
 
 \begin{example}
 
-\todo[inline]{example}
+\todo[inline]{example
+
+something with more than two equilibria
+
+Morris
+
+}
 
 \end{example}
-
-In \ref{gs-labeling-unitv} we have given a labeling $l_s:[n+d]\to [d]$
-to study the Nash equilibria (including the ``artificial'' equilibrium)
-of the unit vector game $(U,B)$, where $U=(e_{l(1)}\cdots e_{l(n)})$
-and $l:[n]\to [d]$, as Gale strings $s\in G(n+d,d)$ that are completely
-labeled by $l_s$, with the ``artificial'' equilibrium corresponding to
-the string $1^d0^n$.
-
-
-
-\todo[inline]{
-
-check!
-
-thanks to dual of theorem SvS-15 \ref{unit-paths}, when doing labeling
-we can take the str of labels $l(n+j)\cdots l(n+m)$
-instead of $l(1)\cdots l(n+m)$,
-that is, we could cut the ``artificial'' first labels $12...n$.
-
-%l_s(i)=i\text{ for }i\in [d] \\
-%l_s(d+j)=l(j)\text{ for }j\in [n].
-
-After all, in main we're studying ANOTHER GALE
-in general, not nec starting from $12...n$; and we're interested in finding
-{\em one} eq that's not the one we started from
-(and is at other end of LPath, since index and so on),
-{\em not all equilibria};
-but the eq we started from is not nec the artificial one - actually,
-if we go with this we can take any NE to start looking for another,
-and we're sure to find a ``non-artificial'' one.
-Note: if we were looking for all NE, LH doesn't work anyway - see ex by
-Wilson in Shapley, where ``disconnected'' paths between equilibria.
-}
-
-
-\todo[inline]{
-
-complexity considerations: PPAD complexity of GALE
-(also of ANOTHER CL VERTEX/FACET, analogous pf;
-for 2-NASH we have completeness by DGP+CD)
-
-Now: it's PPAD; but is it complete?
-(Also, PPAD is relatively new, results welcome...)
-
-Interesting case: Morris paths (Morris 1994), translates in terms of games
-by SvS 2006. Exp running time!
-
-Could it be used to show a completeness result?
-Next section: we show that on the other hand it takes polynomial (!) time
-to find a result, so a completeness result would mean that P=PPAD
-- very unlikely! (One can dream, though...)
-
-----
-
-Advantage of two dual cyclic polytopes as in SvS 06 over only one
-(and without "prefix" in labels for gale string) as seen in SvS 15 is:
-good example of exp on supports - see SvS 15
-}
