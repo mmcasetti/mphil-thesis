@@ -51,27 +51,70 @@ the fundamental theorem by Nash (\cite{nash}).
 Every finite game in normal form has a Nash equilibrium.
 \end{theorem}
 
-We give a classic example of game: matching pennies.
+We give three classic examples of game: matching pennies, the prisoners'
+dilemma and coordination.
 
 \begin{example}
-In the bimatrix game {\em matching pennies}, both players have payoff
-zero unless they pay the same strategy. In this case,
-player 1 (the {\em pursuer}) has payoff 1 and player 2 (the \emph{evader}),
-has payoff -1.
+In the non-symmetric zero-sum game {\em matching pennies}, both players have
+payoff zero unless they play the same strategy. In this case,
+player 2 (the {\em evader}) pays a sum to payoff 1 (the \emph{pursuer}).
 
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
 \bimatrixgame{3mm}{2}{2}{{{\scriptsize pursuer}}}{{{\scriptsize evader}}}
-{{{\scriptsize head}}{{\scriptsize tail}}}
-{{\scriptsize head}{\scriptsize tail}}
+{{\scriptsize up}{\scriptsize down}}
+{{\scriptsize up}{\scriptsize down}}
 {
-\payoffpairs{1}{{1}0}{{-1}0}
-\payoffpairs{2}{0{1}}{0{-1}}
+\payoffpairs{1}{{1}{0}}{{-1}{0}}
+\payoffpairs{2}{{0}{1}}{{0}{-1}}
 }
 \end{center}
 
 At the unique equilibrium of the game, each player follows the uniform
 distribution over their strategies.
+
+In the symmetric non zero-sum {\em prisoners' dilemma}, each player must
+decide whether to ``help'' the other one or to ``betray'' them. If both
+players help each other, they will get a small reward; if both betray, they
+will pay a small penalty; if one betrays and the other cooperate the former
+will get a large reward and the latter will pay a large penalty.
+
+\begin{center}
+\def\mm#1{\makebox(0,0){\strut#1}}
+\bimatrixgame{3mm}{2}{2}{{{\small 1}}}{{{\small 2}}}
+{{\scriptsize betray}{\scriptsize help}}
+{{\scriptsize betray}{\scriptsize help}}
+{
+\payoffpairs{1}{{-2}{-2}}{{10}{-8}}
+\payoffpairs{2}{{-8}{10}}{{5}{5}}
+}
+\end{center}
+
+The only equilibrium is the profile in which both players betray.
+Assume that player 1 helps: then she must switch to betrayal, since she would
+get $10$ instead of $5$ if player 2 helps and $-2$ instead of $-8$ if player 2
+betrays. The same applies to player 2, so both players will betray.
+Note that the payoff matrices can be rewritten as
+$A=\binom{1\ 3}{0\ 2}$ and $B=A\T$.
+
+As an example of game with more than one equilibrium is {\em coordination}:
+both players drive on a mountain road; they lose if drive on the same side
+of the road and win if they avoid each other, regardless of which side they
+take.
+
+\begin{center}
+\def\mm#1{\makebox(0,0){\strut#1}}
+\bimatrixgame{3mm}{2}{2}{{{\small 1}}}{{{\small 2}}}
+{{\scriptsize mountain}{\scriptsize valley}}
+{{\scriptsize mountain}{\scriptsize valley}}
+{
+\payoffpairs{1}{{0}{0}}{{1}{1}}
+\payoffpairs{2}{{1}{1}}{{0}{0}}
+}
+\end{center}
+
+Both (mountain,road) and (road,mountain) are Nash equilibria.
+
 \end{example}
 
 Consider the problem $n$-{\sc Nash}, as follows.
