@@ -194,50 +194,6 @@ it has labels $4,5,6$ in $Q$, so it is completely labeled, and corresponds
 to the ``artificial'' equilibrium.
 \end{example}
 
-\todo[inline]{
-
-nondegeneracy.
-
-in the following: equilibria are on vertices, not simply points
-
-$P$ is simple, so later $P^\Delta$ is simplicial.
-
-``lexicographic'' perurbation makes it non-degenerate (see AB).
-
-ex pg 9 SvS-15
-
-From now on, we assume nondegeneracy.
-}
-
-The characterization of Nash equilibria as completely
-labeled pairs $(x,y)$ holds for arbitrary bimatrix games.
-For considering algorithms, it is useful to assume that the
-game is \emph{non\-degen\-erate} in the sense that no point in
-$P$ has more than $m$ labels, and no point in $Q$ has more
-than $n$ labels.
-Clearly, for a non\-degen\-erate game, in an equilibrium
-$(x,y)$ each label appears exactly once either as a label of
-$x$ or of~$y$.
-
-Nondegeneracy is equivalent to the condition that the
-number of pure best responses against a mixed strategy is never
-larger than the size of the support of that mixed strategy.
-It implies that $P$ is a \emph{simple} polytope in the sense
-that no point of $P$ lies on more than $m$ \emph{facets},
-and similarly that $Q$ is a simple polytope.
-A facet is obtained by turning one of the inequalities
-that define the polytope into an equality, provided the
-inequality is irredundant, that is, cannot be omitted
-without changing the polytope.
-A redundant inequality in the definition of $P$ and $Q$ may
-also give raise to a degeneracy if it corresponds to a pure
-strategy that is weakly (but not strictly) dominated by, or
-payoff equivalent to, a mixture of other strategies.
-For a detailed discussion of degeneracy see von Stengel
-(2002).
-
-\todo[inline]{end: degeneracy}
-
 We will now consider a particular class of games, called
 {\em unit vector games}. These are games of the form $(U,B)$,
 where the columns of the matrix $U$ are unit vectors.
@@ -322,6 +278,82 @@ Best response regions for the symmetric game $(C,C\T)$ in (\ref{C}).
 \end{figure}
 \end{example}
 
+The characterization of Nash equilibria as completely labeled pairs $(x,y)$
+holds for arbitrary bimatrix games. From now on, we will also assume that
+the games are {\em nondegenerate}, that is, no point in $P$ has more than
+$m$ labels, and no point in $Q$ has more than $n$ labels. If $(x,y)$ is an
+equilibrium of a nondegenerate game, it is completely labeled and each label
+appears exactly once either as a label of $x$ or as a label of $y$.
+Therefore,
+nondegeneracy is equivalent to the condition that the number of pure best
+responses against a mixed strategy is never larger than the size of the
+support of that mixed strategy.
+In turn, this implies that no point of $P$ lies on more
+than $m$ facets and no point of $Q$ lies on more
+than $n$ facets, so the best response polytopes $P,Q$ of a
+nondegenerate game are simple.
+
+\todo[inline]{
+``lexicographic'' perurbation makes it non-degenerate (see AB).
+}
+
+\begin{example}
+An example of degenerate game is given by $(C,C\T)$ where
+\begin{equation}
+\label{Cdeg}
+C = \left(\begin{matrix}0&4&0\\ 2&2&2\\
+4&0&0\end{matrix}\right),
+\qquad
+C\T = \left(\begin{matrix}0&2&4\\ 4&2&0\\
+0&2&0\end{matrix}\right).
+\end{equation}
+As it is shown in Figure \ref{deg-fig-1}, the game $(C,C\T)$ is degenerate
+because the mixed strategy $x=(\frac12,\frac12,0)$, that also defines the
+unique symmetric equilibrium $(x,x)$ of the game, has three pure best
+responses.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Xsymmdeg.pdf}%
+\hfill\strut
+\caption{%
+Best-response regions of the degenerate symmetric game (\ref{Cdeg})
+with a unique symmetric equilibrium.
+}
+\label{deg-fig-1}
+\end{figure}
+
+Note that the corresponding equilibria $(x,y)$ of the imitation game
+$(I,C\T)$ are not unique, because due to degeneracy any convex
+combination of $(\frac12,\frac12,0)$ and $(\frac13,\frac13,\frac13)$
+can be chosen for~$y$, as shown in Figure~\ref{deg-fig-2}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Xdeg.pdf}%
+\hfill
+\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Yimitdeg.pdf}%
+\hfill\strut
+\caption{%
+Labeled mixed-strategy sets for the imitation game $(I,C\T)$
+for the degenerate symmetric game (\ref{Cdeg}) where the
+equilibria $(x,y)$ are not unique.
+}
+\label{deg-fig-2}
+\end{figure}
+
+This shows how the reduction between symmetric equilibria $(x,x)$ of
+a symmetric game and Nash equilibria $(x,y)$ of the corresponding
+imitation game as in theorem \ref{imitation-thm} does not preserve
+uniqueness if the game is degenerate.
+\end{example}
+
+\todo[inline]{
+nondeg: equilibria are on vertices, not simply points
+}
+
+
 The correspondence between equilibria of a unit vector game
 and completely labeled points
 \todo{also in thm: vertices, if nondeg}
@@ -329,7 +361,7 @@ of a polytope is given by the following
 theorem, first proved in dual form by Balthasar \cite{balthasar} and
 given here as in Savani and von Stengel \cite{uvg}.
 
-\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}\cite{uvg}
+\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}
 \label{unit-vector-thm}
 Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
 $U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let $N_i = \{ j\in [n]\ |\ l(j)=i \}$ for
