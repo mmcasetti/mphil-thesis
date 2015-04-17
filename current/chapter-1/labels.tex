@@ -72,6 +72,53 @@ called {\em best response regions}. We give an example of this construction.
 
 With graphics.}
 
+As an example, consider the $3\times 3$ game $(A,B)$ with
+\begin{equation}
+\label{AB}
+A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
+0&0&1\end{matrix}\right),
+\qquad
+B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
+0&2&0\end{matrix}\right).
+\end{equation}
+The labels $1,2,3$ represent the pure strategies of player~1
+and $4,5,6$ those of player~2.
+Figure~\ref{f1} shows $X$ and $Y$ with these labels shown as
+circled numbers.
+The interiors of these triangles are covered by
+\emph{best-response regions} labeled by the other player's
+pure strategies, which are closed polyhedral sets where the
+respective pure strategy is a best response.
+For example, the best-response region in $Y$ with label~$1$
+is the set of those $(y_1,y_2,y_3)$ so that $y_1\ge y_2$ and
+$y_1\ge y_3$, due to the particularly simple form of $A$ in
+(\ref{AB}).
+The outsides of $X$ and $Y$ are labeled with the player's
+own pure strategies where these are not played.
+These outside facets are opposite to the vertex where only
+that pure strategy is played; for example, label~$1$ is the
+label of the facet of $X$ opposite to the vertex $(1,0,0)$.
+In Figure~\ref{f1} there is only one pair $(x,y)$
+that is completely labeled, namely $x=(\frac13,\frac23,0)$
+with labels $3,4,5$ and $y=(\frac12,\frac12,0)$ with labels
+$1,2,6$, so this is the only Nash equilibrium of the game.
+
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Xnondeg.pdf}%
+\hfill
+%\vrule height 52mm ~ \vrule height 27ex
+\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Yimit.pdf}%
+\hfill\strut
+\caption{%
+Labeled mixed strategy sets $X$ and $Y$ for the game
+(\ref{AB}).
+}
+\label{f1}
+\end{figure}
+
 \end{example}
 
 The point of view of best response regions can be translated to an equivalent

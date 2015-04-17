@@ -12,15 +12,32 @@ Computation in Games}
 \linespread{1.5}
 \setlength{\textwidth}{13cm}
 \setlength{\oddsidemargin}{2.5cm}
+\usepackage[T1]{fontenc}
 
 %% PACKAGES
+
+%% maths symbols and fonts
 
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
+%% images (TODO: remove xy)
+
 \usepackage[all]{xy}
+
+\usepackage{xcolor,graphicx}
+\usepackage[font=small,format=hang,justification=justified,labelfont=bf,labelsep=quad]{caption}
+
+
+%% hyperref
+
+\usepackage[pdftex,bookmarks,colorlinks]{hyperref}
+\hypersetup{citecolor=red,linkcolor=blue}
+
+% When printing
+% \hypersetup{colorlinks=false}
 
 %% THEOREMS and ENVIRONMENTS
 
@@ -165,7 +182,6 @@ Computation in Games}
 \def\tdot{$\cdot$}
 \def\gale{{\sc{Gale}}}
 \def\anothergale{{\sc{Another Gale}}}
-
 
 %%% END PREAMBLE
 
