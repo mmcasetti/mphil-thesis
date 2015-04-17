@@ -67,93 +67,15 @@ We give two examples of the construction used in theorem \ref{gale-thm}.
 
 \begin{example}\label{gs-pm-ex}
 
-\todo[inline]{example: new, no double labels, graphs!}
-
-Let $l=12343122$ be a string of labels. Then the egdes $e_i$ of the graph
-$G$ obtained from the construction in the proof of theorem  \ref{gale-thm}
-will be as follow:
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+[o][F-]{1} \ar@/^1pc/@{-}[r] |{e_1} &
-*+[o][F-]{2} \ar@/^1pc/@{-}[r] |{e_2} &
-*+[o][F-]{3} \ar@/^1pc/@{-}[r] |{e_3} &
-*+[o][F-]{4} \ar@/^1pc/@{-}[r] |{e_4} &
-*+[o][F-]{3} \ar@/^1pc/@{-}[r] |{e_5} &
-*+[o][F-]{1} \ar@/^1pc/@{-}[r] |{e_6} &
-*+[o][F-]{2} \ar@/^1pc/@{-}[r] |{cycle} &
-*+[o][F-]{2} \ar@/^2pc/@{-}[lllllll] |{e_7} \\
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=40ex]{chapter-2/fig/perfect-matching.pdf}%
+\hfill\strut
+\caption{%
+...
 }
-\end{displaymath}
-
-Given the vertices $v\in [4]$, the graph $G$ will be:
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+[o][F-]{1}
-\ar@/^1pc/@{-}[rr] |{e_1}
-\ar@{-}[rr] |{e_6}
-\ar@/_1pc/@{-}[rr] |{e_7}
-\ar@{-}[ddrr] |{e_5}
-& &
-*+[o][F-]{2}
-\ar@{-}[dd] |{e_2}
-\\
-\\
-*+[o][F-]{3}
-\ar@{-}[rr] |{e_3}
-\ar@/_1pc/@{-}[rr] |{e_4}
-& &
-*+[o][F-]{4}
-}
-\end{displaymath}
-
-A perfect matching for $G$ is given by $M=\{e_1, e_4\}$.
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+[o][F-]{1}
-\ar@/^1pc/@{-}[rr] |{e_1}
-\ar@{.}[rr] |{e_6}
-\ar@/_1pc/@{.}[rr] |{e_7}
-\ar@{.}[ddrr] |{e_5}
-& &
-*+[o][F-]{2}
-\ar@{.}[dd] |{e_2}
-\\
-&
-&
-\\
-*+[o][F-]{3}
-\ar@{.}[rr] |{e_3}
-\ar@/_1pc/@{-}[rr] |{e_4}
-& &
-*+[o][F-]{4}
-}
-\end{displaymath}
-
-In turn, this corresponds to the completely labeled Gale string $11011000$.
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+<1em>[F-:<12pt>]{\txt{1 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{{\bf e_1}} &
-*+<1em>[F-:<12pt>]{\txt{2 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{e_2} &
-*+<1em>[F-:<12pt>]{\txt{3 \\ 0}} \ar@/^1pc/@{-}[r] |{e_3} &
-*+<1em>[F-:<12pt>]{\txt{4 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{{\bf e_4}} &
-*+<1em>[F-:<12pt>]{\txt{3 \\ {\bf 1}}} \ar@/^1pc/@{-}[r] |{e_5} &
-*+<1em>[F-:<12pt>]{\txt{1 \\ 0}} \ar@/^1pc/@{-}[r] |{e_6} &
-*+<1em>[F-:<12pt>]{\txt{2 \\ 0}} \ar@/^1pc/@{-}[r] |{cycle} &
-*+<1em>[F-:<12pt>]{\txt{2 \\ 0}} \ar@/^3pc/@{-}[lllllll] |{e_7} \\
-}
-\end{displaymath}
+\label{perfect-matching}
+\end{figure}
 
 \end{example}
 
@@ -166,24 +88,15 @@ is not always possible, as shown in the next example.
 
 Let us consider the labeling $l=121314$. The associated graph $G$ will be
 
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-1
-\ar@/^1pc/@{-}[rr] |{e_1}
-\ar@{-}[rr] |{e_2}
-\ar@/^1pc/@{-}[ddrr] |{e_3}
-\ar@{-}[ddrr] |{e_4}
-\ar@{-}[dd] |{e_5}
-\ar@/_1pc/@{-}[dd] |{e_6}
-& & 2
-\\
-\\
-3
-& & 4
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-2/fig/no-matching.pdf}%
+\hfill\strut
+\caption{%
+...
 }
-\end{displaymath}
+\label{no-matching}
+\end{figure}
 
 Since there aren't any disjoint edges, it's not possible to find a perfect
 matching for $G$. Analogously, we have seen in example \ref{no-clgs} that
@@ -235,71 +148,20 @@ We give two examples of the construction of theorem \ref{anothergale-thm}.
 
 \todo[inline]{example: new graphs!}
 
-We consider the labeling the string of labels $l=1234312$. We have found in
-example \ref{gs-pm-ex} the completely labeled Gale string $1101100$,
-corresponding to the perfect matching $M=\{e_1, e_4\}$ in the graph $G$.
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+[o][F-]{1}
-\ar@/^1pc/@{-}[rr] |{e_1}
-\ar@{--}[rr] |{e_6}
-\ar@/_1pc/@{.}[rr] |{e_7}
-\ar@{.}[ddrr] |{e_5}
-& &
-*+[o][F-]{2}
-\ar@{.}[dd] |{e_2}
-\\
-&
-&
-\\
-*+[o][F-]{3}
-\ar@{.}[rr] |{e_3}
-\ar@/_1pc/@{-}[rr] |{e_4}
-& &
-*+[o][F-]{4}
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=40ex]{chapter-2/fig/matching-2-edges.pdf}%
+\hfill\strut
+\caption{%
+...
 }
-\end{displaymath}
+\label{matching-2-edges}
+\end{figure}
 
-If instead of $e_1$ we take the parallel edge $e_6$, the resulting matching
-is still perfect.
 \end{example}
 
 We now show a case in which every edge in every perfect matching does
-not have a parallel one is the following. Note that $G$ is a multigraph:
+not have a parallel one is the one in figure \ref{perfect-matching}.
+Note that $G$ is a multigraph:
 we are interested in the edges in the matching, not in all the edges of the
 graph.
-
-\begin{example}
-\todo[inline]{example: new graphs!}
-
-We consider the labeling $l=123142$. There are only two possible perfect
-matchings for the corresponding graph: $M=\{e_2,e_4\}$, that corresponds to
-the completely labeled Gale string $s=011110$, and $M'=\{e_3,e_5\}$, that
-corresponds to $s'=001111$.
-
-\begin{displaymath}
-\xymatrix
-@M=5pt
-{
-*+[o][F-]{1}
-\ar@/^1pc/@{.}[rr] |{e_6}
-\ar@{.}[rr] |{e_1}
-\ar@{--}[dd] |{e_4}
-\ar@{-}[ddrr] |>>>>>>{e_3}
-& &
-*+[o][F-]{2}
-\ar@{--}[dd] |{e_2}
-\ar@{-}[ddll] |>>>>>>{e_5}
-\\
-&
-&
-\\
-*+[o][F-]{3}
-& &
-*+[o][F-]{4}
-}
-\end{displaymath}
-\end{example}
