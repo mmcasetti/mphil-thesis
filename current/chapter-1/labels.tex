@@ -67,12 +67,8 @@ in closed polyhedral sets corresponding to the other player's best response,
 called {\em best response regions}. We give an example of this construction.
 
 \begin{example}
-
-\todo[inline]{page 3--4 of Savani, von Stengel, Unit Vector Games.
-
-With graphics.}
-
-As an example, consider the $3\times 3$ game $(A,B)$ with
+\label{br-game-ex}
+Consider the $3\times 3$ game $(A,B)$ with
 \begin{equation}
 \label{AB}
 A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
@@ -81,28 +77,25 @@ A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
 B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 0&2&0\end{matrix}\right).
 \end{equation}
-The labels $1,2,3$ represent the pure strategies of player~1
-and $4,5,6$ those of player~2.
-Figure~\ref{f1} shows $X$ and $Y$ with these labels shown as
-circled numbers.
-The interiors of these triangles are covered by
-\emph{best-response regions} labeled by the other player's
-pure strategies, which are closed polyhedral sets where the
-respective pure strategy is a best response.
+
+The pure strategies of player~1 are labeled as $1,2,3$; the pure strategies
+of player~2 are labeled as $4,5,6$.
+
+In the following figures the labels of the strategies will be represented
+as circled numbers.
+Figure~\ref{br-regions-fig} shows $X$ and $Y$: the exterior is labeled with the
+player's own pure strategies where these are not played, so the facet
+labeled with a pure strategy is opposite to the vertex where only that pure
+strategy is played; the interior is covered by the best response regions,
+with labels corresponding to the other player's pure strategies that are in
+the best response to the player's own strategy in the region.
 For example, the best-response region in $Y$ with label~$1$
 is the set of those $(y_1,y_2,y_3)$ so that $y_1\ge y_2$ and
-$y_1\ge y_3$, due to the particularly simple form of $A$ in
-(\ref{AB}).
-The outsides of $X$ and $Y$ are labeled with the player's
-own pure strategies where these are not played.
-These outside facets are opposite to the vertex where only
-that pure strategy is played; for example, label~$1$ is the
-label of the facet of $X$ opposite to the vertex $(1,0,0)$.
-In Figure~\ref{f1} there is only one pair $(x,y)$
+$y_1\ge y_3$.
+There is only one pair $(x,y)$
 that is completely labeled, namely $x=(\frac13,\frac23,0)$
 with labels $3,4,5$ and $y=(\frac12,\frac12,0)$ with labels
 $1,2,6$, so this is the only Nash equilibrium of the game.
-
 
 \begin{figure}[hbt]
 \strut\hfill
@@ -113,10 +106,9 @@ $1,2,6$, so this is the only Nash equilibrium of the game.
 \includegraphics[width=27ex]{chapter-1/fig/Yimit.pdf}%
 \hfill\strut
 \caption{%
-Labeled mixed strategy sets $X$ and $Y$ for the game
-(\ref{AB}).
+Labeled mixed strategy sets $X$ and $Y$ for the game (\ref{AB}).
 }
-\label{f1}
+\label{br-regions-fig}
 \end{figure}
 
 \end{example}
@@ -140,9 +132,22 @@ $(y,u)\in Y\times\reals$ such that $(A y)_i = u$ will project to the
 best-response region of $Y$ with label $i$.
 
 \begin{example}
+In the example \ref{br-game-ex}, the inequalities $B\T x\le\1v$ state
+$3x_2\leq v$, $2x_1+2x_2+2x_3\leq v$, $4x_1\leq v$.
+Figure~\ref{br-polyhedron-fig} shows the best-response facets of $\bar{P}$ and
+their projection to $X$ by ignoring the payoff variable~$v$, which
+gives the subdivision of $X$ into best-response regions Figure
+\ref{br-regions-fig}.
 
-\todo[inline]{cont of ex above, page 4--5, image on page 5 left}
-
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[height=40mm]{chapter-1/fig/upenv.pdf}%
+\hfill\strut
+\caption{%
+Best response facets of the polyhedron $\bar{P}$ in (\ref{br-polyhedron}).
+}
+\label{br-polyhedron-fig}
+\end{figure}
 \end{example}
 
 Given the assumptions on non-negativity of $A$ and $B\T$, we can give a
@@ -172,9 +177,21 @@ is a Nash equilibrium, or $(x,y)=(\0,\0)$; we will refer to the latter case
 as {\em artificial equilibrium}.
 
 \begin{example}
+Keeping on with example \ref{br-game-ex}, the polyhedron $\bar{P}$ of
+Figure \ref{br-polyhedron-fig} becomes the polytope in Figure \ref{br-polytopes-fig}
+\ref{br-polytopes-fig}.
 
-\todo[inline]{ex in Savani, von Stengel, image on page 5 right}
+\begin{figure}[hp]
+\includegraphics[height=50mm]{chapter-1/fig/polytope.pdf}%
+\caption{%
+Best response polytope $P$ in (\ref{br-polytopes}) for the game in (\ref{AB}).
+}
+\label{br-polytopes-fig}
+\end{figure}
 
+Note that the vertex $(\0,\0)$ has labels $1,2,3$ in $P$ and, analogously,
+it has labels $4,5,6$ in $Q$, so it is completely labeled, and corresponds
+to the ``artificial'' equilibrium.
 \end{example}
 
 \todo[inline]{
@@ -192,7 +209,42 @@ ex pg 9 SvS-15
 From now on, we assume nondegeneracy.
 }
 
-We note a useful property: any bimatrix game can be ``symmetrized.''
+The characterization of Nash equilibria as completely
+labeled pairs $(x,y)$ holds for arbitrary bimatrix games.
+For considering algorithms, it is useful to assume that the
+game is \emph{non\-degen\-erate} in the sense that no point in
+$P$ has more than $m$ labels, and no point in $Q$ has more
+than $n$ labels.
+Clearly, for a non\-degen\-erate game, in an equilibrium
+$(x,y)$ each label appears exactly once either as a label of
+$x$ or of~$y$.
+
+Nondegeneracy is equivalent to the condition that the
+number of pure best responses against a mixed strategy is never
+larger than the size of the support of that mixed strategy.
+It implies that $P$ is a \emph{simple} polytope in the sense
+that no point of $P$ lies on more than $m$ \emph{facets},
+and similarly that $Q$ is a simple polytope.
+A facet is obtained by turning one of the inequalities
+that define the polytope into an equality, provided the
+inequality is irredundant, that is, cannot be omitted
+without changing the polytope.
+A redundant inequality in the definition of $P$ and $Q$ may
+also give raise to a degeneracy if it corresponds to a pure
+strategy that is weakly (but not strictly) dominated by, or
+payoff equivalent to, a mixture of other strategies.
+For a detailed discussion of degeneracy see von Stengel
+(2002).
+
+\todo[inline]{end: degeneracy}
+
+We will now consider a particular class of games, called
+{\em unit vector games}. These are games of the form $(U,B)$,
+where the columns of the matrix $U$ are unit vectors.
+We will see that a method that ``solves'' a unit vector game, in the sense
+of finding one equilibrium, or all equilibria, of the game, can be used to
+solve any arbitrary bimatrix game.
+First of all, we note that any bimatrix game can be ``symmetrized.''
 The result is due to Gale, Kuhn and Tucker \cite{gale-kuhn-tucker} for
 zero-sum games; its extension to non-zero-sum games is a folklore result.
 
@@ -214,29 +266,71 @@ McLennan and Tourky \cite{mclennan-tourky} have proven a converse of
 proposition \ref{symmetrize-thm} for bimatrix games of the form $(I,B)$,
 called {\em imitiation games}.
 
-\begin{proposition}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
+\begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
 \label{imitation-thm}
 The pair $(x,x)$ is a symmetric Nash equilibrium of the symmetric bimatrix
 game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
-Nash equilibrium of the imitation game $(I,C\T)$.
-\end{proposition}
+Nash equilibrium of the imitation game $(I,B)$ with $B=C\T$.
+\end{theorem}
+
+By theorem \ref{imitation-thm},
+the mixed strategy $x$ of player 1 in any Nash equilibrium of the imitation
+game $(I,B)$ corresponds exactly to the symmetric equilibrium $(x,x)$ of
+the symmetric game defined by the payoff matrix of the other player.
+Therefore, an algorithm that finds a Nash equilibrium of a bimatrix game
+can be used to find a symmetric Nash equilibrium of a symmetric game.
 
 \begin{example}
+As an example, consider the symmetric game $(C,C\T)$ with
+\begin{equation}
+\label{C}
+C = \left(\begin{matrix}0&3&0\\ 2&2&2\\
+4&0&0\end{matrix}\right),
+\qquad
+C\T = \left(\begin{matrix}0&2&4\\ 3&2&0\\
+0&2&0\end{matrix}\right),
+\end{equation}
+so that $C\T=B$ in (\ref{AB}), and the corresponding imitation game
+$(I,C\T)$ is $(A,B)$ in (\ref{AB}).
 
-\todo[inline]{ex Savani, von Stengel, pg 8}
+Figure~\ref{imit-fig} shows the labeled mixed-strategy simplices $X$ and $Y$
+for the game \ref{C}; since the game is symmetric, only the labels
+are different.
+In addition to the symmetric equilibrium $(x,x)$ where
+$x=(\frac13,\frac23,0)$, the game has two non-symmetric equilibria in $(a,b)$
+and $(b,a)$ with $a=(\frac12,\frac12,0)$ and $b=(0,\frac23,\frac13)$.
 
+Note that the corresponding imitation game $(A,B)$ has only one
+equilibrium in $(x,y)$, where $(x,x)$ is the symmetric equilibrium of
+$(C,C\T)$.
+This shows how theorem \ref{imitation-thm} applies to the {\em symmetric}
+equilibria of the symmetric game, but not to all its equilibria; there
+could be non-symmetric equilibria of $(C,C\T)$ that are not found
+through the imitation game.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Xnondeg.pdf}%
+\hfill
+\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Ynondeg.pdf}%
+\hfill\strut
+\caption{%
+Best response regions for the symmetric game $(C,C\T)$ in (\ref{C}).
+}
+\label{imit-fig}
+\end{figure}
 \end{example}
 
-A generalization of imitation games is given by {\em unit vector games}.
-These are games of the form $(U,B)$, where the columns of the matrix $U$ are
-unit vectors. The correspondence between equilibria of a unit vector game
+The correspondence between equilibria of a unit vector game
 and completely labeled points
 \todo{also in thm: vertices, if nondeg}
 of a polytope is given by the following
 theorem, first proved in dual form by Balthasar \cite{balthasar} and
 given here as in Savani and von Stengel \cite{uvg}.
 
-\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}\cite{uvg}\label{unit-vector-thm}
+\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}\cite{uvg}
+\label{unit-vector-thm}
 Let $l:[n]\to [m]$, and let $(U,B)$ be the unit vector game where
 $U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let $N_i = \{ j\in [n]\ |\ l(j)=i \}$ for
 $i\in [m]$, and consider the polytopes $P^l$ and $Q^l$
@@ -278,6 +372,31 @@ define $y$ as follows: $y_h = 0$ for all $h\in N_i\setminus \{ j \}$,
 $y_j = 1$. Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
 \end{theorem}
+
+\begin{example}
+The game in example \ref{br-game-ex} is a unit vector game, with $l(i)=i$.
+In figure \ref{br-polytopes-fig} we have the labels $4,5,6$ on the best
+response facets of polytope $P$; the facets with labels $1,2,3$, that is,
+the facets where $x_1=0$, $x_2=0$, $x_3=0$, respectively, are at
+back right, back left, and bottom of the polytope.
+In the polytope $P^l$ the labels $4,5,6$ are replaced by $1,2,3$ because
+the corresponding columns of $A$ are the unit vectors $e_1,e_2,e_3$.
+Figure~\ref{p-l-fig} shows the polytope $P^l$; the only hidden facet,
+with label~$1$, is at the bottom.
+Apart from the origin $\0$, the only completely labeled
+point of $P^l$ is $x$, as shown in figure \ref{p-l-fig}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/p-l-color.pdf}%
+\hfill\strut
+\caption{%
+The polytope $P^l$ for the unit vector game (\ref{AB}).
+The hidden facet at the back has label~$1$.
+}
+\label{p-l-fig}
+\end{figure}
+\end{example}
 
 Theorem \ref{unit-vector-thm} gives a correspondence between the
 completely labeled vertices of the polytope $P^l$ and the equilibria
