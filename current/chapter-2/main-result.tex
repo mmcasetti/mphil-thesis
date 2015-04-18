@@ -66,42 +66,49 @@ by theorem \ref{gale-thm} can be solved in polynomial time.
 We give two examples of the construction used in theorem \ref{gale-thm}.
 
 \begin{example}\label{gs-pm-ex}
+Consider the labeling $l:[6]\to [4]$ with $l=123423$. To find a
+Gale string $s\in G(4,6)$ that is completely labeled by $l$ we must look for
+a perfect matching $M$ of $G=([4],\{ e_i=(l(i),l(i+1))\ |\ i\in [6] \})$,
+as seen in figure \ref{perfect-matching}.
 
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=40ex]{chapter-2/fig/perfect-matching.pdf}%
 \hfill\strut
 \caption{%
-...
+The graph $G$ associated to the labeling $123423$.
 }
 \label{perfect-matching}
 \end{figure}
 
+The matching $M$, in turn, will give the completely labeled Gale string $s$
+as $s(i)=s(i+1)=1$ for $e_i\in M$, $s(j)=0$ otherwise.
+
+For instance, if we take the perfect matching $M=\{ e_1,e_3 \}$, we have
+the string $s=111100$. If we take the perfect matching $M'=\{ e_4,e_6 \}$
+instead, we have the string $s'=1000111$.
 \end{example}
 
 A perfect matching for a graph, and therefore a Gale string for a labeling,
 is not always possible, as shown in the next example.
 
 \begin{example}
-
-\todo[inline]{example: new graphs!}
-
-Let us consider the labeling $l=121314$. The associated graph $G$ will be
+Consider the labeling $l=121314$. The graph $G$ is shown in figure
+\ref{no-matching}
 
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=27ex]{chapter-2/fig/no-matching.pdf}%
 \hfill\strut
 \caption{%
-...
+The graph for the labeling $121314$
 }
 \label{no-matching}
 \end{figure}
 
 Since there aren't any disjoint edges, it's not possible to find a perfect
-matching for $G$. Analogously, we have seen in example \ref{no-clgs} that
-there isn't any possible completely labeled Gale string for the labeling
-$l$.
+matching for $G$. We have already seen in example \ref{no-clgs} that
+there isn't any possible completely labeled Gale string for $l=121314$.
 \end{example}
 
 We finally extend the proof of theorem \ref{gale-thm} to \anothergale.
@@ -145,23 +152,50 @@ will be still polynomial.
 We give two examples of the construction of theorem \ref{anothergale-thm}.
 
 \begin{example}
-
-\todo[inline]{example: new graphs!}
+The labeling $l=1234324$ gives the graph $G$ in figure
+\ref{matching-2-edges}. Suppose that Edmonds' algorithm returns the matching
+$M=\{ e_1,e_3 \}$, associated to the completely labeled Gale string
+$s=1111000$. The edge $e_3$ has a parallel edge, $e_4$; we immediately
+have a second perfect matching in $M'=\{ e_1,e_4 \}$, associated to the
+Gale string $s'=1101100$.
 
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=40ex]{chapter-2/fig/matching-2-edges.pdf}%
 \hfill\strut
 \caption{%
-...
+The graph for the labeling $1234324$.
 }
 \label{matching-2-edges}
 \end{figure}
-
 \end{example}
 
-We now show a case in which every edge in every perfect matching does
-not have a parallel one is the one in figure \ref{perfect-matching}.
-Note that $G$ is a multigraph:
-we are interested in the edges in the matching, not in all the edges of the
-graph.
+A case in which every edge in every perfect matching does not have a
+parallel one is the one given in example \ref{gs-pm-ex}.
+
+\begin{example}
+Consider the labeling $l=123423$; the associated graph is shown on
+the left in figure \ref{intermediate-matching}. There are only two possible
+matchings, and neither has a parallel edge.
+Note that $G$ is a multigraph: we look for parallel edges in the matching,
+not in all the edges of the graph.
+Suppose that Edmonds' algorithm returns the perfect matching
+$M=\{ e_1,e_3 \}$; we can then delete the edge $e_1$ to obtain the graph
+$G_1$, seen on figure \ref{intermediate-matching} right. The graph $G_1$
+has a perfect matching in $M'=\{ e_4,e_6 \}$, that is also a perfect
+matching of $G$, associated to the string $s'=100111$.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=35ex]{chapter-2/fig/perfect-matching.pdf}%
+\hfill
+\hfill
+\includegraphics[width=35ex]{chapter-2/fig/intermediate-matching.pdf}%
+\hfill\strut
+\caption{%
+Left: the graph $G=(V,E)$ for the labeling $123423$. \\
+Right: the graph $G_1=(V,E\setminus\{ e_1 \})$.
+}
+\label{intermediate-matching}
+\end{figure}
+\end{example}
