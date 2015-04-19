@@ -383,30 +383,29 @@ x_i\geq 0\text{ has label }i\text{ for }i\in [m]; \nonumber \\
 (B\T x)_j \leq 1\text{ has label }l(j)\text{ for }j\in [n].
 \end{eqnarray}
 
-Then $x\in P^l$ is a completely labeled point
-\todo{vertex}
-of $P^l\setminus\{\0\}$
+Then $x\in P^l$ is a completely labeled vertex of $P^l\setminus\{\0\}$
 if and only if there is some $y\in Q^l$ such that, after scaling,
 the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
 
 \begin{proof}
-\todo{check}
 Let $P,Q$ be the polytopes associated to the game $(U,B)$ as before.
 
 Let $(x,y)\in P\times Q\setminus\{ \0,\0 \}$ be a Nash equilibrium of
 $(U,B)$, therefore completely labeled in $[m + n]$.
-Then, if $x_i=0$, then $x$ has label $i\in m$.
-If $x_i > 0$ instead, then $y$ has label $i$, therefore $(Uy)_i = 1$,
-therefore for some $j\in [n]$ we have $y_j > 0$ and $U_j = e_i$, so $l(j)=i$.
-Since $y_j > 0$ and $(x,y)$ is completely labeled, $x\in P$ has label $m+j$,
-that is, $(B\T x)_j = 1$, therefore $x\in P^l$ has label $l(j) = i$.
-Hence, $x$ is a completely labeled point of $P^l$.
+If $x_i=0$, then $x$ has label $i\in m$.
+If $x_i > 0$, then $y$ has label $i$, so $(Uy)_i = 1$;
+then for some $j\in [n]$ we have $y_j > 0$ and $U_j = e_i$; that is,
+we have $y_j > 0$ and $l(j)=i$ for some $j\in [n]$.
+Since $y_j > 0$, $x\in P$ has label $m+j$; then, $(B\T x)_j = 1$;s
+therefore $x\in P^l$ has label $l(j) = i$.
+Hence, $x$ is a completely labeled vertex of $P^l$.
 
 Conversely, let $x\in P^l\setminus \{ \0 \}$ be completely labeled.
 If $x_i > 0$, then there is $j\in [m]$ such that $(B\T x) = j$ and
 $l(j) = i$, that is, $j\in N_i$. For all $i$ such that $x_i >0 $,
-define $y$ as follows: $y_h = 0$ for all $h\in N_i\setminus \{ j \}$,
-$y_j = 1$. Then $(x,y)\in P\times Q$ is completely labeled.
+define $y$ as follows: $y_j = 1$;
+$y_h = 0$ for all $h\in N_i\setminus \{ j \}$.
+Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
 \end{theorem}
 
@@ -435,11 +434,8 @@ The hidden facet at the back has label~$1$.
 \end{figure}
 \end{example}
 
-Theorem \ref{unit-vector-thm} gives a correspondence between the
-completely labeled vertices of the polytope $P^l$ and the equilibria
-of the unit vector game $(U,B)$, with an ``artificial''
-equilibrium corresponding to the vertex $\0$. We will now construct its dual
-version given in \cite{balthasar}.
+We will now move on the dual version given of theorem \ref{unit-vector-thm},
+as ginve in Balthasar \cite{balthasar}.
 We traslate the polytope $P^l$ as in \ref{p-l} to
 $P = \{ x - \1\ |\ x\in P^l \}$, and multiply all payoffs in $B$ by a
 constant, if necessary, so that $\0$ is in the interior of $P$.
@@ -451,9 +447,10 @@ P & = \{ x + \1\geq\0,\ (x + \1)\T B\leq\1 \} = \\
 \end{align*}
 The polar of $P$ is then
 \begin{equation}\label{p-l-dual}
-P^\Delta = \conv(\{−e_i\ |\ i\in [m] \}\ \cup\ \{ \frac{b_j}{1 - \1\T b_j} \})
+P^\Delta = \conv(\{−e_i\ |\ i\in [m] \}\ \cup\ \{ c_j\ |\ j\in [n] \})
 \end{equation}
 
+with $c_j=b_j/(1 - \1\T b_j)$.
 Since $P$ is a simple polytope with $\0$ in its interior, $P^\Delta$ is
 simplicial, $P^{\Delta\Delta}=P$, and the facets of $P^\Delta$ correspond to
 the vertices of $P$ and vice versa. We can then label the vertices
@@ -482,13 +479,11 @@ l_v(c_j)=l(j)\text{ for }j\in [n].
 
 Then a facet $F\neq F_0$ of $Q$ with normal vector $v$ is completely
 labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where
-$x = (v + \1) / (\1\T (v + \1))$
-\todo{??? here to end thm}
-,
-and $x_i = 0$ if and only if $−e_i\in F$ for $i\in [m]$.
-Any $j$ so that $c_j$ is a vertex of $F$ represents a pure best reply to $x$;
-the mixed strategy $y$ is the uniform distribution on the set of the pure best
-replies to $x$.
+$x = (v + \1) / (\1\T (v + \1))$,
+so $x_i = 0$ if and only if $−e_i\in F$ for $i\in [m]$,
+and the mixed strategy $y$ is the uniform distribution on the set of
+the pure best replies to $x$, which in turn correspond to $j\in [n]$
+such that $c_j$ is a vertex of $F$.
 \end{theorem}
 
 As in theorem \ref{unit-vector-thm} we have a correspondence between
@@ -499,8 +494,6 @@ the completely labeled facets of the polytope $Q$
 and the equilibria of the unit vector game $(U,B)$
 with the ``artificial'' equilibrium corresponding to the
 facet $F_0$.
-
-\todo[inline]{until here}
 
 Given a bimatrix nondegenerate game $(A,B)$, it takes polynomial time
 to write and solve the linear equations defining its best response polyhedra
@@ -526,10 +519,9 @@ The problem {\sc Nondegenerate 2-Nash} reduces in polynomial time to
 {\sc Another Completely Labeled Vertex}.
 \end{proposition}
 
-\todo[inline]{this: after thm uvg}
-
 Theorem \ref{unit-vector-dual-thm} gives the dual of proposition
-\ref{2nash-to-aclv}; this time, the reduction is to the problem
+\ref{2nash-to-aclv}; since the construction of the polar polytope from
+the original one is also polynomial, the reduction is to the problem
 {\sc Another Completely Labeled Facet}.
 
 \begin{fctproblem}
