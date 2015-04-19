@@ -194,37 +194,6 @@ it has labels $4,5,6$ in $Q$, so it is completely labeled, and corresponds
 to the ``artificial'' equilibrium.
 \end{example}
 
-Given a bimatrix game $(A,B)$, it takes polynomial time to write and solve
-the linear equations defining its best response polyhedra $\bar{P},\bar{Q}$
-and its best response polytopes $P,Q$. It also take polynomial time to
-label both $\bar{P},\bar{Q}$ and $P,Q$. Therefore we have a polynomial time
-reduction from the problem 2-{\sc Nash} to the problems
-{\sc Another Completely Labeled Facet} and
-{\sc Another Completely Labeled Vertex}, defined as follows.
-
-\begin{fctproblem}
-{Another Completely Labeled Facet}
-{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
-a labeling $l_v:[m+n]\to [n]$;
-a facet $F_0$ of $S$, completely labeled by $l_v$.}
-{A facet $F\neq F_0$ of $S$ completely labeled by $l_v$.}
-\end{fctproblem}
-
-\begin{fctproblem}
-{Another Completely Labeled Vertex}
-{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
-a labeling $l_f:[m+n]\to [n]$;
-a facet $F_0$ of $S$, completely labeled by $l_f$.}
-{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
-\end{fctproblem}
-
-\begin{proposition}
-\label{2nash-to-acl}
-The problem 2-{\sc Nash} reduces in polynomial time to
-{\sc Another Completely Labeled Facet} and
-{\sc Another Completely Labeled Vertex}.
-\end{proposition}
-
 We will now see some special cases of games and a series of
 polynomial-time reductions that connect them, so that a method that finds
 an equilibrium of these games can be used to find an equilibrium of any
@@ -543,3 +512,49 @@ the completely labeled facets of the polytope $Q$
 and the equilibria of the unit vector game $(U,B)$
 with the ``artificial'' equilibrium corresponding to the
 facet $F_0$.
+
+\todo[inline]{until here}
+
+Given a bimatrix nondegenerate game $(A,B)$, it takes polynomial time
+to write and solve the linear equations defining its best response polyhedra
+$\bar{P},\bar{Q}$ and its best response polytopes $P,Q$.
+It also take polynomial time to label $\bar{P},\bar{Q}$ and $P,Q$.
+Analogously, given a unit vector game $(U,B)$, it takes polynomial time
+to construct and label the polytope $P^l$.
+Therefore, by theorem \ref{unit-vector-thm}, we have a polynomial time
+reduction from the problem 2-{\sc Nash} for nondegenerate games to the
+problem {\sc Another Completely Labeled Vertex}, defined as follows.
+
+\begin{fctproblem}
+{Another Completely Labeled Vertex}
+{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
+a labeling $l_f:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_f$.}
+{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\begin{proposition}
+\label{2nash-to-aclv}
+The problem {\sc Nondegenerate 2-Nash} reduces in polynomial time to
+{\sc Another Completely Labeled Vertex}.
+\end{proposition}
+
+\todo[inline]{this: after thm uvg}
+
+Theorem \ref{unit-vector-dual-thm} gives the dual of proposition
+\ref{2nash-to-aclv}; this time, the reduction is to the problem
+{\sc Another Completely Labeled Facet}.
+
+\begin{fctproblem}
+{Another Completely Labeled Facet}
+{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
+a labeling $l_v:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_v$.}
+{A facet $F\neq F_0$ of $S$ completely labeled by $l_v$.}
+\end{fctproblem}
+
+\begin{proposition}
+\label{2nash-to-aclf}
+The problem {\sc Nondegenerate 2-Nash} reduces in polynomial time to
+{\sc Another Completely Labeled Facet}.
+\end{proposition}
