@@ -194,17 +194,48 @@ it has labels $4,5,6$ in $Q$, so it is completely labeled, and corresponds
 to the ``artificial'' equilibrium.
 \end{example}
 
-We will now consider a particular class of games, called
-{\em unit vector games}. These are games of the form $(U,B)$,
-where the columns of the matrix $U$ are unit vectors.
-We will see that a method that ``solves'' a unit vector game, in the sense
-of finding one equilibrium, or all equilibria, of the game, can be used to
-solve any arbitrary bimatrix game.
-First of all, we note that any bimatrix game can be ``symmetrized.''
-The result is due to Gale, Kuhn and Tucker \cite{gale-kuhn-tucker} for
-zero-sum games; its extension to non-zero-sum games is a folklore result.
+Given a bimatrix game $(A,B)$, it takes polynomial time to write and solve
+the linear equations defining its best response polyhedra $\bar{P},\bar{Q}$
+and its best response polytopes $P,Q$. It also take polynomial time to
+label both $\bar{P},\bar{Q}$ and $P,Q$. Therefore we have a polynomial time
+reduction from the problem 2-{\sc Nash} to the problems
+{\sc Another Completely Labeled Facet} and
+{\sc Another Completely Labeled Vertex}, defined as follows.
 
-\begin{proposition}\label{symmetrize-thm}
+\begin{fctproblem}
+{Another Completely Labeled Facet}
+{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
+a labeling $l_v:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_v$.}
+{A facet $F\neq F_0$ of $S$ completely labeled by $l_v$.}
+\end{fctproblem}
+
+\begin{fctproblem}
+{Another Completely Labeled Vertex}
+{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
+a labeling $l_f:[m+n]\to [n]$;
+a facet $F_0$ of $S$, completely labeled by $l_f$.}
+{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
+\end{fctproblem}
+
+\begin{proposition}
+\label{2nash-to-acl}
+The problem 2-{\sc Nash} reduces in polynomial time to
+{\sc Another Completely Labeled Facet} and
+{\sc Another Completely Labeled Vertex}.
+\end{proposition}
+
+We will now see some special cases of games and a series of
+polynomial-time reductions that connect them, so that a method that finds
+an equilibrium of these games can be used to find an equilibrium of any
+arbitrary bimatrix game.
+
+First of all, we focus on symmetric games.
+Any bimatrix game can be ``symmetrized''; the result is due to Gale,
+Kuhn and Tucker \cite{gale-kuhn-tucker} for zero-sum games; its extension
+to non-zero-sum games is a folklore result.
+
+\begin{proposition}\label{symmetrize-c}
 Let $(A,B)$ be a bimatrix game and $(x,y)$ be one of its Nash equilibria.
 Then $(z,z)$, where $z=(x,y)$, is a Nash equilibrium of the symmetric game
 $(C,C\T)$, where
@@ -218,9 +249,14 @@ C = \left(
 \end{equation}
 \end{proposition}
 
-McLennan and Tourky \cite{mclennan-tourky} have proven a converse of
-proposition \ref{symmetrize-thm} for bimatrix games of the form $(I,B)$,
-called {\em imitiation games}.
+It takes polynomial time in the size of a matrix to calculate its transpose;
+the rest of the reduction from $(A,B)$ to $(C,C\T)$ is linear.
+Therefore, we have a reduction from 2-{\sc Nash} to {\sc Symmetric Nash}.
+
+McLennan and Tourky \cite{mclennan-tourky} have proven a result in the
+opposite direction of proposition \ref{symmetrize-c}: any symmetric game
+can be translated into a bimatrix game of the form $(I,B)$, called
+{\em imitiation game}.
 
 \begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
 \label{imitation-thm}
@@ -229,12 +265,18 @@ game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
 Nash equilibrium of the imitation game $(I,B)$ with $B=C\T$.
 \end{theorem}
 
-By theorem \ref{imitation-thm},
-the mixed strategy $x$ of player 1 in any Nash equilibrium of the imitation
-game $(I,B)$ corresponds exactly to the symmetric equilibrium $(x,x)$ of
-the symmetric game defined by the payoff matrix of the other player.
-Therefore, an algorithm that finds a Nash equilibrium of a bimatrix game
-can be used to find a symmetric Nash equilibrium of a symmetric game.
+Again, the reduction from $(C,C\T)$ takes polynomial time (even better:
+linear). So we have a reduction from {\sc Symmetric Nash} to
+{\sc Imitation Nash}.
+
+We see now an example illustrating theorem \ref{imitation-thm}.
+Note how the mixed strategy $x$ of player 1 in any Nash equilibrium
+of $(I,B)$ corresponds exactly to the symmetric equilibrium $(x,x)$ in
+the symmetric game defined by the payoff matrix of player 2.
+Note also how theorem \ref{imitation-thm} applies to the symmetric
+equilibria of the symmetric game, but not to all its equilibria; there
+could be non-symmetric equilibria of $(C,C\T)$ that are not found
+through the imitation game.
 
 \begin{example}
 As an example, consider the symmetric game $(C,C\T)$ with
@@ -259,10 +301,6 @@ and $(b,a)$ with $a=(\frac12,\frac12,0)$ and $b=(0,\frac23,\frac13)$.
 Note that the corresponding imitation game $(A,B)$ has only one
 equilibrium in $(x,y)$, where $(x,x)$ is the symmetric equilibrium of
 $(C,C\T)$.
-This shows how theorem \ref{imitation-thm} applies to the {\em symmetric}
-equilibria of the symmetric game, but not to all its equilibria; there
-could be non-symmetric equilibria of $(C,C\T)$ that are not found
-through the imitation game.
 
 \begin{figure}[hbt]
 \strut\hfill
@@ -277,6 +315,8 @@ Best response regions for the symmetric game $(C,C\T)$ in (\ref{C}).
 \label{imit-fig}
 \end{figure}
 \end{example}
+
+\todo[inline]{from here: degeneracy - check}
 
 The characterization of Nash equilibria as completely labeled pairs $(x,y)$
 holds for arbitrary bimatrix games. From now on, we will also assume that
@@ -351,8 +391,17 @@ uniqueness if the game is degenerate.
 
 \todo[inline]{
 nondeg: equilibria are on vertices, not simply points
-}
 
+degeneracy: until here}
+
+A generalization of imitation games is the class of
+{\em unit vector games}, that is games of the form $(U,B)$ where the
+columns of the matrix $U$ are unit vectors.
+By the results above, finding a Nash equilibrium of a bimatrix game is
+at least as hard as finding a Nash equilibrium of a unit vector game;
+that is, 2-{Nash} reduces to {Unit Vector Nash}.
+
+\todo[inline]{from here}
 
 The correspondence between equilibria of a unit vector game
 and completely labeled points
@@ -494,40 +543,3 @@ the completely labeled facets of the polytope $Q$
 and the equilibria of the unit vector game $(U,B)$
 with the ``artificial'' equilibrium corresponding to the
 facet $F_0$.
-
-\todo[inline]{prove polynomial encoding - therefore poly reduction
-
-edit from here}
-
-Consider now the problems
-
-\begin{fctproblem}
-{Another Completely Labeled Vertex}
-{A simple $m$-dimensional polytope $S$ with $m+n$ facets;
-a labeling $l_f:[m+n]\to [n]$;
-a facet $F_0$ of $S$, completely labeled by $l_f$.}
-{A facet $F\neq F_0$ of $S$, completely labeled by $l$.}
-\end{fctproblem}
-
-\begin{fctproblem}
-{Another Completely Labeled Facet}
-{A simplicial $m$-dimensional polytope $S$ with $m+n$ vertices;
-a labeling $l_v:[m+n]\to [n]$;
-a facet $F_0$ of $S$, completely labeled by $l_v$.}
-{A facet $F\neq F_0$ of $S$ completely labeled by $l_v$.}
-\end{fctproblem}
-
-\begin{fctproblem}
-{Unit Vector Nash}
-{A unit vector game $\Gamma$.}
-{A Nash equilibrium of $\Gamma$.}
-\end{fctproblem}
-
-\begin{proposition}\label{ne-cl-pbl}
-The problem {\sc Unit Vector Nash} is
-polynomial-time reducible to the problems
-{\sc Another Completely Labeled Vertex} and its dual
-{\sc Another Completely Labeled Facet}.
-\end{proposition}
-
-\todo[inline]{in general, 2-NASH, since we can go back to 2 polytopes - see LH}
