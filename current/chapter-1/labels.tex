@@ -285,26 +285,21 @@ Best response regions for the symmetric game $(C,C\T)$ in (\ref{C}).
 \end{figure}
 \end{example}
 
-\todo[inline]{from here: degeneracy - check}
-
 The characterization of Nash equilibria as completely labeled pairs $(x,y)$
-holds for arbitrary bimatrix games. From now on, we will also assume that
-the games are {\em nondegenerate}, that is, no point in $P$ has more than
-$m$ labels, and no point in $Q$ has more than $n$ labels. If $(x,y)$ is an
-equilibrium of a nondegenerate game, it is completely labeled and each label
-appears exactly once either as a label of $x$ or as a label of $y$.
-Therefore,
-nondegeneracy is equivalent to the condition that the number of pure best
-responses against a mixed strategy is never larger than the size of the
-support of that mixed strategy.
-In turn, this implies that no point of $P$ lies on more
-than $m$ facets and no point of $Q$ lies on more
-than $n$ facets, so the best response polytopes $P,Q$ of a
-nondegenerate game are simple.
-
-\todo[inline]{
-``lexicographic'' perurbation makes it non-degenerate (see AB).
-}
+holds for arbitrary bimatrix games. From now on, we will also impose a
+further condition: that the games are {\em nondegenerate}
+This means that all points in $P$ have at most $m$ labels, and all points in
+$Q$ have at most $n$ labels. Therefore, in an equilibrium $(x,y)$ each label
+appears exactly once.
+This also means that the number of pure best response strategies against a
+mixed strategy is never larger than the size of the support of that
+mixed strategy.
+Geometrically, no point of $P$ lies on more than $m$ facets and no point
+of $Q$ lies on more than $n$ facets, so the best response polytopes
+$P$ and $Q$ are simple. Furthermore, a point of $P$ has exactly $m$
+labels if and only if it is a vertex, and a point of $Q$ has exactly $n$
+labels if and only if it is a vertex; therefore, all completely labeled
+points $(x,y)$ are vertices, and Nash equilibria are isolated points.
 
 \begin{example}
 An example of degenerate game is given by $(C,C\T)$ where
@@ -358,25 +353,17 @@ imitation game as in theorem \ref{imitation-thm} does not preserve
 uniqueness if the game is degenerate.
 \end{example}
 
-\todo[inline]{
-nondeg: equilibria are on vertices, not simply points
-
-degeneracy: until here}
-
 A generalization of imitation games is the class of
 {\em unit vector games}, that is games of the form $(U,B)$ where the
 columns of the matrix $U$ are unit vectors.
 By the results above, finding a Nash equilibrium of a bimatrix game is
 at least as hard as finding a Nash equilibrium of a unit vector game;
 that is, 2-{Nash} reduces to {Unit Vector Nash}.
+In unit vector games, the problem of finding a completely labeled vertex
+of the polytope $P\times Q$ can be translated into te problem o finding a
+completely labeled vertex of one simple polytope that encodes all the game.
 
-\todo[inline]{from here}
-
-The correspondence between equilibria of a unit vector game
-and completely labeled points
-\todo{also in thm: vertices, if nondeg}
-of a polytope is given by the following
-theorem, first proved in dual form by Balthasar \cite{balthasar} and
+The result was due by Balthasar \cite{balthasar} in a different form and
 given here as in Savani and von Stengel \cite{uvg}.
 
 \begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}
