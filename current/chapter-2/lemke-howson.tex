@@ -106,9 +106,7 @@ an even number of points.
 \end{proposition}
 
 Applying the parity result in proposition \ref{lh-works-thm} to the case of
-a bimatrix game (not necessarily a unit vector game)
-\todo{note: two polytopes, see todo at end section labels}
-, and remembering that
+a bimatrix game (not necessarily a unit vector game), and remembering that
 the point $(\0,\0)$ corresponds to an
 ``artificial'' equilibrium, we have the following result, due to Lemke and
 Howson \cite{lh}.
@@ -329,6 +327,33 @@ $s\in G(d,n)$, where $d$ is even, is even.
 An interesting example, as we will see in the next section, is the
 following, due to Morris \cite{morris}.
 
+\begin{example}
+Consider the labeling $l=1234564523$ for $G(6,10)$ and the completely
+labeled Gale string $s=\1\1\1\1\1\100$. Dropping the label 1, the
+Lemke-Howson for Gale algorithm will run as in figure \ref{morris-6-fig}.
 
-
+\begin{figure}[hbt]
+\begin{center}
+\large
+\begin{tabular}{c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
+{\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 4} & {\bf 5} & {\bf 2} & {\bf 3} \\
+\hline
+\d1 & \1 & \1 & \1 & \1 & \1 & \tdot & \tdot & \tdot & \tdot \\
+\tdot & \1 & \1 & \d1 & \1 & \1 & \u1 & \tdot & \tdot & \tdot \\
+\tdot & \1 & \1 & \tdot & \d1 & \1 & \1 & \u1 & \tdot & \tdot \\
+\tdot & \d1 & \1 & \tdot & \tdot & \1 & \1 & \1 & \u1 & \tdot \\
+\tdot & \tdot & \1 & \u1 & \tdot & \1 & \d1 & \1 & \1 & \tdot \\
+\tdot & \tdot & \1 & \1 & \u1 & \1 & \tdot & \d1 & \1 & \tdot \\
+\tdot & \tdot & \d1 & \1 & \1 & \1 & \tdot & \tdot & \1 & \u1 \\
+\tdot & \tdot & \tdot & \d1 & \1 & \1 & \u1 & \tdot & \1 & \1 \\
+\tdot & \tdot & \tdot & \tdot & \d1 & \1 & \1 & \u1 & \1 & \1 \\
+\u1 & \tdot & \tdot & \tdot & \tdot & \1 & \1 & \1 & \1 & \1 \\
+\hline
+{\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 4} & {\bf 5} & {\bf 2} & {\bf 3} \\
+\end{tabular}
+\normalsize
+\end{center}
+\caption{Morris path on $C(6,10)$}
+\label{morris-6-fig}
+\end{figure}
 \end{example}
