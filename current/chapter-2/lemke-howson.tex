@@ -51,8 +51,7 @@ labeled facets, that is, the case of the classic Lemke-Howson algorithm,
 first given by Lemke and Howson in \cite{lh}; we follow the very clear
 exposition given by Shapley in \cite{shapley}.
 
-\begin{algorithm}
-\label{lh-alg}
+\begin{algorithm}\label{lh-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
@@ -73,6 +72,7 @@ set $x_0 = x$, $x = x'$
 }
 \Return $x$
 \caption{Lemke-Howson algorithm}
+\label{lh-alg}
 \end{algorithm}
 
 Running the Lemke-Howson algorithm defines a {\em Lemke path}
@@ -168,8 +168,7 @@ equilibrium of $(A,B)$.
 The dual version of the Lemke-Howson algorithm \ref{lh-alg}
 and of proposition \ref{lh-works-thm} is quite straightforward.
 
-\begin{algorithm}
-\label{lh-dual-alg}
+\begin{algorithm}\label{lh-dual-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
@@ -190,11 +189,12 @@ set $F_0 = x$, $F = F'$
 }
 \Return $x$
 \caption{Dual Lemke-Howson algorithm}
+\label{lh-dual-alg}
 \end{algorithm}
 
 \begin{proposition}\label{lh-dual-works-thm}
-Algorithm \ref{lh-dual-alg} returns a solution to the problem
-{\sc Another Completely Labeled Facet}.
+The dual Lemke-Howson algorithm \ref{lh-dual-alg} returns a solution
+to the problem {\sc Another Completely Labeled Facet}.
 
 Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
@@ -274,6 +274,7 @@ rename $s_0=s$, $s=s'$
 }
 \Return $s$
 \caption{Lemke-Howson for Gale algorithm}
+\label{lhg-alg}
 \end{algorithm}
 
 We see the correspondence between the Lemke-Howson and the
@@ -302,8 +303,8 @@ Pivoting from facet $A$ dropping label 3 yields facet $B$; pivoting from
 $s_A=\1\1\1\100$ dropping label 1 yields $s_B=\1\10\1\10$.
 \end{example}
 
-The analogous of propositions \ref{l-h-works-thm} and
-\ref{l-h-dual-works-thm} is the following.
+The analogous of propositions \ref{lh-works-thm} and
+\ref{lh-dual-works-thm} is the following.
 
 \begin{proposition}\label{lhg-works-thm}
 The Lemke-Howson for Gale algorithm \ref{lhg-alg} returns a
