@@ -19,6 +19,21 @@ The {\em cyclic polytope} in dimension~$d$ with $n$ vertices, where $n>d$ is
 C_d(n)=\conv\{ \mu_d(t_i)\text{ for }t_1<\ldots<t_n \}.
 \end{equation}
 
+\begin{example}
+\label{c36-ex}
+The cyclic polytope in dimension 3 with 6 facets can be seen in figure
+\ref{c36-fig}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/c36.pdf}%
+\hfill\strut
+\caption{The cyclic polytope $C_3(6)$
+}
+\label{c36-fig}
+\end{figure}
+\end{example}
+
 Given $k\in\naturals$ and a set $S$, we can represent the function
 $f:[k]\to S$ as the string $s=s(1)s(2)\cdots s(k)$; we have a {\em bitstring}
 \todo{bitstring already def in section complexity?}
@@ -79,27 +94,59 @@ following theorem by Gale \cite{gale}.
 For any positive integers $d,n$ with $n>d$\begin{align}
 F \text{ is a} & \text{ facet of } C_d(n) \nonumber \\
 & \Longleftrightarrow \nonumber \\
-F = \conv\{ \mu(t_j)\ |\ s(j)=1 & \text{ for some }j\in[n]
-\text{ and }s\in G(d,n) \}.
+F = \conv\{ \mu(t_j)\ |\ s(j)=1 \text{ for }s\in G(d,n) \}.
 \end{align}
 
+\begin{proof}
+We have that
+$C_d(n) =
+\conv\{ \mu_d(\bar{t_j})\text{ for some } \bar{t_1} < \ldots < \bar{t_n} \}$.
+We choose $t_1 < \ldots < t_d$ in the $\bar{t_j}$'s as above; then the
+points $\mu_d(t_i)$ with $i\in [d]$ define an hyperplane $H$, that crosses
+the moment curve $\mu_d(t)$ at all and only the $t_i$'s with $i\in [d]$.
+The hyperplane $H$ is never tangent to the moment curve, and every crossing
+gives a ``change of sign''; that is, if there is one and only one
+$t_i\in (t,t')$ we have that $(\mu_d(t))(\mu_d(t')) < 0$.
+
+A facet $F$ of the cyclic polytope $C_d(n)$ corresponds to a choice of
+$t_i$'s with $i\in [d]$ such that for all the $\bar{t_k}$'s with $k\in [n]$ and
+$\bar{t_k}\notin \{ t_i\ |\ i\in [d] \}$ all the $\mu_d(\bar{t_k})$'s
+have the same sign. This can happen only if the moment curve has an even
+number of changes of sign, therefore of $t_i$'s, between two $\bar{t_k}$'s.
+The $t_i$'s will correspond to the $\1$'s of the Gale string $s\in G(d,n)$
+and the $\bar{t_k}$'s to the $0$'s, and the condition for being a facet
+becomes the Gale evenness condition.
+\end{proof}
 \end{theorem}
 
-\todo[inline]{sketch of pf - see Ziegler - with drawing of moment curve +
-hyperplane
+Note also that the fact that the moment curve has exactly $d$ zeroes implies
+that the each facet of $C_d(n)$ is a $d$-simplex, so $C_d(n)$ is simplicial;
+furthermore, the choice of the $\bar{t_j}$'s in the proof is irrelevant.
 
-CP simplicial
+\begin{example}
+Consider the facet $F$ of the cyclic polytope $C_3(6)$ underlined in blue
+in figure \ref{c36fac-fig}.
 
-CP does not depend on the choice of $t_i$'s
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/c36fac.pdf}%
+\hfill
+%\vrule height 52mm ~ \vrule height 27ex
+\hfill
+\includegraphics[width=27ex]{chapter-1/fig/Yimit.pdf}%
+\hfill\strut
+\caption{%
+A facet of the cyclic polytope $C_3(6)$.
+}
+\label{c36fac-fig}
+\end{figure}
 
-\small
-Essentially, this holds because any set $S\subset [n]$
-the moment curve defines a unique hyperplane which is crossed
-(and not just touched) by the moment curve; if the bitstring
-$s$ that encodes $F$ as $1(s)$ has a substring $01^k0$
-\normalsize
+If we label the vertices on the moment curve as $i\in [n]$, and we set $i=1$
+if $i$ is a vertex of $F$ and $i=0$ otherwise, we see that the corresponding
+Gale string $s\in G(3,6)$ is $s=100110$.
+\end{example}
 
-example of cyclic polytope + equivalent gale string (a simple one)}
+
 
 From this point forward, we will assume that $d$ is even.
 We will also assume that the labeling $l:[n]\to [d]$ is such
