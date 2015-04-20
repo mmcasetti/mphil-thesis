@@ -130,10 +130,6 @@ in figure \ref{c36fac-fig}.
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=27ex]{chapter-1/fig/c36fac.pdf}%
-\hfill
-%\vrule height 52mm ~ \vrule height 27ex
-\hfill
-\includegraphics[width=27ex]{chapter-1/fig/Yimit.pdf}%
 \hfill\strut
 \caption{%
 A facet of the cyclic polytope $C_3(6)$.
@@ -144,8 +140,86 @@ A facet of the cyclic polytope $C_3(6)$.
 If we label the vertices on the moment curve as $i\in [n]$, and we set $i=1$
 if $i$ is a vertex of $F$ and $i=0$ otherwise, we see that the corresponding
 Gale string $s\in G(3,6)$ is $s=100110$.
+
+On the hyperplane, the correspondence is as in figure \ref{c36fac-hyper-fig}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/100110-hyper.pdf}%
+\hfill\strut
+\caption[A facet of $C_3(6)$ as a Gale string in $G(3,6)$]{%
+A facet of the cyclic polytope $C_3(6)$ and the corresponding Gale string
+$s\in G(3,6)$.
+}
+\label{c36fac-hyper-fig}
+\end{figure}
 \end{example}
 
+
+\begin{example}
+\label{c46-ex}
+Figure \ref{c46-fig} shows the cyclic polytope $C_4(6)$, with vertices
+labeled according to the index $i\in [6]$ of the Gale string. The thin lines
+represent edges inside the facet $1234$, drawn in bold lines, corresponding
+to the Gale string $s=111100$.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/c46fac.pdf}%
+\hfill\strut
+\caption{%
+The cyclic polytope $C_4(6)$.
+}
+\label{c46-fig}
+\end{figure}
+
+On the hyperplane, the string $s$ can be seen as in figure
+\ref{c46fac-hyper-fig}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/111100-hyper.pdf}%
+\hfill\strut
+\caption{%
+The Gale string $s=111100$.
+}
+\label{c36fac-fig}
+\end{figure}
+\end{example}
+
+
+\begin{example}
+As a counterexample, consider figure \ref{notfacet-even-hyper-fig}. The
+corresponding bitstring would be $s=111010$, not a Gale string. The point
+in pink and the point in green are on different sides of the hyperplane $H$,
+so they do not belong to the same facet.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/notfacet-even-hyper.pdf}%
+\hfill\strut
+\caption[Not a facet of $C_3(6)$]{%
+The points on the moment curve have different signs, so they don't
+correspond to a facet; the corresponding bitstring does not
+satisfy the Gale evenness condition.
+}
+\label{notfacet-even-hyper-fig}
+\end{figure}
+
+Analogously for the string $s=10101$, corresponding to figure
+\ref{notfacet-odd-hyper-fig}
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=27ex]{chapter-1/fig/notfacet-odd-hyper.pdf}%
+\hfill\strut
+\caption[Not a facet of $C_4(6)$]{%
+The points on the moment curve don't correspond to a facet, and the
+corresponding bitstring does not satisfy the Gale evenness condition.
+}
+\label{notfacet-odd-hyper-fig}
+\end{figure}
+\end{example}
 
 
 From this point forward, we will assume that $d$ is even.
