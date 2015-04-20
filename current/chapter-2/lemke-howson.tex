@@ -216,27 +216,18 @@ Pivoting on the facets of the octahedron.%
 \end{figure}
 \end{example}
 
-\todo[inline]{from here}
-
-In the case of unit vector games, theorems \ref{unit-vector-thm} and
-\ref{unit-vector-dual-thm} imply that it is enough to apply
-algorithm \ref{lh-alg} to the polytope
-$P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ in (\ref{p-l-unitv}),
-or the dual algorithm \ref{lh-dual-alg} to the polytope
-$P^\Delta=\conv(\{ e_1,\ldots,e_m \})\ \cup\ \{ c_1,\ldots,c_n \})$ in
-\ref{p-l-dual}.
-This allows to find one Nash equilibrium by pivoting on $P^l$ or $P^\Delta$,
-instead of considering the product of the best response polytopes
-$P$ and $Q$.
-The projection of a Lemke path for a missing label $i\in [m]$
-on $P\times Q$ to $P$ defines a Lemke path in $P^l$;
-\todo{how?}
-however, $P\times Q$ has $m+n$ labels, therefore there could be
-Lemke paths for a missing label $m+j$ with $j\in [n]$
-on $P\times Q$ that are ``lost'' in the projection on $P^l$.
-The following theorem, by Savani and von Stengel \cite{uvg},
-shows that there is no loss of generality in studying Lemke paths on
-$P^l$; an analogous result holds for the dual case.
+By theorems \ref{unit-vector-thm} and \ref{unit-vector-dual-thm},
+in the case of unit vector games is enough to apply the Lemke-Howson
+algorithm to the polytope
+$P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ in (\ref{p-l}),
+or the dual Lemke-Howson algorithm to the polytope
+$Q=\conv(\{ e_1,\ldots,e_m \})\ \cup\ \{ c_1,\ldots,c_n \})$ in
+(\ref{p-l-dual}).
+Not only this yield a Nash equilibrium, but no potential solutions
+are ``lost'' considering the polytope $P^l$ with $m$ labels
+instead of the product of polytopes $P\times Q$ with $m + n$ labels,
+as stated in the following theorem by Savani and von Stengel \cite{uvg};
+an analogous result holds for the dual case.
 
 \begin{theorem}\label{unit-paths}
 Let $(U,B)$ be a unit vector game, with
@@ -249,8 +240,6 @@ label $k$ projects to a path on $P$ that is the Lemke path on $P^l$
 for missing label $k$ if $k\in [m]$,
 and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
 \end{theorem}
-
-\todo[inline]{until here}
 
 We finally focus on the case of unit vector games
 where the simplicial polytope $Q$ is cyclic; that is,
