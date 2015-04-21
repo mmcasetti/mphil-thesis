@@ -65,28 +65,24 @@ by theorem \ref{gale-thm} can be solved in polynomial time.
 
 We give two examples of the construction used in theorem \ref{gale-thm}.
 
-\begin{example}\label{gs-pm-ex}
-Consider the labeling $l:[6]\to [4]$ with $l=123423$. To find a
-Gale string $s\in G(4,6)$ that is completely labeled by $l$ we must look for
-a perfect matching $M$ of $G=([4],\{ e_i=(l(i),l(i+1))\ |\ i\in [6] \})$,
-as seen in figure \ref{perfect-matching}.
+\begin{example}
+\label{gs-pm-ex}
+Figure \ref{perfect-matching-fig} shows the graph for the Morris
+labeling $l=1234564523$, and its two matchings
+$M=\{ e_1,e_3,e_5 \}$ and $M'=\{ e_8,e_6,e_{10} \}$.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=40ex]{chapter-2/fig/perfect-matching.pdf}%
+\includegraphics[width=40ex]{chapter-2/fig/morris-6-graph.pdf}%
 \hfill\strut
-\caption[The graph from a labeling]{%
-The graph $G$ associated to the labeling $l=123423$.
+\caption[The Morris graph]{%
+The graph $G$ and its matchings for the Morris labeling $l=1234564523$.
 }
-\label{perfect-matching}
+\label{perfect-matching-fig}
 \end{figure}
 
-The matching $M$, in turn, will give the completely labeled Gale string $s$
-as $s(i)=s(i+1)=1$ for $e_i\in M$, $s(j)=0$ otherwise.
-
-For instance, if we take the perfect matching $M=\{ e_1,e_3 \}$, we have
-the string $s=111100$. If we take the perfect matching $M'=\{ e_4,e_6 \}$
-instead, we have the string $s'=1000111$.
+These, in turn, correspond to the completely labeled Gale strings
+$s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
 \end{example}
 
 A perfect matching for a graph, and therefore a Gale string for a labeling,
@@ -140,8 +136,8 @@ existence of another completely labeled Gale string $s'\neq s$ and the
 corresponding perfect matching $M'\neq M$.
 Since $M'\neq M$, there is at least one edge $e'\in M$ such that
 $e'\notin M'$. Consider the $d/2$ graphs $G_i=(V,E_i)$, where
-$E_i=E\setminus\{ e_i \}$ for $e_i\in M$. Since $V(G)=V(G')$ and
-$E(G)\subset E(G')$, every perfect matching for one of these $G_i$
+$E_i=E\setminus\{ e_i \}$ for $e_i\in M$. Since $V(G)=V(G_i)$ and
+$E(G_i)\subset E(G)$, every perfect matching for one of these $G_i$
 is a perfect matching for $G$ as well.
 With a brute force approach, we look for a perfect matching in each $G_i$;
 this will be $M'$. Since there are $i\in [d/2]$, the time to find it
@@ -152,49 +148,47 @@ will be still polynomial.
 We give two examples of the construction of theorem \ref{anothergale-thm}.
 
 \begin{example}
-The labeling $l=1234324$ gives the graph $G$ in figure
+The labeling $l=123432$ gives the graph $G$ in figure
 \ref{matching-2-edges}. Suppose that Edmonds' algorithm returns the matching
 $M=\{ e_1,e_3 \}$, associated to the completely labeled Gale string
-$s=1111000$. The edge $e_3$ has a parallel edge, $e_4$; we immediately
-have a second perfect matching in $M'=\{ e_1,e_4 \}$, associated to the
-Gale string $s'=1101100$.
+$s=\1\1\1\1 00$. The edge $e_1$ has a parallel edge, $e_6$; we immediately
+have a second perfect matching in $M'=\{ e_3,e_6 \}$, associated to the
+Gale string $s'=\1 0\1\1 0\1 $.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=40ex]{chapter-2/fig/matching-2-edges.pdf}%
+\includegraphics[width=40ex]{chapter-2/fig/matching-123432.pdf}%
 \hfill\strut
 \caption[A matching with a parallel edge]{%
-The graph for the labeling $l=1234324$.
+The graph for the labeling $l=123432$.
 }
 \label{matching-2-edges}
 \end{figure}
 \end{example}
 
-A case in which every edge in every perfect matching does not have a
-parallel one is the one given in example \ref{gs-pm-ex}.
+A case without parallel edges in the matching is the Morris graph.
 
 \begin{example}
-Consider the labeling $l=123423$; the associated graph is shown on
-the left in figure \ref{intermediate-matching}. There are only two possible
-matchings, and neither has a parallel edge.
-Note that $G$ is a multigraph: we look for parallel edges in the matching,
-not in all the edges of the graph.
-Suppose that Edmonds' algorithm returns the perfect matching
-$M=\{ e_1,e_3 \}$; we can then delete the edge $e_1$ to obtain the graph
-$G_1$, seen on figure \ref{intermediate-matching} right. The graph $G_1$
-has a perfect matching in $M'=\{ e_4,e_6 \}$, that is also a perfect
-matching of $G$, associated to the string $s'=100111$.
+Consider the Morris graph of example \ref{gs-pm-ex}; suppose that
+Edmonds' algorithm returns the perfect matching $M=\{ e_1,e_3,e_5 \}$,
+as in figure \ref{intermediate-matching} right, corresponding
+to the completely labeled Gale string $s=\1\1\1\1\1\1 0000$.
+We can then delete the edge $e_1$ to obtain the graph
+$G_1$, as in figure \ref{intermediate-matching} left. The graph $G_1$
+has a perfect matching $M'=\{ e_6,e_8,e_{10} \}$; this is also a perfect
+matching of $G$, corresponding to the string $s'=\1 0000\1\1\1\1\1$.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=35ex]{chapter-2/fig/perfect-matching.pdf}%
+\includegraphics[width=35ex]{chapter-2/fig/morris-6-1-matching.pdf}%
 \hfill
 \hfill
-\includegraphics[width=35ex]{chapter-2/fig/intermediate-matching.pdf}%
+\includegraphics[width=35ex]{chapter-2/fig/morris-6-intermediate.pdf}%
 \hfill\strut
-\caption[A matching without parallel edges]{%
-Left: the graph $G=(V,E)$ for the labeling $123423$. \\
-Right: the graph $G_1=(V,E\setminus\{ e_1 \})$.
+\caption[The second matching of the Morris graph]{%
+Left: the Morris graph $G=(V,E)$ with the matching $M=\{ e_1,e_3,e_5 \}$. \\
+Right: the graph $G_1=(V,E\setminus\{ e_1 \})$ with the matching
+$M'=\{ e_6,e_8,e_{10} \}$.
 }
 \label{intermediate-matching}
 \end{figure}
