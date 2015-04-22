@@ -22,116 +22,110 @@ A {\em mixed strategy} of player $p$ is a probability
 distribution on $S_P$; it can be described as a point
 $x=(x^p_1,\ldots,x^p_{|S_p|})$ on the
 $(|S_p|-1)$-dimensional {\em mixed strategy simplex}
-$\Delta_p=\{ x\in\reals^{|S_p|} | x\geq\0,\ \1\T x = 1 \}$;
+$\Delta_p=\{ x\in\reals^{|S_p|}\ |\ x\geq\0,\ \1\T x = 1 \}$;
 the set of {\em mixed strategy profiles} will be the simplicial polytope
 $\Delta=\times_{p\in P}\Delta_p$.
 We extend the payoff functions to $u^p:\Delta\to\reals$ by linearity.
 
 A {\em Nash equilibrium} of a game is a strategy profile in which each
 player cannot improve her expected payoff by unilaterally changing her
-strategy. Such a strategy is called a {\em best response}; a strategy
-that is not a best response is called {\em dominated}.
-Formally: for $s\in S_{-p}$ let $x_s=\prod_{q\neq p} x^q_{s_q}$;
-then a Nash equilibrium is a strategy profile
-$x$ such that for every $p\in P$ and every $\sigma,\tau\in S_p$
-\begin{equation}
-\sum_{s\in S_{-p}} u^p(\sigma,s) x_s > \sum_{s\in S_{-p}} u^p(\tau,s) x_s
-\quad
-\Rightarrow
-\quad
-x_\tau^p = 0
-\end{equation}
-
+strategy; such a strategy is called a {\em best response}.
 Note that applying an affine transformation to all the payoffs does not
-change the Nash equilibria of the game. Note also that there might be more
-than one equilibrium. The existence of a Nash equilibrium is guaranteed by
-the fundamental theorem by Nash (\cite{nash}).
+change the Nash equilibria of the game.
+
+\begin{proposition}
+\label{positive-p-br-thm}
+A mixed strategy $x\in \Delta_p$ is a best response against some mixed
+strategy profile $y\in \Delta_{-p}$ of the other players if and only if
+every pure strategy $s_i\in S_p$ chosen with positive probability
+in $x$ is a best response to $y$.
+\end{proposition}
+
+The existence of a Nash equilibrium is guaranteed by
+the fundamental theorem by Nash (\cite{nash}). Note that there might be more
+than one equilibrium.
 
 \begin{theorem}{\rm (Nash \cite{nash})}\label{nash-thm}
 Every finite game in normal form has a Nash equilibrium.
 \end{theorem}
 
-We give three classic examples of game: matching pennies, the prisoners'
-dilemma and coordination.
+We give three classic examples of games: matching pennies, the prisoners'
+dilemma and a coordination game.
 
 \begin{example}
-In the non-symmetric zero-sum game {\em matching pennies}, both players have
-payoff zero unless they play the same strategy. In this case,
-player 2 (the {\em evader}) pays a sum to payoff 1 (the \emph{pursuer}).
+Figure \ref{matching-pennies} shows the payoffs of the non-symmetric
+zero-sum game {\em matching pennies}, with
+payoff matrices $A=\binom{1\ 0}{0\ 1}$ and $B=-A$.
 
+\begin{figure}[hbt]
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
-\bimatrixgame{3mm}{2}{2}{{{\scriptsize pursuer}}}{{{\scriptsize evader}}}
-{{\scriptsize up}{\scriptsize down}}
-{{\scriptsize up}{\scriptsize down}}
+\bimatrixgame{3mm}{2}{2}{1}{1}
+{{$s^1_1$}{$s^1_2$}}
+{{$s^2_1$}{$s^2_2$}}
 {
 \payoffpairs{1}{{1}{0}}{{-1}{0}}
 \payoffpairs{2}{{0}{1}}{{0}{-1}}
 }
 \end{center}
+\caption{Matching pennies.}
+\label{matching-pennies}
+\end{figure}
 
 At the unique equilibrium of the game, each player follows the uniform
 distribution over their strategies.
 
-In the symmetric non zero-sum {\em prisoners' dilemma}, each player must
+In the symmetric non zero-sum {\em prisoners' dilemma} of figure
+\ref{prisoners-dilemma}, each player must
 decide whether to ``help'' the other one or to ``betray'' them. If both
 players help each other, they will get a small reward; if both betray, they
 will pay a small penalty; if one betrays and the other cooperate the former
 will get a large reward and the latter will pay a large penalty.
 
+\begin{figure}[hbt]
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
-\bimatrixgame{3mm}{2}{2}{{{\small 1}}}{{{\small 2}}}
+\bimatrixgame{3mm}{2}{2}{1}{2}
 {{\scriptsize betray}{\scriptsize help}}
 {{\scriptsize betray}{\scriptsize help}}
 {
-\payoffpairs{1}{{-2}{-2}}{{10}{-8}}
-\payoffpairs{2}{{-8}{10}}{{5}{5}}
+\payoffpairs{1}{{1}{3}}{{1}{0}}
+\payoffpairs{2}{{0}{2}}{{3}{2}}
 }
 \end{center}
+\caption{The prisoners' dilemma.}
+\label{prisoners-dilemma}
+\end{figure}
 
 The only equilibrium is the profile in which both players betray.
 Assume that player 1 helps: then she must switch to betrayal, since she would
 get $10$ instead of $5$ if player 2 helps and $-2$ instead of $-8$ if player 2
 betrays. The same applies to player 2, so both players will betray.
-Note that the payoff matrices can be rewritten as
-$A=\binom{1\ 3}{0\ 2}$ and $B=A\T$.
+The payoff matrices are $A=\binom{1\ 3}{0\ 2}$ and $B=A\T$.
 
-As an example of game with more than one equilibrium is {\em coordination}:
+Finally, in figure \ref{coordination-game}, a {\em coordination} game
+with $A=B$:
 both players drive on a mountain road; they lose if drive on the same side
 of the road and win if they avoid each other, regardless of which side they
 take.
 
+\begin{figure}[hbt]
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
 \bimatrixgame{3mm}{2}{2}{{{\small 1}}}{{{\small 2}}}
 {{\scriptsize mountain}{\scriptsize valley}}
 {{\scriptsize mountain}{\scriptsize valley}}
 {
-\payoffpairs{1}{{0}{0}}{{1}{1}}
-\payoffpairs{2}{{1}{1}}{{0}{0}}
+\payoffpairs{1}{{0}{1}}{{0}{1}}
+\payoffpairs{2}{{1}{0}}{{1}{0}}
 }
 \end{center}
+\caption{Coordination game.}
+\label{coordination-game}
+\end{figure}
 
-Both (mountain,road) and (road,mountain) are Nash equilibria.
-
+Both (mountain,valley) and (valley,mountain) are Nash equilibria; in fact,
+every mixed strategy where $x^1_1 = x^2_2$, where $x^p_i$ is the
+probability that player $p$ assigns to strategy $s^p_i$, is a Nash
+equilibrium.
 \end{example}
-
-Consider the problem $n$-{\sc Nash}, as follows.
-
-\begin{fctproblem}
-{$n$-Nash}
-{A $n$-player game $\Gamma$.}
-{A Nash equilibrium of $\Gamma$.}
-\end{fctproblem}
-
-By theorem \ref{nash-thm}, {\sc $n$-Nash} is a total function
-problem; Megiddo and Papadimitriou (\cite{megiddo-papad}) proved that it is
-in {\bf TFNP}. Daskalakis, Goldberg and Papadimitriou \cite{dgp} and Chen
-and Deng \cite{cd} have proven its {\bf PPAD}-completeness, the former for
-$n\geq 3$ and the latter for $n\geq 2$.
-
-\begin{theorem}{\rm (Daskalakis, Goldberg and Papadimitriou \cite{dgp};
-Chen and Deng \cite{cd})}\label{nash-ppad-complete}
-For $n\geq 2$, the problem {\sc $n$-Nash} is {\bf PPAD}-complete.
-\end{theorem}
