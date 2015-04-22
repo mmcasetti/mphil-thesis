@@ -1,23 +1,55 @@
 \section{Some Complexity Classes}
 
-We start by recalling some standard definitions of computational complexity
-theory; we then move on to the more recent classes {\bf TFNP} and {\bf PPAD},
-first introduced in \cite{megiddo-papad} and \cite{ppad} respectively. The
-latter, in particular, is a key concept in the study of the problems that
-are the focus of this thesis.
+We some standard definitions of computational complexity
+theory; we then move on to the more recent classes {\bf TFNP} and
+{\bf PPAD}, first introduced in \cite{megiddo-papad} and \cite{ppad}
+respectively. The latter, in particular, is a key concept in the
+study of the problems that are the focus of this thesis.
 
-A {\em computational problem} is given by the combination of an {\em input}
-and a related {\em output}. A specific input gives an {\em instance} of the
-problem. Computational problems can be classified according to the form of their
-output. A {\em function problem} $P$ returns for an intance $x$ an output
-$y$ that satisfies a given binary relation $R(x,y)$. In the case of a
-{\em decision problems}, $y$ answers a ``{\sc Yes / No}'' question. The
-{\em complement} of a decision problem $P$ is the problem $\bar{P}$
-that returns ``{\sc No}'' for each instance of $P$ that returns
-``{\sc Yes}'', and vice versa. {\em Search problems} are function problems
-that return either an output $y$ such that $R(x,y)$, or ``{\sc No}'' if
-it's not possible to find any such $y$. If $y$ is guaranteed to exist,
-the problem is called a {\em total function problem}.
+A {\em Turing machine} $\mathcal{M}$ is a representation of a
+{\em program} that takes an {\em input}, runs a {\em program}
+manipulating the input, and either does not come to a
+{\em halting state} or it returns an {\em output}; the latter can
+be {\sc Yes} (in which case the Turing machine {\em accepts} the
+input), {\sc No} (the Turing machine {\em rejects} the input), or a
+string $\mathcal{M}(x)$. Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$.
+The finite set $K$ is the set of {\em states}; $\Sigma$ is a finite set of
+{\em symbols} (the {\em alphabet} of $\mathcal{M}$) such that
+$\Sigma\cap K=\varnothing$, and $\Sigma$ always contains the symbols
+$\sqcup$ ({\em blank}) and $\rhd$ ({\em first symbol}); $\delta$ is the
+{\em transition function}
+\[
+\delta:K\times \Sigma\longrightarrow (K\cup\{ h, {\sc Yes}, {\sc No} \})%
+\times \Sigma \times \{ \leftarrow,\rightarrow,- \}
+\]
+where $h$ is the {\em halting state}, {\sc Yes} is the {\em accepting state},
+{\em No} is the {\em rejecting state}, and
+$\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$ correspond to
+the {\em cursor directions} ``left,'' ``right'' and ``stay.''
+
+A {\em language} is a set of strings of symbols
+$L\subset(\Sigma\setminus\{ \sqcup \})^\ast$; a Turing machine $\mathcal{M}$
+{\em decides} $L$ if for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$
+$\mathcal{M}(x)={\sc Yes}$ if $x\in L$ and
+$\mathcal{M}(x)={\sc No}$ if $x\notin L$.
+We say that $\mathcal{M}$
+{\em accepts} $L$ if for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$
+$\mathcal{M}(x)={\sc Yes}$ if $x\in L$ and
+$\mathcal{M}(x)$ does not halt if $x\notin L$.
+Given a function $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$,
+we say that $\mathcal{M}$ {\em computes} $f$ if for every
+$x\in (\Sigma\setminus\{ \sqcup \})^\ast$ $\mathcal{M}(x)=f(x)$.
+
+Given a problem, a specific input of a problem is called an {\em instance}.
+The output of a {\em decision problem} $P$ is either {\sc Yes} or {\sc No}.
+Its {\em complement} is the problem $\bar{P}$ that outputs ``{\sc No}''
+for each instance of $P$ that outputs ``{\sc Yes}'', and vice versa.
+A {\em function problem} outputs a more generic $y$ that satisfies
+a binary relation $R(x,y)$, where $x$ is the instance of the problem.
+{\em Search problems} are function problems that return either $y$ such
+that $R(x,y)$, or ``{\sc No}'' if it's not possible to find any such $y$.
+If $y$ is guaranteed to exist, the problem is called a
+{\em total function problem}.
 
 An example of decision problem is: ``(input) given a graph, (question)
 is it possible to find an Euler tour of the graph?'' Its complement
@@ -27,21 +59,11 @@ any Euler of the graph?'' A search problem is: ``(input) given a graph,
 exists.'' A total function problem is: ``(input) given an Euler graph,
 (output) return one of its Euler tours.''
 
-Computational problems are also classified according to their
-{\em computational complexity}
-
-\todo[inline]{
-, given by the {\em reducibility} from each
-other.
-
-deterministic Turing machines: here (we use only deterministic ones)}
-
-Let $P_1$ be a computational problem, such that its instance $x$ is encoded
-by $|x|$ bits. $P_1$ {\em reduces to the problem $P_2$ in polynomial time},
+Let $P_1$ be a problem and let $x$ be an instance of $P_1$ that is encoded
+in $|x|$ bits. $P_1$ {\em reduces to the problem $P_2$ in polynomial time},
 denoted $P_1\leq_P P_2$, if there exists a {\em polynomial-time reduction},
 that is, a function $f: \{0,1\}^\ast \to \{0,1\}^\ast$ and a Turing machine
 $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
-
 \begin{enumerate}
 \item $x\in P_1\quad\iff\quad f(x)\in P_2$;
 \item $\mathcal{M}$ computes $f(x)$;
@@ -51,27 +73,29 @@ $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
 Intuitively, if $P_1$ is polynomial-time reducible to $P_2$, it takes
 polynomial time to ``translate'' $P_1$ to $P_2$, and then to
 ``translate back'' a solution of $P_2$ as a solution of $P_1$.
+This is particularly useful if $P_2$ is ``difficult to solve''; then
+the problem $P_1$ is at least as ``difficult.''
 
+A {\em class} is a set of languages.
 For any class $\mathrm{C}$ of decision problems, the class of all complements
-of the problems in $C$ is the {\em complement class} $\mathrm{co-C}$.
-A problem $P$ is {\em hard} for a class $\mathrm{C}$ if for every problem
-$P_C$ in $\mathrm{C}$ there is a polynomial-time reduction to $P$; that is,
+of the problems in $\mathrm{C}$ is the {\em complement class}
+$\mathrm{co-C}$. A problem $P$ is {\em hard} for a class $\mathrm{C}$
+if for every problem $P_{\mathrm{C}}$ in $\mathrm{C}$ there is a
+polynomial-time reduction to $P$; that is,
 if $P$ is hard to solve at least as every problem in $\mathrm{C}$. A
 $\mathrm{C}-hard$ problem in $\mathrm{C}$ is {\em complete} for
 $\mathrm{C}$.
 
 The complexity class $\mathrm{\mathbf{P}}$ contains all the
-{\em polynomially decidable problems}, that is, all problems $P$ such that
-there exists a Turing machine $\mathcal{M}$ that outputs either ``YES'' or
-``NO''  for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
+{\em polynomially decidable problems}; that is, all problems $P$ such that
+there exists a Turing machine $\mathcal{M}$ that outputs either {\sc Yes} or
+{\sc No}  for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
 where $p$ is a polynomial. Intuitively, a decision problem is in
 $\mathrm{\mathbf{P}}$ if the answer to its question can be found in a
 number of steps that is polynomial in the input of the problem.
-
 A problem $P$ belongs to the class $\mathrm{\mathbf{NP}}$,
 {\em non-deterministic polynomial-time problems}, if there exists a
 Turing machine $\mathcal{M}$ and polynomials $p_1,p_2$ such that
-
 \begin{enumerate}
 \item for all $x\in P$ there exists a {\em certificate} $y\in \{0,1\}^\ast$
 which satisfies $|y|\leq p_1(|x|)$;
@@ -80,14 +104,11 @@ $p_2(|x| + |y|)$ steps;
 \item for all $x\notin P$ there does not exist $y\in \{0,1\}^\ast$ such
 that $\mathcal{M}$ accepts the combined input $xy$.
 \end{enumerate}
-
-This means that a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
+Intuitively, a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
 indeed, a correct answer to the question posed by the problem.
 The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
 the number of possible certificates for a problem in $\mathrm{\mathbf{NP}}$.
-
-\todo[inline]{check formal def of \# P (?)}
 
 In \cite{megiddo-papad}, Megiddo and Papadimitriou introduce the classes
 $\mathrm{\mathbf{FNP}}$, {\em function non-deterministic polynomial}, and
@@ -100,20 +121,49 @@ exist. Intuitively, $\mathrm{\mathbf{FNP}}$ and $\mathrm{\mathbf{TFNP}}$ are
 similar to $\mathrm{\mathbf{NP}}$, but they allow for problems of
 (respectively) function and total function form.
 
-In \cite{megiddo-papad}, Megiddo and Papadimitriou also prove that, unless
+In \cite{megiddo-papad}, Megiddo and Papadimitriou also proved that, unless
 $\mathrm{\mathbf{NP}}=\mathrm{\mathbf{co-NP}}$, $\mathrm{\mathbf{TFNP}}$ is a
 {\em semantic} class, that is, a class without complete problems.
 To circumvent this limitation of $\mathrm{\mathbf{TFNP}}$, Papadimitriou
-(\cite{ppad}) focused on the problems for which the existence of a solution
+focused on the problems for which the existence of a solution
 is proved by a ``parity argument'', introducing the classes
 $\mathrm{\mathbf{PPA}}$ ({\em Proof by Parity Argument}) and
-$\mathrm{\mathbf{PPAD}}$ ({\em Proof by Parity Argument, Directed version}).
+$\mathrm{\mathbf{PPAD}}$ ({\em Proof by Parity Argument, Directed version})
+in (\cite{ppad}).
+
+
+\todo[inline]{
 
 The formal definition of $\mathrm{\mathbf{PPA}}$ and
 $\mathrm{\mathbf{PPAD}}$,
 
-\todo[inline]{definition of PPA(D): one in Papadimitriou 1994 and one in DGP
-the second w END OF THE LINE, use that one.}
+definition of PPA(D): one in Papadimitriou 1994 and one in DGP
+the second w END OF THE LINE, use that one.
 
-\todo[inline]{as an example, SPERNER (look at Papadimitriou 1994);
-will reconnect to NASH in next subsection - BROUWER mention, maybe}
+
+}
+
+Consider the problem $n$-{\sc Nash}, as follows.
+
+\begin{fctproblem}
+{$n$-Nash}
+{A $n$-player game $\Gamma$.}
+{A Nash equilibrium of $\Gamma$.}
+\end{fctproblem}
+
+By theorem \ref{nash-thm}, {\sc $n$-Nash} is a total function
+problem; Megiddo and Papadimitriou (\cite{megiddo-papad}) proved that it is
+in {\bf TFNP}. Daskalakis, Goldberg and Papadimitriou \cite{dgp} and Chen
+and Deng \cite{cd} have proven its {\bf PPAD}-completeness, the former for
+$n\geq 3$ and the latter for $n\geq 2$.
+(A small amendment of the proof can be found in Casetti \cite{msc-diss}.)
+\todo{self-serving much?}
+
+\begin{theorem}{\rm (Daskalakis, Goldberg and Papadimitriou \cite{dgp};
+Chen and Deng \cite{cd})}\label{nash-ppad-complete}
+For $n\geq 2$, the problem {\sc $n$-Nash} is {\bf PPAD}-complete.
+\end{theorem}
+
+We will see more problems in {\bf PPA} and {\bf PPAD} in chapter
+\ref{main-chapter}; in fact, our main result can be seen as a
+negative result as far as these classes are concerned.
