@@ -135,7 +135,7 @@ one odd-degree node there must be another odd-degree node.'' It is
 interesting to note that no {\bf PPA} problems have been proven
 {\bf PPA}-complete.
 The existence of the problems in {\bf PPAD}, on the other hand, can be
-proven using the argumet ``in any directed graph with one unbalanced node
+proven using the argument ``in any directed graph with one unbalanced node
 (that is, with outdegree different from its indegree) there must be another
 unbalanced node.'' The latter can simplified without loss of generality or
 computational power to the case of indegree and outdegree at most one,
@@ -163,11 +163,18 @@ indegree 1 or 2; when each input node receives an input in $\{ 0,1 \}$,
 the internal nodes with indegree $2$ compute the Boolean functions $and$ or
 $or$, the internal nodes with indegree $1$ compute the Boolean function
 $not$ and each output node returns a value in $\{ 0,1 \}$ accordingly.
-The problems in {\sc End Of The Line} present a circuit $S$ (``successor''),
-and a circuit $P$ (``predecessor'') that build a directed graph with an
-edge $(x,y)$ if and only if $S(x)=y$ and $P(y)=x$; a {\em standard source}
-$0^n$ is also given; the output is either a sink or a non-standard source.
-Figure \ref{ppad-graph} presents an example of this.
+The problems in {\bf PPAD} can be seen as a circuit $S$ (``successor''),
+and a circuit $P$ (``predecessor'') that are used to build a directed
+graph with an edge $(x,y)$ if and only if $S(x)=y$ and $P(y)=x$, with a
+{\em standard source} $0^n$; the output is either a sink or a
+non-standard source. Problems in {\bf PPA} can be defined analogously,
+but the resulting graph is not directed and instead of sources and sinks
+there are generic endpoints; that is, the roles of $P$ and $S$ are
+interchangeable. We have that
+${\bf{\rm PPAD}}\subset{\bf{\rm PPA}}$, and there are {\bf PPA} problems
+that are not {\bf PPAD}, as we will see in section \ref{lh-section}.
+Figure \ref{ppad-graph} presents an example of graph of a {\bf PPAD}
+problem; a graph for a {\bf PPA} problem is analogous, but undirected.
 
 \begin{figure}[hbt]
 \strut\hfill

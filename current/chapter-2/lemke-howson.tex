@@ -1,4 +1,5 @@
 \section{The Lemke-Howson Algorithm}
+\label{lh-section}
 
 In the previous chapter we have defined some problems
 of the form ``find another completely labeled\ldots'' for
@@ -105,6 +106,17 @@ an even number of points.
 \end{proof}
 \end{proposition}
 
+For each label $k\in [d]$ chosen in line 1 of Algorithm \ref{lh-alg},
+Lemke paths can be seen as edges of an undirected graph that connect
+vertices corresponding to the completely labeled vertices of $P$,
+with a vertex corresponding to $x_0$ as standard endpoint. This shows the
+following proposition.
+
+\begin{proposition}
+\label{aclv-ppa-thm}
+{\sc Another Completely Labeled Vertex} is a problem in {\bf PPA}.
+\end{proposition}
+
 Applying the parity result in proposition \ref{lh-works-thm} to the case of
 a bimatrix game (not necessarily a unit vector game), and remembering that
 the point $(\0,\0)$ corresponds to an
@@ -200,19 +212,45 @@ Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
 \end{proposition}
 
+We also have the analogous of proposition \ref{aclv-ppa-thm}
+
+\begin{proposition}
+\label{aclf-ppa-thm}
+{\sc Another Completely Labeled Facet} is a problem in {\bf PPA}.
+\end{proposition}
+
 \begin{example}
+\label{octahedron-ex}
 Consider the octahedron with vertices labeled as in figure
-\ref{octahedron-fig}. The facet $F$ is completely labeled; dropping the
-vertex with label 1 we pivot to the completely labeled facet $F'$.
+\ref{octahedron-clf-fig}. The facet $A$ is completely labeled; dropping the
+vertex with label 1 we pivot to the completely labeled facet $B$.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-2/fig/octahedron-lhdual.pdf}%
+\includegraphics[width=55ex]{chapter-2/fig/octahedron-facets-v2.pdf}%
 \hfill\strut
 \caption{%
-Pivoting on the facets of the octahedron.%
+A pivot on the facets of the octahedron.%
 }
-\label{lh-path-fig}
+\label{octahedron-clf-fig}
+\end{figure}
+
+The Lemke paths for the completely labeled facets of the octahedron
+are shown in figure \ref{octahedron-lemkepaths-fig}.
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=20ex]{chapter-2/fig/octahedron-lhdual-1-v2.pdf}%
+\hfill
+\includegraphics[width=20ex]{chapter-2/fig/octahedron-lhdual-23-v2.pdf}%
+\hfill
+\includegraphics[width=20ex]{chapter-2/fig/octahedron-lhdual-v2.pdf}%
+\hfill\strut
+\caption{%
+Right: Lemke paths for label 1. Centre: Lemke paths for labels 2 and 3.
+Left: all Lemke paths.%
+}
+\label{octahedron-lemkepaths-fig}
 \end{figure}
 \end{example}
 
@@ -287,6 +325,8 @@ This corresponds to the labeling $l=123432$, for which there are
 four completely labeled Gale strings in $G(4,6)$:
 $s_A=\1\1\1\100$, $s_B=\1\10\1\10$, $s_C=\100\1\1\1$ and
 $s_D=\10\1\10\1$, corresponding to the facets $A$, $B$, $C$ and $D$.
+Pivoting from facet $A$ dropping label 3 yields facet $B$; analogously,
+pivoting from $s_A=\1\1\1\100$ dropping label 3 yields $s_B=\1\10\1\10$.
 
 \begin{figure}[hbt]
 \strut\hfill
@@ -299,13 +339,11 @@ the facet $B$.%
 }
 \label{lhg-123432-fig}
 \end{figure}
-
-Pivoting from facet $A$ dropping label 3 yields facet $B$; pivoting from
-$s_A=\1\1\1\100$ dropping label 1 yields $s_B=\1\10\1\10$.
 \end{example}
 
-The analogous of propositions \ref{lh-works-thm} and
-\ref{lh-dual-works-thm} is the following.
+The analogous of Proposition \ref{lh-works-thm} and Proposition
+\ref{lh-dual-works-thm} for the Lemke-Howson for Gale algorithm
+is the following.
 
 \begin{proposition}\label{lhg-works-thm}
 The Lemke-Howson for Gale algorithm \ref{lhg-alg} returns a
@@ -314,6 +352,16 @@ solution to the problem \anothergale.
 Furthermore, the number of completely labeled Gale strings
 $s\in G(d,n)$, where $d$ is even, is even.
 \end{proposition}
+
+In the case of Gale strings, it is quite easy to orient the Lemke paths,
+and prove a stronger result of {\bf PPAD} complexity instead of {\bf PPA}
+as in Proposition \ref{aclv-ppa-thm} and Proposition \ref{aclf-ppa-thm}.
+We will do so by giving an {\em index}
+to the completely labeled Gale strings; we will then show that all the
+endpoints of the Lemke paths have different index, so the Lemke paths can
+be oriented from positive to negative index.
+
+\todo[inline]{LHG oriented}
 
 An interesting example, as we will see in the next section, is the
 following, due to Morris \cite{morris}.
@@ -348,3 +396,5 @@ Lemke-Howson for Gale algorithm will run as in figure \ref{morris-6-fig}.
 \label{morris-6-fig}
 \end{figure}
 \end{example}
+
+\todo[inline]{Morris paths are exponentially long}
