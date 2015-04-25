@@ -114,7 +114,7 @@ following proposition.
 
 \begin{proposition}
 \label{aclv-ppa-thm}
-{\sc Another Completely Labeled Vertex} is a problem in {\bf PPA}.
+{\sc Another Completely Labeled Vertex} is in {\bf PPA}.
 \end{proposition}
 
 Applying the parity result in proposition \ref{lh-works-thm} to the case of
@@ -216,7 +216,7 @@ We also have the analogous of proposition \ref{aclv-ppa-thm}
 
 \begin{proposition}
 \label{aclf-ppa-thm}
-{\sc Another Completely Labeled Facet} is a problem in {\bf PPA}.
+{\sc Another Completely Labeled Facet} is in {\bf PPA}.
 \end{proposition}
 
 \begin{example}
@@ -356,14 +356,127 @@ $s\in G(d,n)$, where $d$ is even, is even.
 In the case of Gale strings, it is quite easy to orient the Lemke paths,
 and prove a stronger result of {\bf PPAD} complexity instead of {\bf PPA}
 as in Proposition \ref{aclv-ppa-thm} and Proposition \ref{aclf-ppa-thm}.
-We will do so by giving an {\em index}
+We will do so by giving a {\em sign}, positive or negative,
 to the completely labeled Gale strings; we will then show that all the
-endpoints of the Lemke paths have different index, so the Lemke paths can
-be oriented from positive to negative index.
+endpoints of the Lemke paths have different sign, so the Lemke paths can
+be oriented from positive to negative sign.
 
-\todo[inline]{LHG oriented}
+A {\em permutation} of the elements of an ordered set $S$ is a sequence
+without repetition of elements of $S$.
+Let $\sigma$ be a permutation of the elements of $[d]$. The {\em sign}
+of $\sigma$ can be defined as $\sign(\sigma)=(-1)^m$, where $m$ is the
+number of the exchanges of exactly two elements of $\sigma$
+(called {\em transpositions}) needed to get $\sigma'=1\ldots n$ from
+$\sigma$. Note that any two permutations that differ in one transposition
+have opposite sign.
 
-An interesting example, as we will see in the next section, is the
+We give the {\em sign of a completely labeled Gale string} $s$ for a
+labeling $l$ as follows.
+Let $l_0$ be the string of labels $l(i)$ such that $s(i)=1$ and that
+two labels corresponding to a run in $l$ are adjacent in $l_0$. We
+define $\sign(s)=\sign(l_0)$.
+Note that, in the context of games, the completely labeled Gale string
+$1^d 0^{(n-d)}$ corresponding to the artificial equilibrium will
+always have positive sign.
+
+\begin{example}
+For the labeling $l = 123434$ there are four completely labeled Gale string
+in $G(4,6)$.
+The completely labeled string $111100$ has positive sign, since
+it corresponds to the string of labels $1234$; the string $110110$
+corresponds to the string of labels $1243$, that has negative sign.
+The string $111001$ corresponds to $4123$, with negative sign, since
+$s(6)$ and $s(1)$ are both $1$ and therefore form a run.
+\end{example}
+
+Defining $l_0$ as above, but for an almost completely labeled Gale string,
+we have that $l_0$ has one missing and one duplicate label.
+We can substitute the former to the latter
+either in the position that has been reached by the last pivot, obtaining
+the string $l_1$, or in the position that was already in the string,
+obtaining the string $l_2$. These two strings have opposite sign, since
+they can be obtained from each other with one transposition.
+
+
+
+We can now give a sign to the pivoting steps of the Lemke-Howson for Gale
+algorithm.
+Note that a pivoting operation changes the sign, since it involves
+``jumping'' over an odd number of \1's.
+Assume that the completely labeled Gale string $s$ has positive
+sign (the negative case is the same with opposite signs). If the pivoting
+returns another completely labeled Gale string $s'$, this must have negative
+sign because it has been obtained via one pivoting step.
+If the pivoting returns an almost completely labeled Gale string, the
+sign of $l_1$ will be negative, since it correspond to a pivoting; so
+the sign of $l_2$ will be positive. The next pivoting step drops the
+label that was substituted with the missing one in $l_2$, so again we
+change sign. The steps of the Lemke paths can therefore be seen as in
+Figure \ref{lhg-sign-figure}
+
+\begin{figure}[hbt]
+$\xymatrix@C=30mm@R-=5mm@M=3mm{
+\text{\footnotesize completely labeled string} \ar[r]^{pivot}
+    & \text{\footnotesize missing label in new position}  \ar[dl]|{=}  \\
+\text{\footnotesize missing label in old position} \ar[r]^{pivot}
+    & \qquad\qquad\cdots\qquad\qquad \ar[dl]|{=} \\
+\qquad\qquad\cdots\qquad\qquad \ar[r]^{pivot}
+    & \text{\footnotesize completely labeled string}
+}$
+\caption[Sign switching on the Lemke-Howson for Gale algorithm]
+{Sign switching on the Lemke-Howson for Gale algorithm.}
+\label{lhg-sign-figure}
+\end{figure}
+
+\begin{example}
+Let $l=123432$; consider the Lemke path from the completely labeled
+Gale string $s=\1\1\1\100$ dropping label $1$. The graph in Figure
+\ref{lhg-sign-figure} then becomes as in figure \ref{lhg-sign-ex-figure}
+
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=65ex]{chapter-2/fig/pivoting-sign-example.pdf}%
+\hfill\strut
+\caption[Pivoting with sign on $123432$]
+{Pivoting with sign on $123432$.}
+\label{lhg-sign-ex-figure}
+\end{figure}
+
+\end{example}
+
+
+\begin{proposition}\label{gale-ppad-thm}
+\anothergale\ is in {\bf PPAD}.
+\end{proposition}
+
+A result similar to Proposition \ref{gale-ppad-thm}, but more general, is given
+in Shapley \cite{shapley}; it shows that two equilibria at the ends of a
+Lemke path have opposite {\em index}. The index is defined in terms of the
+signs of the determinants of the square submatries of the payoff matrices
+for the equilibrium support; the artificial equilibrium is assigned
+index $+1$. The main result of Shapley's article \cite{shapley} is that if a
+nondegenerate game has $n$ Nash equilibria with index $+1$, then the game has
+$n+1$ Nash equilibria with index $-1$. The article also gives an interesting
+example of a game for which the graph of all Lemke paths is disjoint.
+This is the symmetric game $(C,C\T)$ with
+\[
+C = \left(
+      \begin{array}{ccc}
+        0 & 3 & 0 \\
+        2 & 2 & 0 \\
+        3 & 0 & 1
+      \end{array} \right)
+\]
+The equilibria are $(x_1,y_1)=((0,0,1), (0,0,1))$,
+$(x_2,y_2)=((1/3,2/3,0),(1/3,2/3,0))$ and
+$(x_3,y_3)=((1/6,1/3,1/2),(1/6,1/3,1/2))$. All Lemke paths from the
+artificial equilibrium $(0,0)$ end at $(x_1,y_1)$.
+Note that since all equilibria are symmetric, by Theorem \ref{imitation-thm}
+they all correspond to equilibria in the imitation game $(I,C\T)$.
+
+
+
+An interesting example of the Lemke-Howson for Gale algorithm is the
 following, due to Morris \cite{morris}.
 
 \begin{example}
@@ -397,4 +510,38 @@ Lemke-Howson for Gale algorithm will run as in figure \ref{morris-6-fig}.
 \end{figure}
 \end{example}
 
-\todo[inline]{Morris paths are exponentially long}
+
+
+\todo[inline]{Morris paths are exponentially long
+
+
+Savani and von Stengel (2006) construct bimatrix games where both players
+have dual cyclic polytopes as their best response polytopes. They call
+these games m ⇥ n-double cyclic polytope games. For square games,
+where m = n = d and where the labels are derived from
+Morris’s construction (see Morris (1994) and Section 4.4 for the
+introduction of these labels), the LH-algorithm takes exponentially
+many steps to find an equilibrium.
+
+However, square games are not âĂIJhard to solveâĂİ by the sup-
+port enumeration algorithm; see Savani (2006). The support enumeration
+algorithm considers strategies of the players with equal support size and
+checks whether they are best replies to each other. Since square games
+have a unique completely mixed equilibrium, where both players play d
+pure strategies with positive probability, the support enumeration algo-
+rithm terminates quickly.
+Games where both solution concepts take exponentially long are then
+called hard- to-solve bimatrix games One class of hard-to-solve games is
+constructed from 3d âĞě d games with one cyclic polytope of dimension d
+and one simplotope, which is a product of simplices, here d tetrahedra (Sa-
+vani (2006)). He calls these triple imitation games, due to the connection
+to imitation games. Nash equilibria of triple imitation games are fully de-
+scribed by completely labeled Gale strings in G(d,4d). They are thus Gale
+games and an equilibrium can be found via the problem ANOTHER COM-
+PLETELY LABELED GALE STRING.
+
+}
+
+This gives a strong motivation to study the complexity of \anothergale,
+since it seems that it relates to games that are hard to solve. Our
+main result, in the next section, will give a {\bf FP} algorithm to solve it.

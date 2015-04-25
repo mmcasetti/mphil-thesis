@@ -193,3 +193,23 @@ $M'=\{ e_6,e_8,e_{10} \}$.
 \label{intermediate-matching}
 \end{figure}
 \end{example}
+
+\todo[inline]{
+THEOREM
+
+Finding a Nash equilibrium in Gale games takes polynomial time.
+
+Proof: Consider the labeled cyclic polytope of the Gale
+game as described in Section 3.2. The artificial Nash equilibrium is given
+by a completely labeled facet F0 and has a corre- sponding completely
+labeled Gale string in the Gale representation of the polytope. Since finding
+ANOTHER COMPLETELY LABELED GALE STRING is in FP, another completely labeled
+facet F1, which corresponds to a Nash equlibrium, is found in polynomial time.
+Since all reductions are polynomial in the size of the problem, a Nash
+equilibrium in Gale games is found in polynomial time.
+This result has an interesting implication. The Nash equilibrium that
+is found via the translation to perfect matchings above is not necessarily
+the same Nash equilibrium that is found by the LHG-algorithm for Gale strings.
+This holds because Edmonds’s algorithm picks out one of the other perfect
+matchings while the LHG-algorithm finds a specific one, described in Section 3.4.
+}
