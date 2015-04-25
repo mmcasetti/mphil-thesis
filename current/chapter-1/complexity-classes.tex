@@ -149,8 +149,8 @@ the problem {\sc End Of The Line}.
 {End Of The Line}
 {Two circuits $S$ and $P$ with $n$ input bits and $n$ output bits such that
 $P(0^n)=0^n\neq S(0^n)$.}
-{An input $x\in \{ 0,1 \}^n$ such that $P(S(x)\neq x)$ or $S(P(x))\neq x$
-and $S(P(x))\neq 0^n$}
+{An input $x\in \{ 0,1 \}^n$ such that $P(S(x)\neq x)$ or
+$S(P(x))\neq x\neq 0^n$}
 \end{fctproblem}
 
 This is the definition given in Daskalakis, Goldberg and Papadimitriou
@@ -168,9 +168,9 @@ and a circuit $P$ (``predecessor'') that are used to build a directed
 graph with an edge $(x,y)$ if and only if $S(x)=y$ and $P(y)=x$, with a
 {\em standard source} $0^n$; the output is either a sink or a
 non-standard source. Problems in {\bf PPA} can be defined analogously,
-but the resulting graph is not directed and instead of sources and sinks
-there are generic endpoints; that is, the roles of $P$ and $S$ are
-interchangeable. We have that
+such that the resulting graph is not directed and instead of sources and
+sinks there are generic endpoints.
+We have that
 ${\bf{\rm PPAD}}\subset{\bf{\rm PPA}}$, and there are {\bf PPA} problems
 that are not {\bf PPAD}, as we will see in section \ref{lh-section}.
 Figure \ref{ppad-graph} presents an example of graph of a {\bf PPAD}
