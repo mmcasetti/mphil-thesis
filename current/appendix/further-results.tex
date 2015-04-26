@@ -1,26 +1,18 @@
 
-Advantage of two dual cyclic polytopes as in SvS 06 over only one
-(and without "prefix" in labels for gale string) as seen in SvS 15 is:
-good example of exp on supports - see SvS 15
-
-thanks to dual of theorem SvS-15 \ref{unit-paths}, when doing labeling
-we can take the str of labels $l(n+j)\cdots l(n+m)$
-instead of $l(1)\cdots l(n+m)$,
-that is, we could cut the ``artificial'' first labels $12...n$.
-
-%l_s(i)=i\text{ for }i\in [d] \\
-%l_s(d+j)=l(j)\text{ for }j\in [n].
-
-After all, in main we're studying ANOTHER GALE
-in general, not nec starting from $12...n$; and we're interested in finding
-{\em one} eq that's not the one we started from
-(and is at other end of LPath, since index and so on),
-{\em not all equilibria};
-but the eq we started from is not nec the artificial one - actually,
-if we go with this we can take any NE to start looking for another,
-and we're sure to find a ``non-artificial'' one.
-Note: if we were looking for all NE, LH doesn't work anyway - see ex by
-Wilson in Shapley, where ``disconnected'' paths between equilibria.
-
 
 \# P complexity of finding all (?)
+
+from SvS-15
+
+Ve ́gh and von Stengel (2014, Thm. 12) give a near-linear time algorithm that finds such a second perfect matching that, in addition, has opposite sign, which corresponds to a Nash equilibrium of positive index as it would be found by a Lemke path (which, however, can be exponentially long). So this combinatorial problem is simpler than the problem of finding a Nash equilibrium of a bimatrix game, even though it gives rise to games that are hard to solve by the standard methods considered in Theorem 11.
+
+from VvS
+
+This paper presents three main contributions in this context. First, we define an abstract framework called pivoting systems that describes “complementary pivoting with direction” in a canonical manner. Similar abstract pivoting systems have been proposed by Todd (1976) and Lemke and Grotzinger (1976); we compare these with our approach in Section 5. Second, using this framework, we extend the concept of orientation to oiks and show that room partitions at the two ends of a pivoting path have opposite sign, provided the underlying oik is oriented. For two-dimensional oiks, which are Euler graphs, room partitions are perfect matchings. Their orientation is the sign of a perfect matching as defined for Pfaffian orientations of graphs. Our third result is a polynomial-time algorithm for the following problem: Given a graph
+2
+with an Eulerian orientation and a perfect matching, find another perfect matching of opposite sign. The complementary pivoting algorithm that achieves this may take exponential time.
+
+We conclude with open questions on the computational complexity of pivoting sys- tems.
+Consider a labeled oriented pivoting system whose components (in particular the pivoting operation) are specified as polynomial-time computable functions. Assume one CL state is given. The problem of finding a second CL state belongs to the com- plexity class PPAD (Papadimitriou, 1994). This problem is also PPAD-complete, because finding a Nash equilibrium of a bimatrix game is PPAD-complete (Chen and Deng, 2006), which is a special case of an oriented pivoting system by Proposition 1. However, there should be a much simpler proof of this fact because pivoting sys- tems are already rather general, so that it should be possible to encode an instance of the PPAD-complete problem “End of the Line” (see Daskalakis, Goldberg, and Papadimitriou, 2009) directly into a pivoting system.
+Finding a Nash equilibrium of a bimatrix game is PPAD-complete, and Lemke– Howson paths may be exponentially long. Savani and von Stengel (2006) showed this with games defined by dual cyclic polytopes for the payoff matrices of both players, and a simpler way to do this is to use the Lemke paths by Morris (1994). One motivation for the study of Casetti, Merschen, and von Stengel (2010) was the question if finding a second completely labeled Gale string is PPAD-complete. This is unlikely because this problem can be solved in polynomial time with a matching algorithm. For the complexity class PPADS, where one looks for a second CL state of opposite sign (Daskalakis, Goldberg, and Papadimitriou, 2009), this problem is also solvable in polynomial time with our algorithm of Theorem 12.
+However, for room partitions of 3-oiks, already manifolds, finding a second room partition is likely to be more complicated. Is this problem PPAD-complete? We leave these questions for further research.

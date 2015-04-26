@@ -9,6 +9,21 @@ General refs for comp compl \cite{papad-cc}
 General refs for geometry \cite{ziegler}
 
 
+from SvS15
+
+Savani and von Stengel (2006) showed that the LH algorithm may take exponentially many steps. Their construction uses “dual cyclic polytopes” which have a well-known vertex structure for any dimension and number of linear inequalities. Morris (1994) used similarly labeled dual cyclic polytopes where all “Lemke paths” are exponentially long. A Lemke path is related to the path computed by the LH algorithm, but is defined on a single polytope that does not have a product structure corresponding to a bimatrix game. The completely labeled vertex found by a Lemke path can be interpreted as a symmetric equilibrium of a symmetric bimatrix game. However, as in the example in Figure 4 below, such a symmetric game may also have nonsymmetric equilibria which here are easy to compute, so that the result by Morris (1994) seemed not suitable to describe games that are hard to solve with the LH algorithm.
+
+The “imitiation games” defined by McLennan and Tourky (2010) changed this picture. In an imitation game, the payoff matrix of one of the players is the identity matrix. The mixed strategy of that player in any Nash equilibrium of the imitation game corresponds exactly to a symmetric equilibrium of the symmetric game defined by the payoff matrix of the other player. In that way, an algorithm that finds a Nash equilibrium of a bimatrix game can be used to find a symmetric Nash equilibrium of a symmetric game.
+
+In one sense the two-polytope construction of Savani and von Stengel (2006) was overly com- plicated: the imitation games by McLennan and Tourky (2010) provide a simple and elegant way to turn the single-polytope construction of Morris (1994) into exponentially-long LH paths for bimatrix games. In another sense, the construction of Savani and von Stengel was not redun- dant, since it provided examples that are simultaneously bad for the LH algorithm and “support enumeration”, which is another natural and simple algorithm for finding equilibria. The support of a mixed strategy is the set of pure strategies that are played with positive probability. Given a pair of supports of equal size, the mixed strategy probabilities are found by equating all payoffs for the other player’s support, which then have to be compared with payoffs outside the support to establish the equilibrium property (see Dickhaut and Kaplan, 1991).
+
+
+In this paper, we extend the idea of imitation games to games where one payoff matrix is arbi- trary and the other is a set of unit vectors. We call these unit vector games.
+
+we use them to extend Morris’s con- struction to give bimatrix games that use only one dual cyclic polytope, rather than the two used by Savani and von Stengel, and for which both the LH algorithm and support enumeration are simultaneously bad. This result (Theorem 11) was first described by Savani (2006, Section 3.8).
+
+
+
 summary of chapt 2:
 
 We begin this section with the definition of almost complete labeling; we

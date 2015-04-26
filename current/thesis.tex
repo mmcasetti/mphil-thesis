@@ -217,7 +217,7 @@ for the degree of Master of Philosophy}
 
 \section*{Declaration}
 
-I certify that chapter \ref{main-chapter} of this thesis I have presented
+I certify that this thesis I have presented
 for examination for the MPhil degree of the London School of Economics and
 Political Science is based on joint work with Julian Merschen and Bernhard
 von Stengel, published in \cite{main}.
@@ -234,40 +234,7 @@ infringe the rights of any third party.
 
 \section*{Abstract}
 
-This thesis presents a report on original research, published as joint
-work with Merschen and von Stengel in {\em Electronic Notes in Discrete
-Mathematics}~\cite{main}. Our result shows a polynomial time
-algorithm to solve two problems related to labeled Gale strings, a
-combinatorial structure consisting a string of labels and a bitstring
-satisfying certain conditions introduced by Gale \mbox{in \cite{gale}.}
-
-Gale strings can be used in the representation of a particular class
-of games that Savani and von Stengel~\cite{svs} used as an example
-of exponential running time for the classical \mbox{Lemke-Howson}
-algorithm to find a Nash equilibrium of a bimatrix game~\cite{lh}.
-It was conjectured that solving these games via the Lemke-Howson
-algorithm was complete in the class {\bf PPAD} (Proof by Parity
-Argument, Directed version). A major motivation for the definition of
-this class by Papadimitriou~\cite{ppad} was, in turn, to capture
-the pivoting technique of many results related to the Nash equilibrium,
-including the Lemke-Howson algorithm.
-
-Our result, on the contrary, sets apart this class of games as a case
-for which there is a polynomial-time algorithm to find a Nash equilibrium.
-Since Daskalakis, Goldberg and Papaditrimiou~\cite{dgp} and
-Chen and Deng~\cite{cd} proved the \mbox{{\bf PPAD}-completeness} of
-finding a Nash equilibrium in general normal-form games, we have a special
-class of games, unless \mbox{{\bf PPAD} = {\bf P}}.
-
-Our proof exploits two results. The first one is the representation
-of the Nash equilibria of these games as Gale strings, as seen in Savani
-and von Stengel~\cite{svs}. The second one is the polynomial-time
-solvability of the problem of finding a perfect matching in a graph, proven
-by Edmonds~\cite{edm}.
-
-Merschen~\cite{jm} and V\'{e}gh and von Stengel~\cite{vvs} expanded our
-technique to prove further interesting results.
-
+\input{appendix/abstract}
 
 \tableofcontents
 
@@ -279,16 +246,6 @@ technique to prove further interesting results.
 \input{appendix/introduction}
 
 \chapter{Polytopes, Games, Complexity, Labels and Gale Strings}
-
-\todo[inline]{
-New subdivision:
-
-preliminaries: until (not including) TFNP;
-
-the classes PPA and PPAD (add a bit more on PPA);
-
-then labels and gale-def as before.
-}
 
 \input{chapter-1/polytopes}
 
@@ -308,6 +265,8 @@ then labels and gale-def as before.
 \input{chapter-2/main-result}
 
 \chapter{Further results}
+
+\input{appendix/further-results}
 
 \chapter*{Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
