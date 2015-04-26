@@ -49,34 +49,12 @@ than one equilibrium.
 Every finite game in normal form has a Nash equilibrium.
 \end{theorem}
 
-We give three classic examples of games: matching pennies, the prisoners'
-dilemma and a coordination game.
+We give two classic examples of games: the prisoners' dilemma and a
+coordination game.
 
 \begin{example}
-Figure \ref{matching-pennies} shows the payoffs of the non-symmetric
-zero-sum game {\em matching pennies}, with
-payoff matrices $A=\binom{1\ 0}{0\ 1}$ and $B=-A$.
-
-\begin{figure}[hbt]
-\begin{center}
-\def\mm#1{\makebox(0,0){\strut#1}}
-\bimatrixgame{3mm}{2}{2}{1}{1}
-{{$s^1_1$}{$s^1_2$}}
-{{$s^2_1$}{$s^2_2$}}
-{
-\payoffpairs{1}{{1}{0}}{{-1}{0}}
-\payoffpairs{2}{{0}{1}}{{0}{-1}}
-}
-\end{center}
-\caption{Matching pennies.}
-\label{matching-pennies}
-\end{figure}
-
-At the unique equilibrium of the game, each player follows the uniform
-distribution over their strategies.
-
-In the symmetric non zero-sum {\em prisoners' dilemma} of figure
-\ref{prisoners-dilemma}, each player must
+In the symmetric non zero-sum {\em prisoners' dilemma} of
+Figure~\ref{prisoners-dilemma}, each player must
 decide whether to ``help'' the other one or to ``betray'' them. If both
 players help each other, they will get a small reward; if both betray, they
 will pay a small penalty; if one betrays and the other cooperate the former
@@ -93,7 +71,7 @@ will get a large reward and the latter will pay a large penalty.
 \payoffpairs{2}{{0}{2}}{{3}{2}}
 }
 \end{center}
-\caption{The prisoners' dilemma.}
+\caption[The prisoners' dilemma]{The prisoners' dilemma.}
 \label{prisoners-dilemma}
 \end{figure}
 
@@ -103,7 +81,7 @@ get $10$ instead of $5$ if player 2 helps and $-2$ instead of $-8$ if player 2
 betrays. The same applies to player 2, so both players will betray.
 The payoff matrices are $A=\binom{1\ 3}{0\ 2}$ and $B=A\T$.
 
-Finally, in figure \ref{coordination-game}, a {\em coordination} game
+Figure~\ref{coordination-game} presents a {\em coordination} game
 with $A=B$:
 both players drive on a mountain road; they lose if drive on the same side
 of the road and win if they avoid each other, regardless of which side they
@@ -120,7 +98,7 @@ take.
 \payoffpairs{2}{{1}{0}}{{1}{0}}
 }
 \end{center}
-\caption{Coordination game.}
+\caption[A coordination game]{A coordination game.}
 \label{coordination-game}
 \end{figure}
 
