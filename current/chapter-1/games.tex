@@ -1,15 +1,15 @@
 \section{Normal Form Games and Nash Equilibria}
 
-We now give the game-theoretic background that will be used in this thesis.
-A {\em game}, as first defined by von Neumann in \cite{vn28}, is a model
+A {\em game}, first defined by von Neumann in \cite{vn28}, is a model
 of strategic interaction. A {\em finite normal form game} is
-$\Gamma=(P,S=\times_{p\in P} S_p,u=\times_{p\in P}u^p)$
-where both the set of {\em players} $P$ and the sets of
-{\em pure strategies} $S_p$ (and therefore the set
-of {\em pure strategy profiles} $S$) are finite. We will use the
+$\Gamma=(P,S,u)$ where both $P$ and $S$ are finite.
+The former is the set of {\em players}; $S=\times_{p\in P}$ is
+the set of {\em pure strategy profiles} and $S_p$ is the set of
+{\em pure strategies} of player $p$; we will use the
 notation $S_{-p}=\times_{q\neq p}S_p$.
-The purpose of each player $p\in P$ is to maximize her {\em payoff function}
-$u^p:S\to\reals$. In the following pages, by ``game'' we will always mean
+The purpose of each player $p\in P$ is to maximize their
+{\em payoff function} $u^p:S\to\reals$, where $u=\times_{p\in P}u^p$.
+In the following pages, by ``game'' we will always mean
 ``finite normal form game.'' If there are only two players, we will refer to
 player 1 using feminine pronouns and to player 2 using masculine ones; such
 games are called {\em bimatrix games} since they can be characterized by
@@ -19,16 +19,15 @@ her $i$th pure strategy and the latter plays his $j$th pure strategy.
 A bimatrix game is {\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
 
 A {\em mixed strategy} of player $p$ is a probability
-distribution on $S_P$; it can be described as a point
-$x=(x^p_1,\ldots,x^p_{|S_p|})$ on the
+distribution on $S_p$; it can be described as a point on the
 $(|S_p|-1)$-dimensional {\em mixed strategy simplex}
-$\Delta_p=\{ x\in\reals^{|S_p|}\ |\ x\geq\0,\ \1\T x = 1 \}$;
-the set of {\em mixed strategy profiles} will be the simplicial polytope
-$\Delta=\times_{p\in P}\Delta_p$.
-We extend the payoff functions to $u^p:\Delta\to\reals$ by linearity.
+$\Delta_p=\{ x\in\reals^{|S_p|}\ |\ x\geq\0,\ \1\T x = 1 \}$.
+The set of {\em mixed strategy profiles} is the simplicial polytope
+$\Delta=\times_{p\in P}\Delta_p$;
+we extend the payoff functions to $u^p:\Delta\to\reals$ linearly.
 
 A {\em Nash equilibrium} of a game is a strategy profile in which each
-player cannot improve her expected payoff by unilaterally changing her
+player cannot improve their expected payoff by unilaterally changing their
 strategy; such a strategy is called a {\em best response}.
 Note that applying an affine transformation to all the payoffs does not
 change the Nash equilibria of the game.
@@ -76,14 +75,14 @@ will get a large reward and the latter will pay a large penalty.
 \end{figure}
 
 The only equilibrium is the profile in which both players betray.
-Assume that player 1 helps: then she must switch to betrayal, since she would
-get $10$ instead of $5$ if player 2 helps and $-2$ instead of $-8$ if player 2
-betrays. The same applies to player 2, so both players will betray.
-The payoff matrices are $A=\binom{1\ 3}{0\ 2}$ and $B=A\T$.
+If player~2 betrays, the best response of player~1 is to betray, since
+it gives her payoff 1 instead of 0; if player~2 helps, her payoff
+for betraying is 3 and her payoff for helping is 2, so betraying is
+again the best response. The same holds for player~2, so at the
+equilibrium both players will betray.
 
-Figure~\ref{coordination-game} presents a {\em coordination} game
-with $A=B$:
-both players drive on a mountain road; they lose if drive on the same side
+Figure~\ref{coordination-game} shows a {\em coordination} game.
+Both players drive on a mountain road; they lose if drive on the same side
 of the road and win if they avoid each other, regardless of which side they
 take.
 
@@ -102,8 +101,7 @@ take.
 \label{coordination-game}
 \end{figure}
 
-Both (mountain,valley) and (valley,mountain) are Nash equilibria; in fact,
-every mixed strategy where $x^1_1 = x^2_2$, where $x^p_i$ is the
-probability that player $p$ assigns to strategy $s^p_i$, is a Nash
-equilibrium.
+The pure strategy Nash equilibria are (mountain,valley) and
+(valley,mountain); there is also a symmetric equilibrium in mixed strategies
+at $((1/2,1/2),(1/2,1/2))$.
 \end{example}
