@@ -1,7 +1,36 @@
-In the previous chapter we have defined some problems
-of the form ``find another completely labeled\ldots'' for
-vertices, facets and Gale strings. In this section we
-will focus on different versions of a standard algorithm, first introduced
-by Lemke and Howson in \cite{lh}, that yields a solution to these problems
-using two main concepts: the {\em pivoting} routine and
-{\em almost complete labeled} vertices, facets and Gale strings.
+In the previous chapter we have defined some problems of the form
+``find another completely labeled\ldots'' for vertices, facets and
+Gale strings. In this chapter we will finally study the complexity
+of these problems.
+
+The first section will present different versions of a standard algorithm,
+first introduced by Lemke and Howson in \cite{lh}, that relies on the
+pivoting routine. We will see the Lemke-Howson algorithm for
+the problem {\sc Another Completely Labeled Vertex}, in particular as
+a tool to find a solution for 2-{\sc Nash}, its original application;
+we will then touch on the dual version for
+{\sc Another Completely Labeled Facet}; finally, we will describe the
+Lemke-Howson for Gale algorithm, that returns a solution to \anothergale.
+Each one of these algorithms leads to a very straightforward proof of
+{\bf PPA} complexity for its respective problem; in the case of \anothergale,
+we will also prove its {\bf PPAD} complexity. We will close the section
+with an example of labeling, due to Morris \cite{morris}, for which
+the Lemke-Howson for Gale algorithm presents exponential running time.
+Savani and von Stengel \cite{svs} \cite{uvg} have used this labeling to
+build Gale games that are ``hard to solve''; this, in turn, had given the
+main motivation for our study, since it had led to conjecturing that
+Gale games could be used to give a proof of {\bf PPAD}-completeness
+of 2-{\sc Nash}.
+
+The second section presents our original result: a polynomial time
+algorithm for \anothergale, which proves that {\sc Gale 2-Nash} is in
+{\bf FP}. Since it seems unlikely that {\bf PPAD}={\bf P}, this goes
+in the opposite direction of our previous conjecture. The proof relies on
+a theorem by Edmonds \cite{edm} that gives a polyomial-time algorithm
+to find a perfect matching of a graph, or deciding that it is not possible
+to find one. The key of the proof is the construction of a graph from any
+string of labels; the perfect matchings of the graph will correspond to
+the completely labeled Gale strings for the labels. We will first prove
+the {\bf FP} complexity of finding one of these completely labeled Gale
+strings; we will then extend the proof to find the second string, as
+required by \anothergale.
