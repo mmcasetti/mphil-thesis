@@ -315,13 +315,13 @@ completely labeled Gale strings of Figure \ref{clgs-123432-fig}.
 
 We can now define the problem \anothergale\ as follows:
 
-\begin{fctproblem}
+\begin{problem}
 {\anothergale}
 {A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
 A Gale string $s\in G(d,n)$, completely labeled by $l$.}
 {A Gale string $s'\in G(d,n)$, completely labeled by $l$,
 such that $s' \neq s$.}
-\end{fctproblem}
+\end{problem}
 
 It takes polynomial time to translate a cyclic polytope $C_d(n)$ into the
 corresponding $G(d,n)$: the bitstrings of length $n$ with $d$ positive bits
@@ -332,10 +332,10 @@ Furthermore, building the labeling $l_s$ from the labeling $l_v$ also takes
 polynomial time: for the labels $i\in [m]$ it is immediate, for the labels
 $m+j$, where $j\in [n]$, we have to check the labeling $l:[n]\to [m]$,
 that is, the $n\times m$ matrix $U$ in the imitation game.
-Therefore, Proposition \ref{2nash-to-aclf} gives a reduction from
-2-{\sc Nash} to \anothergale.
+Therefore, by Proposition \ref{2nash-to-aclf}, we have a reduction from
+{\sc Gale Nash} to \anothergale.
 
 \begin{proposition}
-\label{2nash-to-another-gale}
-2-{\sc Nash} is polynomial-time reducible to \anothergale.
+\label{galenash-to-another-gale}
+{\sc Gale Nash} is polynomial-time reducible to \anothergale.
 \end{proposition}

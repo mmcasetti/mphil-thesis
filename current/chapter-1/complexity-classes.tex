@@ -143,13 +143,13 @@ This is the definition given in Daskalakis, Goldberg and Papadimitriou
 \cite{dgp}; the original definition in Papadimitriou \cite{ppad} is given
 in terms of Turing machines.
 
-\begin{fctproblem}
+\begin{problem}
 {End Of The Line}
 {Two circuits $S$ and $P$ with $n$ input bits and $n$ output bits such that
 $P(0^n)=0^n\neq S(0^n)$.}
 {An input $x\in \{ 0,1 \}^n$ such that $P(S(x)\neq x)$ or
 $S(P(x))\neq x\neq 0^n$}
-\end{fctproblem}
+\end{problem}
 
 A {\em circuit} is formally defined as a directed acyclic graph with $n$
 vertices with indegree $0$ called {\em input nodes}, $m$ vertices with
@@ -183,11 +183,11 @@ the sinks. The graph can include paths, cycles and isolated points.
 By theorem \ref{nash-thm}, the problem $n$-{\sc Nash}, defined as follows,
 is a total function problem.
 
-\begin{fctproblem}
+\begin{problem}
 {$n$-Nash}
 {A $n$-player game.}
 {A Nash equilibrium of the game.}
-\end{fctproblem}
+\end{problem}
 
 Megiddo and Papadimitriou (\cite{megiddo-papad}) proved that $n$-{\sc Nash}
 is in {\bf TFNP}. Daskalakis, Goldberg and Papadimitriou \cite{dgp} and Chen

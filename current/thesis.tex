@@ -48,30 +48,12 @@ Computation in Games}
 
 %% environments
 
-% decision problem
-
-\newenvironment{decproblem}[3]
-{
-\vspace{2.5ex}
-\noindent
-\begin{tabular}{p{17mm} @{\textbf{:} } p{106mm}}
-\hline
-\multicolumn{2}{l}{\noindent {\sc #1}} \\
-\hline
-\textbf{input} & #2 \\
-\textbf{question} & #3 \\
-\hline
-\end{tabular}
-}
-{
-\vspace{1.5ex}
-}
-
 % function problem
 
-\newenvironment{fctproblem}[3]
+\newenvironment{problem}[3]
 {
-\vspace{2.5ex}
+\vspace{0.5em}
+\begin{table}[hbt]
 \noindent
 \begin{tabular}{p{13mm} @{\textbf{:} } p{110mm}}
 \hline
@@ -81,9 +63,11 @@ Computation in Games}
 \textbf{output} & #3 \\
 \hline
 \end{tabular}
+\caption[The problem {\sc #1}]{The problem {\sc #1}.}
 }
 {
-\vspace{1.5ex}
+\end{table}
+\vspace{-1.5em}
 }
 
 % use:
@@ -209,7 +193,7 @@ for the degree of Master of Philosophy}
 
 \vspace*{3.5cm}
 
-{\small London, April 2015}
+{\small London, May 2015}
 
 \end{center}
 
