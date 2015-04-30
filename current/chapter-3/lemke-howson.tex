@@ -1,14 +1,14 @@
 \section{The Lemke-Howson Algorithm}
 \label{lh-section}
 
-Let $P$ be a simple polytope in dimension $d$ with $n$ facets.
+Let $P$ be a simple $d$-polytope with $n$ facets.
 We {\em pivot on the vertices} of $P$ by moving from a
 vertex $x$ to another vertex $y$ connected to $x$ by an edge.
 Note that, since $P$ is simple, there are exactly
 $d$ possible choices for $y$.
 Analogously, we {\em pivot on the facets} of a simplicial polytope $Q$ in
 dimension $d$ by moving from a facet $F$ to a facet $G$ that share
-all vertices but one; and since $Q$ is simplicial, there are $d$ possible
+all vertices but one; since $Q$ is simplicial, there are $d$ possible
 choices for $G$.
 
 Suppose now that there is a labeling $l_f:[n]\to [d]$ of the facets of the
@@ -18,33 +18,43 @@ with label $k$; so, if $x$ has labels $(l_1,\ldots,k,\ldots,l_d)$, then
 $x'$ has labels $(l_1,\ldots,h,\ldots,l_d)$, where $h$ is the label of the
 facet $F'$ that does not have $x$ as its vertex. We call this
 {\em dropping label $k$ and picking up label $h$}, or
-{\em pivoting on label $k$}.
+{\em pivoting on label $k$}; see Figure \ref{pivot-poly} left for an example.
 Analogously, if there is a labeling $l_v:[n]\to [d]$ of the vertices
 of the simplicial poytope $Q$
 and we pivot from a facet $F$ with labels $(l_1,\ldots,k,\ldots,l_d)$
 to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
 {\em drop label $k$ and pick up label $h$}, or that we
-{\em pivot on label $k$}.
+{\em pivot on label $k$}; see Figure \ref{pivot-poly-fig} right.
 
-Let $m,n\in \naturals$ with $m\leq n$; consider a set $X$ with $|X|=n$
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=35ex]{chapter-3/fig-lh/cube-1-pivot.pdf}%
+\hfill
+\includegraphics[width=35ex]{chapter-3/fig-lh/octahedron-1-pivot.pdf}%
+\hfill\strut
+\caption[Two examples of pivoting]{%
+Left: A pivot on the vertices of the cube.\\
+Right: A pivot on the facets of the octahedron.
+}
+\label{pivot-poly-fig}
+\end{figure}
+
+Let $m,n\in \naturals$ with $m\leq n$; consider a set $X$
 and a labeling $l:X\to [m]$. The $m$-uple $x=(x_1,\ldots,x_m)\in X^m$
 is {\em almost completely labeled} if
 $\{ j\in [n]\ |\ x_i=j\text{ for some }i\in [m] \}= [m]\setminus \{ k \}$
 for exactly one $k\in [m]$. That is, all labels appear once in $x$,
 except for the {\em missing label} $k$ and a {\em duplicate label}
 $h\in [m]$ that appears twice.
-
 It's easy to see that if we pivot from an almost completely labeled facet
 (or vertex) on the duplicate label, or from a completely labeled facet (or
 vertex) on any label, we reach either an almost completely labeled or a
 completely labeled facet (or vertex).
 
-We now focus on the case of pivoting on vertices of simple polytopes with
-labeled facets, that is, the case of the classic Lemke-Howson algorithm,
-first given by Lemke and Howson in \cite{lh}; we follow the very clear
-exposition given by Shapley in \cite{shapley}.
-
-The classic LH alg, see Algorithm \ref{lh-alg}
+The classic Lemke-Howson Algorithm, see Algorithm \ref{lh-alg}, relies on
+pivoting on the vertices of a simple polytope. It was first introduced by
+Lemke and Howson \cite{lh}; we follow the very clear exposition given by
+Shapley \cite{shapley}.
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -66,54 +76,50 @@ pivot on the duplicate label $h$ from $x$ to $x'\neq x_0$  \\
 set $x_0 = x$, $x = x'$
 }
 \Return $x$
-\caption{Lemke-Howson algorithm}
+\caption{Lemke-Howson Algorithm}
 \label{lh-alg}
 \end{algorithm}
 
-Running the Lemke-Howson algorithm defines a {\em Lemke path}
-that connects two different completely labeled vertices through
-almost completely labeled vertices and edges where the only missing label
-is $k$.
+The Lemke-Howson Algorithm goes through a series of almost completely
+labeled vertices with missing label $k$; these vertices can be seen as
+steps of a path, called {\em Lemke path}. We will use Lemke paths to prove
+some fundamental properties of both the Lemke-Howson Algorithm and
+the problem {\sc Another Completely Labeled Vertex}.
 
-\begin{proposition}\label{lh-works-thm}
-The Lemke-Howson algorithm \ref{lh-alg} returns a solution to the problem
-{\sc Another Completely Labeled Vertex}.
+\begin{proposition}\label{lh-works-ppa-thm}
+The Lemke-Howson Algorithm, see Algorithm \ref{lh-alg}, returns a solution to the
+{\bf PPA} problem {\sc Another Completely Labeled Vertex}.
 
-Furthermore, the number of completely labeled vertices
-in a simple polytope with labeled facets is even.
+Furthermore, the number of completely labeled vertices in a simple
+polytope with labeled facets is even.
 
 \begin{proof}
+We first prove that the Lemke-Howson Algorithm works.
+At each almost completely labeled vertex $x'$ of the Lemke path with
+duplicate label $h$ there are only two facets with duplicate label $h$,
+each one of which corresponds to exactly an edge, since $P$ is simple.
+One of these is the edge that has been traversed to get to $x'$, the
+other one will be traversed to leave it in the next step; therefore,
+there are no ``loops'' where a vertex is visited more than once. (The
+Lemke paths are {\em simple}.)
 
-The fact that $x$ is completely labeled is trivial;
-we must show that $x\neq x_0$.
-At each vertex $x'$ of the Lemke path there are only two edges corresponding to
-the missing label $k$, since $P$ is simple; one is the edge that has been
-traversed to get to $x'$, the other one will be traversed to leave it
-in the next step. Therefore, there are no ``loops'' where a vertex
-is visited more than once; Lemke paths are {\em simple paths}.
+The parity is proven by the following argument. Each Lemke path is
+uniquely determined by its missing label and its starting point, so the
+Lemke path from the endpoint with the same missing label will lead back
+to the starting point. Since the endpoint and the starting point are
+different, the Lemke paths must connect an even number of points.
 
-Each Lemke path is uniquely determined by its missing label and its
-starting point; furthermore, the Lemke path from the endpoint with
-the same missing label will lead back to the starting point. Since the
-endpoint and the starting point are different, the Lemke paths must connect
-an even number of points.
+Finally, for each label $k\in [d]$ chosen in line 1 of
+Algorithm \ref{lh-alg}, the Lemke paths are disjoint paths connecting
+all the completely labeled vertices of $P$, with a standard endpoint $x_0$.
+The problem {\sc Another Completely Labeled Vertex} correspond to finding
+a non-standard endpoints of this graph; this is clearly a {\bf PPA} problem.
 \end{proof}
 \end{proposition}
 
-For each label $k\in [d]$ chosen in line 1 of Algorithm \ref{lh-alg},
-Lemke paths can be seen as edges of an undirected graph that connect
-vertices corresponding to the completely labeled vertices of $P$,
-with a vertex corresponding to $x_0$ as standard endpoint. This shows the
-following proposition.
-
-\begin{proposition}
-\label{aclv-ppa-thm}
-{\sc Another Completely Labeled Vertex} is in {\bf PPA}.
-\end{proposition}
-
-Applying the parity result in proposition \ref{lh-works-thm} to the case of
-a bimatrix game (not necessarily a unit vector game), and remembering that
-the point $(\0,\0)$ corresponds to an
+Applying the parity result of Proposition \ref{lh-works-ppa-thm} to the
+case of a bimatrix game (not necessarily a unit vector game), and
+remembering that the point $(\0,\0)$ corresponds to the
 ``artificial'' equilibrium, we have the following result, due to Lemke and
 Howson \cite{lh}.
 
@@ -121,26 +127,25 @@ Howson \cite{lh}.
 Every non-degenerate bimatrix game has an odd number of Nash equilibria.
 \end{theorem}
 
-There are two ways of using the Lemke-Howson algorithm to find a Nash
+There are two ways of using the Lemke-Howson Algorithm to find a Nash
 equilibrium of a bimatrix game $(A,B)$.
-
-The first way is to ``symmetrize'' the game as in proposition
-\ref{symmetrize-c}. Let $C=\binom{0\ A}{B\T\ 0}$ and let
+The first one is to ``symmetrize'' the game as in Proposition
+\ref{symmetrize-c}. Let
 $S = \{ z\in\reals^{m+n}\ |\ z\geq\0,\ Cz\leq\1 \}$ be the
-polytope associated to the game $(C,C\T)$. We can label the
-$2(m+n)$ inequalities defining the facets of of $S$ as
-$1,\ldots,m+n,1,\ldots,m+n$ and apply the Lemke-Howson algorithm
-starting from the vertex $\0$; this will return a Nash equilibrium $(z,z)$ of
-$C$, and the corresponding Nash equilibrium $(x,y)=z$ of $(A,B)$.
-
-We can also follow the ``traditional'' version of the Lemke-Howson algorithm,
-alternating moves on the best response polytopes $P$ and $Q$ as defined in
-\ref{br-polytopes}, starting from the couple of vertices $(\0,\0)$.
+polytope associated to the game $(C,C\T)$, where $C=\binom{0\ A}{B\T\ 0}$.
+The facets of $C$ correspond to $2(m+n)$ inequalities; we label both
+the $i$-th and the $m+n+i$-th inequality as $i\in [m+n]$ and we apply the
+Lemke-Howson Algorithm starting from the vertex $\0$. This returns a Nash
+equilibrium $(z,z)$ of $C$, which corresponds to a Nash equilibrium
+$(x,y)=z$ of $(A,B)$.
+We can also follow the ``traditional'' version of the Lemke-Howson
+Algorithm, starting from the couple of vertices $(\0,\0)$ and alternating
+moves on the best response polytopes $P$ and $Q$ of (\ref{br-polytopes}).
 Since we move in $\reals^m$ and $\reals^n$ instead of $\reals^{m+n}$,
 this version is much easier to visualize.
 
 \begin{example}
-Consider the $3\times 3$ game $(A,B)$ of example \ref{br-game-ex}.
+Consider the $3\times 3$ game $(A,B)$ of Example \ref{br-game-ex}.
 \begin{equation*}
 A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
 0&0&1\end{matrix}\right),
@@ -148,33 +153,29 @@ A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
 B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 0&2&0\end{matrix}\right).
 \end{equation*}
-
 The best response polytopes can be represented as the best response regions
 (see figure \ref{br-regions-fig}) extended to the origin $\0$, as in figure
 \ref{lh-path-fig}; the label ``outside'' refers to the ``back'' of the
 polytope.
-
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=65ex]{chapter-3/fig-lh/lh.pdf}%
 \hfill\strut
-\caption[Lemke-Howson path for a bimatrix game.]{%
-Lemke path for missing label 2 on the best response polytopes $P$ and $Q$ of
+\caption[A Lemke path for a bimatrix game]{%
+Lemke path for missing label 2 on the best response polytopes of
 game (\ref{AB}).
 }
 \label{lh-path-fig}
 \end{figure}
-
 The path starts in $(\0,\0)$; we drop the label 2 and we move on the polytope
 $P$. The label 6 is duplicate; so we drop the label 6 and we move on the
 polytope $Q$; an so on until we reach the point $x$, that is a Nash
 equilibrium of $(A,B)$.
 \end{example}
 
-The dual version of the Lemke-Howson algorithm \ref{lh-alg}
-and of proposition \ref{lh-works-thm} is quite straightforward.
-
-\begin{algorithm}\label{lh-dual-alg}
+The dual version of the Lemke-Howson Algorithm \ref{lh-alg}
+and of proposition \ref{lh-works-ppa-thm} is quite straightforward.
+\begin{algorithm}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
@@ -194,104 +195,64 @@ pivot on the duplicate label $h$ from $F$ to $F'\neq x_0$  \\
 set $F_0 = x$, $F = F'$
 }
 \Return $x$
-\caption{Dual Lemke-Howson algorithm}
+\caption{Dual Lemke-Howson Algorithm}
 \label{lh-dual-alg}
 \end{algorithm}
 
-\begin{proposition}\label{lh-dual-works-thm}
-The dual Lemke-Howson algorithm \ref{lh-dual-alg} returns a solution
-to the problem {\sc Another Completely Labeled Facet}.
+\begin{proposition}\label{lh-dual-works-ppa-thm}
+The Dual Lemke-Howson Algorithm, see Algorithm \ref{lh-dual-alg}, returns
+a solution to the {\bf PPA} problem {\sc Another Completely Labeled Facet}.
 
 Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
 \end{proposition}
 
-We also have the analogous of proposition \ref{aclv-ppa-thm}
-
-\begin{proposition}
-\label{aclf-ppa-thm}
-{\sc Another Completely Labeled Facet} is in {\bf PPA}.
-\end{proposition}
-
-\begin{example}
-\label{octahedron-ex}
-Consider the octahedron with vertices labeled as in figure
-\ref{octahedron-clf-fig}. The facet $A$ is completely labeled; dropping the
-vertex with label 1 we pivot to the completely labeled facet $B$.
-
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-facets-v2.pdf}%
-\hfill\strut
-\caption{%
-A pivot on the facets of the octahedron.%
-}
-\label{octahedron-clf-fig}
-\end{figure}
-
-The Lemke paths for the completely labeled facets of the octahedron
-are shown in figure \ref{octahedron-lemkepaths-fig}.
-
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=20ex]{chapter-3/fig-lh/octahedron-lhdual-1-v2.pdf}%
-\hfill
-\includegraphics[width=20ex]{chapter-3/fig-lh/octahedron-lhdual-23-v2.pdf}%
-\hfill
-\includegraphics[width=20ex]{chapter-3/fig-lh/octahedron-lhdual-v2.pdf}%
-\hfill\strut
-\caption{%
-Right: Lemke paths for label 1. Centre: Lemke paths for labels 2 and 3.
-Left: all Lemke paths.%
-}
-\label{octahedron-lemkepaths-fig}
-\end{figure}
-\end{example}
-
-By theorems \ref{unit-vector-thm} and \ref{unit-vector-dual-thm},
-in the case of unit vector games is enough to apply the Lemke-Howson
-algorithm to the polytope
+By Theorem \ref{unit-vector-thm} and Theorem \ref{unit-vector-dual-thm},
+in the case of unit vector games it is enough to apply the Lemke-Howson
+Algorithm to the polytope
 $P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$ in (\ref{p-l}),
-or the dual Lemke-Howson algorithm to the polytope
+or the Dual Lemke-Howson Algorithm to the polytope
 $Q=\conv(\{ e_1,\ldots,e_m \})\ \cup\ \{ c_1,\ldots,c_n \})$ in
 (\ref{p-l-dual}).
-Not only this yield a Nash equilibrium, but no potential solutions
+The following theorem by Savani and von Stengel \cite{uvg} guarantees that
+not only this yield a Nash equilibrium, but no potential solutions
 are ``lost'' considering the polytope $P^l$ with $m$ labels
 instead of the product of polytopes $P\times Q$ with $m + n$ labels,
-as stated in the following theorem by Savani and von Stengel \cite{uvg};
-an analogous result holds for the dual case.
+as stated in t; an analogous result holds for the dual case.
 
 \begin{theorem}\label{unit-paths}
 Let $(U,B)$ be a unit vector game, with
-$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$;
-let $P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}$ and
-$Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \}$, as in \ref{br-polytopes};
-and let $P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$
-as in \ref{p-l-unitv}. Then the Lemke path on $P\times Q$ for the missing
-label $k$ projects to a path on $P$ that is the Lemke path on $P^l$
-for missing label $k$ if $k\in [m]$,
-and for missing label $l(j)$ if $k=m+j$ with $j\in [n]$.
+$U=(e_{l(1)}\cdots e_{l(n)})$ for a labeling $l:[n]\to [m]$.
+Let $P = \{ x\in\reals^m | x\geq\0,\ B\T x\leq\1 \}$ and
+$Q = \{ y\in\reals^n | y\geq\0,\ A y\leq\1 \}$ as in (\ref{br-polytopes});
+let $P^l= \{ x\in\reals^m\ |\ x\geq\0,\ B\T x\leq\1 \}$
+as in (\ref{p-l}). Then the Lemke path on $P\times Q$ for the missing
+label $k\in [m]$ projects to a path on $P$ that is the Lemke path on $P^l$
+for missing label $k$, and the Lemke path on $P\times Q$ for missing label
+$k=m+j$, where $j\in [n]$, projects on the Lemke path on $P^l$ for
+missing label $l(j)$.
 \end{theorem}
 
 We finally focus on the case of unit vector games
 where the simplicial polytope $Q$ is cyclic; that is,
 the case that we can study from the point of view of Gale strings.
-Consider $s\in G(m,n)$ with $d$ even as a ``loop'', and
-let $s(i)=1$ for an index $i\in [n]$. Then, by Gale evenness condition,
+We will consider $s\in G(m,n)$ with $d$ even, and we will see them as
+``loops''.
+Let $s(i)=1$ for an index $i\in [n]$; then, by Gale evenness condition,
 there is an odd run of \1 's in $s$ either on the left or on the right
 of position $i$; let $j$ be the first index after this run.
 A {\em pivot on $s$} is then defined as setting $s(i)=0$ and $s(j)=1$.
 Given a labeling $l_s:[n]\to [m]$, we say that we
 {\em pivot on label $l(i)$}, {\em dropping label $l(i)$} and
 {\em picking up label $l(j)$}.
-The {\em Lemke-Howson for Gale algorithm} is defined as follows.
+The {\em Lemke-Howson for Gale Algorithm} is defined as follows.
 
 \begin{algorithm}\label{lhg-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{
-A labeling $l_s:[n]\to [d]$ such that there is a completely labeled
-Gale string $s_0 \in G(d,n)$.
+A labeling $l_s:[n]\to [d]$, where $d$ is even, such that there is a
+completely labeled Gale string $s_0 \in G(d,n)$.
 }
 \Output{
 A completely labeled Gale string $s\in G(d,n)$ such that $s\neq s_0$.
@@ -305,110 +266,95 @@ pivot on the duplicate label $h$ from $s$ to $s'\neq s_0$ \\
 rename $s_0=s$, $s=s'$
 }
 \Return $s$
-\caption{Lemke-Howson for Gale algorithm}
+\caption{Lemke-Howson for Gale Algorithm}
 \label{lhg-alg}
 \end{algorithm}
 
-We see the correspondence between the Lemke-Howson and the
-Lemke-Howson for Gale algorithms in the next example.
+We see the correspondence between the Lemke-Howson Algorithm and the
+Lemke-Howson for Gale Algorithm in the next example.
 
 \begin{example}
 Figure \ref{lhg-123432-fig} shows the cyclic polytope $C_4(6)$
-with the labeling given in example \ref{c46-123432-ex}.
-This corresponds to the labeling $l=123432$, for which there are
-four completely labeled Gale strings in $G(4,6)$:
+with the labeling
+\begin{eqnarray*}
+l_v(i)= & i\quad\text{ for }i\in [4]; \\
+l_v(5)= & 3; \\
+l_v(6)= & 2.
+\end{eqnarray*}
+This corresponds to the labeling $l_s$ for $G(4,6)$ given in
+example \ref{c46-123432-ex}, for which there are
+four completely labeled Gale strings:
 $s_A=\1\1\1\100$, $s_B=\1\10\1\10$, $s_C=\100\1\1\1$ and
-$s_D=\10\1\10\1$, corresponding to the facets $A$, $B$, $C$ and $D$.
-Pivoting from facet $A$ dropping label 3 yields facet $B$; analogously,
+$s_D=\10\1\10\1$, which in turn correspond to the facets $A$, $B$, $C$ and
+$D$. Pivoting from facet $A$ dropping label 3 yields facet $B$, just as
 pivoting from $s_A=\1\1\1\100$ dropping label 3 yields $s_B=\1\10\1\10$.
-
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=60ex]{chapter-3/fig-lh/123432-lh.pdf}%
 \hfill\strut
-\caption[Lemke-Howson for Gale algorithm and cyclic polytope]{%
-Lemke-Howson for Gale algorithm: the pivoting to $s_A=\1\1\1\1 00$ to
-$s_B=\1\10\1\10$ correspond to the pivoting from the facet $A$ to
-the facet $B$.%
+\caption[A pivot on $G(4,6)$ and on $C_4(6)$]{%
+The pivoting to $s_A=\1\1\1\1 00$ to $s_B=\1\10\1\10$ in the Lemke-Howson
+for Gale Algorithm corresponds to the pivoting from facet $A$ to facet $B$
+in the Dual Lemke-Howson Algorithm.%
 }
 \label{lhg-123432-fig}
 \end{figure}
 \end{example}
 
-The analogous of Proposition \ref{lh-works-thm} and Proposition
-\ref{lh-dual-works-thm} for the Lemke-Howson for Gale algorithm
-is the following.
+Once again, we have the analogous of Proposition \ref{lh-works-ppa-thm}.
 
 \begin{proposition}\label{lhg-works-thm}
-The Lemke-Howson for Gale algorithm \ref{lhg-alg} returns a
-solution to the problem \anothergale.
+The Lemke-Howson for Gale Algorithm, see Algorithm \ref{lhg-alg}, returns a
+solution to the {\bf PPA} problem \anothergale.
 
 Furthermore, the number of completely labeled Gale strings
 $s\in G(d,n)$, where $d$ is even, is even.
 \end{proposition}
 
-In the case of Gale strings, it is quite easy to orient the Lemke paths,
-and prove a stronger result of {\bf PPAD} complexity instead of {\bf PPA}
-as in Proposition \ref{aclv-ppa-thm} and Proposition \ref{aclf-ppa-thm}.
+In the case of Gale strings, it is quite easy to extend the proof of
+Proposition \ref{lh-works-ppa-thm} and prove a stronger result of
+{\bf PPAD} rather than just {\bf PPA} complexity.
 We will do so by giving a {\em sign}, positive or negative,
-to the completely labeled Gale strings; we will then show that all the
-endpoints of the Lemke paths have different sign, so the Lemke paths can
-be oriented from positive to negative sign.
+to the completely labeled Gale strings, then proving that all the
+endpoints of the Lemke paths have different sign. If the sign of the string
+$s_0$ is positive, we can then orient the Lemke paths from positive to
+negative, so that $s_0$ is a standard source; if the sign of the string $s_0$
+is negative, we will give the opposite orientation.
 
 A {\em permutation} of the elements of an ordered set $S$ is a sequence
 without repetition of elements of $S$.
-Let $\sigma$ be a permutation of the elements of $[d]$. The {\em sign}
-of $\sigma$ can be defined as $\sign(\sigma)=(-1)^m$, where $m$ is the
-number of the exchanges of exactly two elements of $\sigma$
-(called {\em transpositions}) needed to get $\sigma'=1\ldots n$ from
-$\sigma$. Note that any two permutations that differ in one transposition
-have opposite sign.
-
-We give the {\em sign of a completely labeled Gale string} $s$ for a
-labeling $l$ as follows.
-Let $l_0$ be the string of labels $l(i)$ such that $s(i)=1$ and that
-two labels corresponding to a run in $l$ are adjacent in $l_0$. We
+The {\em sign} of a permutation $\sigma$ is defined as
+$\sign(\sigma)=(-1)^m$, where $m$ is the number of the exchanges of
+exactly two elements of $\sigma$ (called {\em transpositions}) needed
+to get $\sigma'=1\ldots n$ from $\sigma$. Note that any two permutations
+that differ in only one transposition have opposite sign.
+The {\em sign of a completely labeled Gale string} $s\in G(d,n)$ is defined
+as follows. Let $l:[n]\to [d]$ be a labeling that completely labels $s$, and
+let $l_0$ be the string of labels $l(i)$ such that $s(i)=1$ and that
+two labels corresponding to a run in $l$ are adjacent in $l_0$. Then we
 define $\sign(s)=\sign(l_0)$.
-Note that, in the context of games, the completely labeled Gale string
-$1^d 0^{(n-d)}$ corresponding to the artificial equilibrium will
-always have positive sign.
-
-\begin{example}
-For the labeling $l = 123434$ there are four completely labeled Gale string
-in $G(4,6)$.
-The completely labeled string $111100$ has positive sign, since
-it corresponds to the string of labels $1234$; the string $110110$
-corresponds to the string of labels $1243$, that has negative sign.
-The string $111001$ corresponds to $4123$, with negative sign, since
-$s(6)$ and $s(1)$ are both $1$ and therefore form a run.
-\end{example}
-
-Defining $l_0$ as above, but for an almost completely labeled Gale string,
-we have that $l_0$ has one missing and one duplicate label.
-We can substitute the former to the latter
-either in the position that has been reached by the last pivot, obtaining
-the string $l_1$, or in the position that was already in the string,
-obtaining the string $l_2$. These two strings have opposite sign, since
-they can be obtained from each other with one transposition.
-
-
-
-We can now give a sign to the pivoting steps of the Lemke-Howson for Gale
-algorithm.
-Note that a pivoting operation changes the sign, since it involves
+Note that if $l(i)=i$ for $i\in [d]$ then the sign of the completely
+labeled Gale string $1^d 0^{(n-d)}$ is always positive.
+Let $s\in G(d,n)$ be an almost completely labeled string for $l$ with
+missing label $k$ and duplicate label $h$; let $i_1$ be the index of $h$
+reached by the last pivot (the ``new'' position of $h$) and let $i_2$ be
+the index of $h$ such that $s(i_2)=1$ before the last pivot (the ``old''
+position). Let $l_1$ be the string obtained as $l_0$ substituting $k$ to
+$h$ at index $i_1$, and let $l_2$ be the string obtained as $l_0$
+substituting $k$ to $h$ at index $i_2$. Then $\sign(l_1)=-\sign(l_2)$,
+since they can be obtained from each other by the transposition $(kh)$.
+Consider now the steps of the Lemke-Howson for Gale Algorithm;
+assume that $\sign(s_0)=+1$ (without loss of generality: the negative case
+is symmetric). If the first pivot returns another completely labeled Gale
+string $s'$, this must have negative sign because it has been obtained
 ``jumping'' over an odd number of \1's.
-Assume that the completely labeled Gale string $s$ has positive
-sign (the negative case is the same with opposite signs). If the pivoting
-returns another completely labeled Gale string $s'$, this must have negative
-sign because it has been obtained via one pivoting step.
-If the pivoting returns an almost completely labeled Gale string, the
-sign of $l_1$ will be negative, since it correspond to a pivoting; so
-the sign of $l_2$ will be positive. The next pivoting step drops the
-label that was substituted with the missing one in $l_2$, so again we
-change sign. The steps of the Lemke paths can therefore be seen as in
-Figure \ref{lhg-sign-figure}
-
-\begin{figure}[hbt]
+For the same reason, if the pivoting returns an almost completely labeled
+Gale string, we have that $\sign(l_1)=-1$, so $\sign(l_2)=+1$.
+The next pivoting step drops the label $h$ from index $i_2$, so again we
+change sign.
+Running the Lemke-Howson for Gale Algorithm will therefore result in sign
+switching back and forth as in Table \ref{lhg-sign-figure}.
+\begin{table}[hbt]
 $\xymatrix@C=30mm@R-=5mm@M=3mm{
 \text{\footnotesize completely labeled string} \ar[r]^{pivot}
     & \text{\footnotesize missing label in new position}  \ar[dl]|{=}  \\
@@ -417,60 +363,81 @@ $\xymatrix@C=30mm@R-=5mm@M=3mm{
 \qquad\qquad\cdots\qquad\qquad \ar[r]^{pivot}
     & \text{\footnotesize completely labeled string}
 }$
-\caption[Sign switching on the Lemke-Howson for Gale algorithm]
-{Sign switching on the Lemke-Howson for Gale algorithm.}
+\caption[Sign switching on the Lemke-Howson for Gale Algorithm]
+{Sign switching on the Lemke-Howson for Gale Algorithm.}
 \label{lhg-sign-figure}
-\end{figure}
-
-\begin{example}
-Let $l=123432$; consider the Lemke path from the completely labeled
-Gale string $s=\1\1\1\100$ dropping label $1$. The graph in Figure
-\ref{lhg-sign-figure} then becomes as in figure \ref{lhg-sign-ex-figure}
-
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=65ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
-\hfill\strut
-\caption[Pivoting with sign on $123432$]
-{Pivoting with sign on $123432$.}
-\label{lhg-sign-ex-figure}
-\end{figure}
-
-\end{example}
-
+\end{table}
+Orienting all Lemke paths from positive to negative gives the {\bf PPAD}
+complexity of \anothergale.
 
 \begin{proposition}\label{gale-ppad-thm}
 \anothergale\ is in {\bf PPAD}.
 \end{proposition}
+
+\begin{example}
+Let $l_s=123432$; consider the Lemke path from the completely labeled
+Gale string $s=\1\1\1\100$ dropping label $1$.
+Figure \ref{lhg-sign-ex-figure} shows the graph of Table
+\ref{lhg-sign-figure}. Note that $\sign(\10\1\10\1)=\sign((21)(34))$,
+since $s(6)=s(1)=1$ and therefore the indices $6$ and $1$ are consecutive
+in the same run.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=75ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
+\hfill\strut
+\caption[An example of pivoting with sign]
+{Pivoting with sign on $123432$.}
+\label{lhg-sign-ex-figure}
+\end{figure}
+\end{example}
 
 A result similar to Proposition \ref{gale-ppad-thm}, but more general, is given
 in Shapley \cite{shapley}; it shows that two equilibria at the ends of a
 Lemke path have opposite {\em index}. The index is defined in terms of the
 signs of the determinants of the square submatries of the payoff matrices
 for the equilibrium support; the artificial equilibrium is assigned
-index $+1$. The main result of Shapley's article \cite{shapley} is that if a
+index $+1$. The main result of Shapley's article is that if a
 nondegenerate game has $n$ Nash equilibria with index $+1$, then the game has
 $n+1$ Nash equilibria with index $-1$. The article also gives an interesting
 example of a game for which the graph of all Lemke paths is disjoint.
-This is the symmetric game $(C,C\T)$ with
-\[
-C = \left(
-      \begin{array}{ccc}
-        0 & 3 & 0 \\
-        2 & 2 & 0 \\
-        3 & 0 & 1
-      \end{array} \right)
-\]
-The equilibria are $(x_1,y_1)=((0,0,1), (0,0,1))$,
-$(x_2,y_2)=((1/3,2/3,0),(1/3,2/3,0))$ and
-$(x_3,y_3)=((1/6,1/3,1/2),(1/6,1/3,1/2))$. All Lemke paths from the
-artificial equilibrium $(0,0)$ end at $(x_1,y_1)$.
-Note that since all equilibria are symmetric, by Theorem \ref{imitation-thm}
-they all correspond to equilibria in the imitation game $(I,C\T)$.
+\begin{equation}
+\label{disj-lp-game}
+A = \left(
+    \begin{matrix}
+        2&2&0 \\
+        0&3&0 \\
+        3&0&1
+    \end{matrix}
+    \right),
+\qquad
+B = \left(
+    \begin{matrix}
+        3&0&2 \\
+        0&3&2 \\
+        0&0&1
+    \end{matrix}
+    \right),
+\end{equation}
+The equilibria of $(A,B)$ are $(x_1,y_1)=((0,0,1), (0,0,1))$,
+$(x_2,y_2)=((0,1/2,1/2),(0,3/4,1/4))$ and
+$(x_3,y_3)=((0,1,0),(0,1,0))$. All Lemke paths from the
+artificial equilibrium $(0,0)$ end at $(x_1,y_1)$, and consequently all
+other Lemke paths connect $(x_2,y_2)$ and $(x_3,y_3)$; see
+Figure \ref{disj-lp-br-poly}.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=38ex]{chapter-3/fig-lh/shapley-game-1.pdf}%
+\hfill
+\includegraphics[width=38ex]{chapter-3/fig-lh/shapley-game-2.pdf}%
+\hfill\strut
+\caption[Best response polytopes of a game with disjoint Lemke paths]{%
+Best response polytopes of game \ref{disj-lp-game}.
+}
+\label{disj-lp-br-poly}
+\end{figure}
 
 
-
-An interesting example of the Lemke-Howson for Gale algorithm is the
+An interesting example of the Lemke-Howson for Gale Algorithm is the
 following, due to Morris \cite{morris}.
 
 \begin{example}
