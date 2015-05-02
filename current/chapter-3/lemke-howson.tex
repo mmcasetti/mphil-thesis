@@ -441,68 +441,53 @@ An interesting example of the Lemke-Howson for Gale Algorithm is the
 following, due to Morris \cite{morris}.
 
 \begin{example}
-Consider the labeling $l=1234564523$ for $G(6,10)$ and the completely
-labeled Gale string $s=\1\1\1\1\1\100$. Dropping the label 1, the
-Lemke-Howson for Gale algorithm will run as in figure \ref{morris-6-fig}.
-
+\label{morris-ex}
+Consider the labeling $l=1234564523$ for $G(6,10)$. The only two completely
+labeled Gale string  are $s=\1\1\1\1\1\100$ and $s'=\1 00000\1\1\1\1\1$.
+Figure \ref{morris-6-fig} shows the Lemke path for label 1.
 \begin{figure}[hbt]
 \begin{center}
 \large
 \begin{tabular}{c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
 {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 4} & {\bf 5} & {\bf 2} & {\bf 3} \\
 \hline
-\d1 & \1 & \1 & \1 & \1 & \1 & \tdot & \tdot & \tdot & \tdot \\
-\tdot & \1 & \1 & \d1 & \1 & \1 & \u1 & \tdot & \tdot & \tdot \\
-\tdot & \1 & \1 & \tdot & \d1 & \1 & \1 & \u1 & \tdot & \tdot \\
-\tdot & \d1 & \1 & \tdot & \tdot & \1 & \1 & \1 & \u1 & \tdot \\
-\tdot & \tdot & \1 & \u1 & \tdot & \1 & \d1 & \1 & \1 & \tdot \\
-\tdot & \tdot & \1 & \1 & \u1 & \1 & \tdot & \d1 & \1 & \tdot \\
-\tdot & \tdot & \d1 & \1 & \1 & \1 & \tdot & \tdot & \1 & \u1 \\
-\tdot & \tdot & \tdot & \d1 & \1 & \1 & \u1 & \tdot & \1 & \1 \\
-\tdot & \tdot & \tdot & \tdot & \d1 & \1 & \1 & \u1 & \1 & \1 \\
-\u1 & \tdot & \tdot & \tdot & \tdot & \1 & \1 & \1 & \1 & \1 \\
+\d1 & \1 & \1 & \1 & \1 & \1 & 0 & 0 & 0 & 0 \\
+0 & \1 & \1 & \d1 & \1 & \1 & \u1 & 0 & 0 & 0 \\
+0 & \1 & \1 & 0 & \d1 & \1 & \1 & \u1 & 0 & 0 \\
+0 & \d1 & \1 & 0 & 0 & \1 & \1 & \1 & \u1 & 0 \\
+0 & 0 & \1 & \u1 & 0 & \1 & \d1 & \1 & \1 & 0 \\
+0 & 0 & \1 & \1 & \u1 & \1 & 0 & \d1 & \1 & 0 \\
+0 & 0 & \d1 & \1 & \1 & \1 & 0 & 0 & \1 & \u1 \\
+0 & 0 & 0 & \d1 & \1 & \1 & \u1 & 0 & \1 & \1 \\
+0 & 0 & 0 & 0 & \d1 & \1 & \1 & \u1 & \1 & \1 \\
+\u1 & 0 & 0 & 0 & 0 & \1 & \1 & \1 & \1 & \1 \\
 \hline
 {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 4} & {\bf 5} & {\bf 2} & {\bf 3} \\
 \end{tabular}
 \normalsize
 \end{center}
-\caption{Morris path on $C(6,10)$}
+\caption[The Morris path for $C(6,10)$]{The Morris path for $C(6,10)$.}
 \label{morris-6-fig}
 \end{figure}
 \end{example}
 
+Morris \cite{morris} proved that the length of the Lemke paths on the cyclic
+polytope $C_d(2d)$ (therefore on Gale strings in $G(d,2d)$) with a labeling
+analogous to the one in Example \ref{morris-ex} grows exponentially in $d$,
+regardless of the label that is dropped. Morris' labeling, given for $d$ both
+even and odd with some repetition that can be dropped without loss of
+generality, is as follows:
+\begin{eqnarray*}
+l(k)=k          & \quad\quad\text{for }k\in [d];    \\
+l(d+1)=d;       & \\
+l(d+k)=d-k      & \quad\quad\text{for }2\leq k< d,\ k\text{ even };   \\
+l(d+k)=d-k+2    & \quad\quad\text{for }2\leq k\leq d,\ k\text{ odd }; \\
+l(2d)=1         & \quad\quad k\text{ even}.
+\end{eqnarray*}
 
-
-\todo[inline]{Morris paths are exponentially long
-
-
-Savani and von Stengel (2006) construct bimatrix games where both players
-have dual cyclic polytopes as their best response polytopes. They call
-these games m ⇥ n-double cyclic polytope games. For square games,
-where m = n = d and where the labels are derived from
-Morris’s construction (see Morris (1994) and Section 4.4 for the
-introduction of these labels), the LH-algorithm takes exponentially
-many steps to find an equilibrium.
-
-However, square games are not âĂIJhard to solveâĂİ by the sup-
-port enumeration algorithm; see Savani (2006). The support enumeration
-algorithm considers strategies of the players with equal support size and
-checks whether they are best replies to each other. Since square games
-have a unique completely mixed equilibrium, where both players play d
-pure strategies with positive probability, the support enumeration algo-
-rithm terminates quickly.
-Games where both solution concepts take exponentially long are then
-called hard- to-solve bimatrix games One class of hard-to-solve games is
-constructed from 3d âĞě d games with one cyclic polytope of dimension d
-and one simplotope, which is a product of simplices, here d tetrahedra (Sa-
-vani (2006)). He calls these triple imitation games, due to the connection
-to imitation games. Nash equilibria of triple imitation games are fully de-
-scribed by completely labeled Gale strings in G(d,4d). They are thus Gale
-games and an equilibrium can be found via the problem ANOTHER COM-
-PLETELY LABELED GALE STRING.
-
-}
-
-This gives a strong motivation to study the complexity of \anothergale,
-since it seems that it relates to games that are hard to solve. Our
-main result, in the next section, will give a {\bf FP} algorithm to solve it.
+Savani and von Stengel \cite{svs} \cite{uvg} relied on Morris' example to
+build different ``hard to solve'' games; these results give a strong
+motivation to study the problem \anothergale\ to give a more precise proof
+of this complexity. Our main result, in the next section, will give a
+{\bf FP} algorithm that circumvents the problem of any exponential running
+time of the Lemke-Howson for Gale algorithm.
