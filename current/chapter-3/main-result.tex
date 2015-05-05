@@ -186,7 +186,7 @@ $M'=\{ e_6,e_8,e_{10} \}$.
 \end{example}
 
 Applying Theorem \ref{galenash-to-another-gale} to
-Theorem \ref{anothergale-thm} we have our main result: {\bf Gale Nash}
+Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
 is in {\bf FP}.
 
 \begin{theorem}
@@ -198,3 +198,82 @@ Note that the Nash equilibrium that is found applying the construction in
 Theorem \ref{anothergale-thm} is not necessarily the same Nash equilibrium
 that is found applying the Lemke-Howson for Gale Algorithm. Furthermore,
 there is no guarantee regarding the sign (or index) of the equilibrium.
+
+
+\begin{algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+A labeling $l:[n]\to [d]$.
+}
+\Output{
+A Gale string $s\in G(d,n)$ completely labeled by $l$.
+}
+\BlankLine
+Set $G=(V,E)$, with $V=[d]$ and $E=\varnothing$ \\
+Set $s=0^n$ \\
+\For{ $i\in [n-1]$ }
+    {
+    $E=E\cup\{ (l(i),l(i+1)) \}$
+    }
+$E=E\cup\{ (l(n),l(1)) \}$ \\
+Run the Edmonds' Algorithm on $G$ \\
+\If{ The Edmonds' Algorithm returns a perfect matching $M$ of $G$ }
+    {
+    \For{ $(l(i),l(j))\in M$ }
+        {
+        $s(i)=s(j)=\1$
+        }
+    Return $s$
+    }
+\Else{
+    Return {\sc No}
+}
+\caption{Completely Labeled Gale String Finder}
+\label{gale-alg}
+\end{algorithm}
+
+
+\begin{algorithm}
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{
+A labeling $l:[n]\to [d]$ and a Gale string $s_0\in G(d,n)$ completely
+labeled by $l$.
+}
+\Output{
+A Gale string $s\in G(d,n)$ completely labeled by $l$, such that
+$s\neq s_0$.
+}
+\BlankLine
+Set $G=(V,E)$, with $V=[d]$ and $E=M_0=\varnothing$ \\
+Set $s=0^n$ \\
+\For{ $i\in [n-1]$ }
+    {
+    $E=E\cup\{ (l(i),l(i+1)) \}$ \\
+    \If{ $s_0(i)=s_0(i+1)=1$ }
+        {
+        $M_0=M_0\cup\{ (l(i),l(i+1)) \}$
+        }
+    }
+$E=E\cup\{ (l(n),l(1)) \}$ \\
+\If{ $s_0(n)=s_0(1)=1$ and $(s_0(1),s_0(2))\notin M_0$}
+    {
+    $M_0=M_0\cup\{ (l(n),l(1)) \}$
+    }
+\For{ $m\in M_0$ }
+    {
+    $E_m=E\setminus\{ m \}$ \\
+    Run the Edmonds' Algorithm on $G_m=(V,E_m)$ \\
+    \If{ The Edmonds' Algorithm returns a perfect matching $M_m$ of $G_m$ }
+        {
+        \For{ $(l(i),l(j))\in M_m$ }
+            {
+            $s(i)=s(j)=\1$
+            }
+        Return $s$ 
+        }
+    }
+\caption{Another Gale Finder}
+\label{anothergale-alg}
+\end{algorithm}
