@@ -10,7 +10,7 @@ for which all the components are 0 except for the $i$-th component equal to
 An inequality of the form $u\geq v$, is intended to hold for every component.
 
 An {\em affine combination} of points in an Euclidean space
-$\{z_1,\ldots,z_m \}\subset \real^n$
+$\{z_1,\ldots,z_m \}\subset \reals^n$
 is $\sum_{i\in [m]} \lambda_i z_i$ where $\lambda_i\in\reals$ such that
 $\sum_{i\in [m]} \lambda_i = 1$;
 the points $z_1,\ldots,z_m$ are {\em affinely independent} if none of them
@@ -21,37 +21,36 @@ $\conv \{z_1,\ldots,z_m \}=\{ \sum_i \lambda_i z_i\ \mid\ %
 \lambda_i\geq 0,\ \sum_i \lambda_i=1 \}$.
 A set of points $Z=\{z_1,\ldots,z_m \}$ is {\em convex} if $Z=\conv(Z)$,
 and it has {\em dimension} $d$ if $Z$ has exactly $d + 1$
-affinely independent points. A convex set of dimension $d$ is called a
-{\em $d$-simplex}. The {\em standard $d$-simplex} is
+affinely independent points. A convex set of $d+1$ points of dimension
+$d$ is called a {\em $d$-simplex}. The {\em standard $d$-simplex} is
 $\Delta_d=\conv\{ e_1,\ldots,e_{d+1} \}$.
 
-A {\em polytope} is the convex hull of a finite set of points
-$\{z_1,\ldots,z_m \}\subset\reals^n$, not necessarily affinely
-independent; the {\em dimension} of the polytope is the dimension
-of its convex hull.
+A {\em polytope} is the convex hull of a finite set of points, not
+necessarily affinely independent, $\{z_1,\ldots,z_m \}\subset\reals^n$;
+the {\em dimension} of the polytope is the dimension of its convex hull.
 A {polyhedron} is the intersection of finitely many closed halfspaces
-$\{ x\in \reals^d\mid a^T x\leq a_0\}$; note that a bounded polyhedron is
-a polytope.
-A {\em vertex} of a d-dimensional polytope $P=\conv(Z)$ is a
+$\{ x\in \reals^d\ \mid\ a^T x\leq a_0\}$; notice that a bounded polyhedron
+is a polytope.
+A {\em vertex} of a $d$-dimensional polytope $P=\conv(Z)$ is a
 point $z\in Z$ such that $\conv(Z\setminus \{ z \})\neq P$;
 an {\em edge} of P is a 1-dimensional line segment that has two vertices
 as endpoints.
 A {\em facet} of $P$ is the convex hull of a set of $d$ vertices
 $F=\{ z_1,\ldots,z_d \}$ that lie on a hyperplane of the form
-$\{ x\in \reals^d\mid a^T x=a_0\}$ so that $a^T u<a_0$ for all other
-vertices $u$ of $P$; the vector $a$ (taken as unique up to a scalar
-multiple) is called the {\em normal vector} of the facet.
+$\{ x\in \reals^d\ \mid\ a^T x=a_0\}$ so that $a^T u<a_0$ for all other
+vertices $u$ of $P$; the vector $a$ is the {\em normal vector} of the facet.
 
 A {\em $d$-dimensional simplicial polytope} $P$ is the convex hull of a set
 of at least $d+1$ points $v\in \reals^d$ such that no $d+1$ of them are on
 a common hyperplane; this is equivalent to requiring that every facet of
 $P$ is a $d$-simplex. A $d$-dimensional polytope $P$ is {\em simple}
-if every point of $P$ lies on at most than $d$ facets; note that the points
+if every point of $P$ lies on at most than $d$ facets; notice that the points
 lying on exactly $d$ facets are exactly the vertices.
 
 The {\em polar} of the polytope
-$P=\{ x\in\reals^d\ \mid\ x\T c_i\leq 1,\ i\in [k] \}$ with $c_i\in\reals^d$
+$P=\{ x\in\reals^d\ \mid\ x\T c_i\leq 1,%
+\text{ for }c_i\in\reals^d,\ i\in [k] \}$
 is $P^\Delta = \conv\{ c_i, i\in [k] \}$.
-If $P$ is simplicial or
-it is simple and it contains the origin $\0$, then $P^{\Delta\Delta}=P$;
-furthermore, if $P$ is simplicial $P^\Delta$ is simple, and vice versa.
+If $P$ is simplicial or it is simple and it contains the origin $\0$,
+then $P^{\Delta\Delta}=P$; furthermore, if $P$ is simplicial $P^\Delta$
+is simple, and vice versa.

@@ -1,12 +1,16 @@
-In the rest of this thesis we will focus bimatrix games, analizing their
-Nash equilibria with the use of labels and combinatorial structures.
+In the remainder of this thesis we will focus bimatrix games.
+We will identify the game with its payoff matrices $(A,B)$, and
+we will assume that both $A$ and $B$ are non-negative, and that neither $A$
+nor $B\T$ has a zero column; this can be done without loss of generality,
+applying an affine transformation to $A$ and $B$ if necessary.
 
 We will start by showing a construction to translate a bimatrix game to
-labeled regions of two simplices so that its Nash equilibria correspond
-to ``completely labeled'' points; this idea is due to Lemke and Howson
-\cite{lh}, and we will follow the very clear approach given by Shapley
+two simplices subdivided in regions which are labeled so that the Nash
+equilibria of the game correspond to the ``completely labeled'' points of
+the simplices. This idea is due to Lemke and Howson
+\cite{lh}; we will follow the very clear approach given by Shapley
 \cite{shapley}. From labeled regions we will then move on to an equivalent
-formulation on polytopes; a result by McLennan and Tourky
+formulation in terms of polytopes; a result by McLennan and Tourky
 \cite{mclennan-tourky} on a special case of games, called imitation games,
 and its extension to the more general unit vector games, due to
 Balthasar \cite{balthasar}, will allow us to simplify the labeling
@@ -14,19 +18,12 @@ construction on polytopes; a result by Balthasar \cite{balthasar} gives
 a condition on facets of a simplicial polytope, whereas Savani and von
 Stengel \cite{uvg} give an equivalent condition on vertices of a
 simple polytope. The problem 2-{\sc Nash} will then be shown to have a
-polynomial-time reduction to a problem on facets, or vertices, of a
+polynomial-time reduction to a problem on facets or vertices of a
 labeled polytope, under certain simple conditions.
 
 In the second section of the chapter we will restrict our scope to
-Gale games, a case of unit vector games for which the labeling problem
-can be translated to an elegant combinatorial structure, called Gale
-strings. These are bitstrings satisfying some simple conditions, and
-they can be used to represent the facets of a particular kind of
-polytopes, called cyclic polytopes. We will show this representation, then
-we will define a labeling for Gale strings that will lead to a reduction
-from 2-{\sc Nash} to the problem \anothergale.
-
-We will identify the bimatrix game with its payoff matrices $(A,B)$, and
-we will assume that both $A$ and $B$ are non-negative, and that neither $A$
-nor $B\T$ has a zero column; this can be done without loss of generality,
-applying an affine transformation to $A$ and $B$ if necessary.
+Gale games, a case of unit vector games for which the facets of the
+polytopes in the previous section can be represented as an elegant
+combinatorial structure, called Gale strings. We will show this
+representation, then we will define a labeling for Gale strings that
+will lead to a reduction from {\sc 2-Nash} to a problem on Gale strings.

@@ -8,16 +8,9 @@ the set of {\em pure strategy profiles} and $S_p$ is the set of
 {\em pure strategies} of player $p$; we will use the
 notation $S_{-p}=\times_{q\neq p}S_p$.
 The purpose of each player $p\in P$ is to maximize their
-{\em payoff function} $u^p:S\to\reals$, where $u=\times_{p\in P}u^p$.
+{\em payoff function} $u^p:S\to\reals$ and $u=\times_{p\in P}u^p$.
 In the following pages, by ``game'' we will always mean
-``finite normal form game.'' If there are only two players, we will refer to
-player 1 using feminine pronouns and to player 2 using masculine ones; such
-games are called {\em bimatrix games} since they can be characterized by
-the $m \times n$ payoff matrices $A$ and $B$, where $a_{ij}$ and $b_{ij}$ are
-the payoffs of respectively player 1 and of player 2 when the former plays
-her $i$th pure strategy and the latter plays his $j$th pure strategy.
-A bimatrix game is {\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
-
+``finite normal form game.''
 A {\em mixed strategy} of player $p$ is a probability
 distribution on $S_p$; it can be described as a point on the
 $(|S_p|-1)$-dimensional {\em mixed strategy simplex}
@@ -25,7 +18,6 @@ $\Delta_p=\{ x\in\reals^{|S_p|}\ \mid\ x\geq\0,\ \1\T x = 1 \}$.
 The set of {\em mixed strategy profiles} is the simplicial polytope
 $\Delta=\times_{p\in P}\Delta_p$;
 we extend the payoff functions to $u^p:\Delta\to\reals$ linearly.
-
 A {\em Nash equilibrium} of a game is a strategy profile in which each
 player cannot improve their expected payoff by unilaterally changing their
 strategy; such a strategy is called a {\em best response}.
@@ -33,7 +25,7 @@ Note that applying an affine transformation to all the payoffs does not
 change the Nash equilibria of the game.
 
 \begin{proposition}
-\label{positive-p-br-thm}
+\label{br-played-thm}
 A mixed strategy $x\in \Delta_p$ is a best response against some mixed
 strategy profile $y\in \Delta_{-p}$ of the other players if and only if
 every pure strategy $s_i\in S_p$ chosen with positive probability
@@ -48,18 +40,32 @@ than one equilibrium.
 Every finite game in normal form has a Nash equilibrium.
 \end{theorem}
 
-We give two classic examples of games: the prisoners' dilemma and a
-coordination game.
+{\em Bimatrix games} are games with only two players; we will refer to
+player 1 using feminine pronouns and to player 2 using masculine ones.
+Bimatrix games can be characterized by
+the $m \times n$ payoff matrices $A$ and $B$, where $a_{ij}$ and $b_{ij}$ are
+the payoffs of respectively player 1 and of player 2 when the former plays
+her $i$th pure strategy and the latter plays his $j$th pure strategy.
+A bimatrix game is {\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
+
+We give two classic examples of bimatrix games: the prisoners' dilemma and
+the coordination game.
 
 \begin{example}
 In the symmetric non zero-sum {\em prisoners' dilemma} of
-Figure~\ref{prisoners-dilemma}, each player must
+Table~\ref{prisoners-dilemma}, each player must
 decide whether to ``help'' the other one or to ``betray'' them. If both
 players help each other, they will get a small reward; if both betray, they
 will pay a small penalty; if one betrays and the other cooperate the former
 will get a large reward and the latter will pay a large penalty.
+The only equilibrium is the profile in which both players betray.
+If player~2 betrays, the best response of player~1 is to betray, since
+it gives her payoff 1 instead of 0; if player~2 helps, her payoff
+for betraying is 3 and her payoff for helping is 2, so betraying is
+again the best response. The same holds for player~2, so at the
+equilibrium both players will betray.
 
-\begin{figure}[hbt]
+\begin{table}[hbt]
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
 \bimatrixgame{3mm}{2}{2}{1}{2}
@@ -72,21 +78,18 @@ will get a large reward and the latter will pay a large penalty.
 \end{center}
 \caption[The prisoners' dilemma]{The prisoners' dilemma.}
 \label{prisoners-dilemma}
-\end{figure}
+\end{table}
 
-The only equilibrium is the profile in which both players betray.
-If player~2 betrays, the best response of player~1 is to betray, since
-it gives her payoff 1 instead of 0; if player~2 helps, her payoff
-for betraying is 3 and her payoff for helping is 2, so betraying is
-again the best response. The same holds for player~2, so at the
-equilibrium both players will betray.
 
-Figure~\ref{coordination-game} shows a {\em coordination} game.
+Table~\ref{coordination-game} shows a {\em coordination} game.
 Both players drive on a mountain road; they lose if drive on the same side
 of the road and win if they avoid each other, regardless of which side they
 take.
+The pure strategy Nash equilibria are (mountain,valley) and
+(valley,mountain); there is also a symmetric equilibrium in mixed strategies
+at $((1/2,1/2),(1/2,1/2))$.
 
-\begin{figure}[hbt]
+\begin{table}[hbt]
 \begin{center}
 \def\mm#1{\makebox(0,0){\strut#1}}
 \bimatrixgame{3mm}{2}{2}{{{\small 1}}}{{{\small 2}}}
@@ -99,9 +102,5 @@ take.
 \end{center}
 \caption[A coordination game]{A coordination game.}
 \label{coordination-game}
-\end{figure}
-
-The pure strategy Nash equilibria are (mountain,valley) and
-(valley,mountain); there is also a symmetric equilibrium in mixed strategies
-at $((1/2,1/2),(1/2,1/2))$.
+\end{table}
 \end{example}
