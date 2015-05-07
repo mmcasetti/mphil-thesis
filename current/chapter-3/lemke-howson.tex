@@ -181,6 +181,53 @@ and $Q$ (right) of game (\ref{AB}).
 \end{figure}
 \end{example}
 
+\newpage
+
+It is possible to have an equilibrium that cannot be reached applying the
+Lemke-Howson Algorithm from the artificial equilibrium, or even from
+the endpoint of a Lemke path from the artificial equilibrium. This is
+can be seen in the next example, due to Wilson, given in
+Shapley \cite{shapley}. Notice that, by the parity result in
+Proposition \ref{lh-works-ppa-thm}, there must be at least another equilibrium
+that is ``disconnected'' from the artificial one in this way.
+\begin{example}
+\begin{equation}
+\label{disj-lp-game}
+A = \left(
+    \begin{matrix}
+        2&2&0 \\
+        0&3&0 \\
+        3&0&1
+    \end{matrix}
+    \right),
+\qquad
+B = \left(
+    \begin{matrix}
+        3&0&2 \\
+        0&3&2 \\
+        0&0&1
+    \end{matrix}
+    \right),
+\end{equation}
+The equilibria of $(A,B)$ are $(x_1,y_1)=((0,0,1), (0,0,1))$,
+$(x_2,y_2)=((0,1/2,1/2),(0,3/4,1/4))$ and
+$(x_3,y_3)=((0,1,0),(0,1,0))$. All Lemke paths from the
+artificial equilibrium $(0,0)$ end at $(x_1,y_1)$, and consequently all
+other Lemke paths connect $(x_2,y_2)$ and $(x_3,y_3)$; see
+Figure \ref{disj-lp-br-poly}.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=75ex]{chapter-3/fig-lh/shapley-game.pdf}%
+\hfill\strut
+\caption[Best response polytopes of a game with disjoint Lemke paths]{%
+Best response polytopes of game \ref{disj-lp-game}.
+}
+\label{disj-lp-br-poly}
+\end{figure}
+\end{example}
+
+\newpage
+
 The dual version of the Lemke-Howson Algorithm \ref{lh-alg}
 and of proposition \ref{lh-works-ppa-thm} is quite straightforward.
 \begin{algorithm}
@@ -227,6 +274,8 @@ not only this yield a Nash equilibrium, but no potential solutions
 are ``lost'' considering the polytope $P^l$ with $m$ labels
 instead of the product of polytopes $P\times Q$ with $m + n$ labels;
 an analogous result holds for the dual case.
+
+\newpage
 
 \begin{theorem}\label{unit-paths}
 Let $(U,B)$ be a unit vector game, with
@@ -326,49 +375,50 @@ in the Dual Lemke-Howson Algorithm.%
 
 \newpage
 
-In the case of Gale strings, it is quite easy to extend the proof of
-Proposition \ref{lh-works-ppa-thm} and prove a stronger result of
-{\bf PPAD} rather than just {\bf PPA} complexity.
-We will do so by giving a {\em sign}, positive or negative,
-to the completely labeled Gale strings, then proving that all the
-endpoints of the Lemke paths have different sign. If the sign of the string
-$s_0$ is positive, we can then orient the Lemke paths from positive to
-negative, so that $s_0$ is a standard source; if the sign of the string $s_0$
-is negative, we will give the opposite orientation.
-
+We will now show a construction that we will allow us to extend the
+analogous of Proposition \ref{lh-works-ppa-thm} for the Lemke-Howson for Gale
+Algorithm to prove the {\bf PPAD} complexity of \anothergale.
 A {\em permutation} of the elements of an ordered set $S$ is a sequence
-without repetition of elements of $S$.
-The {\em sign} of a permutation $\sigma$ is defined as
-$\sign(\sigma)=(-1)^m$, where $m$ is the number of the exchanges of
-exactly two elements of $\sigma$ (called {\em transpositions}) needed
-to get $\sigma'=1\ldots n$ from $\sigma$. Note that any two permutations
-that differ in only one transposition have opposite sign.
+without repetition of elements of $S$; a {\em transposition} is a permutation
+of exactly two elements of $S$.
+The {\em sign of a permutation} $\sigma$ is
+$\sign(\sigma)=(-1)^m$, where $m$ is the number of transpositions needed
+to get $\sigma_0=1\ldots n$ from $\sigma$.
+It is immediate to see that any two permutations that differ in only
+one transposition have opposite sign.
 The {\em sign of a completely labeled Gale string} $s\in G(d,n)$ is defined
-as follows. Let $l:[n]\to [d]$ be a labeling that completely labels $s$, and
+as follows: let $l:[n]\to [d]$ be the relative labeling of $G(d,n)$, and
 let $l_0$ be the string of labels $l(i)$ such that $s(i)=1$ and that
 two labels corresponding to a run in $l$ are adjacent in $l_0$. Then we
 define $\sign(s)=\sign(l_0)$.
-Note that if $l(i)=i$ for $i\in [d]$ then the sign of the completely
+Notice that if $l(i)=i$ for $i\in [d]$ then the sign of the completely
 labeled Gale string $1^d 0^{(n-d)}$ is always positive.
-Let $s\in G(d,n)$ be an almost completely labeled string for $l$ with
-missing label $k$ and duplicate label $h$; let $i_1$ be the index of $h$
-reached by the last pivot (the ``new'' position of $h$) and let $i_2$ be
-the index of $h$ such that $s(i_2)=1$ before the last pivot (the ``old''
-position). Let $l_1$ be the string obtained as $l_0$ substituting $k$ to
+The {\em sign of an almost completely labeled Gale string} $s\in G(d,n)$ with
+missing label $k$ and duplicate label $h$ is defined on two different strings.
+Let $i_1$ be the index of $h$ reached by the last pivot
+(the ``new'' position of the \1) and let $i_2$ be the index of $h$ such that
+$s(i_2)=1$ before the last pivot (the ``old'' position of the \1).
+Let $l_1$ be the string obtained as $l_0$ substituting $k$ to
 $h$ at index $i_1$, and let $l_2$ be the string obtained as $l_0$
-substituting $k$ to $h$ at index $i_2$. Then $\sign(l_1)=-\sign(l_2)$,
-since they can be obtained from each other by the transposition $(kh)$.
-Consider now the steps of the Lemke-Howson for Gale Algorithm;
-assume that $\sign(s_0)=+1$ (without loss of generality: the negative case
-is symmetric). If the first pivot returns another completely labeled Gale
-string $s'$, this must have negative sign because it has been obtained
+substituting $k$ to $h$ at index $i_2$. Notice that $\sign(l_1)=-\sign(l_2)$,
+since they can be obtained from each other applying the transposition $(kh)$.
+
+Consider now the steps of the Lemke paths in the Lemke-Howson for Gale
+Algorithm; we assume that $\sign(s_0)=+1$ without loss of generality, since
+the negative case is the same just with opposite signs.
+If the first pivot returns another completely labeled Gale
+string $s$, this must have negative sign because it has been obtained
 ``jumping'' over an odd number of \1's.
 For the same reason, if the pivoting returns an almost completely labeled
-Gale string, we have that $\sign(l_1)=-1$, so $\sign(l_2)=+1$.
+Gale string, we have that $\sign(l_1)=-1$, therefore $\sign(l_2)=+1$.
 The next pivoting step drops the label $h$ from index $i_2$, so again we
 change sign.
-Running the Lemke-Howson for Gale Algorithm will therefore result in sign
-switching back and forth as in Table \ref{lhg-sign-figure}.
+Running the Lemke-Howson for Gale Algorithm will therefore result in the sign
+of the completely labeled Gale strings swinging as in
+Table \ref{lhg-sign-figure}.
+Notice that all this construction can be done in polynomial time;
+orienting all Lemke paths from positive to negative reduces the problem
+\anothergale\ to {\sc End Of The Line}.
 \begin{table}[hbt]
 $\xymatrix@C=30mm@R-=5mm@M=3mm{
 \text{\footnotesize completely labeled string} \ar[r]^{pivot}
@@ -382,12 +432,8 @@ $\xymatrix@C=30mm@R-=5mm@M=3mm{
 {Sign switching on the Lemke-Howson for Gale Algorithm.}
 \label{lhg-sign-figure}
 \end{table}
-Orienting all Lemke paths from positive to negative gives the {\bf PPAD}
-complexity of \anothergale.
 
-
-
-\begin{proposition}\label{lhg-works-thm}
+\begin{proposition}\label{lhg-works-ppad-thm}
 The Lemke-Howson for Gale Algorithm \ref{lhg-alg} returns a
 solution to the {\bf PPAD} problem \anothergale.
 
@@ -395,17 +441,27 @@ Furthermore, the number of completely labeled Gale strings
 $s\in G(d,n)$, where $d$ is even, is even.
 \end{proposition}
 
+A result similar to Proposition \ref{lhg-works-ppad-thm}, but more general,
+is given in Shapley \cite{shapley}: two Nash equilibria at the ends of a
+Lemke path have opposite {\em index}, which is analogous to the sign but
+defined using determinants on the payoff matrices for the equilibrium
+support; the artificial equilibrium is assigned index $+1$.
+This is used to prove that a nondegenerate game with $n$ Nash equilibria
+with index $+1$ has $n+1$ Nash equilibria with index $-1$.
+
+\newpage
 
 \begin{example}
 Let $l_s=123432$; consider the Lemke path from the completely labeled
 Gale string $s=\1\1\1\100$ dropping label $1$.
 Figure \ref{lhg-sign-ex-figure} shows the graph of Table
-\ref{lhg-sign-figure}. Note that $\sign(\10\1\10\1)=\sign((21)(34))$,
+\ref{lhg-sign-figure}. Notice that
+$\sign(\10\1\10\1)=\sign(l(6)l(1)l(3)l(4))=\sign((2134))$,
 since $s(6)=s(1)=1$ and therefore the indices $6$ and $1$ are consecutive
 in the same run.
-\begin{figure}[hbt]
+\begin{figure}[h]
 \strut\hfill
-\includegraphics[width=75ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
+\includegraphics[width=60ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
 \hfill\strut
 \caption[An example of pivoting with sign]
 {Pivoting with sign on $123432$.}
@@ -413,52 +469,25 @@ in the same run.
 \end{figure}
 \end{example}
 
-A result similar to Proposition \ref{gale-ppad-thm}, but more general, is given
-in Shapley \cite{shapley}; it shows that two equilibria at the ends of a
-Lemke path have opposite {\em index}. The index is defined in terms of the
-signs of the determinants of the square submatries of the payoff matrices
-for the equilibrium support; the artificial equilibrium is assigned
-index $+1$. The main result of Shapley's article is that if a
-nondegenerate game has $n$ Nash equilibria with index $+1$, then the game has
-$n+1$ Nash equilibria with index $-1$. The article also gives an interesting
-example of a game for which the graph of all Lemke paths is disjoint.
-\begin{equation}
-\label{disj-lp-game}
-A = \left(
-    \begin{matrix}
-        2&2&0 \\
-        0&3&0 \\
-        3&0&1
-    \end{matrix}
-    \right),
-\qquad
-B = \left(
-    \begin{matrix}
-        3&0&2 \\
-        0&3&2 \\
-        0&0&1
-    \end{matrix}
-    \right),
-\end{equation}
-The equilibria of $(A,B)$ are $(x_1,y_1)=((0,0,1), (0,0,1))$,
-$(x_2,y_2)=((0,1/2,1/2),(0,3/4,1/4))$ and
-$(x_3,y_3)=((0,1,0),(0,1,0))$. All Lemke paths from the
-artificial equilibrium $(0,0)$ end at $(x_1,y_1)$, and consequently all
-other Lemke paths connect $(x_2,y_2)$ and $(x_3,y_3)$; see
-Figure \ref{disj-lp-br-poly}.
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=75ex]{chapter-3/fig-lh/shapley-game.pdf}%
-\hfill\strut
-\caption[Best response polytopes of a game with disjoint Lemke paths]{%
-Best response polytopes of game \ref{disj-lp-game}.
-}
-\label{disj-lp-br-poly}
-\end{figure}
-
-
-An interesting example of the Lemke-Howson for Gale Algorithm is the
-following, due to Morris \cite{morris}.
+An example of labeling $l:[2d]\to [d]$ where the length of the
+Lemke paths on the cyclic polytope $C_d(2d)$, therefore on $G(d,2d)$,
+grows exponentially in $d$, regardless of the label that is dropped,
+is given by Morris \cite{morris}. This labeling is given for $d$ both
+even and odd as follows:
+\begin{eqnarray*}
+l(k)=k          & \quad\quad\text{for }k\in [d];    \\
+l(d+1)=d;       & \\
+l(d+k)=d-k      & \quad\quad\text{for }2\leq k< d,\ k\text{ even };   \\
+l(d+k)=d-k+2    & \quad\quad\text{for }2\leq k\leq d,\ k\text{ odd }; \\
+l(2d)=1         & \quad\quad\text{for }k\text{ even}.
+\end{eqnarray*}
+Avoiding repetitions and restricting to the case of $d$ even, as we assumed,
+the Morris' labeling is simplified to $l:[2d-2]\to [d]$ as follows:
+\begin{eqnarray*}
+l(k)=k          & \quad\quad\text{for }k\in [d];    \\
+l(d+k)=d-k+1    & \quad\quad\text{for }k\in [d],\ k\text{ even };   \\
+l(d+k)=d-k-1    & \quad\quad\text{for }k\in [d],\ k\text{ odd }.
+\end{eqnarray*}
 
 \begin{example}
 \label{morris-ex}
@@ -491,23 +520,9 @@ Figure \ref{morris-6-fig} shows the Lemke path for label 1.
 \end{figure}
 \end{example}
 
-Morris \cite{morris} proved that the length of the Lemke paths on the cyclic
-polytope $C_d(2d)$ (therefore on Gale strings in $G(d,2d)$) with a labeling
-analogous to the one in Example \ref{morris-ex} grows exponentially in $d$,
-regardless of the label that is dropped. Morris' labeling, given for $d$ both
-even and odd with some repetition that can be dropped without loss of
-generality, is as follows:
-\begin{eqnarray*}
-l(k)=k          & \quad\quad\text{for }k\in [d];    \\
-l(d+1)=d;       & \\
-l(d+k)=d-k      & \quad\quad\text{for }2\leq k< d,\ k\text{ even };   \\
-l(d+k)=d-k+2    & \quad\quad\text{for }2\leq k\leq d,\ k\text{ odd }; \\
-l(2d)=1         & \quad\quad k\text{ even}.
-\end{eqnarray*}
-
 Savani and von Stengel \cite{svs} \cite{uvg} relied on Morris' example to
 build different ``hard to solve'' games; these results give a strong
-motivation to study the problem \anothergale\ to give a more precise proof
-of this complexity. Our main result, in the next section, will give a
+motivation to study the compelxity of \anothergale.
+Our main result, in the next section, will give a
 {\bf FP} algorithm that circumvents the problem of any exponential running
 time of the Lemke-Howson for Gale Algorithm.

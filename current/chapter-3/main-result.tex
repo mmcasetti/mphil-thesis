@@ -3,7 +3,7 @@
 A {\em matching} of a graph $G=(V,E)$ is a set $M\subseteq E$ such that every
 vertex $v\in V$ is the endpoint of at most one edge $m\in M$. A
 {\em perfect matching} is a matching such that there is an edge $m\in M$
-incident to every vertex $v\in V$. Edmonds \ref{edm} proved the {\bf FP}
+incident to every vertex $v\in V$. Edmonds \cite{edm} proved the {\bf FP}
 complexity of finding a perfect matching. The result can be easily extended
 to multigraphs.
 
@@ -15,13 +15,17 @@ matching for $G$.}
 \label{pm-pbl}
 \end{problem}
 
-\begin{theorem}\label{pm-thm}
-{\sc Perfect Matching} is in {\bf PF}.
+\begin{theorem}{\rm (Edmonds \cite{edm})}\label{edm-thm}
+It takes polynomial time to find the perfect matching of a graph or decide
+that no such matching exists.
 \end{theorem}
 
+\begin{proposition}\label{pm-thm}
+{\sc Perfect Matching} is in {\bf PF}.
+\end{proposition}
+
 To prove our main result on \anothergale, we will prove that
-the accessory problem \gale\ is solvable in polynomial time.
-Note: in this section we will consider every Gale string as a ``loop.''
+the accessory problem \gale\ can be solved in polynomial time.
 
 \begin{problem}
 {\gale}
@@ -38,168 +42,28 @@ correspond to the labels $l(i)\in [d]$, and
 $E=\{(l(i),l(i+1))\text{ for }i\in[n] \}$, so that there is an edge
 between two vertices if and only if the corresponding labels are
 next to each other at some index $i$.
-Let $s\in G(d,n)$ be a completely labeled Gale string. By Gale evenness
+
+Let $s\in G(d,n)$ be a completely labeled Gale string. By the Gale evenness
 condition, every run of length $k$ in $s$ corresponds uniquely to $k/2$
 pairs of indices $(i,i+1)$ with $s(i)=s(i+1)=1$. Since $s$ is completely
-labeled, all labels $l(i)\in [d]$ occur at exactly one of these indices.
-Then the edges
-$(l(i),l(i+1))$ form a perfect matching of $G$.
+labeled, all labels $l(i)\in [d]$ occur at exactly one of these indices and
+the edges $(l(i),l(i+1))$ form a perfect matching of $G$.
 
-Conversely, let $l:[n]\to [d]$ be a labeling, and let $M$ be a perfect
-matching for $G$. Consider a bitstring $s$ with $s(i)=s(i+1)$ for every
+Conversely, let $M$ be a perfect matching for $G=(V,E)$, defined as above.
+Let $s$ be a bitstring with $s(i)=s(i+1)$ for every
 $(l(i),l(i+1))\in M$ and $s(i)=0$ otherwise.
 Since $M$ is a matching, all the $(l(i),l(i+1))\in M$ are disjoint, so
-every run of $s$ is of even length, thus satisfying the Gale evenness
-condition. Since $M$ is perfect, $s$ is completely labeled.
+every run of $s$ is of even length; therefore $s$ satisfies the Gale evenness
+condition. Furthermore, since $M$ is perfect, $s$ is completely labeled.
 
 This proves that \gale\ reduces to {\sc Perfect Matching} in polynomial time;
-therefore, by Theorem \ref{pm-thm}, it takes polynomial time to find a
-solution of an instance of \gale\ or deciding that no such solution exists.
+therefore, by Proposition \ref{pm-thm}, Algorithm \ref{gale-alg} takes
+polynomial time to find a solution of an instance of \gale\ or deciding that
+no such solution exists.
 \end{proof}
 \end{theorem}
 
-We give an example of the construction used in theorem \ref{gale-thm}.
-
-\begin{example}
-\label{gs-pm-ex}
-Figure \ref{perfect-matching-fig} shows the graph for the Morris
-labeling $l_s=1234564523$, and its two matchings
-$M=\{ e_1,e_3,e_5 \}$ and $M'=\{ e_8,e_6,e_{10} \}$.
-These, in turn, correspond to the completely labeled Gale strings
-$s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
-
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=40ex]{chapter-3/fig-main/morris-6-graph.pdf}%
-\hfill\strut
-\caption[The Morris graph]{%
-The graph $G$ and its matchings for the Morris labeling $l=1234564523$.
-}
-\label{perfect-matching-fig}
-\end{figure}
-\end{example}
-
-Note that it is not always possible to find a perfect matching for a
-graph, and therefore a Gale string for a labeling.
-
-\begin{example}
-Consider the labeling $l_s=121314$. The graph $G$ is shown in Figure
-\ref{no-matching}
-Since there aren't any disjoint edges, it's not possible to find a perfect
-matching for $G$. We have already seen in Example \ref{no-clgs} that
-there isn't any possible completely labeled Gale string for $l=121314$.
-
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=30ex]{chapter-3/fig-main/no-matching.pdf}%
-\hfill\strut
-\caption[A graph without a perfect matching]{%
-The graph for the labeling $l=121314$
-}
-\label{no-matching}
-\end{figure}
-\end{example}
-
-We finally extend the proof of Theorem \ref{gale-thm} to \anothergale.
-
-\begin{theorem}
-\label{anothergale-thm}
-\anothergale\ is in {\bf FP}.
-
-\begin{proof}
-Let $G=(V,E)$ be the graph corresponding to the labeling $l:[n]\to [d]$ as
-in the proof of Theorem \ref{gale-thm} and let $M$ be the perfect matching
-of $G$ corresponding to the completely labeled Gale string $s\in G(d,n)$.
-
-If there are two edges $e,e'\in M$ such that both $e$ and $e'$
-have endpoints $l(i),l(i+1)$, but $e\neq e'$ (recall that $G$ can be a
-multigraph), the matching $M'=(M\setminus \{ e \})\cup\{ e' \}$
-is perfect.
-The corresponding completely labeled Gale string
-$s'\in G(d,n)$ satisfies $s'\neq s$, since in $s$ the \1's corresponding
-to the labels $l(i),l(i+1)$ are in the positions given by the edge
-$e$, while in $s'$ they are in the positions given by $e'\neq e$.
-Since it takes time $d/2$ to check all edges of $M$, the time required
-to solve \anothergale\ is at most polynomial.
-
-Suppose now that every edge of $M$ doesn't have a parallel edge.
-Theorem \ref{lhg-works-thm} guarantees the existence of another
-completely labeled Gale string $s'\neq s$, therefore of the corresponding
-perfect matching $M'\neq M$.
-Since $M'\neq M$, there is at least one edge $e'\in M$ such that
-$e'\notin M'$. Consider the $d/2$ graphs $G_i=(V,E_i)$, where
-$E_i=E\setminus\{ e_i \}$ for $e_i\in M$. Since $V(G)=V(G_i)$ and
-$E(G_i)\subset E(G)$, every perfect matching $M_i$ for one of these $G_i$
-is a perfect matching for $G$ as well; but since $e_i\notin E_i$ then
-$e_i\notin M_i$ an none of these matchings is equal to $M$.
-With a brute force approach, we look for a perfect matching in each $G_i$;
-this will be $M'$. Since there are $i\in [d/2]$, the time to find it
-will be still polynomial.
-\end{proof}
-\end{theorem}
-
-We give two examples of the construction of theorem \ref{anothergale-thm}.
-
-\begin{example}
-The labeling $l=123432$ gives the graph $G$ in
-Figure \ref{matching-2-edges}. Suppose that Edmonds' algorithm returns
-the matching $M=\{ e_1,e_3 \}$, associated to the completely labeled
-Gale string $s=\1\1\1\1 00$. The edge $e_1$ has a parallel edge, $e_6$; we immediately
-have a second perfect matching in $M'=\{ e_3,e_6 \}$, associated to the
-Gale string $s'=\1 0\1\1 0\1 $.
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=40ex]{chapter-3/fig-main/matching-123432.pdf}%
-\hfill\strut
-\caption[A matching with a parallel edge]{%
-The graph for the labeling $l=123432$.
-}
-\label{matching-2-edges}
-\end{figure}
-\end{example}
-
-A case without parallel edges in the matching is the Morris graph.
-
-\begin{example}
-Consider the Morris graph of Example \ref{gs-pm-ex}; suppose that
-Edmonds' algorithm returns the perfect matching $M=\{ e_1,e_3,e_5 \}$,
-as in Figure \ref{intermediate-matching} right, corresponding
-to the completely labeled Gale string $s=\1\1\1\1\1\1 0000$.
-We can then delete the edge $e_1$ to obtain the graph
-$G_1$, as in Figure \ref{intermediate-matching} left. The graph $G_1$
-has a perfect matching $M'=\{ e_6,e_8,e_{10} \}$; this is also a perfect
-matching of $G$, corresponding to the string $s'=\1 0000\1\1\1\1\1$.
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-1st-match.pdf}%
-\hfill
-\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-intermediate.pdf}%
-\hfill
-\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-2nd-match.pdf}%
-\hfill\strut
-\caption[The second matching of the Morris graph]{%
-Left: the Morris graph $G=(V,E)$ with the matching $M=\{ e_1,e_3,e_5 \}$. \\
-Right: the graph $G_1=(V,E\setminus\{ e_1 \})$ with the matching
-$M'=\{ e_6,e_8,e_{10} \}$.
-}
-\label{intermediate-matching}
-\end{figure}
-\end{example}
-
-Applying Theorem \ref{galenash-to-another-gale} to
-Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
-is in {\bf FP}.
-
-\begin{theorem}
-\label{main-thm}
-Finding a Nash equilibrium of a Gale game takes polynomial time.
-\end{theorem}
-
-Note that the Nash equilibrium that is found applying the construction in
-Theorem \ref{anothergale-thm} is not necessarily the same Nash equilibrium
-that is found applying the Lemke-Howson for Gale Algorithm. Furthermore,
-there is no guarantee regarding the sign (or index) of the equilibrium.
-
+\newpage
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -234,6 +98,79 @@ Run the Edmonds' Algorithm on $G$ \\
 \label{gale-alg}
 \end{algorithm}
 
+\newpage
+
+We give an example of the construction, using the Morris' labeling
+of Example \ref{morris-ex}.
+
+\begin{example}
+\label{gs-pm-ex}
+Figure \ref{perfect-matching-fig} shows the graph for the Morris
+labeling $l_s=1234564523$, and its two matchings
+$M=\{ e_1,e_3,e_5 \}$ and $M'=\{ e_8,e_6,e_{10} \}$.
+These, in turn, correspond to the completely labeled Gale strings
+$s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=25ex]{chapter-3/fig-main/morris-6-graph.pdf}%
+\hfill\strut
+\caption[The Morris graph]{%
+The graph $G$ and its matchings for the Morris labeling $l=1234564523$.
+}
+\label{perfect-matching-fig}
+\end{figure}
+\end{example}
+
+Notice that the existence of a completely labeled Gale string is not
+\mbox{guaranteed.}
+
+\begin{example}
+Consider the labeling $l_s=121314$. Figure \ref{no-matching} shows the
+corresponding graph, that has no possible perfect matching.
+Analogously, as we have seen in Example \ref{no-clgs},
+there isn't any possible completely labeled Gale string for $l_s$.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=20ex]{chapter-3/fig-main/no-matching.pdf}%
+\hfill\strut
+\caption[A graph without a perfect matching]{%
+The graph for the labeling $l=121314$
+}
+\label{no-matching}
+\end{figure}
+\end{example}
+
+\newpage
+
+We finally extend the proof of Theorem \ref{gale-thm} to the complexity
+of \anothergale.
+
+\begin{theorem}
+\label{anothergale-thm}
+\anothergale\ is in {\bf FP}.
+
+\begin{proof}
+Let $G=(V,E)$ be the graph corresponding to the labeling $l:[n]\to [d]$ as
+in the proof of Theorem \ref{gale-thm} and let $M_0$ be the perfect matching
+of $G$ corresponding to the completely labeled Gale string $s_0\in G(d,n)$.
+
+Theorem \ref{lhg-works-thm} guarantees the existence of another
+completely labeled Gale string $s\neq s_0$, therefore of the corresponding
+perfect matching $M\neq M_0$.
+Since $M\neq M_0$, there is at least one edge $e\in M_0$ such that
+$e\notin M$. Consider the $d/2$ graphs $G_i=(V,E_i)$, where
+$E_i=E\setminus\{ e_i \}$ for $e_i\in M_0$. Since $V(G)=V(G_i)$ and
+$E(G_i)\subset E(G)$, if $G_i$ has a perfect matching $M_i$, then this
+is a perfect matching for $G$ as well. Since $e_i\notin E_i$, then
+$e_i\notin M_i$, and $M_i\neq M$.
+Since the number of $G_i$ is exactly $d/2$, by Proposition \ref{edm-thm}
+it takes at most polynomial time to find a perfect matching $M\neq M_0$
+in one of the $G_i$'s, and therefore the corresponding completely labeled
+Gale string $s\neq s_0$, applying Algorithm \ref{anothergale-alg}.
+\end{proof}
+\end{theorem}
+
+\clearpage
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -278,3 +215,75 @@ $E=E\cup\{ (l(n),l(1)) \}$ \\
 \caption{Another Gale Finder}
 \label{anothergale-alg}
 \end{algorithm}
+
+\clearpage
+
+We give two examples of the construction of theorem \ref{anothergale-thm}.
+
+\begin{example}
+The labeling $l=123432$ gives the graph $G$ in Figure \ref{matching-2-edges}.
+Suppose that Edmonds' algorithm returns the matching $M_0=\{ e_1,e_3 \}$
+of Figure \ref{matching-2-edges} left, corresponding to the completely labeled
+Gale string $s_0=\1\1\1\1 00$; a second perfect matching $M=\{ e_3,e_6 \}$,
+corresponding to the Gale string $s=\1 0\1\1 0\1$, can be found in the
+graph $G_1=(V(G),E(G)\setminus\{e_1 \})$, see Figure \ref{matching-2-edges}
+right.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=35ex]{chapter-3/fig-main/matching-123432-1st.pdf}%
+\hfill
+\includegraphics[width=35ex]{chapter-3/fig-main/matching-123432-2nd.pdf}%
+\hfill\strut
+\caption[Two perfect matchings for a graph]{%
+Left: The graph for the labeling $l=123432$ with the perfect matchings
+corresponding to the completely labeled Gale strings $s_0=\1\1\1\1 00$.\\
+Right: The graph $G_1=(V(G),E(G)\setminus\{e_1 \})$ and the perfect
+matching corresponding to the Gale string $s=\1 0\1\1 0\1$.
+}
+\label{matching-2-edges}
+\end{figure}
+\end{example}
+
+\clearpage
+
+\begin{example}
+Consider the Morris graph of Example \ref{gs-pm-ex}; suppose that
+Edmonds' algorithm returns the perfect matching $M_0=\{ e_1,e_3,e_5 \}$,
+as in Figure \ref{morris-matching} left, corresponding
+to the completely labeled Gale string $s_0=\1\1\1\1\1\1 0000$.
+We can then delete the edge $e_1$ to obtain the graph
+$G_1$, as in Figure \ref{morris-matching} center. The graph $G_1$
+has a perfect matching $M=\{ e_6,e_8,e_{10} \}$, shown in
+Figure \ref{morris-matching} right; this is also a perfect
+matching of $G$, corresponding to the only other completely labeled Gale
+string $s=\1 0000\1\1\1\1\1$.
+\begin{figure}[hbt]
+\strut\hfill
+\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-1st-match.pdf}%
+\hfill
+\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-inter.pdf}%
+\hfill
+\includegraphics[width=26ex]{chapter-3/fig-main/morris-6-2nd-match.pdf}%
+\hfill\strut
+\caption[The second matching of the Morris graph]{%
+Left: The Morris graph $G=(V,E)$ with the matching $M=\{ e_1,e_3,e_5 \}$. \\
+Centre: The graph $G_1=(V(G),E(G)\setminus\{e_1 \})$. \\
+Right: The set $M'=\{ e_6,e_8,e_{10} \}$ is a perfect matching of bot $G_1$
+and $G$.
+}
+\label{morris-matching}
+\end{figure}
+\end{example}
+
+Applying Theorem \ref{galenash-to-another-gale} to
+Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
+is in {\bf FP}.
+
+\begin{theorem}
+\label{main-thm}
+Finding a Nash equilibrium of a Gale game takes polynomial time.
+\end{theorem}
+
+Notice that the Nash equilibrium that is found applying the construction in
+Theorem \ref{anothergale-thm} is not necessarily the same Nash equilibrium
+that is found applying the Lemke-Howson for Gale Algorithm.
