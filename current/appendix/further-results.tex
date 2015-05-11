@@ -1,18 +1,128 @@
+Algorithm \ref{anothergale-alg} allows us to find a Nash equilibrium of a
+Gale game in polynomial time starting from another equilibrium (usually the
+artificial one), but it doesn't give any information on the relationship
+of these equilibria as endpoints of the Lemke-Howson algorithm. In
+particular, the issue of the sign of the equilibrium is left open.
+Following the construction in Proposition \ref{lhg-works-ppad-thm},
+we can reduce
+the problem ``given a Nash equilibrium of a Gale game, find another one
+of opposite sign'' to the problem {\sc Opposite Sign Gale String} of
+Table \ref{opposite-gale}.
+Analogously, it is straightforward to see that these problems
+belongs to the class {\bf PPADS}, the equivalent of {\bf PPAD} where
+the solution is restricted to sinks of the {\sc End Of The Line} graph;
+Daskalakis, Goldberg and Papadimitriou \cite{dgp} conjecture that this class
+is larger than {\bf PPAD}.
+
+\begin{problem}
+{Opposite Sign Gale String}
+{A labeling $l:[n]\to [d]$ and a completely labeled Gale
+string $s_0\in G(d,n)$.}
+{A completely labeled Gale string $s\in G(d,n)$ such
+that $\sign(s)=-\sign(s_0)$.}
+\label{opposite-gale}
+\end{problem}
+
+A first polynomial-time algorithm for {\sc Opposite Sign Gale String} was
+given by Merschen \cite{jm} for labelings for which the Gale graph of
+Theorem \ref{gale-thm} is planar; a general result has since been given by
+V\'{e}gh and von Stengel \cite{vvs}. The latter relies on the definition of
+a general framework to deal with pivoting algorithms, called
+{\em complementary pivoting with direction}, that is applied not only
+to perfect matchings of a Gale graph, but to the
+wider class of Euler complexes and their room partitions,
+first introduced by Edmonds \cite{edm-oiks} and
+Edmonds and Sanit\`{a} \cite{edmonds-sanita}.
+
+A {\em $d$-dimensional Euler complex} $(V,M)$
+(in the following: {\em $d$-oik})
+over a finite set of nodes $V$ is a collection of
+sets $M=\{ R\ \mid\ R\subset V,\ |R|=d \}$, called {\em rooms},
+such that any set of $d-1$ nodes,
+called {\em wall}, is contained in an even number of rooms;
+a {\em room partitioning} of $(V,M)$ is $P\subset M$ such that
+each vertex of $V$ is in exactly one room in $P$.
+Edmonds and Sanit\'{a} used an ``exchange algorithm'' and a parity argument
+to show that there is an even number of room partitions of $(V,M)$.
+This can be applied to a family of two oiks (of possibly different dimension)
+corresponding to the best response polytopes of two players in a bimatrix
+game, with the room partitions corresponding to equilibria; the Lemke–Howson
+Algorithm is then a special case of the exchange algorithm. Another special
+case is an Euler graph: the edges are rooms, and perfect matchings are then
+room partitions.
+The connections between oiks and the topic of our study could appear
+trivial; the issue of giving a sign to room partitions, unfortunately, is
+much more complex than expected.
+
+\begin{example}
+Consider the octahedron with vertices labeled as in
+Figure \ref{octa-poly-fig}, left; the endpoints of the Lemke paths
+in the Dual Lemke-Howson Algorithm \ref{lh-dual-alg} when dropping
+different labels is shown in
+Figure \ref{octa-poly-fig}, right. Notice that this graph is bipartite:
+this corresponds to a parity argument with sign similar to Proposition
+\ref{lhg-works-ppad-thm}.
+
+On the other hand, consider the same octahedron from the point of view of
+room partitions, Figure \ref{octa-rp-fig}, left. The exchange algorithm
+of Edmonds \cite{edm-oiks} from room partition $B$ to room partition $A$
+dropping vertex $v=1$
+is shown in Figure \ref{exchange-rp-1-fig} and
+Figure \ref{exchange-rp-2-fig}. The graph describing the
+endpoints of the exchange algorithm analogous to
+Figure \ref{octa-poly-fig}, right, is shown in Figure
+\ref{octa-rp-fig}, right, and it is not bipartite.
+Giving a sign to the room partitions cannot be done simply through
+Edmonds' exchange algorithm.
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[height=35ex]{appendix/fig/octa-poly-facets-v2.pdf}%
+\hfill
+\includegraphics[height=35ex]{appendix/fig/octa-poly-paths-v2.pdf}%
+\hfill\strut
+\caption[Endpoints of the Dual Lemke-Howson Algorithm on an octahedron]
+{Left: A labeled octahedron and its completely labeled facets.\\
+Right: The endpoints of its Lemke paths.}
+\label{octa-poly-fig}
+\end{figure}
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[height=35ex]{appendix/fig/octa-rp.pdf}%
+\hfill
+\includegraphics[height=35ex]{appendix/fig/octa-rp-paths.pdf}%
+\hfill\strut
+\caption[Endpoints of the Exchange Algorithm on an octahedron]
+{Left: An octahedron and its room partitions.\\
+Right: The endpoints of its exchange algorithm paths.}
+\label{octa-rp-fig}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[p]
+\strut\hfill
+\includegraphics[height=45ex]{appendix/fig/octa-exchange-1.pdf}%
+\hfill\strut
+\caption[The Exchange Algorithm on an octahedron - first step]
+{Drop vertex $1$ from the room partition $B$ (green), leave
+room $B_1$ (light green), enter room $A_1$ (blue), picking up vertex $4$.
+The new vertex is duplicate in the new room $A_1$ and in room $B_2$.}
+\label{exchange-rp-1-fig}
+\end{figure}
+
+\begin{figure}[p]
+\strut\hfill
+\includegraphics[height=43ex]{appendix/fig/octa-exchange-2.pdf}%
+\hfill\strut
+\caption[The Exchange Algorithm on an octahedron - end]
+{Drop vertex $4$, leave room $B_2$ (light green), enter
+room $A_2$ (blue), picking up verte $1$, missing.}
+\label{exchange-rp-2-fig}
+\end{figure}
+
+\clearpage
 
 
-\# P complexity of finding all (?)
-
-from SvS-15
-
-Ve ́gh and von Stengel (2014, Thm. 12) give a near-linear time algorithm that finds such a second perfect matching that, in addition, has opposite sign, which corresponds to a Nash equilibrium of positive index as it would be found by a Lemke path (which, however, can be exponentially long). So this combinatorial problem is simpler than the problem of finding a Nash equilibrium of a bimatrix game, even though it gives rise to games that are hard to solve by the standard methods considered in Theorem 11.
-
-from VvS
-
-This paper presents three main contributions in this context. First, we define an abstract framework called pivoting systems that describes “complementary pivoting with direction” in a canonical manner. Similar abstract pivoting systems have been proposed by Todd (1976) and Lemke and Grotzinger (1976); we compare these with our approach in Section 5. Second, using this framework, we extend the concept of orientation to oiks and show that room partitions at the two ends of a pivoting path have opposite sign, provided the underlying oik is oriented. For two-dimensional oiks, which are Euler graphs, room partitions are perfect matchings. Their orientation is the sign of a perfect matching as defined for Pfaffian orientations of graphs. Our third result is a polynomial-time algorithm for the following problem: Given a graph
-2
-with an Eulerian orientation and a perfect matching, find another perfect matching of opposite sign. The complementary pivoting algorithm that achieves this may take exponential time.
-
-We conclude with open questions on the computational complexity of pivoting sys- tems.
-Consider a labeled oriented pivoting system whose components (in particular the pivoting operation) are specified as polynomial-time computable functions. Assume one CL state is given. The problem of finding a second CL state belongs to the com- plexity class PPAD (Papadimitriou, 1994). This problem is also PPAD-complete, because finding a Nash equilibrium of a bimatrix game is PPAD-complete (Chen and Deng, 2006), which is a special case of an oriented pivoting system by Proposition 1. However, there should be a much simpler proof of this fact because pivoting sys- tems are already rather general, so that it should be possible to encode an instance of the PPAD-complete problem “End of the Line” (see Daskalakis, Goldberg, and Papadimitriou, 2009) directly into a pivoting system.
-Finding a Nash equilibrium of a bimatrix game is PPAD-complete, and Lemke– Howson paths may be exponentially long. Savani and von Stengel (2006) showed this with games defined by dual cyclic polytopes for the payoff matrices of both players, and a simpler way to do this is to use the Lemke paths by Morris (1994). One motivation for the study of Casetti, Merschen, and von Stengel (2010) was the question if finding a second completely labeled Gale string is PPAD-complete. This is unlikely because this problem can be solved in polynomial time with a matching algorithm. For the complexity class PPADS, where one looks for a second CL state of opposite sign (Daskalakis, Goldberg, and Papadimitriou, 2009), this problem is also solvable in polynomial time with our algorithm of Theorem 12.
-However, for room partitions of 3-oiks, already manifolds, finding a second room partition is likely to be more complicated. Is this problem PPAD-complete? We leave these questions for further research.
+\end{example}
