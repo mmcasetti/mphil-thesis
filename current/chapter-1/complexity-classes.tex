@@ -1,6 +1,7 @@
 \section{Some Complexity Classes}
 
-A {\em Turing machine} $\mathcal{M}$ is a representation of an
+A {\em deterministic Turing machine} $\mathcal{M}$ (we will imply the
+``deterministic'' from now on) is a representation of an
 {\em algorithm} that takes an {\em input}, runs a {\em program}
 manipulating the input, and either does not come to a
 {\em halting state} $h$ or it returns an {\em output}; the latter can
@@ -34,7 +35,6 @@ Finally, $\mathcal{M}$ {\em computes} a function
 $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$ if
 $\mathcal{M}(x)=f(x)$ for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
 
-
 An {\em instance} is the specific input of a problem.
 A problem $P$ that outputs either {\sc Yes} or {\sc No} is a
 {\em decision problem}; its {\em complement} is the problem $\overline{P}$
@@ -63,7 +63,6 @@ $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
 \item $\mathcal{M}$ computes $f(x)$;
 \item $\mathcal{M}$ stops after $p(|x|)$ steps, where $p$ is a polynomial.
 \end{enumerate}
-
 
 For any class $\mathrm{C}$ of decision problems, the class of all complements
 of the problems in $\mathrm{C}$ is the {\em complement class}
@@ -95,7 +94,6 @@ $p_2(|x| + |y|)$ steps;
 \item for all $x\notin P$ there does not exist $y\in \{0,1\}^\ast$ such
 that $\mathcal{M}$ accepts the combined input $xy$.
 \end{enumerate}
-
 The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
 the number of possible certificates for a problem in $\mathrm{\mathbf{NP}}$.
 Informally, a decision problem is in
@@ -104,6 +102,11 @@ number of steps that is polynomial in the input of the problem, and
 a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
 indeed, a correct answer to the question posed by the problem.
+Finally, the class {\bf PSPACE} is the set of decision problem that are
+solved by a Turing machine requiring a polynomial amount of space of
+the input size $n$. The relation
+$\mathbf{P}\subseteq \mathbf{NP}\subseteq \mathbf{PSPACE}$ holds, with
+strict inclusions being an open problem.
 
 In \cite{megiddo-papad}, Megiddo and Papadimitriou introduced the classes
 $\mathrm{\mathbf{FNP}}$, {\em function non-deterministic polynomial}, and
