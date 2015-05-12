@@ -28,7 +28,7 @@ to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-3/fig-lh/cube-1-pivot.pdf}%
+\includegraphics[width=50ex]{chapter-3/fig-lh/cube-1-pivot.pdf}%
 \hfill\strut
 \caption[Pivoting on the vertices]{%
 A pivot on the vertices of the cube.
@@ -38,7 +38,7 @@ A pivot on the vertices of the cube.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-1-pivot.pdf}%
+\includegraphics[width=50ex]{chapter-3/fig-lh/octahedron-1-pivot.pdf}%
 \hfill\strut
 \caption[Pivoting on the facets]{%
 A pivot on the facets of the octahedron.
@@ -171,7 +171,7 @@ polytope $Q$, and so on until we reach the point $x$, that is the only Nash
 equilibrium of $(A,B)$.
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=65ex]{chapter-3/fig-lh/lh.pdf}%
+\includegraphics[width=75ex]{chapter-3/fig-lh/lh.pdf}%
 \hfill\strut
 \caption[A Lemke path for a bimatrix game]{%
 Lemke path for missing label 2 on the best response polytopes $P$ (left)
@@ -190,37 +190,34 @@ can be seen in the next example, due to Wilson, given in
 Shapley \cite{shapley}. Notice that, by the parity result in
 Proposition \ref{lh-works-ppa-thm}, there must be at least another equilibrium
 that is ``disconnected'' from the artificial one in this way.
+
 \begin{example}
+
+Consider the symmetric game $(C,C\T)$ with
 \begin{equation}
 \label{disj-lp-game}
-A = \left(
+C = \left(
     \begin{matrix}
-        2&2&0 \\
         0&3&0 \\
+        2&2&0 \\
         3&0&1
     \end{matrix}
-    \right),
-\qquad
-B = \left(
-    \begin{matrix}
-        3&0&2 \\
-        0&3&2 \\
-        0&0&1
-    \end{matrix}
-    \right),
+    \right).
 \end{equation}
-The equilibria of $(A,B)$ are $(x_1,y_1)=((0,0,1), (0,0,1))$,
-$(x_2,y_2)=((0,1/2,1/2),(0,3/4,1/4))$ and
-$(x_3,y_3)=((0,1,0),(0,1,0))$. All Lemke paths from the
-artificial equilibrium $(0,0)$ end at $(x_1,y_1)$, and consequently all
-other Lemke paths connect $(x_2,y_2)$ and $(x_3,y_3)$; see
+There are three equilibria of $(C,C\T)$, all of them symmetric,
+at $(x_i,x_i)$ with
+$x_1=(0,0,1)$,
+$x_2=(1/6,1/3,1/2)$ and
+$x_3=(1/3,2/3,0)$. All Lemke paths from the
+artificial equilibrium $(0,0)$ end at $(x_1,x_1)$, and consequently all
+other Lemke paths connect $(x_2,x_2)$ and $(x_3,x_3)$; see
 Figure \ref{disj-lp-br-poly}.
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=75ex]{chapter-3/fig-lh/shapley-game.pdf}%
+\includegraphics[width=65ex]{chapter-3/fig-lh/shapley-game-sym.pdf}%
 \hfill\strut
-\caption[Best response polytopes of a game with disjoint Lemke paths]{%
-Best response polytopes of game \ref{disj-lp-game}.
+\caption[A game with disjoint Lemke paths]{%
+Lemke paths on the best response polytope of game (\ref{disj-lp-game}).
 }
 \label{disj-lp-br-poly}
 \end{figure}
@@ -355,14 +352,13 @@ label 3 returns facet $B$.
 \hfill
 \small
 \begin{tabular}{c | c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
-{\footnotesize facet} & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}\\
+facet & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}\\
 \hline
 {\bf A} & \1 & \1 & $\underline{\1}$ & \1 & 0               & 0 \\
 {\bf B} & \1 & \1 & 0                & \1 & $\overline{\1}$ & 0 \\
 \hline
-{\footnotesize facet} & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}
+facet & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}
 \end{tabular}
-\normalsize
 \hfill\strut
 \caption[A pivot on $G(4,6)$ and on $C_4(6)$]{%
 The pivoting to $s_A=\1\1\1\1 00$ to $s_B=\1\10\1\10$ in the Lemke-Howson
@@ -463,7 +459,7 @@ in the same run.
 \strut\hfill
 \includegraphics[width=60ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
 \hfill\strut
-\caption[An example of pivoting with sign]
+\caption[Pivoting with sign]
 {Pivoting with sign on $123432$.}
 \label{lhg-sign-ex-figure}
 \end{figure}

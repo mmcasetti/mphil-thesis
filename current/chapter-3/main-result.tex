@@ -112,14 +112,16 @@ These, in turn, correspond to the completely labeled Gale strings
 $s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=25ex]{chapter-3/fig-main/morris-6-graph.pdf}%
+\includegraphics[width=40ex]{chapter-3/fig-main/morris-6-graph.pdf}%
 \hfill\strut
 \caption[The Morris graph]{%
-The graph $G$ and its matchings for the Morris labeling $l=1234564523$.
+Two perfect matchings for the Morris labeling $l=1234564523$.
 }
 \label{perfect-matching-fig}
 \end{figure}
 \end{example}
+
+\clearpage
 
 Notice that the existence of a completely labeled Gale string is not
 \mbox{guaranteed.}
@@ -140,8 +142,6 @@ The graph for the labeling $l=121314$
 \end{figure}
 \end{example}
 
-\newpage
-
 We finally extend the proof of Theorem \ref{gale-thm} to the complexity
 of \anothergale.
 
@@ -154,7 +154,7 @@ Let $G=(V,E)$ be the graph corresponding to the labeling $l:[n]\to [d]$ as
 in the proof of Theorem \ref{gale-thm} and let $M_0$ be the perfect matching
 of $G$ corresponding to the completely labeled Gale string $s_0\in G(d,n)$.
 
-Theorem \ref{lhg-works-thm} guarantees the existence of another
+Theorem \ref{lhg-works-ppad-thm} guarantees the existence of another
 completely labeled Gale string $s\neq s_0$, therefore of the corresponding
 perfect matching $M\neq M_0$.
 Since $M\neq M_0$, there is at least one edge $e\in M_0$ such that
@@ -234,7 +234,7 @@ right.
 \hfill
 \includegraphics[width=35ex]{chapter-3/fig-main/matching-123432-2nd.pdf}%
 \hfill\strut
-\caption[Two perfect matchings for a graph]{%
+\caption[A second perfect matching]{%
 Left: The graph for the labeling $l=123432$ with the perfect matchings
 corresponding to the completely labeled Gale strings $s_0=\1\1\1\1 00$.\\
 Right: The graph $G_1=(V(G),E(G)\setminus\{e_1 \})$ and the perfect
@@ -268,7 +268,7 @@ string $s=\1 0000\1\1\1\1\1$.
 \caption[The second matching of the Morris graph]{%
 Left: The Morris graph $G=(V,E)$ with the matching $M=\{ e_1,e_3,e_5 \}$. \\
 Centre: The graph $G_1=(V(G),E(G)\setminus\{e_1 \})$. \\
-Right: The set $M'=\{ e_6,e_8,e_{10} \}$ is a perfect matching of bot $G_1$
+Right: The set $M'=\{ e_6,e_8,e_{10} \}$ is a perfect matching of both $G_1$
 and $G$.
 }
 \label{morris-matching}

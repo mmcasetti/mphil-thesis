@@ -55,32 +55,32 @@ The connections between oiks and the topic of our study could appear
 trivial; but the issue of giving a sign to room partitions, unfortunately,
 is much more complex than that.
 
+\clearpage
+
 \begin{example}
 Consider the octahedron with vertices labeled as in
 Figure \ref{octa-poly-facets-fig}; the endpoints of the Lemke paths
 in the Dual Lemke-Howson Algorithm \ref{lh-dual-alg} when dropping
-different labels is shown in
+different labels are shown in
 Figure \ref{octa-poly-paths-fig}. Notice that this graph is bipartite:
 this corresponds to a parity argument with sign similar to Proposition
 \ref{lhg-works-ppad-thm}.
 
-\clearpage
-
-\begin{figure}[p]
+\begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=70ex]{appendix/fig/octa-poly-facets-v2.pdf}%
+\includegraphics[height=50ex]{appendix/fig/octa-poly-facets-v2.pdf}%
 \hfill\strut
 \caption[A labeled octahedron]
 {A labeled octahedron and its completely labeled facets.}
 \label{octa-poly-facets-fig}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=60ex]{appendix/fig/octa-poly-paths-v2.pdf}%
+\includegraphics[width=55ex]{appendix/fig/octa-poly-paths-v2.pdf}%
 \hfill\strut
-\caption[Endpoints of the Dual Lemke-Howson Algorithm]
-{The endpoints of the Lemke paths on the octahedron of
+\caption[Endpoints of the Dual Lemke-Howson Algorithm \ref{dlh-alg}]
+{The endpoints of the Lemke paths on the octahedron in
 Figure \ref{octa-poly-facets-fig}.}
 \label{octa-poly-paths-fig}
 \end{figure}
@@ -88,64 +88,57 @@ Figure \ref{octa-poly-facets-fig}.}
 \clearpage
 
 On the other hand, consider the same octahedron from the point of view of
-room partitions, Figure \ref{octa-rp-fig}, left. The exchange algorithm
+room partitions, Figure \ref{octa-rp-fig}. The exchange algorithm
 of Edmonds \cite{edm-oiks} from room partition $B$ to room partition $A$
 dropping vertex $v=1$
-is shown in Figure \ref{exchange-rp-1-fig} and
-Figure \ref{exchange-rp-2-fig}. The graph describing the
-endpoints of the exchange algorithm, analogous to
-Figure \ref{octa-poly-paths-fig}, is shown in Figure
-\ref{octa-rp-fig}, right, and it is not bipartite.
+is shown in Figure \ref{exchange-rp-fig}. The graph describing its endpoints,
+analogous to Figure \ref{octa-poly-paths-fig} is shown in
+Figure \ref{octa-rp-paths-fig} and it is not bipartite.
 Giving a sign to the room partitions cannot be done simply through
 Edmonds' exchange algorithm.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[height=60ex]{appendix/fig/octa-exchange-1.pdf}%
-\hfill\strut
-\caption[The Exchange Algorithm on an octahedron - first step]
-{Drop vertex $1$ from the room partition $B$ (green). Leave
-room $B_1$ (light green); enter room $A_1$ (blue), picking up vertex $4$.
-The new vertex is duplicate in the new room $A_1$ and in
-room $B_2$ (dark green).}
-\label{exchange-rp-1-fig}
-\end{figure}
-
-\begin{figure}[hp]
-\strut\hfill
-\includegraphics[height=75ex]{appendix/fig/octa-exchange-2.pdf}%
-\hfill\strut
-\caption[The Exchange Algorithm on an octahedron - end]
-{Drop duplicate vertex $4$. Leave the old room $B_2$ (light green); enter
-room $A_2$ (blue), picking up verte $1$. The new vertex is the missing
-one; end.}
-\label{exchange-rp-2-fig}
-\end{figure}
-\clearpage
-
-
-\begin{figure}[p]
-\strut\hfill
-\includegraphics[width=70ex]{appendix/fig/octa-rp.pdf}%
+\includegraphics[height=50ex]{appendix/fig/octa-rp.pdf}%
 \hfill\strut
 \caption[Room partitions of an octahedron]
 {An octahedron and its room partitions.}
 \label{octa-rp-fig}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=60ex]{appendix/fig/octa-rp-paths.pdf}%
+\strut\hfill
+\includegraphics[width=55ex]{appendix/fig/octa-rp-paths.pdf}%
 \hfill\strut
 \caption[Endpoints of the Exchange Algorithm]
-{The endpoints of its exchange algorithm paths.}
+{Endpoints of the Exchange Algorithm on the octahedron in
+Figure \ref{octa-rp-fig}.}
 \label{octa-rp-paths-fig}
 \end{figure}
 
 \clearpage
 
+\begin{figure}[h]
+\strut\hfill
+\begin{center}
+\includegraphics[height=43ex]{appendix/fig/octa-exchange-1.pdf}%
+\vspace{10ex}
+\includegraphics[height=43ex]{appendix/fig/octa-exchange-2.pdf}%
+\end{center}
+\hfill\strut
+\caption[The Exchange Algorithm]
+{Top: Drop vertex $1$ from room partition $B$. Pivot from room $B_1$ to
+room $A_1$. The new vertex $4$ is duplicate in room $A_1$ and room $B_2$.\\
+Bottom: Drop duplicate vertex $4$. Pivot from the old room $B_2$ to
+room $A_2$, picking up the missing vertex.}
+\label{exchange-rp-fig}
+\end{figure}
 
 \end{example}
+
+\clearpage
+
 
 V\'{e}gh and von Stengel proved that the endpoints of the
 Complementary Pivoting with Direction Algorithm have opposite orientation,
@@ -178,7 +171,7 @@ Gilboa and Zemel \cite{gilboa-zemel} have proven that deciding the
 uniqueness of Nash equilibria is a {\bf co-NP}-complete problem;
 a proof from the point of view of completely labeled facets of a
 polytope was given by von Stengel \cite{vs-noclf} with the result of
-{\bf NP}-completeness of the problem to find a completely labeled facet
+{\bf NP}-completeness of the problem of finding a completely labeled facet
 in a generic labeled polytope. Given these results, it could be interesting
 to find a polynomial-time algorithm to decide the uniqueness of Nash
 equilibria in Gale games, or to find yet another watershed for the
