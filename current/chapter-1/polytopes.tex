@@ -4,34 +4,36 @@ We will often need to refer to sets of natural numbers; we follow the
 notation $[n]=\{ i\in\naturals\ |\ 1\leq i\leq n \}$.
 
 We denote the transpose of a matrix $A$ as $A\T$.
-Vectors $u,v\in\reals^d$ will be considered as column vectors, so $u\T v$ is
-their scalar product. A vector in $\reals^d$ for which all components
+Vectors will be considered as column vectors, so $u\T v$ is
+the scalar product of $u,v\in\reals^d$. A vector for which all components
 are $0$'s will be denoted as $\0$; a vectors for which all
-components are $1$'s will be denoted as $\1$; the {\em $i$-th unit vector},
-for which all the components are 0 except for the $i$-th component equal to
-1, will be denoted as $e_i$.
+components are $1$'s will be denoted as $\1$; the $i$-th component of
+the {\em $i$-th unit vector} $e_i$ is equal to 1, whereas
+all its other components are 0.
 An inequality of the form $u\geq v$, is intended to hold for every component.
 
 An {\em affine combination} of points in an Euclidean space
-$\{z_1,\ldots,z_m \}\subset \reals^n$
+$z_i\in\reals^d$, where $i\in[m]$
 is $\sum_{i\in [m]} \lambda_i z_i$ where $\lambda_i\in\reals$ such that
 $\sum_{i\in [m]} \lambda_i = 1$;
-the points $z_1,\ldots,z_m$ are {\em affinely independent} if none of them
+the points $z_i$ are {\em affinely independent} if none of them
 is an affine combination of the others.
-The {\em convex hull} of the points $z_1,\ldots,z_m$ is an affine combination
-with $\lambda_i\geq 0$ for all $i\in [n]$; we denote it as
-$\conv \{z_1,\ldots,z_m \}=\{ \sum_i \lambda_i z_i\ \mid\ %
-\lambda_i\geq 0,\ \sum_i \lambda_i=1 \}$.
-A set of points $Z=\{z_1,\ldots,z_m \}$ is {\em convex} if $Z=\conv(Z)$,
-and it has {\em dimension} $d$ if $Z$ has exactly $d + 1$
-affinely independent points. A convex set of $d+1$ points of dimension
+The {\em convex hull} of the points $z_i$ is an affine combination
+with $\lambda_i\geq 0$ for all $i\in [m]$; we denote it as
+\[
+\conv \{z_i\ \mid\ i\in [m] \}=\{ \sum_i \lambda_i z_i\ \mid\ %
+\lambda_i\geq 0,\ \sum_i \lambda_i=1 \text{ for } i\in [m] \}.
+\]
+A set of points $Z$ is {\em convex} if $Z=\conv(Z)$; it has
+{\em dimension} $d$ if it has exactly $d + 1$ affinely independent points.
+A convex set of $d+1$ points of dimension
 $d$ is called a {\em $d$-simplex}. The {\em standard $d$-simplex} is
-$\Delta_d=\conv\{ e_1,\ldots,e_{d+1} \}$.
+$\Delta_d=\conv\{ e_i\ \mid\ i\in[d+1] \}$.
 
 A {\em polytope} is the convex hull of a finite set of points, not
-necessarily affinely independent, $\{z_1,\ldots,z_m \}\subset\reals^n$;
-the {\em dimension} of the polytope is the dimension of its convex hull.
-A {polyhedron} is the intersection of finitely many closed halfspaces
+necessarily affinely independent;
+its {\em dimension} is its dimension as convex hull.
+A {\em polyhedron} is the intersection of finitely many closed halfspaces
 $\{ x\in \reals^d\ \mid\ a^T x\leq a_0\}$; notice that a bounded polyhedron
 is a polytope.
 A {\em vertex} of a $d$-dimensional polytope $P=\conv(Z)$ is a
@@ -39,21 +41,23 @@ point $z\in Z$ such that $\conv(Z\setminus \{ z \})\neq P$;
 an {\em edge} of P is a 1-dimensional line segment that has two vertices
 as endpoints.
 A {\em facet} of $P$ is the convex hull of a set of $d$ vertices
-$F=\{ z_1,\ldots,z_d \}$ that lie on a hyperplane of the form
+that lie on a hyperplane of the form
 $\{ x\in \reals^d\ \mid\ a^T x=a_0\}$ so that $a^T u<a_0$ for all other
-vertices $u$ of $P$; the vector $a$ is the {\em normal vector} of the facet.
-
-A {\em $d$-dimensional simplicial polytope} $P$ is the convex hull of a set
-of at least $d+1$ points $v\in \reals^d$ such that no $d+1$ of them are on
-a common hyperplane; this is equivalent to requiring that every facet of
-$P$ is a $d$-simplex. A $d$-dimensional polytope $P$ is {\em simple}
+vertices $u$ of $P$.
+A $d$-dimensional polytope $P$ is {\em simplicial} if it is the convex hull
+of a set of at least $d+1$ points $v\in \reals^d$ such that no
+$d+1$ of them are on a common hyperplane; this is equivalent to requiring
+that every facet of $P$ is a $d$-simplex. A $d$-dimensional polytope
+$P$ is {\em simple}
 if every point of $P$ lies on at most than $d$ facets; notice that the points
 lying on exactly $d$ facets are exactly the vertices.
-
-The {\em polar} of the polytope
-$P=\{ x\in\reals^d\ \mid\ x\T c_i\leq 1,%
-\text{ for }c_i\in\reals^d,\ i\in [k] \}$
-is $P^\Delta = \conv\{ c_i, i\in [k] \}$.
+The {\em polar} of the polytope $P$ is $P^\Delta$, where
+\[
+P=\{ x\in\reals^d\ \mid\ x\T c_i\leq 1,\ c_i\in\reals^d,\ i\in [k] \}
+\]
+\[
+P^\Delta = \conv\{ c_i\ \mid\ i\in [k] \}.
+\]
 If $P$ is simplicial or it is simple and it contains the origin $\0$,
 then $P^{\Delta\Delta}=P$; furthermore, if $P$ is simplicial $P^\Delta$
 is simple, and vice versa.

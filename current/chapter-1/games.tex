@@ -1,20 +1,20 @@
 \section{Normal Form Games and Nash Equilibria}
 
-A {\em game}, first defined by von Neumann in \cite{vn28}, is a model
-of strategic interaction. A {\em finite normal form game} is
+The idea of {\em game} as model of strategic interaction was first
+introduced by von Neumann \cite{vn28}. A {\em finite normal form game} is
 $\Gamma=(P,S,u)$ where both $P$ and $S$ are finite.
 The former is the set of {\em players}; $S=\times_{p\in P}$ is
-the set of {\em pure strategy profiles} and $S_p$ is the set of
-{\em pure strategies} of player $p$; we will use the
-notation $S_{-p}=\times_{q\neq p}S_p$.
+the set of {\em pure strategy profiles}, where $S_p$ is the set of
+{\em pure strategies} of player $p$.
 The purpose of each player $p\in P$ is to maximize their
 {\em payoff function} $u^p:S\to\reals$ and $u=\times_{p\in P}u^p$.
-In the following pages, by ``game'' we will always mean
-``finite normal form game.''
+By ``game'' we will always mean ``finite normal form game.''
 A {\em mixed strategy} of player $p$ is a probability
 distribution on $S_p$; it can be described as a point on the
 $(|S_p|-1)$-dimensional {\em mixed strategy simplex}
-$\Delta_p=\{ x\in\reals^{|S_p|}\ \mid\ x\geq\0,\ \1\T x = 1 \}$.
+\[
+\Delta_p=\{ x\in\reals^{|S_p|}\ \mid\ x\geq\0,\ \1\T x = 1 \}.
+\]
 The set of {\em mixed strategy profiles} is the simplicial polytope
 $\Delta=\times_{p\in P}\Delta_p$;
 we extend the payoff functions to $u^p:\Delta\to\reals$ linearly.
@@ -27,27 +27,26 @@ change the Nash equilibria of the game.
 \begin{proposition}
 \label{br-played-thm}
 A mixed strategy $x\in \Delta_p$ is a best response against some mixed
-strategy profile $y\in \Delta_{-p}$ of the other players if and only if
+strategy profile $y\in \times_{q\neq p}\Delta_{q}$ of the other players
+if and only if
 every pure strategy $s_i\in S_p$ chosen with positive probability
 in $x$ is a best response to $y$.
 \end{proposition}
 
 The existence of a Nash equilibrium is guaranteed by
-the fundamental theorem by Nash (\cite{nash}). Note that there might be more
-than one equilibrium.
+the fundamental theorem by Nash (\cite{nash}). Notice that there can be
+more than one equilibrium.
 
 \begin{theorem}{\rm (Nash \cite{nash})}\label{nash-thm}
-Every finite game in normal form has a Nash equilibrium.
+Every finite game in normal form has at least one Nash equilibrium.
 \end{theorem}
 
-{\em Bimatrix games} are games with only two players; we will refer to
-player 1 using feminine pronouns and to player 2 using masculine ones.
-Bimatrix games can be characterized by
+{\em Bimatrix games} are games with only two players; they can be
+characterized by
 the $m \times n$ payoff matrices $A$ and $B$, where $a_{ij}$ and $b_{ij}$ are
 the payoffs of respectively player 1 and of player 2 when the former plays
 her $i$th pure strategy and the latter plays his $j$th pure strategy.
 A bimatrix game is {\em zero-sum} if $B=-A$, and {\em symmetric} if  $B=A\T$.
-
 We give two classic examples of bimatrix games: the prisoners' dilemma and
 the coordination game.
 
@@ -79,7 +78,6 @@ equilibrium both players will betray.
 \caption[The prisoners' dilemma]{The prisoners' dilemma.}
 \label{prisoners-dilemma}
 \end{table}
-
 
 Table~\ref{coordination-game} shows a {\em coordination} game.
 Both players drive on a mountain road; they lose if drive on the same side

@@ -4,46 +4,47 @@
 Let $n,m\in\naturals$ with $m\leq n$.
 A {\em labeling} of a set $X$ is a function $l:X\to [m]$; an $n$-uple
 $x=(x_1,\ldots,x_n)\in X^n$ is {\em completely labeled} if
-each label $j\in [m]$ appears once and only once in $(l(x_1),\ldots,l(x_n))$;
+each label $j\in [m]$ appears in $(l(x_1),\ldots,l(x_n))$;
 formally, if $\{ j\in [m]\ \mid\ l(x_i)=j\text{ for some }i\in [n] \}=[m]$.
 
 Let $(A,B)$ be bimatrix game, and let $X$ and $Y$ be the mixed strategy
 simplices of respectively player 1 and 2, that is
-\begin{equation}\label{mixed-strat-simplices}
-X = \{ x\in\reals^m\ |\ x\geq\0,\ \1\T x = 1 \};\quad
-Y = \{ y\in\reals^n\ |\ y\geq\0,\ \1\T y = 1 \}.
-\end{equation}
+\begin{eqnarray}
+X = \{ x\in\reals^m\ \mid \ x\geq\0,\ \1\T x = 1 \}; \nonumber \\
+Y = \{ y\in\reals^n\ |\ y\geq\0,\ \1\T y = 1 \}. \label{mixed-strat-simplices}
+\end{eqnarray}
 A {\em labeling} of the game is then given as follows:
 \begin{enumerate}
-\item the $m$ pure strategies of player 1 are identified by $1,\ldots,m$;
-\item the $n$ pure strategies of player 2 are identified by $m+1,\ldots,m+n$;
+\item the $m$ pure strategies of player 1 are denoted as $i\in [m]$;
+\item the $n$ pure strategies of player 2 are denoted as $m+j$ with $j\in [n]$;
 \item each mixed strategy $x\in X$ of player 1 has
     \begin{itemize}
-    \item label $i$ for each $i\in [m]$ such that $x_i = 0$, that is if in
-    $x$ player 1 does not play her $i$-th pure strategy,
+    \item label $i$ for each $i\in [m]$ such that $x_i = 0$,
     \item label $m + j$ for each $j\in [n]$ such that the $j$-th pure strategy
     of player 2 is a best response to $x$;
     \end{itemize}
 \item each mixed strategy $y\in Y$ of player 2 has
     \begin{itemize}
-    \item label $m + j$ for each $j\in [n]$ such that $y_j = 0$, that is if in
-    $y$ player 2 does not play his $j$-th pure strategy,
+    \item label $m + j$ for each $j\in [n]$ such that $y_j = 0$,
     \item label $i$ for each $i\in [m]$ such that the $i$-th pure strategy
     of player 1 is a best response to $y$.
     \end{itemize}
 \end{enumerate}
-
-The labeling of mixed strategy profiles can be used to characterize the
-Nash equilibria of the game.
+This labeling can be used to characterize the Nash equilibria of the game.
 
 \begin{theorem}{\rm (Shapley \cite{shapley})}\label{comp-label-thm}
-Let $(x,y)\in X\times Y$; then $(x,y)$ is a Nash equilibrium of the bimatrix
-game $(A,B)$ if and only if $(x,y)$ is completely labeled.
+Let $(x,y)\in X\times Y$; then $(x,y)$ is a Nash
+\linebreak[5]
+equilibrium of the bimatrix
+game $(A,B)$ if and only if $(x,y)$ is completely
+\linebreak[3]
+labeled.
 
 \begin{proof}
 The mixed strategy $x\in X$ has label $m + j$ for some $j\in [n]$ if and
 only if the $j$-th pure strategy of player 2 is a best response to $x$; by
-Proposition \ref{br-played-thm} is a necessary and sufficient condition for
+Proposition \ref{br-played-thm}, this is a necessary and sufficient condition
+for
 player 2 to play his $j$-th strategy at every equilibrium where player 1
 chooses $x$. The analogous holds for the strategies $y\in Y$ and player 1
 playing her $i$-th strategy in response to player 2 choosing $y$.
@@ -54,7 +55,7 @@ will appear either as labels of $x$ or of $y$.
 
 An useful graphical representation of labels on the simplices $X$ and $Y$
 is done by labeling the outside of each simplex according to the player's own
-pure strategies that are {\em not} played, and by subdividing its interior
+pure strategies that are not played, and by subdividing its interior
 in closed polyhedral sets corresponding to the other player's pure
 best response strategies, called {\em best response regions}.
 We give an example of this construction.
@@ -71,17 +72,17 @@ B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 0&2&0\end{matrix}\right).
 \end{equation}
 Figure~\ref{br-regions-fig} shows the mixed strategy simplices $X$ and $Y$:
-the exterior facets are labeled with the pure strategy on the opposite
-vertex, where only that pure strategy is played; the interior is covered
+the exterior facets are labeled with the pure strategy that is played
+at the opposite vertex of the simplex; the interior is covered
 by the best response regions, labeled by to the other player's pure best
 response strategies.
 For example, the best-response region in $Y$ with label~$1$
-is the set of those $(y_1,y_2,y_3)$ so that $y_1\ge y_2$ and
+is the set of all the $(y_1,y_2,y_3)\in\reals^3$ such that $y_1\ge y_2$ and
 $y_1\ge y_3$.
 There is only one pair $(x,y)$
-that is completely labeled, namely $x=(\frac13,\frac23,0)$
-with labels $3,4,5$ and $y=(\frac12,\frac12,0)$ with labels
-$1,2,6$, so this is the only Nash equilibrium of the game.
+that is completely labeled, namely $x=(\frac13,\frac23,0)$,
+that has labels $3,4,5$, and $y=(\frac12,\frac12,0)$, that has labels
+$1,2,6$; this gives the only Nash equilibrium of the game.
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=30ex]{chapter-2/fig-labels/Xnondeg.pdf}%
@@ -90,23 +91,23 @@ $1,2,6$, so this is the only Nash equilibrium of the game.
 \hfill
 \includegraphics[width=30ex]{chapter-2/fig-labels/Yimit.pdf}%
 \hfill\strut
-\caption[Labeled mixed strategy sets]{%
-The mixed strategy sets $X$ and $Y$ of game (\ref{AB}) and their labeled
-best response regions.
+\caption[The labeled mixed strategy simplices of a game]{%
+The labeled best response regions of the mixed strategy simplices of
+game (\ref{AB}).
 }
 \label{br-regions-fig}
 \end{figure}
 \end{example}
 
-The representation of the game and its Nash equilibria in terms of best
+The representation of a game and its Nash equilibria in terms of best
 response regions can be translated to an equivalent construction on
 polytopes.
 The first step is to notice that the best-response regions can be obtained as
 projections on $X$ and $Y$ of the {\em best-response facets} of
 the polyhedra
 \begin{eqnarray}
-\overline{P} = \{ (x,v)\in X\times\reals\ |\ B\T x\leq\1 v \}; \nonumber \\
-\overline{Q} = \{ (y,u)\in Y\times\reals\ |\ A y\leq\1 u \}. %
+\overline{P} = \{ (x,v)\in X\times\reals\ \mid\ B\T x\leq\1 v \}; \nonumber \\
+\overline{Q} = \{ (y,u)\in Y\times\reals\ \mid\ A y\leq\1 u \}. %
 \label{br-polyhedron}
 \end{eqnarray}
 In $\overline{P}$, these facets are the points $(x,v)\in X\times\reals$
@@ -117,7 +118,6 @@ $(B\T x)_j = v$ to $X$ has then label $j$.
 Analogously, the facet of $\overline{Q}$ given by the points
 $(y,u)\in Y\times\reals$ such that $(A y)_i = u$ projects to the
 best-response region of $Y$ with label $i$.
-
 
 \begin{example}
 In Example \ref{br-game-ex}, the inequalities $B\T x\le\1v$ are
@@ -134,8 +134,8 @@ regions of Figure \ref{br-regions-fig}.
 \strut\hfill
 \includegraphics[width=40ex]{chapter-2/fig-labels/upenv.pdf}%
 \hfill\strut
-\caption[Best response polyhedron]{%
-The best response polyhedron $\overline{P}$ of game (\ref{AB}).}
+\caption[The best response polyhedron of a game]{%
+The best response polyhedron of game (\ref{AB}).}
 \label{br-polyhedron-fig}
 \end{figure}
 \end{example}
@@ -150,7 +150,8 @@ Q = \{ y\in\reals^n\ \mid\ y\geq\0,\ A y\leq\1 \}. \label{br-polytopes}
 The polytope $P$ is the intersection the $m+n$ half spaces
 corresponding to either player 1 avoiding her $i$-th pure
 strategy or a best response of player 2 that gives
-non-zero probability to his $j$-th strategy, where $i\in [m]$ and $j\in [n]$.
+non-zero probability to his $j$-th strategy, where $i\in [m]$ and $j\in [n]$;
+the analogous holds for $Q$.
 Formally, a point $x\in P$ has label $k$ if and only if either
 $x_k = 0$ for $k\in [m]$ or $(B\T x)_k = 0$ for $k\in [n]$, and
 a point in $Q$ has label $k$ if and only if either
@@ -161,9 +162,9 @@ it satisfies the {\em complementarity condition}
 x_i = 0 & \text{ or }(Ay)_i = 1\quad & \text{ for all }i\in [m];\nonumber \\
 y_j = 0 & \text{ or }(B\T x)_j\quad & \text{ for all }j\in [n].
 \end{eqnarray}
-Therefore, if $(x,y)\in P\times Q$ is completely labeled, either the
+Therefore, if $(x,y)\in P\times Q$ is completely labeled either the
 corresponding point in $\overline{P}\times\overline{Q}$
-is a Nash equilibrium, or $(x,y)=(\0,\0)$; we will refer to the latter case
+is a Nash equilibrium or $(x,y)=(\0,\0)$; we will refer to the latter case
 as {\em artificial equilibrium}.
 
 \begin{example}
@@ -176,18 +177,18 @@ by the labels $x_k=0$ with $k=1,2,3$ in $P$ and $k=4,5,6$ in $Q$.
 \strut\hfill
 \includegraphics[width=40ex]{chapter-2/fig-labels/polytope.pdf}%
 \hfill\strut
-\caption[Best response polytope]{%
+\caption[The best response polytope of a game]{%
 The best response polytope $P$ of game (\ref{AB}).
 }
 \label{br-polytopes-fig}
 \end{figure}
 \end{example}
 
-We will now see some special cases of games connected by
-polynomial-time reductions.
+We will now see some special cases of games and how they are related to each
+other in terms of computational complexity.
 First of all, we note that any bimatrix game can be ``symmetrized'';
 the result is due to Gale, Kuhn and Tucker \cite{gale-kuhn-tucker}
-for zero-sum games and its extension to non-zero-sum games is a folklore
+for zero-sum games, while its extension to non-zero-sum games is a folklore
 result.
 
 \begin{proposition}\label{symmetrize-c}
@@ -206,11 +207,14 @@ C = \left(
 
 McLennan and Tourky \cite{mclennan-tourky} have proven a result in the
 opposite direction of Proposition \ref{symmetrize-c}: any symmetric game
-can be translated into a bimatrix game $(I,B)$; games of this kind are called
-{\em imitiation games}.
+can be translated into a {\em imitiation game}, where the payoff matrix of
+player 1 is the identity matrix $I$. In any Nash equilibrium of $(I,B)$,
+the mixed strategy $x$
+of player 1 corresponds exactly to the symmetric equilibrium $(x,x)$ in
+the symmetric game defined by the payoff matrix of player 2.
 Since it takes polynomial time in the size of a matrix to calculate its
-transpose, we have a polynomial-time reduction from 2-{\sc Nash} to
-{\sc Imitation Nash}.
+transpose, an algorithmm that finds a Nash equilibrium of a bimatrix game
+can be used to find a symmetric Nash equilibrium of a symmetric game.
 
 \begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
 \label{imitation-thm}
@@ -219,15 +223,10 @@ game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
 Nash equilibrium of the imitation game $(I,B)$ with $B=C\T$.
 \end{theorem}
 
-In any Nash equilibrium of $(I,B)$, the mixed strategy $x$
-of player 1 corresponds exactly to the symmetric equilibrium $(x,x)$ in
-the symmetric game defined by the payoff matrix of player 2.
-Note, though, that Theorem \ref{imitation-thm} applies to the symmetric
+Notice that Theorem \ref{imitation-thm} applies to the symmetric
 equilibria of the symmetric game but not to all its Nash equilibria; there
 could be non-symmetric equilibria of $(C,C\T)$ that are not found
 through the imitation game, as shown in the following example.
-
-\newpage
 
 \begin{example}
 As an example, consider the symmetric game $(C,C\T)$ with
@@ -237,26 +236,28 @@ C = \left(\begin{matrix}0&3&0\\ 2&2&2\\
 4&0&0\end{matrix}\right),
 \qquad
 C\T = \left(\begin{matrix}0&2&4\\ 3&2&0\\
-0&2&0\end{matrix}\right),
+0&2&0\end{matrix}\right);
 \end{equation}
-so that the corresponding imitation game is $(I,C\T)=(A,B)$, of
+the corresponding imitation game is $(I,C\T)=(A,B)$, seen in
 Example \ref{br-game-ex}.
 Figure~\ref{imit-fig} shows the labeled mixed-strategy simplices $X$ and $Y$
-for the game (\ref{C}); since the game is symmetric, only the labels
+for the
+\linebreak[5]
+game (\ref{C}); since the game is symmetric, only the labels
 are different.
 In addition to the symmetric equilibrium $(x,x)$ where
 $x=(\frac13,\frac23,0)$, the game has two non-symmetric equilibria in $(a,b)$
-and $(b,a)$ with $a=(\frac12,\frac12,0)$ and $b=(0,\frac23,\frac13)$;
-the imitation game $(A,B)$ has only one equilibrium $(x,y)$,
-with $y=(\frac{1}{2},\frac{1}{2},0)$, corresponding to $(x,x)$.
+and $(b,a)$ with $a=(\frac12,\frac12,0)$ and $b=(0,\frac23,\frac13)$.
+The imitation game $(A,B)$, on the other hand, has only one equilibrium
+$(x,y)$, corresponding to $(x,x)$, with $y=(\frac{1}{2},\frac{1}{2},0)$.
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=30ex]{chapter-2/fig-labels/Xnondeg.pdf}%
 \hfill
 \includegraphics[width=30ex]{chapter-2/fig-labels/Ynondeg.pdf}%
 \hfill\strut
-\caption[Best response regions of a symmetric game]{%
-Best response regions of the symmetric game (\ref{C}).
+\caption[The best response regions of a symmetric game]{%
+The best response regions of the symmetric game (\ref{C}).
 }
 \label{imit-fig}
 \end{figure}
@@ -283,7 +284,7 @@ all completely labeled points $(x,y)$ are vertices of the best response
 polytopes, and Nash equilibria are isolated points.
 
 \begin{example}
-An example of degenerate game is given by $(C,C\T)$ where
+An example of degenerate game is given by $(C,C\T)$ with
 \begin{equation}
 \label{Cdeg}
 C = \left(\begin{matrix}0&4&0\\ 2&2&2\\
@@ -292,14 +293,13 @@ C = \left(\begin{matrix}0&4&0\\ 2&2&2\\
 C\T = \left(\begin{matrix}0&2&4\\ 4&2&0\\
 0&2&0\end{matrix}\right).
 \end{equation}
-As it is shown in Figure \ref{deg-fig} left, the mixed strategy
+As shown in Figure \ref{deg-fig}, the mixed strategy
 $x=(\frac12,\frac12,0)$, that also defines the
 unique symmetric equilibrium $(x,x)$ of the game, has three pure best
-responses.
-Notice that the Nash equilibria $(x,y)$ of the imitation game
+responses; the Nash equilibria $(x,y)$ of the imitation game
 $(I,C\T)$ are not unique, since any convex
 combination of $(\frac12,\frac12,0)$ and $(\frac13,\frac13,\frac13)$
-can be chosen for~$y$, as shown in Figure~\ref{deg-fig} right.
+can be chosen for~$y$.
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=30ex]{chapter-2/fig-labels/Xsymmdeg.pdf}%
@@ -307,10 +307,9 @@ can be chosen for~$y$, as shown in Figure~\ref{deg-fig} right.
 \includegraphics[width=30ex]{chapter-2/fig-labels/Yimitdeg.pdf}%
 \hfill\strut
 \caption[A degenerate symmetric game]{%
-Left: The best-response regions on the mixed strategy simplices of the
-degenerate symmetric game (\ref{Cdeg}). \\
-Right: The labeled mixed-strategy sets on the mixed strategy simplex $Y$
-of the imitation game $(I,C\T)$.
+Left: The best-response regions of the degenerate symmetric
+game (\ref{Cdeg}). \\
+Right: The best-response regions of the imitation game $(I,C\T)$.
 }
 \label{deg-fig}
 \end{figure}
@@ -318,11 +317,10 @@ of the imitation game $(I,C\T)$.
 
 A generalization of imitation games is the class of
 {\em unit vector games}, introduced by Balthasar \cite{balthasar};
-they are defined as bimatrix games of the form $(U,B)$ where the
+these are defined as bimatrix games of the form $(U,B)$ where the
 columns of the matrix $U$ are unit vectors.
 By the results above, finding a Nash equilibrium of a bimatrix game is
-at least as hard as finding a Nash equilibrium of a unit vector game;
-that is, 2-{\sc Nash} reduces to {\sc Unit Vector Nash}.
+at least as hard as finding a Nash equilibrium of a unit vector game.
 Savani and von Stengel \cite{uvg} have shown that in unit vector games
 the problem of finding a completely labeled vertex of the product of the
 best response polytopes $P\times Q$ can be simplified to the problem of
@@ -332,7 +330,9 @@ game.
 \begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}
 \label{unit-vector-thm}
 Let $l:[n]\to [m]$ be a labeling, and let $(U,B)$ be the unit vector game with
-$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let $N_i = \{ j\in [n]\ \mid\ l(j)=i \}$ for
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let
+\linebreak[6]
+$N_i = \{ j\in [n]\ \mid\ l(j)=i \}$ for
 $i\in [m]$, and consider the polytopes $P^l$ and $Q^l$
 \begin{eqnarray}
 P^l = \{ x\in\reals^m\ \mid\ x\geq\0,\ B\T x\leq\1 \}; \label{p-l} \\
@@ -347,7 +347,9 @@ x_i\geq 0 & \text{ has label }i & \text{ for }i\in [m]; \nonumber \\
 
 Then $x\in P^l$ is a completely labeled vertex of $P^l\setminus\{\0\}$
 if and only if there is some $y\in Q^l$ such that, after scaling,
-the pair $(x,y)$ is a Nash equilibrium of $(U,B)$
+the pair $(x,y)$ is a Nash equilibrium
+\linebreak[4]
+of $(U,B)$
 
 \begin{proof}
 Let $P$ and $Q$ be the best response polytopes of $(U,B)$ as
@@ -394,22 +396,22 @@ The polytope $P^l$ of the unit vector game (\ref{AB}).
 We will now move on the dual version of Theorem \ref{unit-vector-thm},
 as given by Balthasar \cite{balthasar}.
 We can traslate the polytope $P^l$ of (\ref{p-l}) to
-$P = \{ x - \1\ |\ x\in P^l \}$, multiplying all payoffs in $B$ by a
-constant, if necessary, so that $\0$ is in the interior of $P$.
+$P = \{ x - \1\ |\ x\in P^l \}$,
+possibly multiplying all payoffs in $B$ by a
+constant so that $\0$ is in the interior of $P$.
 We have that
 \begin{align*}
-\widetilde{P}   & = \{ x + \1\geq\0,\ (x + \1)\T B\leq\1 \} = \\
-                & = \{ x\in\reals^m\ |\ -x_i\leq 1\text{ for }i\in [m],\
+P   & = \{ x + \1\geq\0,\ (x + \1)\T B\leq\1 \} = \\
+    & = \{ x\in\reals^m\ |\ -x_i\leq 1\text{ for }i\in [m],\
     x\T (b_j/(1 - \1\T b_j)) \leq 1\text{ for }j\in [n] \}.
 \end{align*}
-The polar of $\widetilde{P}$ is then
+The polar of $P$ is then
 \begin{equation}\label{p-l-dual}
-Q = \widetilde{P}^\Delta = \conv(\{−e_i\ |\ i\in [m] \}\ %
-                                \cup\ \{ c_j\ |\ j\in [n] \})
+Q = P^\Delta = \conv(\{−e_i\ |\ i\in [m] \}\ \cup\ \{ c_j\ |\ j\in [n] \})
 \end{equation}
 where $c_j=b_j/(1 - \1\T b_j)$.
-Since $\widetilde{P}$ is a simple polytope with $\0$ in its interior,
-$Q^\Delta=\widetilde{P}^{\Delta\Delta}=\widetilde{P}$. Furthermore,
+Since $P$ is a simple polytope with $\0$ in its interior,
+$Q^\Delta=P^{\Delta\Delta}=P$. Furthermore,
 $Q$ is simplicial and its facets correspond to the vertices of $P$
 and vice versa.
 We label the vertices
@@ -418,7 +420,7 @@ labeled facets of $Q$ correspond to the completely
 labeled vertices of $P^l$.
 In particular, the facet corresponding to $\0$ is
 \begin{eqnarray}
-F_0 & = & \{ x\in \widetilde{P}^\Delta\ \mid\ -\1\T x = 1 \} \nonumber \\
+F_0 & = & \{ x\in P^\Delta\ \mid\ -\1\T x = 1 \} \nonumber \\
     & = & \conv\{ e_i\ \mid\ i\in [m] \}. \label{f-0}
 \end{eqnarray}
 Theorem \ref{unit-vector-thm} then translates into the following.
@@ -459,10 +461,14 @@ to write and solve the linear equations defining its best response polyhedra
 $\overline{P},\overline{Q}$ and its best response polytopes $P,Q$.
 It also take polynomial time to label $\overline{P},\overline{Q}$ and $P,Q$.
 Analogously, given a unit vector game $(U,B)$, it takes polynomial time
-to construct and label the polytope $P^l$.
-Therefore, Theorem \ref{unit-vector-thm} implies a polynomial time
+to construct and label the polytope $P^l$ and its polar.
+Therefore, Theorem \ref{unit-vector-thm} gives a polynomial time
 reduction from the problem 2-{\sc Nash} to the
-problem {\sc Another Completely Labeled Vertex}.
+problem {\sc Another Completely Labeled Vertex} of Table \ref{aclv} and
+Theorem \ref{unit-vector-dual-thm} gives a dual reduction to the problem
+{\sc Another Completely Labeled Facet} of Table \ref{aclf}.
+
+\clearpage
 
 \begin{problem}
 {Another Completely Labeled Vertex}
@@ -470,18 +476,8 @@ problem {\sc Another Completely Labeled Vertex}.
 a labeling $l_f:[m+n]\to [n]$;
 a vertex $v_0$ of $P$ that is completely labeled by $l_f$.}
 {A vertex $v\neq v_0$ of $P$ that is completely labeled by $l_s$.}
+\label{aclv}
 \end{problem}
-
-\begin{proposition}
-\label{2nash-to-aclv}
-{\sc 2-Nash} reduces in polynomial time to
-{\sc Another Completely Labeled Vertex}.
-\end{proposition}
-
-Theorem \ref{unit-vector-dual-thm} gives the dual of Proposition
-\ref{2nash-to-aclv}; since the construction of the polar polytope from
-the original one is also polynomial, the reduction is to the problem
-{\sc Another Completely Labeled Facet}.
 
 \begin{problem}
 {Another Completely Labeled Facet}
@@ -489,10 +485,17 @@ the original one is also polynomial, the reduction is to the problem
 a labeling $l_v:[m+n]\to [n]$;
 a facet $F_0$ of $Q$ that is completely labeled by $l_v$.}
 {A facet $F\neq F_0$ of $Q$ that is completely labeled by $l_v$.}
+\label{aclf}
 \end{problem}
 
+
 \begin{proposition}
-\label{2nash-to-aclf}
+\label{nash-to-acl}
 {\sc 2-Nash} reduces in polynomial time to
-{\sc Another Completely Labeled Facet}.
+{\sc Another}
+\linebreak[5]
+{\sc Completely Labeled Vertex} and
+{\sc Another Completely Labeled}
+\linebreak[5]
+{\sc Facet}.
 \end{proposition}

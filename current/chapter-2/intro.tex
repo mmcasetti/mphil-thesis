@@ -4,26 +4,26 @@ we will assume that both $A$ and $B$ are non-negative, and that neither $A$
 nor $B\T$ has a zero column; this can be done without loss of generality,
 applying an affine transformation to $A$ and $B$ if necessary.
 
-We will start by showing a construction to translate a bimatrix game to
-two simplices subdivided in regions which are labeled so that the Nash
-equilibria of the game correspond to the ``completely labeled'' points of
+We will start by showing a construction to represent a bimatrix game to
+two simplices subdivided in labeled regions such that the Nash
+equilibria of the game correspond to ``completely labeled'' points of
 the simplices. This idea is due to Lemke and Howson
 \cite{lh}; we will follow the very clear approach given by Shapley
 \cite{shapley}. From labeled regions we will then move on to an equivalent
 formulation in terms of polytopes; a result by McLennan and Tourky
 \cite{mclennan-tourky} on a special case of games, called imitation games,
 and its extension to the more general unit vector games, due to
-Balthasar \cite{balthasar}, will allow us to simplify the labeling
-construction on polytopes; a result by Balthasar \cite{balthasar} gives
-a condition on facets of a simplicial polytope, whereas Savani and von
-Stengel \cite{uvg} give an equivalent condition on vertices of a
-simple polytope. The problem 2-{\sc Nash} will then be shown to have a
-polynomial-time reduction to a problem on facets or vertices of a
-labeled polytope, under certain simple conditions.
+Balthasar \cite{balthasar} and Savani and von
+Stengel \cite{uvg}, will allow us to simplify this
+construction. The problem 2-{\sc Nash} will then be reduced to a problem
+on the facets or vertices of a labeled polytope, under some simple
+conditions.
 
 In the second section of the chapter we will restrict our scope to
-Gale games, a case of unit vector games for which the facets of the
-polytopes in the previous section can be represented as an elegant
-combinatorial structure, called Gale strings. We will show this
-representation, then we will define a labeling for Gale strings that
-will lead to a reduction from {\sc 2-Nash} to a problem on Gale strings.
+Gale games, a case of unit vector games for which the
+polytopes in the previous section can be
+represented through a combinatorial structures called Gale strings.
+We will first show the
+correspondence between polytopes and Gale strings, then we will define
+a labeling for the latter that
+will lead to a reduction from 2-{\sc Nash} to a problem on Gale strings.

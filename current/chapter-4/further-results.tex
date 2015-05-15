@@ -6,7 +6,7 @@ particular, the issue of the sign of the equilibrium is left open.
 Following the construction in Proposition \ref{lhg-works-ppad-thm},
 we can reduce
 the problem ``given a Nash equilibrium of a Gale game, find another one
-of opposite sign'' to the problem {\sc Opposite Sign Gale String} of
+of opposite sign'' to the problem {\sc Opposite Sign Gale} of
 Table \ref{opposite-gale}.
 Analogously, it is straightforward to see that these problems
 belongs to the class {\bf PPADS}, see Daskalakis, Goldberg
@@ -14,7 +14,7 @@ and Papadimitriou \cite{dgp}; this is the equivalent of {\bf PPAD} where
 the solution is restricted to sinks of the {\sc End Of The Line} graph.
 
 \begin{problem}
-{Opposite Sign Gale String}
+{Opposite Sign Gale}
 {A labeling $l:[n]\to [d]$ and a completely labeled Gale
 string $s_0\in G(d,n)$.}
 {A completely labeled Gale string $s\in G(d,n)$ such
@@ -22,7 +22,7 @@ that $\sign(s)=-\sign(s_0)$.}
 \label{opposite-gale}
 \end{problem}
 
-A first polynomial-time algorithm for {\sc Opposite Sign Gale String} of
+A first polynomial-time algorithm for {\sc Opposite Sign Gale} of
 Table \ref{opposite-gale} was given by Merschen \cite{jm} in the case of
 labelings for which the Gale graph of
 Theorem \ref{gale-thm} is planar; a general result has since been given by
@@ -150,7 +150,7 @@ in the general case.
 Despite this, V\'{e}gh and von Stengel \cite{vvs} give a near-linear-time
 algorithm that, given a perfect matching of an Euler graph, finds a perfect
 matching of opposite sign; this allows to find a solution to
-{\sc Opposite Sign Gale String} in polynomial time.
+{\sc Opposite Sign Gale} in polynomial time.
 
 The wider issue of the complexity of the Lemke-Howson Algorithm has been
 solved by Goldberg, Papadimitriou and Savani \cite{gps} as

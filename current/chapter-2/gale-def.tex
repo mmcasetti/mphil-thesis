@@ -1,9 +1,9 @@
 \section{Cyclic Polytopes and Gale Strings}
 
 We now apply the results of the previous section to unit vector games
-for which the best response polytope satisfies a further condition:
-being the dual of a cyclic polytope. These can be represented
-in a synthetic way using a combinatorial structure called Gale strings.
+for which the best response polytope is the dual of a cyclic polytope.
+These polytopes are characterized by their representation as
+a combinatorial structure, called Gale strings.
 We will first give the definition of cyclic polytope,
 then of Gale string, then the theorem by Gale \cite{gale} that shows the
 equivalence of the two representations.
@@ -24,7 +24,7 @@ Figure \ref{cyc36-fig} shows the cyclic polytope in dimension 3 with 6 facets.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-2/fig-gale-def/cyc36.pdf}
+\includegraphics[width=28ex]{chapter-2/fig-gale-def/cyc36.pdf}
 \hfill\strut
 \caption[The cyclic polytope $C_3(6)$]{The cyclic polytope $C_3(6)$.}
 \label{cyc36-fig}
@@ -36,28 +36,32 @@ $f:[k]\to S$ as the string $s=s(1)s(2)\cdots s(k)$; we have a {\em bitstring}
 if $S=\{0,1\}$. A maximal substring of consecutive
 1's in a bitstring is called a {\em run}; an {\em interior run} is
 bounded on both sides by 0's. We will use the notation $\1^k$ for a run of
-length $k$, and $0^k$ for a
-string of 0's of length $k$ A {\em Gale string of length $n$ and
+\linebreak[5]
+length $k$ and $0^k$ for a string of 0's of
+length $k$. A {\em Gale string of length $n$ and
 dimension $d$}, where $n>d$, is a bitstring $s\in G(d,n)$ satisfying the
 following conditions:
 \begin{enumerate}
 \item exactly $d$ bits of $s$ are equal to $\1$;
 \item ({\em Gale evenness condition})
-\begin{equation}
-0\1^k0\text{ is a substring of }s\quad
-{\Longrightarrow}\quad
+$
+\qquad 0\1^k0\text{ is a substring of }s\quad
+{\Rightarrow}\quad
 k\text{ is even.}
-\end{equation}
+$
 \end{enumerate}
 
 In general, the Gale evenness conditions allows for Gale strings that start
 or end with an odd-length run; if $d$ is even then $s$ can start with
 an odd run if and only if it ends with an odd run.
-We can then consider the Gale strings in $G(d,n)$ with even $d$ as ``loops''
+When $d$ is even, we can therefore see the Gale strings in $G(d,n)$
+as ``loops''
 obtained by ``glueing together'' the endpoints of the strings; then
 all runs on the loops are even.
 Formally, we can see the indices of a Gale string $s\in G(d,n)$ with
-$d$ even as equivalence classes modulo $n$.
+$d$ even as equivalence classes
+\linebreak[5]
+modulo $n$.
 
 \begin{example}\label{gs-example}
 As an example of even $d$, we have
@@ -70,7 +74,6 @@ $00\1\1\1\1$ and $0\1\1\1\10$ are
 equivalent under a cyclic shift (if considering the strings as ``loops'', the
 $\1$'s are all consecutive), as are the strings $\1\10\1\10$, $\10\1\10\1$
 and $0\1\10\1\1$ (two runs of two $\1$'s separated by a single $0$).
-
 As an example of odd $d$, we have
 \[
 G(3,5) = \{ \1\1\100, \10\1\10, \100\1\1, \1\100\1, 0\1\10\1, 00\1\1\1 \}
@@ -80,21 +83,25 @@ string.
 \end{example}
 
 The relation between cyclic polytopes and Gale strings was given by
+\linebreak[5]
 Gale \cite{gale}.
 
 \begin{theorem}{\rm (Gale \cite{gale})}
 \label{gale-thm}
 For any $d,n\in\naturals$, where $n>d$,
-\begin{align}
+\begin{eqnarray}
 F \text{ is a} & \text{ facet of } C_d(n)  \nonumber \\
 & \Longleftrightarrow \nonumber \\
 F = \conv\{ \mu(t_j)\ \mid\ & s(j)=1 \quad\text{ for }s\in G(d,n) \}.
 \label{facet-gs}
-\end{align}
+\end{eqnarray}
 
 \begin{proof}
-By definition, $C_d(n) = %
-\conv\{ \mu_d(t_j)\ \mid\ t_1 < \ldots < t_n \text{ affinely independent} \}$.
+By definition,
+\[
+C_d(n) = %
+\conv\{ \mu_d(t_j)\ \mid\ t_1 < \ldots < t_n \text{ affinely independent} \}.
+\]
 Let $\overline{t_1} < \ldots < \overline{t_d}$ be a choice of some of the
 $t_j$'s in the definition of $C_d(n)$. Then the
 $\mu_d(\overline{t_i})$'s define an hyperplane $H$ that
@@ -103,36 +110,40 @@ Given the definition of moment curve, the hyperplane $H$ is never
 tangent to the moment curve, and every crossing gives a ``change of sign'';
 that is, if $t,t'\notin\{ \overline{t_i} \}$ and
 $t<\overline{t_i}<t'$ for one and only one $\overline{t_i}$ then
-$\mu_d(t)$ and $\mu_d(t')$ have opposite sign.
+$\mu_d(t)\T \mu_d(t') <0$.
 A facet $F$ of the cyclic polytope $C_d(n)$ then corresponds to a choice of
-$\overline{t_i}$'s with $i\in [d]$, such that for all the $t_k$'s with
-$k\in [n]$ and $t_k\notin \{ \overline{t_i}\ \mid\ i\in [d] \}$
+$\overline{t_i}$'s such that for all the $t_k$'s such that
+$t_k\notin \{ \overline{t_i}\ \mid\ i\in [d] \}$
 all the $\mu_d(t_k)$'s have the same sign.
 This can happen only if for every couple of $t_k$'s the moment
 curve has an even number of changes of sign between them; therefore there is
 an even number of $\overline{t_i}$'s between any two $t_k$'s.
 Let $s$ be the bitstring in which the \1's correspond to the $t_i$'s and
 and the 0's correspond to the other $t_k$'s; then the condition for being
-a facet in (\ref{label-gs}) becomes the Gale evenness condition.
+a facet in (\ref{facet-gs}) becomes the Gale evenness condition.
 \end{proof}
 \end{theorem}
 
 Notice that the moment curve has exactly $d$ zeroes implies
 that the each facet of $C_d(n)$ is a $d$-simplex, so $C_d(n)$ is simplicial
-and the choice of the $t_j$'s in the proof is irrelevant.
+and the choice of the $t_j$'s is irrelevant.
+
+\clearpage
 
 \begin{example}
 Consider the facet $F$ of the cyclic polytope $C_3(6)$ marked in blue
 in Figure \ref{cyc36fac-fig}.
-If we label the vertices on the moment curve as $t_i$ with $i\in [n]$ and
+If we label the vertices on the moment curve as $t_i$, with $i\in [n]$, and
 we set $s(i)=1$ if $t_i$ is a vertex of $F$ and $s(i)=0$
 otherwise, we see that the corresponding Gale string $s\in G(3,6)$ is
 $s=\100\1\10$.
-Figure \ref{cyc36fac-hyper-fig} shows the moment curve and its intersections
-with the hyperplane $H$ in $\reals^3$ defined by the $t_i$ such that $s(i)=1$.
+Figure \ref{cyc36fac-hyper-fig} shows the intersection of the
+moment curve and the hyperplane $H$ in $\reals^3$ defined by the
+$t_i$ such that $s(i)=1$.
+
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=40ex]{chapter-2/fig-gale-def/cyc36fac.pdf}%
+\includegraphics[width=28ex]{chapter-2/fig-gale-def/cyc36fac.pdf}%
 \hfill\strut
 \caption[A facet of the cyclic polytope $C_3(6)$]{%
 The facet of the cyclic polytope $C_3(6)$ corresponding to the Gale
@@ -142,7 +153,7 @@ string $s=\1 00 \1\1 0\in G(3,6)$.
 \end{figure}
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-2/fig-gale-def/100110-hyper.pdf}%
+\includegraphics[width=35ex]{chapter-2/fig-gale-def/100110-hyper.pdf}%
 \hfill\strut
 \caption[A facet of $C_3(6)$ as zeroes of the moment curve]{%
 The facet of the cyclic polytope $C_3(6)$ given by the intersection
@@ -160,15 +171,15 @@ $s=\1 00 \1\1 0\in G(3,6)$.
 \label{c46-ex}
 Figure \ref{c46-fig} shows the cyclic polytope $C_4(6)$, with the exterior
 facet corresponding to the Gale string $s=\1\1\1\100$.
-Figure \ref{cyc46fac-hyper-fig} shows  $s=\1\1\1\100$ as intersection with
-the hyperplane $H$.
+Figure \ref{cyc46fac-hyper-fig} shows the string $s=\1\1\1\100$ as
+intersection of the moment curve and the hyperplane $H$.
 \begin{figure}[h]
 \strut\hfill
 \includegraphics[width=45ex]{chapter-2/fig-gale-def/c46.pdf}%
 \hfill\strut
 \caption[The cyclic polytope $C_4(6)$]{%
 The cyclic polytope $C_4(6)$. The thin lines represent the edges inside
-the exterior facet, in bold lines, corresponding to the Gale string
+the exterior facet, in bold lines; the latter corresponds to the Gale string
 $s=\1\1\1\1 0\in G(4,6)$.
 }
 \label{c46-fig}
@@ -180,8 +191,8 @@ $s=\1\1\1\1 0\in G(4,6)$.
 \caption[A facet of $C_4(6)$ as zeroes of the moment curve]{%
 The facet of the cyclic polytope $C_4(6)$ given by the intersection of
 the moment curve and the hyperplane where
-$\mu_4(t_1)=\mu_4(t_2)=\mu_4(t_3)=\mu_4(t_4)=0$
-corresponds to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
+$\mu_4(t_1)=\mu_4(t_2)=\mu_4(t_3)=\mu_4(t_4)=0$,
+corresponding to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
 \label{cyc46fac-hyper-fig}
 \end{figure}
 \end{example}
@@ -189,25 +200,14 @@ corresponds to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
 \clearpage
 
 \begin{example}
-As a counterexample, consider Figure \ref{notfacet-even-hyper-fig}.
+As a counterexample, consider Figure \ref{notfacet-odd-hyper-fig}.
 The points $t=t_4$ and $t'=t_6$ lie on the moment curve but are on opposite
 sides of the hyperplane $H$.
-The corresponding bitstring is $s=\1\1\10\10$, which is
+The corresponding bitstring is  $s=\1 0\1 0\1 0$, which is
 not a Gale string; the violation of the Gale evenness condition correspond
 to the change of sign between the $t_j$'s.
-An analogous case is shown in Figure \ref{notfacet-odd-hyper-fig}; the
-corresponding bitstring should be $s=\1 0\1 0\1 0$.
-\begin{figure}[hp]
-\strut\hfill
-\includegraphics[width=45ex]{chapter-2/fig-gale-def/notfacet-even-hyper.pdf}%
-\hfill\strut
-\caption[Not a facet of $C_4(6)$]{%
-There is a change of sign between two $t_j$'s; the bitstring $s=\1\1\1 0\1 0$
-does not satisfy the Gale evenness condition, and the $t_j$'s do not
-correspond to a facet of $C_4(6)$.
-}
-\label{notfacet-even-hyper-fig}
-\end{figure}
+An analogous case is shown in Figure  \ref{notfacet-even-hyper-fig}; the
+corresponding bitstring is $s=\1\1\10\10$.
 \begin{figure}[hp]
 \strut\hfill
 \includegraphics[width=45ex]{chapter-2/fig-gale-def/notfacet-odd-hyper.pdf}%
@@ -219,12 +219,25 @@ correspond to a facet of $C_3(6)$.
 }
 \label{notfacet-odd-hyper-fig}
 \end{figure}
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[width=45ex]{chapter-2/fig-gale-def/notfacet-even-hyper.pdf}%
+\hfill\strut
+\caption[Not a facet of $C_4(6)$]{%
+There is a change of sign between two $t_j$'s; the bitstring $s=\1\1\1 0\1 0$
+does not satisfy the Gale evenness condition, and the $t_j$'s do not
+correspond to a facet of $C_4(6)$.
+}
+\label{notfacet-even-hyper-fig}
+\end{figure}
 \end{example}
 
 \clearpage
 
 We now apply Theorem \ref{gale-thm} to the study of bimatrix games.
-Proposition \ref{2nash-to-aclf} states that 2-{\sc Nash} can be reduced to
+\linebreak[4]
+Proposition \ref{nash-to-acl} states that 2-{\sc Nash} can be reduced to
 {\sc Another Completely Labeled Facet}.
 If the polytope $Q$ in Theorem \ref{unit-vector-dual-thm} is cyclic and we
 define a labeling for Gale strings such that a completely labeled Gale
@@ -237,21 +250,20 @@ $\{ l_s(i)\ \mid\ s(i)=\1\text{ for }i\in [n] \}=[d]$.
 Since $s\in G(d,n)$ has exacty $d$ bits equal to \1, this means that for
 each $j\in [d]$ there is exactly one
 $i\in [n]$ such that $s(i)=\1$ and $l_s(i)=j$.
-Note that it is not always possible to find a completely labeled Gale string.
+Notice that it is not always possible to find a completely labeled Gale
+string.
 
 \begin{example}
 \label{no-clgs}
 For $l_s = 121314$, there are no completely labeled Gale strings.
-The labels $l_s(i)=2,3,4$ appear only once in $l_s$, as
-$l_s(2),l_s(4),l_s(6)$ respectively; therefore we must have
-$s(2)=s(4)=s(6)=1$. For every other
-$i\in [n]$ we have $l(i)=1$, so we have $l_s(i)=1$ for exactly one $i=1,3,5$.
+The labels $l_s(i)=2,3,4$ appear only once in $l_s$, so we must have
+$s(2)=s(4)=s(6)=1$. We also must have $l_s(i)=1$ for exactly one $i=1,3,5$.
 The candidate strings are then $s=\1\10\10\1$, $s'=0\1\1\10\1$,
 $s''=0\10\1\1\1$; but none of these satisfies the Gale evenness condition.
 \end{example}
 
-A Gale game is a unit vector game $(U,B)$ where
-$U=(e_{l(1),\ldots,e_{l(d)}})$ for some labeling $l:[n]\to [d]$ and
+A {\em Gale game} is a unit vector game $(U,B)$ where
+$U=(e_{l(1)},\ldots,e_{l(d)})$ for some labeling $l:[n]\to [d]$ and
 for which the dual of the best response polytope is a cyclic polytope
 $Q=\conv\{ e_1,\ldots,e_d,c_1,\ldots,c_n \}$. Theorem
 \ref{unit-vector-dual-thm} gives the labeling (\ref{vert-labeling-unitv})
@@ -265,29 +277,33 @@ We define the labeling $l_s:[d+n]\to [d]$ of $G(d,n)$ as
 l_s(i)=i\quad & \text{ for }i\in [d]; \nonumber \\
 l_s(d+j)=l(j)\quad & \text{ for }j\in [n].
 \end{eqnarray}
-Then the Gale strings $s\in G(d,d+n)$ that are completely labeled for $l_s$
-correspond exactly to the completely labeled facets of $Q$, with the
+Then the Gale strings $s\in G(d,d+n)$ that are completely labeled by $l_s$
+correspond exactly to facets of $Q$ that are completely labeled by $l_v$,
+with the
+\linebreak[5]
 facet $F_0$ corresponding to the ``trivial'' completely labeled
 string $\1^d 0$.
 
-From this point forward, we will assume that $d$ is even.
-We will also assume that the labeling $l_s:[n]\to [d]$ is such
-that $l_s(i)\neq l_s(i+1)$; this can be done without loss of generality,
+From this point forward, we will assume that $d$ is even;
+we will also assume that the labeling $l_s:[n]\to [d]$ satisfies
+$l_s(i)\neq l_s(i+1)$; this can be done without loss of generality,
 given the following consideration.
 Suppose that $l_s(i)=l_s(i + 1)$ for some index $i$, and let $s$ be a
-completely labeled Gale string for $l_s$. Then only one of
+completely labeled Gale string for $l_s$; then only one of
 $s(i)$ and $s(i+1)$ can be equal to \1 (notice that it's possible that both
-are 0s). So $s(i)s(i+1)$ will never be a run of even length that
-``interferes'' with the Gale Evenness Condition, so we can
+are 0s), so $s(i)s(i+1)$ will never be a run of even length that
+``interferes'' with the Gale Evenness Condition. Therefore, we can
 identify the indices $i$ and $i + 1$.
 
 \begin{example}
 \label{c46-123432-ex}
 Given the string of labels $l_s=123432$, there are four associated completely
 labeled Gale strings in $G(4,6)$:
-$s_A=\1\1\1\100$, $s_B=\1\10\1\10$, $s_C=\100\1\1\1$ and
+$s_A=\1\1\1\100$, $s_B=\1\10\1\10$,
+\linebreak[4]
+$s_C=\100\1\1\1$ and
 $s_D=\10\1\10\1$. These correspond to the completely labeled facets
-for the labeling shown in Figure \ref{c46-123432-fig}.
+for the labeling shown in Figure \ref{c46-123432-fig}, left.
 \begin{figure}[hbt]
 \strut\hfill
 \includegraphics[width=50ex]{chapter-2/fig-gale-def/123432-fac-name.pdf}%
@@ -302,7 +318,7 @@ facet & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}\\
 {\bf D} & \1 & 0 & \1 & \1 & 0 & \1
 \end{tabular}
 \hfill\strut
-\caption[Completely labeled facets on a cyclic polytope]{%
+\caption[A labeling of $C_4(6) and its completely labeled facets$]{%
 The cyclic polytope $C_4(6)$; the labeling of the vertices correspond to
 the labeling of $G(4,6)$ given by $l_s=123432$.
 }
@@ -325,12 +341,14 @@ such that $s' \neq s$.}
 
 It takes polynomial time to translate the facets of the cyclic polytope
 $C_d(n)$ into the corresponding Gale strings in $G(d,n)$, following
-the proof of Theorem \ref{gale-thm}.
+the proof of
+\linebreak[6]
+Theorem \ref{gale-thm}.
 Furthermore, defining the labeling $l_s$ from the labeling $l_v$ also takes
 polynomial time: for the labels $i\in [d]$ it is immediate, for the labels
 $d+j$, where $j\in [n]$, we have to check the $d\times n$ matrix $U$
 of the imitation game.
-Therefore, by Proposition \ref{2nash-to-aclf}, we have a reduction from
+Therefore, by Proposition \ref{nash-to-acl}, we have a reduction from
 {\sc Gale Nash} to \anothergale.
 
 \begin{proposition}
