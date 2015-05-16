@@ -5,7 +5,11 @@ Let $n,m\in\naturals$ with $m\leq n$.
 A {\em labeling} of a set $X$ is a function $l:X\to [m]$; an $n$-uple
 $x=(x_1,\ldots,x_n)\in X^n$ is {\em completely labeled} if
 each label $j\in [m]$ appears in $(l(x_1),\ldots,l(x_n))$;
-formally, if $\{ j\in [m]\ \mid\ l(x_i)=j\text{ for some }i\in [n] \}=[m]$.
+formally, if
+\begin{equation}
+\label{cl-eq}
+\{ j\in [m]\ \mid\ l(x_i)=j\text{ for some }i\in [n] \}=[m].
+\end{equation}
 
 Let $(A,B)$ be bimatrix game, and let $X$ and $Y$ be the mixed strategy
 simplices of respectively player 1 and 2, that is
@@ -60,7 +64,7 @@ in closed polyhedral sets corresponding to the other player's pure
 best response strategies, called {\em best response regions}.
 We give an example of this construction.
 
-\begin{example}
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 \label{br-game-ex}
 Consider the $3\times 3$ game $(A,B)$ with
 \begin{equation}
@@ -119,7 +123,9 @@ Analogously, the facet of $\overline{Q}$ given by the points
 $(y,u)\in Y\times\reals$ such that $(A y)_i = u$ projects to the
 best-response region of $Y$ with label $i$.
 
-\begin{example}
+\clearpage
+
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 In Example \ref{br-game-ex}, the inequalities $B\T x\le\1v$ are
 \begin{eqnarray*}
 3x_2 & \leq v; \\
@@ -167,7 +173,7 @@ corresponding point in $\overline{P}\times\overline{Q}$
 is a Nash equilibrium or $(x,y)=(\0,\0)$; we will refer to the latter case
 as {\em artificial equilibrium}.
 
-\begin{example}
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 Keeping on with Example \ref{br-game-ex}, the best response
 polyhedron $\overline{P}$ of Figure \ref{br-polyhedron-fig} becomes
 the best response polytope of Figure \ref{br-polytopes-fig}.
@@ -190,6 +196,8 @@ First of all, we note that any bimatrix game can be ``symmetrized'';
 the result is due to Gale, Kuhn and Tucker \cite{gale-kuhn-tucker}
 for zero-sum games, while its extension to non-zero-sum games is a folklore
 result.
+
+\clearpage
 
 \begin{proposition}\label{symmetrize-c}
 Let $(A,B)$ be a bimatrix game and let $(x,y)$ be one of its Nash equilibria.
@@ -228,17 +236,19 @@ equilibria of the symmetric game but not to all its Nash equilibria; there
 could be non-symmetric equilibria of $(C,C\T)$ that are not found
 through the imitation game, as shown in the following example.
 
-\begin{example}
-As an example, consider the symmetric game $(C,C\T)$ with
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
+As an example, consider the
+\linebreak[4]
+symmetric game $(C,C\T)$ with
 \begin{equation}
 \label{C}
 C = \left(\begin{matrix}0&3&0\\ 2&2&2\\
 4&0&0\end{matrix}\right),
 \qquad
 C\T = \left(\begin{matrix}0&2&4\\ 3&2&0\\
-0&2&0\end{matrix}\right);
+0&2&0\end{matrix}\right).
 \end{equation}
-the corresponding imitation game is $(I,C\T)=(A,B)$, seen in
+The corresponding imitation game is $(I,C\T)=(A,B)$, seen in
 Example \ref{br-game-ex}.
 Figure~\ref{imit-fig} shows the labeled mixed-strategy simplices $X$ and $Y$
 for the
@@ -283,7 +293,7 @@ of $Q$ has exactly $n$ labels if and only if it is a vertex; therefore,
 all completely labeled points $(x,y)$ are vertices of the best response
 polytopes, and Nash equilibria are isolated points.
 
-\begin{example}
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 An example of degenerate game is given by $(C,C\T)$ with
 \begin{equation}
 \label{Cdeg}
@@ -373,7 +383,9 @@ Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
 \end{theorem}
 
-\begin{example}
+\clearpage
+
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 The game in Example \ref{br-game-ex} is a unit vector game with $l(i)=i$.
 In the polytope $P^l$ of Figure~\ref{p-l-fig} the labels 4, 5 and 6 of the
 best response polytope $P$ of Figure \ref{br-polytopes-fig}
@@ -394,7 +406,9 @@ The polytope $P^l$ of the unit vector game (\ref{AB}).
 \end{example}
 
 We will now move on the dual version of Theorem \ref{unit-vector-thm},
-as given by Balthasar \cite{balthasar}.
+as given by
+\linebreak[5]
+Balthasar \cite{balthasar}.
 We can traslate the polytope $P^l$ of (\ref{p-l}) to
 $P = \{ x - \1\ |\ x\in P^l \}$,
 possibly multiplying all payoffs in $B$ by a
@@ -467,8 +481,6 @@ reduction from the problem 2-{\sc Nash} to the
 problem {\sc Another Completely Labeled Vertex} of Table \ref{aclv} and
 Theorem \ref{unit-vector-dual-thm} gives a dual reduction to the problem
 {\sc Another Completely Labeled Facet} of Table \ref{aclf}.
-
-\clearpage
 
 \begin{problem}
 {Another Completely Labeled Vertex}

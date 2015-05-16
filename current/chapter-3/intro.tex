@@ -1,30 +1,34 @@
 In the previous chapter we have defined some problems of the form
-``find another completely labeled\ldots'' for vertices, facets and
+``find
+\linebreak[3]
+another completely labeled\ldots'' for vertices, facets and
 Gale strings. In this chapter we will finally study the complexity
 of these problems.
-The first section will present different versions of the standard algorithm
-introduced by Lemke and Howson \cite{lh}. We will first apply it to
-the problem {\sc Another Completely Labeled Vertex}, in particular as
-a tool to find a solution for 2-{\sc Nash}, its original motivation;
-we will then touch on its dual version for the problem
-{\sc Another Completely Labeled Facet}; finally, we will describe the
-Lemke-Howson for Gale Algorithm, which returns a solution to \anothergale.
-We will follow each one of these algorithms with a very straightforward
-proof of the {\bf PPA} complexity of {\sc Another Completely Labeled Vertex}
-and {\sc Another Completely Labeled Facet}; in the case of \anothergale
-we will give a result of {\bf PPAD} complexity. We will close the section
+In the first section we will give the definition of the classes {\bf PPAD}
+and {\bf PPA}, first introduced by Papadimitriou \cite{ppad}. In the second
+section we will present different versions of the standard algorithm
+introduced by Lemke and Howson \cite{lh}; we will apply it to
+{\sc Another Completely Labeled Vertex} and
+to find a solution for 2-{\sc Nash}, its original motivation.
+We will then study the Lemke-Howson for Gale Algorithm,
+which returns a solution to \anothergale.
+We will use these algorithms to prove the {\bf PPA} complexity of
+{\sc Another Completely Labeled Vertex}
+and {\sc Another Completely Labeled Facet}; in the case of \anothergale\ we
+will extend the proof to {\bf PPAD} complexity. We will close the section
 with an example of labeling, due to Morris \cite{morris}, for which
-the Lemke-Howson for Gale algorithm presents exponential running time; this
+the Lemke-Howson for Gale Algorithm presents exponential running time; this
 is the labeling that Savani and von Stengel \cite{svs} \cite{uvg} have used
-to build Gale games that are ``hard to solve''.
+to build ``hard to solve'' games.
 
-The second section presents our original result: a polynomial time
-algorithm for \anothergale, therefore proving that {\sc Gale Nash} is in
-{\bf FP}. Unless {\bf PPAD}={\bf P}, this goes
-in the opposite direction of our first conjecture of {\sc PPAD}-completeness
-suggested by the ``hard to solve'' games. Our proof relies on
+The third and last section will presents our original result: a polynomial
+time algorithm for \anothergale, a proof that {\sc Gale Nash} is in
+{\bf FP}. Unless {\bf PPAD = P}, this goes
+in the opposite direction of our first conjecture of {\bf PPAD}-completeness
+suggested by the ``hard to solve'' games by Savani and von
+Stengel \cite{svs}. Our proof relies on
 a theorem by Edmonds \cite{edm} that gives a polyomial-time algorithm
-to find a perfect matching of a graph, or deciding that it is not possible
+to find a perfect matching of a graph or deciding that it is not possible
 to find one. The key of the proof is the construction of a graph from any
 string of labels; the perfect matchings of the graph will correspond to
 the completely labeled Gale strings for the labels. We will first prove
