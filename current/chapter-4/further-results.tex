@@ -6,142 +6,125 @@ particular, the issue of the sign of the equilibrium is left open.
 Following the construction in Proposition \ref{lhg-works-ppad-thm},
 we can reduce
 the problem ``given a Nash equilibrium of a Gale game, find another one
-of opposite sign'' to the problem {\sc Opposite Sign Gale} of
+of opposite sign'' to the {\bf PPADS} problem {\sc Opposite Sign Gale} of
+\linebreak[4]
 Table \ref{opposite-gale}.
-Analogously, it is straightforward to see that these problems
-belongs to the class {\bf PPADS}, see Daskalakis, Goldberg
-and Papadimitriou \cite{dgp}; this is the equivalent of {\bf PPAD} where
-the solution is restricted to sinks of the {\sc End Of The Line} graph.
 
 \begin{problem}
 {Opposite Sign Gale}
-{A labeling $l:[n]\to [d]$ and a completely labeled Gale
-string $s_0\in G(d,n)$.}
-{A completely labeled Gale string $s\in G(d,n)$ such
-that $\sign(s)=-\sign(s_0)$.}
+{A labeling $l:[n]\to [d]$ and a completely labeled Gale string
+\linebreak[4]
+$s_0\in G(d,n)$.}
+{A completely labeled Gale string $s\in G(d,n)$ such that
+\linebreak[4]
+$\sign(s)=-\sign(s_0)$.}
 \label{opposite-gale}
 \end{problem}
 
-A first polynomial-time algorithm for {\sc Opposite Sign Gale} of
-Table \ref{opposite-gale} was given by Merschen \cite{jm} in the case of
-labelings for which the Gale graph of
-Theorem \ref{gale-thm} is planar; a general result has since been given by
-V\'{e}gh and von Stengel \cite{vvs}. The latter relies on the definition of
-a general framework to deal with pivoting algorithms, called
-{\em Complementary Pivoting with Direction Algorithm}, that is defined not
-only for perfect matchings of a Gale graph, but for the
-wider class of room partitions of Euler complexes.
+A polynomial-time algorithm for {\sc Opposite Sign Gale} where the
+labeling for which the Gale graph $G=(V,E)$ in (\ref{edges-graph})
+is planar has been given by Merschen \cite{jm}; the result for any labeling
+has been given by V\'{e}gh and von Stengel \cite{vvs}.
+The latter relies on the definition of a general framework to deal with
+pivoting algorithms, called
+{\em Complementary Pivoting with Direction Algorithm}; this is defined not
+only for perfect matchings of a Gale graph, but for the wider class of
+room partitions of Euler complexes, first introduced by
+Edmonds \cite{edm-oiks} and Edmonds and Sanit\`{a} \cite{edm-sanita}.
 
-A {\em $d$-dimensional Euler complex} $(V,M)$
-(in the following: {\em $d$-oik})
-over a finite set of nodes $V$,
-as first introduced by
-Edmonds \cite{edm-oiks} and Edmonds and Sanit\`{a} \cite{edmonds-sanita},
-is a collection of
-sets $M=\{ R\ \mid\ R\subset V,\ |R|=d \}$, called {\em rooms},
-such that any set of $d-1$ nodes,
-called {\em wall}, is contained in an even number of rooms;
-a {\em room partitioning} of $(V,M)$ is $P\subset M$ such that
-each vertex of $V$ is in exactly one room in $P$.
-Edmonds and Sanit\'{a} used an ``exchange algorithm'' and a parity argument
-to show that there is an even number of room partitions of $(V,M)$.
-This can be applied to a family of two oiks (of possibly different dimension)
-corresponding to the best response polytopes of two players in a bimatrix
-game, with the room partitions corresponding to equilibria; the Lemke-Howson
-Algorithm is then a special case of the exchange algorithm. Another special
-case is an Euler graph: the edges are rooms, and perfect matchings are then
-room partitions.
-The connections between oiks and the topic of our study could appear
-trivial; but the issue of giving a sign to room partitions, unfortunately,
-is much more complex than that.
+A {\em $d$-dimensional Euler complex} (in the following: {\em $d$-oik})
+is $\mathcal{C}=(V,M)$, where $V$ is a finite set of {\em nodes} and
+$M=\{ \{ R_i \} \ \mid\ R_i\subseteq V,\ |R_i|=d \}$ is a family of
+of subsets of $V$, called {\em rooms}, such that any set of $d-1$ nodes
+is contained in exactly $0$ or in exactly $2$ rooms; the latter subsets
+are called {\em walls}.
+A {\em room partitioning} of $(V,M)$ is $R\in M$ such that each
+node $v\in V$ is in exactly one room $R_i\in R$.
+Edmonds and Sanit\`{a} used an ``Exchange Algorithm'' and a parity argument
+analogous to Proposition \ref{lh-works-ppa-thm}
+to show that there is an even number of room partitions of an oik.
+In the case where the oik corresponds to the best response polytopes of
+a bimatrix game and
+the room partitions correspond to the completely labeled vertices,
+the Lemke-Howson Algorithm is a special case of the Exchange Algorithm.
+Another example of oik is an Euler graph, when taking the vertices as nodes
+and the perfect matchings as room partitions.
+
+The Gale graph is an Euler graph, since it has been defined through an
+Euler tour of the vertices: this points towards a further connection
+between oiks and the topic of our study could.
+This connection is less trivial than it appears, as it can be seen as
+soon as we look into the issue of giving a sign to room partitions and, by
+extension, to Nash equilibria.
 
 \clearpage
 
 \begin{example}
 Consider the octahedron with vertices labeled as in
-Figure \ref{octa-poly-facets-fig}; the endpoints of the Lemke paths
-in the Dual Lemke-Howson Algorithm \ref{lh-dual-alg} when dropping
-different labels are shown in
-Figure \ref{octa-poly-paths-fig}. Notice that this graph is bipartite:
+Figure \ref{octa-poly-fig}, left; the endpoints of the Lemke paths
+in the Dual Lemke-Howson
+\linebreak[5]
+Algorithm (\ref{lh-dual-alg}) when dropping different labels are shown in
+Figure \ref{octa-poly-fig}, right. Notice that this graph is bipartite:
 this corresponds to a parity argument with sign similar to Proposition
 \ref{lhg-works-ppad-thm}.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[height=50ex]{chapter-4/fig/octa-poly-facets-v2.pdf}%
+\includegraphics[height=45ex]{chapter-4/fig/octa-poly-facets-v2.pdf}%
+\hfill
+\includegraphics[width=25ex]{chapter-4/fig/octa-poly-paths-v2-vert.pdf}%
 \hfill\strut
-\caption[A labeled octahedron]
-{A labeled octahedron and its completely labeled facets.}
-\label{octa-poly-facets-fig}
+\caption[The endpoints of the Dual Lemke-Howson Algorithm]
+{Left: A labeled octahedron and its completely labeled facets.\\
+Right: The endpoints of the Lemke paths on the octahedron.}
+\label{octa-poly-fig}
 \end{figure}
-
-\begin{figure}[hp]
-\strut\hfill
-\includegraphics[width=55ex]{chapter-4/fig/octa-poly-paths-v2.pdf}%
-\hfill\strut
-\caption[Endpoints of the Dual Lemke-Howson Algorithm \ref{dlh-alg}]
-{The endpoints of the Lemke paths on the octahedron in
-Figure \ref{octa-poly-facets-fig}.}
-\label{octa-poly-paths-fig}
-\end{figure}
-
-\clearpage
 
 On the other hand, consider the same octahedron from the point of view of
-room partitions, Figure \ref{octa-rp-fig}. The exchange algorithm
-of Edmonds \cite{edm-oiks} from room partition $B$ to room partition $A$
-dropping vertex $v=1$
-is shown in Figure \ref{exchange-rp-fig}. The graph describing its endpoints,
-analogous to Figure \ref{octa-poly-paths-fig} is shown in
-Figure \ref{octa-rp-paths-fig} and it is not bipartite.
-Giving a sign to the room partitions cannot be done simply through
-Edmonds' exchange algorithm.
-
-\begin{figure}[hp]
-\strut\hfill
-\includegraphics[height=50ex]{chapter-4/fig/octa-rp.pdf}%
-\hfill\strut
-\caption[Room partitions of an octahedron]
-{An octahedron and its room partitions.}
-\label{octa-rp-fig}
-\end{figure}
-
-\begin{figure}[hp]
-\strut\hfill
-\strut\hfill
-\includegraphics[width=55ex]{chapter-4/fig/octa-rp-paths.pdf}%
-\hfill\strut
-\caption[Endpoints of the Exchange Algorithm]
-{Endpoints of the Exchange Algorithm on the octahedron in
-Figure \ref{octa-rp-fig}.}
-\label{octa-rp-paths-fig}
-\end{figure}
-
-\clearpage
+room partitions. Figure \ref{exchange-rp-fig} shows the
+Exchange Algorithm of Edmonds and Sanit\`{a} \cite{edm-sanita}
+from room partition $B$ dropping vertex $v=1$.
 
 \begin{figure}[h]
 \strut\hfill
 \begin{center}
-\includegraphics[height=43ex]{chapter-4/fig/octa-exchange-1.pdf}%
+\includegraphics[height=45ex]{chapter-4/fig/octa-exchange-1.pdf}%
 \vspace{10ex}
-\includegraphics[height=43ex]{chapter-4/fig/octa-exchange-2.pdf}%
+\includegraphics[height=45ex]{chapter-4/fig/octa-exchange-2.pdf}%
 \end{center}
 \hfill\strut
 \caption[The Exchange Algorithm]
-{Top: Drop vertex $1$ from room partition $B$. Pivot from room $B_1$ to
-room $A_1$. The new vertex $4$ is duplicate in room $A_1$ and room $B_2$.\\
-Bottom: Drop duplicate vertex $4$. Pivot from the old room $B_2$ to
+{Top: Pivot on vertex $1$ from room $B_1$ to room $A_1$.
+The new vertex $4$ is duplicate in room $A_1$ and room $B_2$.
+Bottom: Pivot on vertex $4$ from the old room $B_2$ to
 room $A_2$, picking up the missing vertex.}
 \label{exchange-rp-fig}
 \end{figure}
 
-\end{example}
-
 \clearpage
 
+The graph describing the endpoints of the Exchange Algorithm,
+analogous to Figure \ref{octa-poly-fig}, is shown in
+Figure \ref{octa-rp-fig} and it is not bipartite.
+Giving a sign to the room partitions cannot be done simply through
+Edmonds' Exchange Algorithm.
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[height=45ex]{chapter-4/fig/octa-rp.pdf}%
+\hfill
+\includegraphics[width=25ex]{chapter-4/fig/octa-rp-paths-vert.pdf}%
+\hfill\strut
+\caption[The endpoints of the Exchange Algorithm]
+{Left: The room partitions of an octahedron.\\
+Right: The endpoints of Exchange Algorithm on the octahedron.}
+\label{octa-rp-fig}
+\end{figure}
+\end{example}
 
 V\'{e}gh and von Stengel proved that the endpoints of the
-Complementary Pivoting with Direction Algorithm have opposite orientation,
+Complementary Pivoting with Direction Algorithm have opposite orientation
 as long as the room partitions are defined on an oriented oik;
 the parity result follows as in the previous ones. Unfortunately, as
 for the Lemke-Howson Algorithm, the
@@ -168,11 +151,14 @@ case of Gale games by our result.
 Another result worth mentioning is found in Merschen \cite{jm}: finding the
 number of equilibria of a Gale game is {\bf \#P}-complete.
 Gilboa and Zemel \cite{gilboa-zemel} have proven that deciding the
-uniqueness of Nash equilibria is a {\bf co-NP}-complete problem;
-a proof from the point of view of completely labeled facets of a
+uniqueness of Nash equilibria is a
+\linebreak[5]
+{\bf co-NP}-complete problem; a proof from the point of view of completely
+\linebreak[5]
+labeled facets of a
 polytope was given by von Stengel \cite{vs-noclf} with the result of
 {\bf NP}-completeness of the problem of finding a completely labeled facet
 in a generic labeled polytope. Given these results, it could be interesting
 to find a polynomial-time algorithm to decide the uniqueness of Nash
 equilibria in Gale games, or to find yet another watershed for the
-complexity of games in the more general framework described above.
+complexity of games in the more general framework.
