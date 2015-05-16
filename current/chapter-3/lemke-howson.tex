@@ -36,8 +36,9 @@ to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
 \strut\hfill
 \includegraphics[width=45ex]{chapter-3/fig-lh/cube-1-pivot.pdf}%
 \hfill\strut
-\caption[Pivoting on the vertices]{%
-A pivot on the vertices of the cube.
+\caption[A pivot on the vertices of the cube]{%
+A pivot on label $k$, dropping vertex $x$ with labels $(l_1,l_2,k)$ and
+picking up vertex $x'$ with labels $(l_1,l_2,h)$.
 }
 \label{pivot-vertex-fig}
 \end{figure}
@@ -46,8 +47,9 @@ A pivot on the vertices of the cube.
 \strut\hfill
 \includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-1-pivot.pdf}%
 \hfill\strut
-\caption[Pivoting on the facets]{%
-A pivot on the facets of the octahedron.
+\caption[A pivot on the facets of the octahedron]{%
+A pivot on label $k$, dropping facet $F$ with labels $(l_1,l_2,k)$ and
+picking up facet $F'$ with labels $(l_1,l_2,h)$.
 }
 \label{pivot-facet-fig}
 \end{figure}
@@ -367,9 +369,12 @@ $s_D=\10\1\10\1$. These correspond to the facets $A$, $B$, $C$ and
 $D$ of $C_4(6)$. Pivoting from $s_A=\1\1\1\100$ dropping label 3 returns
 $s_B=\1\10\1\10$; analogously, pivoting from facet $A$ dropping
 label 3 returns facet $B$.
+
+\clearpage
+
 \begin{figure}[ht]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-3/fig-lh/123432-lh-pivot.pdf}%
+\includegraphics[width=40ex]{chapter-3/fig-lh/123432-lh-pivot.pdf}%
 \hfill
 \small
 \begin{tabular}{c | c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
@@ -390,49 +395,50 @@ in the Dual Lemke-Howson Algorithm.%
 \end{figure}
 \end{example}
 
-\clearpage
+The {\bf PPA} complexity of \anothergale\ follows from an argument
+similar to Proposition \ref{lh-works-ppa-thm}. We will extend the result
+to prove its {\bf PPAD} complexity.
 
-We will now show a construction that we will allow us to extend the
-analogous of Proposition \ref{lh-works-ppa-thm} for the Lemke-Howson for Gale
-Algorithm to prove the {\bf PPAD} complexity of \anothergale.
-A {\em permutation} of the elements of an ordered set $S$ is a sequence
-without repetition of elements of $S$; a {\em transposition} is a permutation
-of exactly two elements of $S$.
-The {\em sign of a permutation} $\sigma$ is
+A {\em permutation} of elements of an ordered set $S$ is a sequence
+without repetition; this gives a rearrangement of the elements of $S$.
+A {\em transposition} is a permutation of exactly two elements.
+The {\em sign of a permutation} is
 $\sign(\sigma)=(-1)^m$, where $m$ is the number of transpositions needed
-to get $\sigma_0=1\ldots n$ from $\sigma$.
+to get the {\em natural order} $\sigma_0=1\ldots n$ from $\sigma$.
 It is immediate to see that any two permutations that differ in only
 one transposition have opposite sign.
-The {\em sign of a completely labeled Gale string} $s\in G(d,n)$ is defined
+We define the {\em sign of a completely labeled Gale string} $s\in G(d,n)$
 as follows: let $l:[n]\to [d]$ be the relative labeling of $G(d,n)$, and
-let $l_0$ be the string of labels $l(i)$ such that $s(i)=1$ and that
+let $l_0$ be the string of labels $l(i)$ such that $s(i)=\1$ and that
 two labels corresponding to a run in $l$ are adjacent in $l_0$. Then we
 define $\sign(s)=\sign(l_0)$.
 Notice that if $l(i)=i$ for $i\in [d]$ then the sign of the completely
-labeled Gale string $1^d 0^{(n-d)}$ is always positive.
+labeled Gale string $\1^d 0^{(n-d)}$ is always positive.
 The {\em sign of an almost completely labeled Gale string} $s\in G(d,n)$ with
 missing label $k$ and duplicate label $h$ is defined on two different strings.
 Let $i_1$ be the index of $h$ reached by the last pivot
 (the ``new'' position of the \1) and let $i_2$ be the index of $h$ such that
-$s(i_2)=1$ before the last pivot (the ``old'' position of the \1).
+$s(i_2)=\1$ before the last pivot (the ``old'' position of
+\linebreak[4]
+the \1).
 Let $l_1$ be the string obtained as $l_0$ substituting $k$ to
 $h$ at index $i_1$, and let $l_2$ be the string obtained as $l_0$
 substituting $k$ to $h$ at index $i_2$. Notice that $\sign(l_1)=-\sign(l_2)$,
 since they can be obtained from each other applying the transposition $(kh)$.
 
 Consider now the steps of the Lemke paths in the Lemke-Howson for Gale
-Algorithm; we assume that $\sign(s_0)=+1$ without loss of generality, since
-the negative case is the same just with opposite signs.
+Algorithm in the case where $\sign(s_0)=+1$;
+the negative case is analogous, with opposite signs.
 If the first pivot returns another completely labeled Gale
 string $s$, this must have negative sign because it has been obtained
 ``jumping'' over an odd number of \1's.
 For the same reason, if the pivoting returns an almost completely labeled
-Gale string, we have that $\sign(l_1)=-1$, therefore $\sign(l_2)=+1$.
+Gale string, we have that $\sign(l_1)=-1$, which implies $\sign(l_2)=+1$.
 The next pivoting step drops the label $h$ from index $i_2$, so again we
-change sign.
-Running the Lemke-Howson for Gale Algorithm will therefore result in the sign
-of the completely labeled Gale strings swinging as in
-Table \ref{lhg-sign-figure}.
+change sign. This shows that
+the Lemke-Howson for Gale Algorithm results in the sign
+of the completely and almost completely labeled Gale strings
+``swinging'' as in Table \ref{lhg-sign-figure}.
 Notice that all this construction can be done in polynomial time;
 orienting all Lemke paths from positive to negative reduces the problem
 \anothergale\ to {\sc End Of The Line}.
@@ -451,22 +457,12 @@ $\xymatrix@C=30mm@R-=5mm@M=3mm{
 \end{table}
 
 \begin{proposition}\label{lhg-works-ppad-thm}
-The Lemke-Howson for Gale Algorithm \ref{lhg-alg} returns a
+The Lemke-Howson for Gale Algorithm (\ref{lhg-alg}) returns a
 solution to the {\bf PPAD} problem \anothergale.
 
 Furthermore, the number of completely labeled Gale strings
 $s\in G(d,n)$, where $d$ is even, is even.
 \end{proposition}
-
-A result similar to Proposition \ref{lhg-works-ppad-thm}, but more general,
-is given in Shapley \cite{shapley}: two Nash equilibria at the ends of a
-Lemke path have opposite {\em index}, which is analogous to the sign but
-defined using determinants on the payoff matrices for the equilibrium
-support; the artificial equilibrium is assigned index $+1$.
-This is used to prove that a nondegenerate game with $n$ Nash equilibria
-with index $+1$ has $n+1$ Nash equilibria with index $-1$.
-
-\newpage
 
 \begin{example}
 Let $l_s=123432$; consider the Lemke path from the completely labeled
@@ -486,10 +482,22 @@ in the same run.
 \end{figure}
 \end{example}
 
+A generalization of Proposition \ref{lhg-works-ppad-thm}
+is given in Shapley \cite{shapley}: two Nash equilibria at the ends of a
+Lemke path have opposite {\em index}, a concept analogous to the sign but
+defined using determinants on the payoff matrices for the equilibrium
+support.
+This is used to prove that a nondegenerate game with $n$ Nash equilibria
+with index $+1$ has $n+1$ Nash equilibria with index $-1$.
+
+\clearpage
+
 An example of labeling $l:[2d]\to [d]$ where the length of the
-Lemke paths on the cyclic polytope $C_d(2d)$, therefore on $G(d,2d)$,
-grows exponentially in $d$, regardless of the label that is dropped,
-is given by Morris \cite{morris}. This labeling is given for $d$ both
+Lemke paths on the cyclic polytope $C_d(2d)$ for the Lemke-Howson
+Algorithm (\ref{lh-alg}), therefore on $G(d,2d)$ for the Lemke-Howson for
+Gale Algorithm (\ref{lhg-alg}),
+grow exponentially in $d$ regardless of the label that is dropped
+was given by Morris \cite{morris}. This labeling is given for $d$ both
 even and odd as follows:
 \begin{eqnarray*}
 l(k)=k          & \quad\quad\text{for }k\in [d];    \\
@@ -498,20 +506,29 @@ l(d+k)=d-k      & \quad\quad\text{for }2\leq k< d,\ k\text{ even };   \\
 l(d+k)=d-k+2    & \quad\quad\text{for }2\leq k\leq d,\ k\text{ odd }; \\
 l(2d)=1         & \quad\quad\text{for }k\text{ even}.
 \end{eqnarray*}
-Avoiding repetitions and restricting to the case of $d$ even, as we assumed,
+Avoiding repetitions and restricting to the case of $d$ even
 the Morris' labeling is simplified to $l:[2d-2]\to [d]$ as follows:
 \begin{eqnarray*}
 l(k)=k          & \quad\quad\text{for }k\in [d];    \\
-l(d+k)=d-k+1    & \quad\quad\text{for }k\in [d],\ k\text{ even };   \\
-l(d+k)=d-k-1    & \quad\quad\text{for }k\in [d],\ k\text{ odd }.
+l(d+k)=d-k+1    & \quad\quad\text{for }k\in [d],\ k\text{ even};   \\
+l(d+k)=d-k-1    & \quad\quad\text{for }k\in [d],\ k\text{ odd}.
 \end{eqnarray*}
+
+Savani and von Stengel \cite{svs} \cite{uvg} relied on Morris' example to
+build different ``hard to solve'' games; these results give a strong
+motivation to study the compelxity of \anothergale.
+Our main result, in the next section, will give a
+{\bf FP} algorithm that circumvents the problem of any exponential running
+time of the Lemke-Howson for Gale Algorithm.
+
+\clearpage
 
 \begin{example}
 \label{morris-ex}
 Consider the labeling $l=1234564523$ for $G(6,10)$. The only two completely
 labeled Gale string  are $s=\1\1\1\1\1\100$ and $s'=\1 00000\1\1\1\1\1$.
-Figure \ref{morris-6-fig} shows the Lemke path for label 1.
-\begin{figure}[hbt]
+Table \ref{morris-6-fig} shows the Lemke path for label 1.
+\begin{table}[hbt]
 \begin{center}
 \large
 \begin{tabular}{c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
@@ -532,14 +549,8 @@ Figure \ref{morris-6-fig} shows the Lemke path for label 1.
 \end{tabular}
 \normalsize
 \end{center}
-\caption[The Morris path for $C(6,10)$]{The Morris path for $C(6,10)$.}
+\caption[A Lemke path for the Morris labeling]
+{The Lemke path for the Morris labeling on $G(4,6)$ dropping label 1.}
 \label{morris-6-fig}
-\end{figure}
+\end{table}
 \end{example}
-
-Savani and von Stengel \cite{svs} \cite{uvg} relied on Morris' example to
-build different ``hard to solve'' games; these results give a strong
-motivation to study the compelxity of \anothergale.
-Our main result, in the next section, will give a
-{\bf FP} algorithm that circumvents the problem of any exponential running
-time of the Lemke-Howson for Gale Algorithm.
