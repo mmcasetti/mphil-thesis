@@ -12,7 +12,7 @@ Computation in Games}
 \linespread{1.5}
 \setlength{\textwidth}{13cm}
 \setlength{\oddsidemargin}{2.5cm}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 
 %% PACKAGES
 
@@ -28,6 +28,13 @@ Computation in Games}
 \usepackage[all]{xy}
 \usepackage{xcolor,graphicx}
 \usepackage[font=small,format=hang,justification=justified,labelfont=bf,labelsep=quad]{caption}
+
+%% allow lots of figures on one page and 10 percent text
+\renewcommand{\textfraction}{.1}
+%% avoid single text lines at page top or bottom
+\clubpenalty=10000
+\widowpenalty=10000
+\predisplaypenalty=1350
 
 
 %% hyperref

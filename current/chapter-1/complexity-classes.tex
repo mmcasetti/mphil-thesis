@@ -1,25 +1,33 @@
-\section{Problems and Complexity}
+\section{Computational Problems and Complexity}
 
 A {\em deterministic Turing machine} $\mathcal{M}$ (we will imply the
 ``deterministic'' from now on) is a representation of an
 {\em algorithm} that takes an {\em input}, runs a {\em program}
-manipulating the input, and either does not come to a
-{\em halting state} $h$ or it returns an {\em output}; the latter can
-be the {\em accepting state} {\sc Yes} (the Turing machine {\em accepts} the
-input), the {\em rejecting state} {\sc No} (the Turing machine {\em rejects}
-the input), or a string $\mathcal{M}(x)$. Formally,
-$\mathcal{M}=(K,\Sigma,\delta,s)$, where the
+% all this was too garbled and you have to mention the "tape"
+manipulating the input on a ``tape'', and returns an {\em
+output} when it comes to a {\em halting state} $h$.
+The halting state can be the {\em accepting state} with
+output {\sc Yes} (the Turing machine {\em accepts} the
+input), the {\em rejecting state} with output {\sc No} (the
+Turing machine {\em rejects} the input). We denote the
+output by $\mathcal{M}(x)$, which (if we are not just
+dealing with a decision problem, see below) may be a string of symbols.  
+Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$, where the
 finite set $K$ is the set of {\em states}; $\Sigma$ is a finite set of
 {\em symbols} (the {\em alphabet} of $\mathcal{M}$) such that
 $\Sigma\cap K=\varnothing$ and $\Sigma$ always contains the symbols
-$\sqcup$ ({\em blank}) and $\rhd$ ({\em first symbol}). The
-{\em transition function} $\delta$ is
+$\sqcup$ ({\em blank}) and $\rhd$ ({\em first symbol}).
+% ... and omitted crucial details
+The ``internal operation'' of the Turing machine is defined via
+transitions on states and ``tape operations'' to write
+symbols on a tape (for details see Papadimitriou
+\cite{papad-cc}); it employs the {\em transition function}
 \[
 \delta:K\times \Sigma\longrightarrow (K\cup\{ h,\ \text{{\sc Yes}},\ \text{{\sc No}} \})%
-\times \Sigma \times \{ \leftarrow,\rightarrow,- \}.
+\times \Sigma \times \{ \leftarrow,\rightarrow,- \}
 \]
 where $\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$ correspond to
-the {\em cursor directions} ``left,'' ``right'' and ``stay.''
+the {\em cursor directions} for the tape ``left,'' ``right'' and ``stay.''
 
 A {\em language} is a set of {\em strings} of symbols
 $L\subseteq(\Sigma\setminus\{ \sqcup \})^\ast$; a {\em class} is a
@@ -28,8 +36,9 @@ set of languages. A Turing machine $\mathcal{M}$
 either $\mathcal{M}(x)=\text{{\sc Yes}}$ if $x\in L$ or
 $\mathcal{M}(x)=\text{{\sc No}}$ if $x\notin L$. If for every
 $x\in (\Sigma\setminus\{ \sqcup \})^\ast$ either
-$\mathcal{M}(x)=\text{{\sc Yes}}$, if and only if $x\in L$, or
-$\mathcal{M}(x)$ does not halt, if and only if $x\notin L$, the Turing
+$\mathcal{M}(x)=\text{{\sc Yes}}$ if and only if $x\in L$, or
+$\mathcal{M}(x))=\text{{\sc No}}$ or $\mathcal M$
+does not halt if and only if $x\notin L$, the Turing
 machine $\mathcal{M}$ {\em accepts} $L$.
 Finally, $\mathcal{M}$ {\em computes} a function
 $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$ if
@@ -37,15 +46,15 @@ $\mathcal{M}(x)=f(x)$ for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
 
 An {\em instance} is the specific input of a problem.
 A problem $P$ that outputs either {\sc Yes} or {\sc No} is a
-{\em decision problem}; its {\em complement} is the problem $\overline{P}$
+{\em decision problem}. Its {\em complement} is the problem $\overline{P}$
 that outputs ``{\sc No}'' for each instance of $P$ that outputs
-``{\sc Yes}'', and vice versa;
-a {\em function problem} outputs a string more generic than {\sc Yes} or
-{\sc No}
+``{\sc Yes}'', and vice versa.
+A {\em function problem} outputs a string more general than
+{\sc Yes} or {\sc No}.
 An instance $x$ of a {\em search problem} either returns a string $y$
 that satisfies a given relation $R(x,y)$ or it
-rejects the input if it's not possible to find any such string;
-if $y$ is guaranteed to exist, the problem is a {\em total function problem}.
+rejects the input if it is not possible to find any such string.
+If $y$ is guaranteed to exist, the problem is a {\em total function problem}.
 By Theorem \ref{nash-thm}, the problem $n$-Nash of Table \ref{n-nash} is a
 total function problem.
 
@@ -58,30 +67,31 @@ total function problem.
 
 Let $P_1$ be a problem and let $x$ be an instance of $P_1$ that is encoded
 in $|x|$ bits. $P_1$ {\em reduces to the problem $P_2$ in polynomial time}
-if there exists a function $f: \{0,1\}^\ast \to \{0,1\}^\ast$ and a
-Turing machine $\mathcal{M}$ such that for all $x\in\{0,1\}^\ast$
+if there exists a function $f: \{0,1\}^\ast \to \{0,1\}^\ast$, a 
+Turing machine $\mathcal{M}$, and a polynomial $p$
+such that for all $x\in\{0,1\}^\ast$
 \begin{enumerate}
 \item $x\in P_1\quad\iff\quad f(x)\in P_2$;
 \item $\mathcal{M}$ computes $f(x)$;
-\item $\mathcal{M}$ stops after $p(|x|)$ steps, where $p$ is a polynomial.
+\item $\mathcal{M}$ stops after $p(|x|)$ steps.
 \end{enumerate}
 
 For any class $\mathrm{C}$ of decision problems, the class of all complements
 of the problems in $\mathrm{C}$ is the {\em complement class}
 $\mathrm{co-C}$. A problem $P$ is {\em hard} for a class $\mathrm{C}$
 if every problem in $\mathrm{C}$ is polynomial-time reducible to $P$; that is,
-if $P$ is hard to solve at least as every problem in $\mathrm{C}$. A
-{\em complete} for the class $\mathrm{C}$ is a $\mathrm{C}-hard$ problem
+if $P$ is at least as hard to solve as every problem in $\mathrm{C}$. A
+{\em complete} problem for the class $\mathrm{C}$ is a $\mathrm{C}-hard$ problem
 that is also in $\mathrm{C}$.
 Intuitively, if $P_1$ is polynomial-time reducible to $P_2$, it takes
 polynomial time to ``translate'' $P_1$ to $P_2$, and then to
 ``translate back'' a solution of $P_2$ as a solution of $P_1$.
-This is particularly useful if $P_2$ is hard; then
-the problem $P_1$ is at least as ``difficult''; if $P_2$ is also complete,
+This is particularly useful if $P_2$ is hard. Then
+the problem $P_1$ is at least as ``difficult''. If $P_2$ is also complete,
 it can be used as a test of belonging to its class.
 
 The complexity class $\mathrm{\mathbf{P}}$ contains all the
-{\em polynomially decidable problems}; that is, all problems $P$ such that
+{\em polynomially decidable problems}, that is, all problems $P$ such that
 there exists a Turing machine $\mathcal{M}$ that outputs either {\sc Yes} or
 {\sc No}  for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
 where $p$ is a polynomial.
@@ -103,10 +113,13 @@ a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
 indeed, a correct answer to the question posed by the problem.
 The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
-the number of possible certificates for a problem in $\mathrm{\mathbf{NP}}$.
-Finally, the class {\bf PSPACE} is the set of decision problem that are
-solved by a Turing machine requiring a polynomial amount of space of
-the input size $n$. The relation
+the number of possible solutions for a problem in $\mathrm{\mathbf{NP}}$.
+% there may be many different certificates for the same
+% solution; \#P is for counting the solutions
+Finally, the class {\bf PSPACE} is the set of decision
+problems that are solved by a Turing machine requiring a
+polynomial amount of tape space in the input size $n$.
+The relation
 $\mathbf{P}\subseteq \mathbf{NP}\subseteq \mathbf{PSPACE}$ holds, with
-strict inclusions being an open problem; it is also still unknown if
+strict inclusions being an open problem. It is also still unknown if
 \mbox{{\bf NP = co-NP}}.
