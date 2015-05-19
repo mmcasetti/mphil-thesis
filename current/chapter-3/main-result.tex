@@ -90,6 +90,9 @@ polynomial time to find a solution of an instance of \gale\
 or to decide that no such solution exists.
 \end{proof}
 
+It is interesting to notice that the graph $G=(V,E)$ is an Euler graph,
+since its edges have been defined following an Euler tour starting in $l(1)$.
+
 \begin{algorithm}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
@@ -220,20 +223,31 @@ A Gale string $s\in G(d,n)$, completely labeled by $l$, such that
 $s\neq s_0$.
 }
 \BlankLine
-Set $G=(V,E)$, with $V=[d]$ and $E=\varnothing$ \\
+Set $G=(V,E)$ as in Algorithm \ref{gale-alg} \\
 Set $M_0=\varnothing$ \\
-\For{ $i\in [n-1]$ }
+Set $i_0$ as the first $i$ such that $s(i)=1$ after a run of $0$'s \\
+\For{ $i\in [n-1]$, $i\geq i_0$ }
     {
-    $E=E\cup\{ (l(i),l(i+1)) \}$ \\
     \If{ $s_0(i)=s_0(i+1)=1$ }
         {
         $M_0=M_0\cup\{ (l(i),l(i+1)) \}$
         }
     }
-$E=E\cup\{ (l(n),l(1)) \}$ \\
-\If{ $s_0(n)=s_0(1)=1$ and $(s_0(1),s_0(2))\notin M_0$}
+\If{ $(l(n-1),l(n))\notin M_0$ and  $s_0(n)=s_0(1)=1$ }
     {
-    $M_0=M_0\cup\{ (l(n),l(1)) \}$
+    $M_0=M_0\cup\{ (l(n),l(1)) \}$ \\
+    Set $i=1$
+    }
+\Else
+    {
+    Set $i=0$
+    }
+\For{ $i\in [i_0 - 1]$ }
+    {
+    \If{ $s_0(i) = s_0(i+1)=1$ }
+        {
+        $M_0=M_0\cup\{ (l(i),l(i+1)) \}$
+        }
     }
 Set $s=0^n$ \\
 \For{ $m\in M_0$ }
@@ -257,7 +271,7 @@ Set $s=0^n$ \\
 Applying Theorem \ref{galenash-to-another-gale} to
 Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
 is in {\bf FP}, under the assumption that the construction
-of the game from a cyclic polytope is known.
+of the game from a cyclic polytope is given.
 
 \begin{theorem}
 \label{main-thm}
