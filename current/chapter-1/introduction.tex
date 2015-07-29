@@ -1,13 +1,13 @@
 This thesis centers on a problem in the field of
 {\em algorithmic game theory}, which concerns the study of
 strategic interactions from the point of view of computer science.
-Our result consists in an algorithm to find a Nash equilibrium in
+Our result is an algorithm to find a Nash equilibrium in
 polynomial time for games in a special class, called Gale games.
 
 Gale games can be represented through
 a combinatorial structure called Gale strings (Gale \cite{gale}),
 using a construction (Savani and von Stengel \cite{svs}) on
-labeled polytopes derived by the game itself (Lemke and Howson \cite{lh},
+labeled polytopes derived from the game itself (Lemke and Howson \cite{lh},
 Shapley \cite{shapley}). This connection was used to
 construct games for which
 the classic Lemke-Howson Algorithm (Lemke and Howson \cite{lh}) takes
@@ -19,7 +19,7 @@ class {\bf PPAD} (Polynomial Parity Argument, Directed version;
 Papadimitriou \cite{ppad}). Its {\bf PPAD}-completeness has
 been proven (Daskalakis, Goldberg
 and Papadimitriou \cite{dgp}, Chen and Deng \cite{cd}), but the result
-required the use of approximated $\epsilon$-Nash equilibria.
+required the use of approximate $\epsilon$-Nash equilibria.
 We conjectured that the combinatorial representation of Gale games could
 be exploited to give an alternative and purely discrete proof of
 {\bf PPAD}-completeness. Eventually, our
@@ -31,16 +31,17 @@ The remainder of this chapter will cover some basic definitions and notation
 that will be used throughout the thesis, concerning polytopes
 (see Ziegler~\cite{ziegler} for details), basic game theory (see Osborne and
 Rubinstein \cite{gth})
-and computational complexity (see Papadimitriou \cite{papad-cc}). Chapter 2 will deal with the geometric and
-combinatorial constructions leading to the definition of Gale games: in the
-first section we will see Nash equilibria of 2-player games as facets or
-vertices of polytopes built from the game itself. In the second section
-we will define Gale games, for which these polytopes belong to a special
-class, and we will translate the framework of the previous section to
-the point of view of Gale strings.
+and computational complexity (see Papadimitriou \cite{papad-cc}). Chapter 2
+will deal with the geometric and combinatorial constructions leading to the
+definition of Gale games: in the first section we will see Nash equilibria
+of 2-player games as facets or vertices of polytopes built from the game
+itself. In the second section we will define Gale games, for which these
+polytopes belong to a special class, and we will translate the framework of
+the previous section to the point of view of Gale strings.
 In Chapter 3 we will tackle the computational complexity of the
 issues arising from the previous chapter: after an introduction to the
-classes related to proofs by parity argument, we will present different
-versions of the Lemke-Howson algorithm. Finally, in the last section, we
-will present our original result, solving Gale games in polynomial time.
-A last chapter will relate further results in the field and open problems.
+complexity classes related to proofs by parity argument, we will present
+different versions of the Lemke-Howson algorithm. Finally, in the last
+section, we will present our original result, solving Gale games in
+polynomial time. A last chapter will relate further results in the field and
+open problems.
