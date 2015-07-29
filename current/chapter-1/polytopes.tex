@@ -29,8 +29,8 @@ its convex combinations. We denote it as $\conv(Z)$, so
 \sum_i \lambda_i=1 \}~.
 \]
 A set of points $Z$ is {\em convex} if $Z=\conv(Z)$. It has
-{\em dimension} $d$ if it has exactly $d + 1$ affinely independent points.
-A convex set of $d+1$ points of dimension
+{\em dimension} $d$ if it contains exactly $d + 1$ affinely independent
+points. The convex hull of $d+1$ points of dimension
 $d$ is called a {\em $d$-simplex}. The {\em standard $d$-simplex} is
 $\Delta_d=\conv\{ e_i\ \mid\ i\in[d+1] \}$.
 
@@ -38,8 +38,8 @@ A {\em polytope} is the convex hull of a finite set of points, not
 necessarily affinely independent.
 Its {\em dimension} is its dimension as a convex set.
 A {\em polyhedron} is the intersection of finitely many closed halfspaces
-$\{ x\in \reals^d\ \mid\ a\T x\leq a_0\}$. It can be shown that a bounded polyhedron
-is a polytope.
+$\{ x\in \reals^d\ \mid\ a\T x\leq a_0\}$. It can be shown that a bounded
+polyhedron is a polytope.
 A {\em vertex} of a $d$-dimensional polytope $P=\conv(Z)$ is a
 point $z\in Z$ that is not the convex combination of other
 points in $P$.
@@ -47,8 +47,8 @@ points in $P$.
 % such that $\conv(Z\setminus \{ z \})\neq P$;
 An {\em edge} of P is a 1-dimensional line segment that has two vertices
 as endpoints.
-A {\em facet} of $P$ is a set of dimension $d-1$ that is the convex hull of a set of vertices
-that lie on a hyperplane of the form
+A {\em facet} of $P$ is a set of dimension $d-1$ that is the convex hull of
+a set of vertices that lie on a hyperplane of the form
 $\{ x\in \reals^d\ \mid\ a\T x=a_0\}$ so that $a\T u<a_0$ for all other
 vertices $u$ of $P$.
 A $d$-dimensional polytope $P$ is {\em simplicial} if it is the convex hull
@@ -56,7 +56,7 @@ of a set of at least $d+1$ points $v\in \reals^d$ such that no
 $d+1$ of them are on a common hyperplane. This is equivalent to requiring
 that every facet of $P$ is a $d$-simplex. A $d$-dimensional polytope
 $P$ is {\em simple}
-if every point of $P$ lies on at most than $d$ facets. Notice that the points
+if every point of $P$ lies on at most $d$ facets. Notice that the points
 lying on exactly $d$ facets are exactly the vertices.
 Consider a polytope $P$ which has $\0$ in its
 interior and is given by $n$ inequalities with normal
@@ -68,7 +68,7 @@ Then the {\em polar} of the polytope $P$ is denoted by $P^\Delta$, where
 \[
 P^\Delta = \conv\{ c_i\ \mid\ i\in [n]~\}.
 \]
-If $P$ is a polytope and contains the origin $\0$, the 
+If $P$ is a polytope and contains the origin $\0$, the
 polar of its polar is $P$ itself, $P^{\Delta\Delta}=P$.
 Furthermore, if $P$ is simplicial then $P^\Delta$
 is simple, and vice versa.
