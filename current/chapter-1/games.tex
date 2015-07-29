@@ -3,7 +3,7 @@
 The idea of {\em game} as model of strategic interaction was first
 introduced by von Neumann \cite{vn28}. A {\em finite normal form game} is
 $\Gamma=(P,S,u)$ where both $P$ and $S$ are finite.
-Here $P$ is the set of {\em players}, and $S=\times_{p\in P}$ is
+Here $P$ is the set of {\em players}, and $S=\times_{p\in P} S_p$ is
 the set of {\em pure strategy profiles}, where $S_p$ is the set of
 {\em pure strategies} of player~$p$.
 The aim of each player $p\in P$ is to maximize their
@@ -24,8 +24,8 @@ We extend the payoff functions to $u^p:\Delta\to\reals$ linearly.
 A {\em Nash equilibrium} of a game is a strategy profile in which each
 player cannot improve their expected payoff by unilaterally changing their
 strategy; such a strategy is called a {\em best response}.
-Note that applying an affine transformation to all the payoffs does not
-change the Nash equilibria of the game.
+Notice that applying a positive affine transformation to all the payoffs
+does not change the Nash equilibria of the game.
 The following ``best-response condition'' is useful and easy
 to show (e.g., Nash \cite{nash}).
 
@@ -87,7 +87,7 @@ equilibrium both players will betray.
 \end{table}
 
 Table~\ref{coordination-game} shows a {\em coordination} game.
-Both players 
+Both players
 % match the Table description
 drive on either a mountain or a valley road. They lose if
 they drive on the same road and win if they avoid each
