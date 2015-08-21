@@ -8,10 +8,15 @@ manipulating the input on a ``tape'', and returns an {\em
 output} when it comes to a {\em halting state} $h$.
 The halting state can be the {\em accepting state} with
 output {\sc Yes} (the Turing machine {\em accepts} the
-input), the {\em rejecting state} with output {\sc No} (the
-Turing machine {\em rejects} the input). We denote the
+input), or the {\em rejecting state} with output {\sc No} (the
+Turing machine {\em rejects} the input).
+
+% mention decision vs function here: function has additional output tape,
+% then it's clearer later with all the M(x)
+
+We denote the
 output by $\mathcal{M}(x)$, which (if we are not just
-dealing with a decision problem, see below) may be a string of symbols.  
+dealing with a decision problem, see below) may be a string of symbols.
 Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$, where the
 finite set $K$ is the set of {\em states}; $\Sigma$ is a finite set of
 {\em symbols} (the {\em alphabet} of $\mathcal{M}$) such that
@@ -37,12 +42,15 @@ either $\mathcal{M}(x)=\text{{\sc Yes}}$ if $x\in L$ or
 $\mathcal{M}(x)=\text{{\sc No}}$ if $x\notin L$. If for every
 $x\in (\Sigma\setminus\{ \sqcup \})^\ast$ either
 $\mathcal{M}(x)=\text{{\sc Yes}}$ if and only if $x\in L$, or
-$\mathcal{M}(x))=\text{{\sc No}}$ or $\mathcal M$
+$\mathcal{M}(x)=\text{{\sc No}}$ or $\mathcal M$
 does not halt if and only if $x\notin L$, the Turing
 machine $\mathcal{M}$ {\em accepts} $L$.
 Finally, $\mathcal{M}$ {\em computes} a function
 $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$ if
 $\mathcal{M}(x)=f(x)$ for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
+
+% rewrite the last pararaph,
+%% especially the sentence about when a TM accepts a language
 
 An {\em instance} is the specific input of a problem.
 A problem $P$ that outputs either {\sc Yes} or {\sc No} is a
@@ -67,7 +75,7 @@ total function problem.
 
 Let $P_1$ be a problem and let $x$ be an instance of $P_1$ that is encoded
 in $|x|$ bits. $P_1$ {\em reduces to the problem $P_2$ in polynomial time}
-if there exists a function $f: \{0,1\}^\ast \to \{0,1\}^\ast$, a 
+if there exists a function $f: \{0,1\}^\ast \to \{0,1\}^\ast$, a
 Turing machine $\mathcal{M}$, and a polynomial $p$
 such that for all $x\in\{0,1\}^\ast$
 \begin{enumerate}
@@ -121,5 +129,12 @@ problems that are solved by a Turing machine requiring a
 polynomial amount of tape space in the input size $n$.
 The relation
 $\mathbf{P}\subseteq \mathbf{NP}\subseteq \mathbf{PSPACE}$ holds, with
-strict inclusions being an open problem. It is also still unknown if
+strict inclusions being an open problem.
+
+% importance P ?= NP and NP ?= co-NP
+% convetional view that these equalities do not hold
+% mention here the Megiddo-Papadmitriou result:
+%% if there is a TFNP-hard problem, then NP = co-NP (check!)
+
+It is also still unknown if
 \mbox{{\bf NP = co-NP}}.
