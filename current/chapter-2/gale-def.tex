@@ -4,8 +4,9 @@ We now apply the results of the previous section to unit vector games
 for which the best response polytope is the dual of a cyclic polytope.
 These polytopes are characterized by their representation as
 a combinatorial structure, called Gale strings.
-We will first give the definition of cyclic polytope,
-then of Gale string, then the theorem by Gale \cite{gale} that shows the
+We will first define cyclic polytopes,
+then Gale string, then we will give the theorem by Gale \cite{gale}
+that shows the
 equivalence of the two representations.
 
 The {\em moment curve} in dimension $d$ is defined as
@@ -102,7 +103,7 @@ Gale~\cite{gale}.
 \begin{theorem}{\rm (Gale \cite{gale}.)}
 \label{origgale-thm}
 For any $d,n\in\naturals$, where $n>d$,
-a set $F$ is a facet of $G_d(n)$ if and only if 
+a set $F$ is a facet of $C_d(n)$ if and only if
 \begin{equation}
 \label{facet-gs}
 F = \conv\{ \mu(t_j)\,\mid\, s(j)=1 \quad\text{ for }s\in G(d,n) \}.
@@ -277,137 +278,3 @@ does not define a facet of $C_4(6)$.
 \label{notfacet-even-hyper-fig}
 \end{figure}
 \end{example}
-
-\clearpage
-
-We now apply Theorem \ref{origgale-thm} to the study of bimatrix games.
-\linebreak[4]
-Proposition \ref{nash-to-acl} states that 2-{\sc Nash} can be reduced to
-{\sc Another Completely Labeled Facet}.
-If the polytope $P^\Delta$ in Theorem \ref{unit-vector-dual-thm} is cyclic and we
-define a labeling for Gale strings such that a completely labeled Gale
-string corresponds to a completely labeled facet of~$P^\Delta$, then
-we can study unit vector games and their dual cyclic best
-response polytope as Gale strings.
-We say that $s\in G(d,n)$ is a {\em completely labeled Gale string}
-for some labeling function $l_s:[n]\to[d]$ if
-$\{ l_s(i)\,\mid\,s(i)=\1\text{ for }i\in [n] \}=[d]$.
-Since $s\in G(d,n)$ has exacty $d$ bits equal to \1, this means that for
-each $j\in [d]$ there is exactly one
-$i\in [n]$ such that $s(i)=\1$ and $l_s(i)=j$.
-It may not always be possible to find a completely labeled Gale string.
-
-\begin{example}
-\label{no-clgs}
-For $l_s = 121314$, there are no completely labeled Gale strings.
-The labels $l_s(i)=2,3,4$ appear only once in $l_s$, so we must have
-$s(2)=s(4)=s(6)=1$. We also must have $l_s(i)=1$ for exactly one $i=1,3,5$.
-The candidate strings are then $s=\1\10\10\1$, $s'=0\1\1\10\1$,
-$s''=0\10\1\1\1$, but none of these satisfies the Gale evenness condition.
-\end{example}
-
-A {\em Gale game} is a unit vector game $(U,B)$ where
-% U is a matrix : not commas
-$U=[e_{l(1)}\cdots e_{l(d)}]$ for some labeling $l:[n]\to [d]$ and
-for which the dual of the best response polytope is a cyclic polytope
-$P^\Delta=\conv\{ e_1,\ldots,e_d,c_1,\ldots,c_n \}$. Theorem
-\ref{unit-vector-dual-thm} gives the labeling (\ref{vert-labeling-unitv})
-for the $d+n$ vertices of $P^\Delta$ as
-\[
-\arraycolsep.2em
-\begin{array}{rcll}
-l_v(-e_i)&=&i\quad & \text{ for }i\in [d],\\
-l_v(c_j)&=&l(j)\quad & \text{ for }j\in [n].
-\end{array}
-\]
-We define the labeling $l_s:[d+n]\to [d]$ of $G(d,n)$ as
-\begin{equation}
-\label{gs-labeling-unitv}
-\arraycolsep.2em
-\begin{array}{rcll}
-l_s(i)&=&i\quad & \text{ for }i\in [d],\\
-l_s(d+j)&=&l(j)\quad & \text{ for }j\in [n].
-\end{array}
-\end{equation}
-Then the Gale strings $s\in G(d,d+n)$ that are completely labeled by $l_s$
-correspond exactly to facets of $P^\Delta$ that are completely labeled by $l_v$,
-with the
-\linebreak[5]
-facet $F_0$ corresponding to the ``trivial'' completely labeled
-string $\1^d 0^n$.
-
-From this point forward, we will assume that $d$ is even;
-we will also assume that the labeling $l_s:[d+n]\to [d]$ satisfies
-$l_s(i)\neq l_s(i+1)$. This can be done without loss of generality,
-given the following consideration.
-Suppose that $l_s(i)=l_s(i + 1)$ for some index $i$, and let $s$ be a
-completely labeled Gale string for $l_s$. Then only one of
-$s(i)$ and $s(i+1)$ can be equal to \1 (it is possible that both
-are equal to~0), so $s(i)s(i+1)$ will never be part of a run of even length that
-``interferes'' with the Gale Evenness Condition. Therefore, we can
-identify the indices $i$ and $i + 1$.
-
-\begin{example}
-\label{c46-123432-ex}
-Given the string of labels $l_s=123432$, there are four associated completely
-labeled Gale strings in $G(4,6)$:
-$s_A=\1\1\1\100$, $s_B=\1\10\1\10$,
-\linebreak[4]
-$s_C=\100\1\1\1$ and
-$s_D=\10\1\10\1$. These correspond to the completely labeled facets
-for the labeling shown in Figure \ref{c46-123432-fig} on the left.
-\begin{figure}[hbt]
-\strut\hfill
-\includegraphics[width=50ex]{chapter-2/fig-gale-def/123432-fac-name.pdf}%
-\hfill
-\small
-\begin{tabular}{c | c @{ } c @{ } c @{ } c @{ } c @{ } c @{ } c }
-facet & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}\\
-\hline
-{\bf A} & \1 & \1 & \1 & \1 & 0 & 0 \\
-{\bf B} & \1 & \1 & 0 & \1 & \1 & 0 \\
-{\bf C} & \1 & 0 & 0 & \1 & \1 & \1 \\
-{\bf D} & \1 & 0 & \1 & \1 & 0 & \1
-\end{tabular}
-\hfill\strut
-\caption[A labeling of $C_4(6)$ and its completely labeled facets]{%
-The cyclic polytope $C_4(6)$. The labeling of the vertices corresponds to
-the labeling of $G(4,6)$ given by $l_s=123432$.
-}
-\label{c46-123432-fig}
-\end{figure}
-\end{example}
-
-\clearpage
-
-We can now define the problem \anothergale\ as in Table
-\ref{another-gale}, where for brevity we write $n$ instead
-of $d+n$.
-% you have to alert the reader to changes in notation
-
-\begin{problem}
-{\anothergale}
-{A labeling $l:[n]\to[d]$, where $d$ is even and $d<n$.
-A Gale string $s\in G(d,n)$, completely labeled by $l$.}
-{A Gale string $s'\in G(d,n)$, completely labeled by $l$,
-such that $s' \neq s$.}
-\label{another-gale}
-\end{problem}
-
-It takes polynomial time to translate
-the facets of the cyclic polytope
-\linebreak[6]
-$C_d(d+n)$ % can be translated in polynomial time
-into the corresponding Gale strings in $G(d,d+n)$, following
-the proof of Theorem~\ref{origgale-thm}.
-Furthermore, defining the labeling $l_s$ from the labeling $l_v$ also takes
-polynomial time: for the labels $i\in [d]$ it is immediate, for the labels
-$d+j$, where $j\in [n]$, we have to check the $d\times n$ matrix $U$
-of the imitation game.
-Therefore, by Proposition \ref{nash-to-acl}, we have a reduction from
-{\sc Gale Nash} to \anothergale.
-
-\begin{proposition}
-\label{galenash-to-another-gale}
-{\sc Gale Nash} is polynomial-time reducible to \anothergale.
-\end{proposition}
