@@ -18,6 +18,7 @@
 % \end{equation}
 
 % Using the notation introduced earlier
+
 Let $(A,B)$ be bimatrix game, and let $X=\Delta^1$ and
 $Y=\Delta^2$ be the mixed strategy
 simplices of player 1 and 2, respectively, that is,
@@ -75,7 +76,7 @@ Conversely, if $(x,y)$ is not completely labeled, then some
 label does not appear as a label of $x$ or $y$. This label
 represents a pure strategy that is played with positive
 probability but is not a best response, which contradicts
-the equilibrium property.  
+the equilibrium property.
 \end{proof}
 
 A useful graphical representation of labels on the simplices $X$ and $Y$
@@ -83,7 +84,7 @@ is done by labeling the outside of each simplex according to the player's own
 pure strategies that are not played, and by subdividing its interior
 into closed polyhedral sets, called {\em best response
 regions}, that correspond to the other player's pure
-best responses. 
+best responses.
 We give an example of this construction.
 
 \begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
@@ -191,7 +192,7 @@ Q&=&\{\, y\in\reals^n& \mid\,A y\leq\1,~ y\geq\0  \}.
 In (\ref{br-polytopes}), both $P$ and $Q$ are defined by
 $m+n$ inequalities that correspond, in the listed order, to the
 pure strategies of the two players with labels in $[m+n]$.
-The polytope $P$ is the intersection the $m+n$ half-spaces
+The polytope $P$ is the intersection of the $m+n$ half-spaces
 that correspond to either player 1 not playing her $i$-th pure
 strategy or to a best response $j$ of player~2,
 where $i\in [m]$ and $j\in [n]$.
@@ -203,8 +204,8 @@ $(A y)_k=1$ for $k\in [m]$ or $y_j = 0$ for $k=m+j$ with $j\in [n]$.
 
 Hence, a point $(x,y)\in P\times Q$ is completely labeled if and only if
 it satisfies the {\em complementarity condition} that states
-% the quantifiers should be outside to avoid confusion 
-that for all $i\in[m]$ and all $j\in[n]$, 
+% the quantifiers should be outside to avoid confusion
+that for all $i\in[m]$ and all $j\in[n]$,
 \begin{equation}
 %\label{}
 \begin{array}{ccrll}
@@ -266,7 +267,7 @@ the mixed strategy $x$
 of player 1 corresponds exactly to the symmetric equilibrium $(x,x)$ in
 the symmetric game defined by the payoff matrix of player 2.
 Since it takes polynomial time in the size of a matrix to calculate its
-transpose, an algorithmm that finds a Nash equilibrium of a bimatrix game
+transpose, an algorithm that finds a Nash equilibrium of a bimatrix game
 can be used to find a symmetric Nash equilibrium of a symmetric game.
 
 \begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky}.)}
@@ -394,7 +395,7 @@ $U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let
 % \linebreak[6]
 $N_i = \{ j\in [n]\ \mid\ l(j)=i \}$ for
 $i\in [m]$, and consider the polytopes $P^l$ and $Q^l$
-\begin{equation}\label{p-l} 
+\begin{equation}\label{p-l}
 \arraycolsep.2em
 \begin{array}{rcll}
 P^l&=&\{ x\in\reals^m& \mid\,x\geq\0,\ B\T x\leq\1 \}, \\
@@ -434,7 +435,7 @@ Hence, $x$ is a completely labeled vertex of $P^l$.
 Conversely, let $x\in P^l\setminus \{ \0 \}$ be completely labeled.
 If $x_i > 0$, then there is $j\in [n]$ such that $(B\T x) = j$ and
 $l(j) = i$; that is, $j\in N_i$. For all $i\in [m]$ such that $x_i > 0$,
-define $y$ as follows: $y_j = 1$, and 
+define $y$ as follows: $y_j = 1$, and
 $y_h = 0$ for all $h\in N_i\setminus \{ j \}$.
 Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
@@ -518,7 +519,7 @@ of the vertices of $P^\Delta $ given by
 l_v(-e_i)&=&i\quad & \text{ for }i\in [m],\\
 l_v(c_j)&=&l(j)\quad & \text{ for }j\in [n].
 \end{array}
-\end{equation} 
+\end{equation}
 Then a facet $F\neq F_0$ of $P^\Delta $ with normal vector $v$ is completely
 labeled if and only if $(x,y)$ is a Nash equilibrium of $(U,B)$, where
 $x = (v + \1) / (\1\T (v + \1))$, so that
@@ -536,7 +537,7 @@ completely labeled facets of $P^\Delta $
 and equilibria of $(U,B)$ with the ``artificial'' equilibrium
 corresponding to the facet $F_0$ in (\ref{f-0}).
 
-% ... here you come back to the old Q! 
+% ... here you come back to the old Q!
 Given a bimatrix game $(A,B)$, it takes polynomial time
 to write and solve the linear equations defining its best response polyhedra
 $\overline{P},\overline{Q}$ and its best response polytopes $P,Q$.
