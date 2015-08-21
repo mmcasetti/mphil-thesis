@@ -54,7 +54,7 @@ dimension $d$}, where $n>d$, is a bitstring $s$ that satisfies the
 following conditions:
 \begin{enumerate}
 \item exactly $d$ bits of $s$ are equal to $\1$;
-\item ({\em Gale evenness condition})
+\item ({\em Gale Evenness Condition})
 $
 \qquad 0\1^k0\text{ is a substring of }s\quad
 {\Rightarrow}\quad
@@ -63,7 +63,7 @@ $
 \end{enumerate}
 Let $G(d,n)$ be the set of these Gale strings.
 
-In general, the Gale evenness condition allows for Gale strings that start
+In general, the Gale Evenness Condition allows for Gale strings that start
 or end with an odd-length run; if $d$ is even then $s$ can start with
 an odd run if and only if it ends with an odd run.
 When $d$ is even, we can therefore see the Gale strings in $G(d,n)$
@@ -152,14 +152,14 @@ an even number of $\overline{t_i}$'s between any two $t_k$'s.
 Let $s$ be the bitstring in which the \1's correspond to the
 $\overline{t_i}$'s and the 0's correspond to the other $t_k$'s.
 Then the condition that the set $F$ in (\ref{facet-gs}) is a
-facet is equivalent to the Gale evenness condition.
+facet is equivalent to the Gale Evenness Condition.
 \end{proof}
 
 Because the moment curve has at most $d$ points on any hyperplane,
 each facet of $C_d(n)$ is a $d$-simplex, so $C_d(n)$ is simplicial
 and the choice of the $t_j$'s in (\ref{cycdef}) is
 irrelevant for the characterization of the facets of
-$C_d(n)$ by Gale evenness strings.
+$C_d(n)$ as Gale strings.
 However, note that the order of the points on the curve,
 that is, of $t_1<\cdots<t_n$, defines the positions in the
 bitstring.
@@ -244,7 +244,7 @@ $\mu_4(t_4)$ and $\mu_4(t_6)$ are on opposite
 sides of the hyperplane~$H$ defined by the other four points.
 % corresponding bitstring is  $s=\1 0\1 0\1 0$
 The corresponding bitstring is $s=\1\1\10\10$, which is
-not a Gale string. The violation of the Gale evenness condition corresponds
+not a Gale string. The violation of the Gale Evenness Condition corresponds
 to the change of side with respect to the hyperplane between the $t_j$'s.
 % An analogous case is shown in Figure  \ref{notfacet-even-hyper-fig}; the
 
@@ -257,7 +257,7 @@ to the change of side with respect to the hyperplane between the $t_j$'s.
 % \hfill\strut
 % \caption[Not a facet of $C_3(6)$]{%
 % There is a change of sign between two $t_j$'s. The bitstring $s=0\1\1 0\1 0$
-% does not satisfy the Gale evenness condition, and the
+% does not satisfy the Gale Evenness Condition, and the
 % $\overline{t_i}$'s (for the \1\ bits) do not
 % correspond to a facet of $C_3(6)$.
 % }
@@ -271,7 +271,7 @@ to the change of side with respect to the hyperplane between the $t_j$'s.
 \caption[Not a facet of $C_4(6)$]{%
 There is a change of side between two $\mu_4(t_j)$'s (for
 the 0 bits). The bitstring $s=\1\1\1 0\1 0$
-does not satisfy the Gale evenness condition, and the
+does not satisfy the Gale Evenness Condition, and the
 set of $\mu_4(\overline{t_i})$'s (for the \1 bits)
 does not define a facet of $C_4(6)$.
 }
