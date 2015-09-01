@@ -1,40 +1,81 @@
 \section{Computational Problems and Complexity}
 
+We base this section on the definitions in Papadimitriou \cite{papad-cc},
+to which we refer for further details.
+
 A {\em deterministic Turing machine} $\mathcal{M}$ (we will imply the
 ``deterministic'' from now on) is a representation of an
-{\em algorithm} that takes an {\em input}, runs a {\em program}
-% all this was too garbled and you have to mention the "tape"
-manipulating the input on a ``tape'', and returns an {\em
-output} when it comes to a {\em halting state} $h$.
-The halting state can be the {\em accepting state} with
-output {\sc Yes} (the Turing machine {\em accepts} the
-input), or the {\em rejecting state} with output {\sc No} (the
-Turing machine {\em rejects} the input).
+algorithm that takes an {\em input}, runs a algorithm
+manipulating the input on a {\em tape}, and returns an
+{\em output} when it comes to a halting state (if it ever does).
 
-% mention decision vs function here: function has additional output tape,
-% then it's clearer later with all the M(x)
+The tape and its manipulation can be seen as follows: initially the tape
+contains the input, given by a {\em first symbol} $\rhd$ followed by a
+finite string of symbols $x\in (\Sigma \setminus \{ \sqcup \})*\ast$,
+where $\Sigma$ is the {\em alphabet} of symbols of $\mathcal{M}$
+and $\sqcup$ is a special
+symbol representing the {\em blank} string.
+The program is then carried on: a {\em cursor} starts at the first symbol
+and follows the {\em algorithm} given by a
+{\em transition function} $\delta$. The transition function depends on the
+current {\em state} $p\in K$ and the current symbol $\sigma in \Sigma$: the
+former is the ``instruction'' to follow, the latter the symbol in the
+position of the cursor. The transition function returns the next
+state $q\in K$, the symbol $\tau\in \Sigma$ to be written at the position
+of the cursor, and a direction in which the cursor will move on the tape.
+The latter can be ``left'', ``right'', or ``stay'', represented respectively
+by $\leftarrow,\rightarrow,-$. The first symbol is never overwritten,
+and from there the cursor can only go left.
 
-We denote the
-output by $\mathcal{M}(x)$, which (if we are not just
-dealing with a decision problem, see below) may be a string of symbols.
-Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$, where the
-finite set $K$ is the set of {\em states}; $\Sigma$ is a finite set of
-{\em symbols} (the {\em alphabet} of $\mathcal{M}$) such that
-$\Sigma\cap K=\varnothing$ and $\Sigma$ always contains the symbols
-$\sqcup$ ({\em blank}) and $\rhd$ ({\em first symbol}).
-% ... and omitted crucial details
-The ``internal operation'' of the Turing machine is defined via
-transitions on states and ``tape operations'' to write
-symbols on a tape (for details see Papadimitriou
-\cite{papad-cc}); it employs the {\em transition function}
+In some cases, after some finite time, the machine reaches the state
+{\sc Yes} (the machine {\em accepts} the input), {\sc No} (the machine
+{\em rejects} the input) or the {\em halting state} $h$. The output
+is then given by $\mathcal{M}(x)=\text{\sc Yes}$ or
+$\mathcal{M}(x)=\text{\sc No}$ if the machine accepts or rejects the input.
+If the halting state $h$ is reached, the output is $\mathcal{M}(x)=y$,
+where $y$ is the finite (possibly empty) string of symbols that is left on
+the tape after the symbol $\rhd$ and before any string of $\sqcup$'s at the
+end. It is also possible that the machine doesn't halt on input $x$; we
+denote this case as $\mathcal{M}(x)=\nearrow$.
+
+A problem $P$ that requires an output that is either ``{\sc Yes}'' or
+``{\sc No}'' is a {\em decision problem}; its {\em complement} is the
+problem $\overline{P}$ that outputs ``{\sc No}'' for each instance
+of $P$ that outputs ``{\sc Yes}'', and vice versa.
+A problem where the output can be a string $\mathcal{M}(x)=y$ on the
+output tape as above is a {\em function problem}; note that no guarantee
+on the halting state is required. If the output is a
+string $\mathcal{M}(x)=y$ satisfying a relation $R(x,y)$
+or the input is rejected if it is not
+possible to find any such string, the problem is a {\em search problem}.
+A search problem where the input is never rejected is a {\em total
+function problem}. By Theorem \ref{nash-thm}, the problem $n$-Nash of
+Table \ref{n-nash} is a total function problem.
+
+\begin{problem}
+{$n$-Nash}
+{A $n$-player game.}
+{A Nash equilibrium of the game.}
+\label{n-nash}
+\end{problem}
+
+Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$, where $K$ and $\Sigma$ are
+finite, $\Sigma\cap K=\varnothing$ and $\Sigma$ always contains the symbols
+$\sqcup$ and $\rhd$.
+The {\em transition function} is $\delta$, defined as follows,
+where $\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$:
 \[
 \delta:K\times \Sigma\longrightarrow (K\cup\{ h,\ \text{{\sc Yes}},\ \text{{\sc No}} \})%
-\times \Sigma \times \{ \leftarrow,\rightarrow,- \}
+\times \Sigma \times \{ \leftarrow,\rightarrow,- \}.
 \]
-where $\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$ correspond to
-the {\em cursor directions} for the tape ``left,'' ``right'' and ``stay.''
 
-A {\em language} is a set of {\em strings} of symbols
+A slightly different, although equivalent, model allows for
+{\em multiple strings}: $k\in \naturals$ cursors move
+on $k$ strings $\sigma_i\in \Sigma^\ast$; the states are still
+represented as $p\in K$. The input is given in the tape of the first string,
+the output in the tape of the $k$-th string (assuming the machine halts).
+
+A {\em language} is a set of {\em strings of symbols}
 $L\subseteq(\Sigma\setminus\{ \sqcup \})^\ast$; a {\em class} is a
 set of languages. A Turing machine $\mathcal{M}$
 {\em decides} $L$ if for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$
@@ -48,30 +89,6 @@ machine $\mathcal{M}$ {\em accepts} $L$.
 Finally, $\mathcal{M}$ {\em computes} a function
 $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$ if
 $\mathcal{M}(x)=f(x)$ for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
-
-% rewrite the last pararaph,
-%% especially the sentence about when a TM accepts a language
-
-An {\em instance} is the specific input of a problem.
-A problem $P$ that outputs either {\sc Yes} or {\sc No} is a
-{\em decision problem}. Its {\em complement} is the problem $\overline{P}$
-that outputs ``{\sc No}'' for each instance of $P$ that outputs
-``{\sc Yes}'', and vice versa.
-A {\em function problem} outputs a string more general than
-{\sc Yes} or {\sc No}.
-An instance $x$ of a {\em search problem} either returns a string $y$
-that satisfies a given relation $R(x,y)$ or it
-rejects the input if it is not possible to find any such string.
-If $y$ is guaranteed to exist, the problem is a {\em total function problem}.
-By Theorem \ref{nash-thm}, the problem $n$-Nash of Table \ref{n-nash} is a
-total function problem.
-
-\begin{problem}
-{$n$-Nash}
-{A $n$-player game.}
-{A Nash equilibrium of the game.}
-\label{n-nash}
-\end{problem}
 
 Let $P_1$ be a problem and let $x$ be an instance of $P_1$ that is encoded
 in $|x|$ bits. $P_1$ {\em reduces to the problem $P_2$ in polynomial time}
@@ -101,7 +118,7 @@ it can be used as a test of belonging to its class.
 The complexity class $\mathrm{\mathbf{P}}$ contains all the
 {\em polynomially decidable problems}, that is, all problems $P$ such that
 there exists a Turing machine $\mathcal{M}$ that outputs either {\sc Yes} or
-{\sc No}  for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
+{\sc No} for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
 where $p$ is a polynomial.
 A problem $P$ belongs to the class $\mathrm{\mathbf{NP}}$,
 {\em non-deterministic polynomial-time problems}, if there exists a
@@ -114,19 +131,50 @@ $p_2(|x| + |y|)$ steps;
 \item for all $x\notin P$ there does not exist $y\in \{0,1\}^\ast$ such
 that $\mathcal{M}$ accepts the combined input $xy$.
 \end{enumerate}
+An equivalent definition gives $\mathrm{\mathbf{NP}}$ as the class of all
+languages $L=\{ x\ |\ R(x,y) \text{ holds for some } y \}$ such that the
+binary relation $R(x,y)$ on strings satisfies the following conditions:
+\begin{enumerate}
+\item {\em (polynomially balanced)} if $(x,y)\in R$ then $|y|\leq |x|^k$ for
+some $k\in \naturals$;
+\item {\em (polynomially decidable)} if there is a Turing machine that
+decides $L$ in polynomial time.
+\end{enumerate}
 Informally, a decision problem is in
 $\mathrm{\mathbf{P}}$ if the answer to its question can be found in a
 number of steps that is polynomial in the input of the problem, and
 a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
 polynomial time to verify whether the ``certificate solution'' $y$ is,
 indeed, a correct answer to the question posed by the problem.
+Notice that there may be many different certificates for each solution
+of a problem. Consider for instance the problem {\sc Hamilton Path},
+defined as ``given an input graph $x$, is it possible to find a Hamiltonian
+path $y$ of $x$?'' If a graph has more than one possible Hamiltonian path,
+each one of these is a certificate for {\sc Hamilton Path}.
+
 The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
-the number of possible solutions for a problem in $\mathrm{\mathbf{NP}}$.
-% there may be many different certificates for the same
-% solution; \#P is for counting the solutions
-Finally, the class {\bf PSPACE} is the set of decision
-problems that are solved by a Turing machine requiring a
-polynomial amount of tape space in the input size $n$.
+the number of possible certificates
+% problems in NP are decision problems: solutions are either Y or N;
+% the number of possible certificates for the solution of an instance
+% is the important thing
+for a problem in $\mathrm{\mathbf{NP}}$.
+Formally: the {\em counting problem} associated with a binary
+relation $Q(x,y)$ is ``given $x$, how many $y$ are there such
+that $(x,y)\in Q$?'' Then $\mathrm{\mathbf{\# P}}$ is the class of
+all counting problems associated with binary relations that are both
+polynomially balanced and polynomially decidable.
+It is interesting to notice that there are $\mathrm{\mathbf{\# P}}$-complete
+problems for which the corresponding search problem can
+be solved in polynomial time. An example close to the topic
+of this thesis is given in Brightwell \cite{brightwell}: although finding
+an Eulerian circuit in an
+undirected graph takes polynomial time, counting the number of possible
+circuits in the same graph is complete in $\mathrm{\mathbf{\# P}}$.
+
+Finally, the class {\bf PSPACE} is the set of decision problems for which
+the solution by a Turing machine can be found using a tape that has length
+polynomial in the size of the input.
+
 The relation
 $\mathbf{P}\subseteq \mathbf{NP}\subseteq \mathbf{PSPACE}$ holds, with
 strict inclusions being an open problem.
