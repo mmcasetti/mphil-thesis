@@ -132,8 +132,9 @@ $p_2(|x| + |y|)$ steps;
 that $\mathcal{M}$ accepts the combined input $xy$.
 \end{enumerate}
 An equivalent definition gives $\mathrm{\mathbf{NP}}$ as the class of all
-languages $L=\{ x\ |\ R(x,y) \text{ holds for some } y \}$ such that the
-binary relation $R(x,y)$ on strings satisfies the following conditions:
+languages $L$ for which the binary relation $R(x,y)$ such
+that $L=\{ x\ |\ R(x,y) \text{ holds for some } y \}$ satisfies
+the following conditions:
 \begin{enumerate}
 \item {\em (polynomially balanced)} if $(x,y)\in R$ then $|y|\leq |x|^k$ for
 some $k\in \naturals$;
@@ -144,20 +145,33 @@ Informally, a decision problem is in
 $\mathrm{\mathbf{P}}$ if the answer to its question can be found in a
 number of steps that is polynomial in the input of the problem, and
 a decision problem is in $\mathrm{\mathbf{NP}}$ if it takes
-polynomial time to verify whether the ``certificate solution'' $y$ is,
+polynomial time to verify whether the ``certificate'' $y$ is,
 indeed, a correct answer to the question posed by the problem.
-Notice that there may be many different certificates for each solution
-of a problem. Consider for instance the problem {\sc Hamilton Path},
+Notice that there may be many different certificates for each instance
+of a problem. Consider for instance the $\mathrm{\mathbf{NP}}$ problem
+{\sc Hamilton Path},
 defined as ``given an input graph $x$, is it possible to find a Hamiltonian
-path $y$ of $x$?'' If a graph has more than one possible Hamiltonian path,
-each one of these is a certificate for {\sc Hamilton Path}.
+path $y$ of $x$?'' There are graphs with more than one possible
+Hamiltonian path, and each one of these can be used as certificate.
 
-The class $\mathrm{\mathbf{\# P}}$ is the class of all problems that output
-the number of possible certificates
-% problems in NP are decision problems: solutions are either Y or N;
-% the number of possible certificates for the solution of an instance
-% is the important thing
-for a problem in $\mathrm{\mathbf{NP}}$.
+It is quite simple to see that $\mathbf{P}\subseteq \mathbf{NP}$, but it is
+an important open problem whether the inclusion is strict. If this were
+not the case, it could be argued that there isn't any substantial
+difference between finding a solution and verifying its validity.
+This seems to contradict most intellectual experience, where the value
+of an ``original'' discovery is perceived as fundamental; the
+``conventional'' view is therefore that $\mathbf{P}\neq\mathbf{NP}$.
+Another open problem is whether $\mathbf{NP} = \mathbf{co-NP}$; again,
+this is widely believed to be false. Notice that if
+$\mathbf{NP} \neq \mathbf{co-NP}$ then
+also $\mathbf{P} \subsetneq \mathbf{NP}$, but not vice versa.
+
+%% FP, FNP, TFNP. Existence of TFNP-complete problem => NP = co-NP
+%% Rewrite section 3.1 (the first paragraph, at least!) file: ppad.tex
+
+The class $\mathrm{\mathbf{\# P}}$ is the class of all function
+problems that output the number of possible certificates
+for a decision problem in $\mathrm{\mathbf{NP}}$.
 Formally: the {\em counting problem} associated with a binary
 relation $Q(x,y)$ is ``given $x$, how many $y$ are there such
 that $(x,y)\in Q$?'' Then $\mathrm{\mathbf{\# P}}$ is the class of
@@ -171,18 +185,8 @@ an Eulerian circuit in an
 undirected graph takes polynomial time, counting the number of possible
 circuits in the same graph is complete in $\mathrm{\mathbf{\# P}}$.
 
-Finally, the class {\bf PSPACE} is the set of decision problems for which
-the solution by a Turing machine can be found using a tape that has length
-polynomial in the size of the input.
-
-The relation
-$\mathbf{P}\subseteq \mathbf{NP}\subseteq \mathbf{PSPACE}$ holds, with
-strict inclusions being an open problem.
-
-% importance P ?= NP and NP ?= co-NP
-% convetional view that these equalities do not hold
-% mention here the Megiddo-Papadmitriou result:
-%% if there is a TFNP-hard problem, then NP = co-NP (check!)
-
-It is also still unknown if
-\mbox{{\bf NP = co-NP}}.
+Finally, the class {\bf PSPACE} is the set of decision problems that can be
+solved by a Turing machine using an amount of tape space that is polynomial
+in the size of the input; although it can be proven that
+$\mathbf{NP}\subseteq \mathbf{PSPACE}$, the possibility of an identity
+is yet another open problem.
