@@ -1,4 +1,4 @@
-\section{Computational Problems and Complexity}
+\section{Computational Problems and Complexity}\label{complexity-def-section}
 
 We base this section on the definitions in Papadimitriou \cite{papad-cc},
 to which we refer for further details.
@@ -115,13 +115,14 @@ This is particularly useful if $P_2$ is hard. Then
 the problem $P_1$ is at least as ``difficult''. If $P_2$ is also complete,
 it can be used as a test of belonging to its class.
 
-The complexity class $\mathrm{\mathbf{P}}$ contains all the
+The complexity class $\mathrm{\mathbf{P}}$ ({\em polynomial-time})
+contains all the
 {\em polynomially decidable problems}, that is, all problems $P$ such that
 there exists a Turing machine $\mathcal{M}$ that outputs either {\sc Yes} or
 {\sc No} for all inputs $x\in\{0,1\}^\ast$ of $P$ after $p(|x|)$ steps,
 where $p$ is a polynomial.
-A problem $P$ belongs to the class $\mathrm{\mathbf{NP}}$,
-{\em non-deterministic polynomial-time problems}, if there exists a
+A problem $P$ belongs to the class $\mathrm{\mathbf{NP}}$
+({\em non-deterministic polynomial-time}) if there exists a
 Turing machine $\mathcal{M}$ and polynomials $p_1,p_2$ such that
 \begin{enumerate}
 \item for all $x\in P$ there exists a {\em certificate} $y\in \{0,1\}^\ast$
@@ -166,8 +167,31 @@ this is widely believed to be false. Notice that if
 $\mathbf{NP} \neq \mathbf{co-NP}$ then
 also $\mathbf{P} \subsetneq \mathbf{NP}$, but not vice versa.
 
-%% FP, FNP, TFNP. Existence of TFNP-complete problem => NP = co-NP
-%% Rewrite section 3.1 (the first paragraph, at least!) file: ppad.tex
+The classes $\mathbf{FP}$ and $\mathbf{FNP}$ are analogous to
+$\mathbf{P}$ and $\mathbf{NP}$, respectively, but for function problems
+instead of decision problems.
+Formally, {\bf FNP} ({\em function non-deterministic polynomial-time})
+is defined
+in Megiddo and Papadimitriou \cite{megiddo-papad} as the class
+of problems of the form ``given an $x\in\Sigma^\ast$,
+find $y\in \Sigma^\ast$ such that $(x,y)\in R$, where R is a
+polynomially balanced binary relation, or reject the input.''
+$\mathbf{FP}$ ({\em function polynomial-time}) is the
+class of all $\mathbf{FNP}$ problems that can be solved in polynomial time.
+As in the case of decision problems, it is not known whether
+$\mathbf{FP} = \mathbf{FNP}$; the question is actually equivalent
+to whether $\mathbf{P} = \mathbf{NP}$.
+Megiddo and Papadimitriou \cite{megiddo-papad} also define the class
+$\mathbf{TFNP}$ ({\em total function non-deterministic polynomial-time})
+as the class of all $\mathbf{FNP}$ problems where for every $x\in\Sigma^\ast$
+a solution $y\in\Sigma^\ast$ is guaranteed to exist.
+The class $\mathbf{TFNP}$ is equivalent
+to $\mathbf{NP} \mathbf{co-NP}$ for function problems, and the existence
+of a $\mathbf{TFNP}$-complete problem would imply
+that $\mathbf{NP} = \mathbf{co-NP}$.
+The lack of $\mathbf{TFNP}$-complete problems has led to define
+a number of new classes; we will see more of this in
+section \ref{ppad-section}.
 
 The class $\mathrm{\mathbf{\# P}}$ is the class of all function
 problems that output the number of possible certificates

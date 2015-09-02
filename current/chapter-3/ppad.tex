@@ -1,24 +1,14 @@
-\section{Polynomial Parity Argument}
+\section{Polynomial Parity Argument}\label{ppad-section}
 
-Megiddo and Papadimitriou \cite{megiddo-papad} introduced the classes
-$\mathrm{\mathbf{FNP}}$, {\em function non-deterministic polynomial}, and
-$\mathrm{\mathbf{TFNP}}$, {\em total function non-deterministic polynomial}.
-These can be seen as the equivalent of $\mathrm{\mathbf{NP}}$ for
-(respectively) function and total function problems.
-Formally, {\bf FNP} is defined as the class of binary relations
-$R(x,y)$ such that there is a polynomial-time algorithm that decides $R(x,y)$
-for $x,y$ such that $|y|\leq p(|x|)$, where $p$ is a polynomial, whereas
-{\bf TFNP} is the class of all such problems for which at
-least one such $y$ is guaranteed to exist for each~$x$.
-Megiddo and Papadimitriou \cite{megiddo-papad} also proved that
-% semantic class is a very hairy concept. You do not want to
-% define this in a viva. Omit
-$\mathrm{\mathbf{TFNP}}$ is % a {\em semantic} class, that is,
-a class without complete problems, unless
-$\mathrm{\mathbf{NP}}=\mathrm{\mathbf{co-NP}}$.
+As mentioned in section \ref{complexity-def-section},
+Megiddo and Papadimitriou \cite{megiddo-papad} have proved that
+it is impossible to have a complete problem for the class
+$\mathrm{\mathbf{TFNP}}$ ({\em total function non-deterministic polynomial-time})
+unless $\mathrm{\mathbf{NP}}=\mathrm{\mathbf{co-NP}}$,
+which is usually conjectured to be false.
 To circumvent this limitation, Papadimitriou \cite{ppad} focused
 on the argument that proves the solution of the problems in {\bf TFNP},
-introducing the classes
+introducing, among others, the classes
 $\mathrm{\mathbf{PPA}}$ ({\em Polynomial Parity Argument}) and
 $\mathrm{\mathbf{PPAD}}$ ({\em Polynomial Parity Argument, Directed version}).
 
