@@ -77,15 +77,16 @@ the output in the tape of the $k$-th string (assuming the machine halts).
 
 A {\em language} is a set of {\em strings of symbols}
 $L\subseteq(\Sigma\setminus\{ \sqcup \})^\ast$; a {\em class} is a
-set of languages. A Turing machine $\mathcal{M}$
-{\em decides} $L$ if for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$
+set of languages. Let $\mathcal{M}$ be a Turing machine, and let
+$x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
+We say that $\mathcal{M}$ {\em decides} $L$ if
 either $\mathcal{M}(x)=\text{{\sc Yes}}$ if $x\in L$ or
-$\mathcal{M}(x)=\text{{\sc No}}$ if $x\notin L$. If for every
-$x\in (\Sigma\setminus\{ \sqcup \})^\ast$ either
-$\mathcal{M}(x)=\text{{\sc Yes}}$ if and only if $x\in L$, or
+$\mathcal{M}(x)=\text{{\sc No}}$ if $x\notin L$. A Turing
+machine $\mathcal{M}$ {\em accepts} $L$ if
+$x\in L$ is a necessary and sufficient condition for
+$\mathcal{M}(x)=\text{{\sc Yes}}$, and if $x\notin L$ then
 $\mathcal{M}(x)=\text{{\sc No}}$ or $\mathcal M$
-does not halt if and only if $x\notin L$, the Turing
-machine $\mathcal{M}$ {\em accepts} $L$.
+does not halt.
 Finally, $\mathcal{M}$ {\em computes} a function
 $f:(\Sigma\setminus\{ \sqcup \})^\ast\to\Sigma^\ast$ if
 $\mathcal{M}(x)=f(x)$ for every $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
