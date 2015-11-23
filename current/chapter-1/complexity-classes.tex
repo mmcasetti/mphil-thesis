@@ -1,4 +1,5 @@
-\section{Computational Problems and Complexity}\label{complexity-def-section}
+\section{Computational Problems and Complexity}
+\label{cc-sect}
 
 We base this section on the definitions in Papadimitriou \cite{papad-cc},
 to which we refer for further details.
@@ -11,25 +12,26 @@ manipulating the input on a {\em tape}, and returns an
 
 The tape and its manipulation can be seen as follows: initially the tape
 contains the input, given by a {\em first symbol} $\rhd$ followed by a
-finite string of symbols $x\in (\Sigma \setminus \{ \sqcup \})*\ast$,
+finite string of symbols $x\in (\Sigma \setminus \{ \sqcup \})^\ast$,
 where $\Sigma$ is the {\em alphabet} of symbols of $\mathcal{M}$
 and $\sqcup$ is a special
 symbol representing the {\em blank} string.
 The program is then carried on: a {\em cursor} starts at the first symbol
 and follows the {\em algorithm} given by a
 {\em transition function} $\delta$. The transition function depends on the
-current {\em state} $p\in K$ and the current symbol $\sigma in \Sigma$: the
+current {\em state} $p\in K$ and the current symbol $\sigma\in \Sigma$: the
 former is the ``instruction'' to follow, the latter the symbol in the
 position of the cursor. The transition function returns the next
 state $q\in K$, the symbol $\tau\in \Sigma$ to be written at the position
 of the cursor, and a direction in which the cursor will move on the tape.
-The latter can be ``left'', ``right'', or ``stay'', represented respectively
-by $\leftarrow,\rightarrow,-$. The first symbol is never overwritten,
-and from there the cursor can only go left.
+The possible directions are ``left'', ``right'', or ``stay'', represented
+respectively by $\leftarrow,\rightarrow,-$. The first symbol is never
+overwritten, and from there the cursor can only go left.
 
-In some cases, after some finite time, the machine reaches the state
+In some cases, the machine reaches the state
 {\sc Yes} (the machine {\em accepts} the input), {\sc No} (the machine
-{\em rejects} the input) or the {\em halting state} $h$. The output
+{\em rejects} the input) or the {\em halting state} $h$
+after a finite amount of time. The output
 is then given by $\mathcal{M}(x)=\text{\sc Yes}$ or
 $\mathcal{M}(x)=\text{\sc No}$ if the machine accepts or rejects the input.
 If the halting state $h$ is reached, the output is $\mathcal{M}(x)=y$,
@@ -59,9 +61,9 @@ Table \ref{n-nash} is a total function problem.
 \label{n-nash}
 \end{problem}
 
-Formally, $\mathcal{M}=(K,\Sigma,\delta,s)$, where $K$ and $\Sigma$ are
-finite, $\Sigma\cap K=\varnothing$ and $\Sigma$ always contains the symbols
-$\sqcup$ and $\rhd$.
+Formally, a Turing machine is $\mathcal{M}=(K,\Sigma,\delta,s)$,
+where $K$ and $\Sigma$ are finite, $\Sigma\cap K=\varnothing$ and $\Sigma$
+always contains the symbols $\sqcup$ and $\rhd$.
 The {\em transition function} is $\delta$, defined as follows,
 where $\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$:
 \[
@@ -72,8 +74,9 @@ where $\{ \leftarrow,\rightarrow,- \}\nsubseteq(K\cup\Sigma)$:
 A slightly different, although equivalent, model allows for
 {\em multiple strings}: $k\in \naturals$ cursors move
 on $k$ strings $\sigma_i\in \Sigma^\ast$; the states are still
-represented as $p\in K$. The input is given in the tape of the first string,
-the output in the tape of the $k$-th string (assuming the machine halts).
+represented as $p\in K$. The input is given in the tape of the first string;
+assuming the machine halts, the output is given in the tape of the $k$-th
+string.
 
 A {\em language} is a set of {\em strings of symbols}
 $L\subseteq(\Sigma\setminus\{ \sqcup \})^\ast$; a {\em class} is a
@@ -112,9 +115,10 @@ that is also in $\mathrm{C}$.
 Intuitively, if $P_1$ is polynomial-time reducible to $P_2$, it takes
 polynomial time to ``translate'' $P_1$ to $P_2$, and then to
 ``translate back'' a solution of $P_2$ as a solution of $P_1$.
-This is particularly useful if $P_2$ is hard. Then
-the problem $P_1$ is at least as ``difficult''. If $P_2$ is also complete,
-it can be used as a test of belonging to its class.
+This is particularly useful if $P_2$ is hard: then
+the problem $P_1$ is at least as ``difficult''. Furthermore, if the problem
+$P_2$ is also complete in a class $\mathrm{C}$, it can be used as a test
+of belonging to the class $C$.
 
 The complexity class $\mathrm{\mathbf{P}}$ ({\em polynomial-time})
 contains all the
@@ -191,7 +195,7 @@ and the existence of a $\mathbf{TFNP}$-complete problem would imply
 that $\mathbf{NP} = \mathbf{co-NP}$.
 The lack of $\mathbf{TFNP}$-complete problems has led to define
 a number of new classes; we will see more of this in
-section \ref{ppad-section}.
+section \ref{ppad-sect}.
 
 The class $\mathrm{\mathbf{\# P}}$ is the class of all function
 problems that output the number of possible certificates

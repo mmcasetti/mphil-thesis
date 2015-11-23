@@ -1,6 +1,7 @@
 \documentclass[11pt, a4paper]{report}
 
-\usepackage{todonotes}
+%% checking keys while in draft
+\usepackage{showkeys}
 
 \author{Marta Maria Casetti}
 
@@ -223,7 +224,7 @@ for the degree of Master of Philosophy}
 
 \listofalgorithms
 
-\chapter{Introduction}
+\chapter{Introduction}\label{intro}
 
 \input{chapter-1/introduction}
 
@@ -233,7 +234,9 @@ for the degree of Master of Philosophy}
 
 \input{chapter-1/complexity-classes}
 
+
 \chapter{Labels, Polytopes and Gale Strings}
+\label{def-chapt}
 
 \input{chapter-2/intro}
 
@@ -243,8 +246,9 @@ for the degree of Master of Philosophy}
 
 \input{chapter-2/gale-games}
 
+
 \chapter{Algorithmic and Complexity Results}
-\label{main-chapter}
+\label{main-chapt}
 
 \input{chapter-3/intro}
 
@@ -254,7 +258,9 @@ for the degree of Master of Philosophy}
 
 \input{chapter-3/main-result}
 
+
 \chapter{Further results}
+\label{chapter-further}
 
 \input{chapter-4/further-results}
 
