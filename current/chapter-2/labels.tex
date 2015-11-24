@@ -1,24 +1,6 @@
 \section{Bimatrix Games and Labels}
 \label{labels-sect}
 
-% Marta, this definition of labeling does not make sense
-% here: you assign MULTIPLE labels to x and y, and should
-% certainly not talk about "X" and "x" here, and m and n
-% have nothing to do with what you do in the next paragraphs.
-%
-% Let $n,m\in\naturals$ with $m\leq n$.
-% A {\em labeling} of a set $X$ is a function $l:X\to [m]$; an
-% $n$-tuple
-% $x=(x_1,\ldots,x_n)\in X^n$ is {\em completely labeled} if
-% each label $j\in [m]$ appears in $(l(x_1),\ldots,l(x_n))$,
-% that is, if
-% \begin{equation}
-% \label{cl-eq}
-% \{ j\in [m]\ \mid\ l(x_i)=j\text{ for some }i\in [n] \}=[m].
-% \end{equation}
-
-% Using the notation introduced earlier
-
 Let $(A,B)$ be bimatrix game, and let $X=\Delta^1$ and
 $Y=\Delta^2$ be the mixed strategy
 simplices of player 1 and 2, respectively, that is,
@@ -42,6 +24,7 @@ subset of $[m+n]$, as follows:
     \item label $m + j$ for each $j\in [n]$ such that the $j$-th pure strategy
     of player 2 is a best response to $x$;
     \end{itemize}
+\pagebreak[2]
 \item each mixed strategy $y\in Y$ of player 2 has
     \begin{itemize}
     \item label $m + j$ for each $j\in [n]$ such that $y_j = 0$,
@@ -53,7 +36,7 @@ This labeling can be used to characterize the Nash equilibria of the game:
 A pair $(x,y)$ is called {\em completely labeled} if each
 possible label in $[m+n]$ is a label of $x$ or of~$y$.
 
-\begin{theorem}{\rm (Shapley \cite{shapley}.)}\label{comp-label-thm}
+\begin{theorem}{\rm (Shapley \cite{shapley})}\label{comp-label-thm}
 Let $(x,y)\in X\times Y$. Then $(x,y)$ is a Nash
 \linebreak[5]
 equilibrium of the bimatrix
@@ -87,7 +70,7 @@ regions}, that correspond to the other player's pure
 best responses.
 We give an example of this construction.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 \label{br-game-ex}
 Consider the $3\times 3$ game $(A,B)$ with
 \begin{equation}
@@ -120,8 +103,8 @@ $1,2,6$. This is the only Nash equilibrium of the game.
 \includegraphics[width=30ex]{chapter-2/fig-labels/Yimit.pdf}%
 \hfill\strut
 \caption[The labeled mixed strategy simplices of a game]{%
-The labeled best response regions of the mixed strategy simplices of
-game (\ref{AB}).
+The labeled best response regions of the mixed strategy simplices
+of player 1 (left) and player 2 (right) in game (\ref{AB}).
 }
 \label{br-regions-fig}
 \end{figure}
@@ -152,7 +135,8 @@ Analogously, the facet of $\overline{Q}$ given by the points
 $(y,u)\in Y\times\reals$ such that $(A y)_i = u$ projects to the
 best-response region of $Y$ with label $i$.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
+\label{br-polyhedra-ex}
 In Example \ref{br-game-ex}, the inequalities $B\T x\le\1v$ are
 \[
 \arraycolsep.2em
@@ -171,7 +155,7 @@ regions of Figure \ref{br-regions-fig}.
 \includegraphics[width=40ex]{chapter-2/fig-labels/upenv.pdf}%
 \hfill\strut
 \caption[The best response polyhedron of a game]{%
-The best response polyhedron of game (\ref{AB}).}
+The best response polyhedron of player 1 in game (\ref{AB}).}
 \label{br-polyhedron-fig}
 \end{figure}
 \end{example}
@@ -216,8 +200,9 @@ corresponding point in $\overline{P}\times\overline{Q}$
 is a Nash equilibrium or $(x,y)=(\0,\0)$; we refer to the latter case
 as {\em artificial equilibrium}.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
-Keeping on with Example \ref{br-game-ex}, the best response
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
+Keeping on with Example \ref{br-game-ex} and \ref{br-polyhedra-ex},
+the best response
 polyhedron $\overline{P}$ of Figure \ref{br-polyhedron-fig} becomes
 the best response polytope of Figure \ref{br-polytopes-fig}.
 Notice that the vertex $(x,y)=(\0,\0)$ is completely labeled, since it is labeled
@@ -227,7 +212,7 @@ by the labels $1,2,3$ in $P$ and $4,5,6$ in $Q$.
 \includegraphics[width=40ex]{chapter-2/fig-labels/polytope.pdf}%
 \hfill\strut
 \caption[The best response polytope of a game]{%
-The best response polytope $P$ of game (\ref{AB}).
+The best response polytope of player 1 in game (\ref{AB}).
 }
 \label{br-polytopes-fig}
 \end{figure}
@@ -266,7 +251,7 @@ Since it takes polynomial time in the size of a matrix to calculate its
 transpose, an algorithm that finds a Nash equilibrium of a bimatrix game
 can be used to find a symmetric Nash equilibrium of a symmetric game.
 
-\begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky}.)}
+\begin{theorem}{\rm (McLennan and Tourky \cite{mclennan-tourky})}
 \label{imitation-thm}
 The pair $(x,x)$ is a symmetric Nash equilibrium of the symmetric bimatrix
 game $(C,C\T)$ if and only if there is some $y$ such that $(x,y)$ is a
@@ -278,7 +263,7 @@ equilibria of the symmetric game but not to all its Nash equilibria; there
 could be non-symmetric equilibria of $(C,C\T)$ that are not found
 through the imitation game, as shown in the following example.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 As an example, consider the
 \linebreak[4]
 symmetric game $(C,C\T)$ with
@@ -317,13 +302,16 @@ The best response regions of the symmetric game (\ref{C}).
 
 The characterization of Nash equilibria as completely labeled pairs $(x,y)$
 holds for arbitrary bimatrix games. From now on, we impose a
-further condition: all points in $P$ have at most $m$ labels,
+further
+\linebreak[5]
+condition: all points in $P$ have at most $m$ labels,
 and all points in $Q$ have at most $n$ labels. These games are called
 {\em nondegenerate}.
-This condition is required for the Lemke-Howson algorithm (see below).
+This condition is required for the Lemke-Howson algorithm (see
+section \ref{lh-sect}).
 % This is a loss of generality
 The algorithm can also be applied to degenerate games by
-lexicographic perturbation (see von Stengel \cite{vs-agt}).
+lexicographic perturbation, as shown in von Stengel \cite{vs-agt}.
 In an equilibrium $(x,y)$ of a nondegenerate game each label appears
 exactly once. This also means that the number of pure best response
 strategies against a mixed strategy is never larger than the size of
@@ -337,7 +325,7 @@ of $Q$ has exactly $n$ labels if and only if it is a vertex. Therefore,
 all completely labeled points $(x,y)$ are vertices of the best response
 polytopes, and Nash equilibria are isolated points.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 An example of degenerate game is given by $(C,C\T)$ with
 \begin{equation}
 \label{Cdeg}
@@ -363,34 +351,36 @@ can be chosen for~$y$.
 \caption[A degenerate symmetric game]{%
 Left: The best-response regions of the degenerate symmetric
 game (\ref{Cdeg}). \\
-Right: The best-response regions of the imitation game $(I,C\T)$.
+Right: The best-response regions for player 2 in the corresponding
+\linebreak[3]
+imitation game $(I,C\T)$.
 }
 \label{deg-fig}
 \end{figure}
 \end{example}
 
 A generalization of imitation games is the class of
-{\em unit vector games}, introduced by Balthasar \cite{balthasar}.
+{\em unit vector games},
+\linebreak[3]
+introduced by Balthasar \cite{balthasar}.
 These are defined as bimatrix games of the form $(U,B)$ where the
 columns of the matrix $U$ are unit vectors.
 By the results above, finding a Nash equilibrium of a bimatrix game is
 at least as hard as finding a Nash equilibrium of a unit vector game.
-Savani and von Stengel \cite{uvg} have shown that in unit vector games
+Savani and von Stengel \cite{uvg} have shown that
 the problem of finding a completely labeled vertex of the product of the
-best response polytopes $P\times Q$ can be simplified to the
-problem of finding a completely labeled vertex of a single
-polytope $P^l$ with a function $l$ that labels the last $n$
-facets of $P$ with elements in $[m]$ (instead of elements
-$m+j$ for $j\in[n]$) that encodes all information about the
-game.
+best response polytopes $P\times Q$ can be simplified for unit vector games:
+it is enough to find a completely labeled vertex of a single
+polytope $P^l$, for which the last $n$ facets are labeled following a
+the labeling in $[m]$ that also encodes the matrix $U$.
 
-\begin{theorem}{\rm (Savani and von Stengel \cite{uvg}.)}
+\begin{theorem}{\rm (Savani and von Stengel \cite{uvg})}
 \label{unit-vector-thm}
 Let $l:[n]\to [m]$ be a function, and let $(U,B)$ be the unit vector game with
-$U=(e_{l(1)}\ \cdots\ e_{l(n)})$. Let
-% \linebreak[6]
-$N_i = \{ j\in [n]\ \mid\ l(j)=i \}$ for
-$i\in [m]$, and consider the polytopes $P^l$ and $Q^l$
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$.
+
+Let $N_i = \{ j\in [n]\ \mid\ l(j)=i \}$ for
+$i\in [m]$, and define $P^l$ and $Q^l$ as
 \begin{equation}\label{p-l}
 \arraycolsep.2em
 \begin{array}{rcll}
@@ -436,7 +426,7 @@ $y_h = 0$ for all $h\in N_i\setminus \{ j \}$.
 Then $(x,y)\in P\times Q$ is completely labeled.
 \end{proof}
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 The game in Example \ref{br-game-ex} is a unit vector game with $l(i)=i$.
 In the polytope $P^l$ of Figure~\ref{p-l-fig} the labels 4, 5 and 6 of the
 best response polytope $P$ of Figure \ref{br-polytopes-fig}
@@ -456,10 +446,8 @@ The polytope $P^l$ of the unit vector game (\ref{AB}).
 \end{figure}
 \end{example}
 
-We now move on the dual version of Theorem \ref{unit-vector-thm},
-as given by
-\linebreak[5]
-Balthasar \cite{balthasar}.
+We now move on the dual version of Theorem \ref{unit-vector-thm}
+given by Balthasar \cite{balthasar}.
 We can translate the polytope $P^l$ of (\ref{p-l}) to
 $P = \{ x - \1\ |\ x\in P^l \}$,
 possibly multiplying all payoffs in $B$ by a
@@ -472,8 +460,6 @@ P   & = \{ x + \1\geq\0,\ (x + \1)\T B\leq\1 \} = \\
     x\T (b_j/(1 - \1\T b_j)) \leq 1\text{ for }j\in [n] \}.
 \end{align*}
 The polar of $P$ is then
-% DON'T USE Q, especially since you come back to the old Q
-% later!
 \begin{equation}\label{p-l-dual}
 P^\Delta = \conv(\{-e_i\ |\ i\in [m] \}\ \cup\ \{ c_j\ |\ j\in [n] \})
 \end{equation}
@@ -497,14 +483,18 @@ F_0 & = & \{ x\in P^\Delta\ \mid\ -\1\T x = 1 \}\\
 \end{equation}
 Theorem \ref{unit-vector-thm} then translates to the following.
 
-\begin{theorem}{\rm (Balthasar \cite{balthasar}.)}
+\begin{theorem}{\rm (Balthasar \cite{balthasar})}
 \label{unit-vector-dual-thm}
 Let $P^\Delta $ be a labeled $m$-dimensional simplicial polytope with \0 in
 its interior and vertices $e_1,\ldots,e_m,c_1,\ldots,c_n$ such that
 $F_0$ in $(\ref{f-0})$ is a facet of $P^\Delta $.
-Let $(U,B)$ be a unit vector game, with $U=(e_{l(1)}\ \cdots\ e_{l(n)})$
+
+Let $(U,B)$ be a unit vector game, with
+$U=(e_{l(1)}\ \cdots\ e_{l(n)})$
 for a labeling $l:[n]\to [m]$ and $B = [\,b_1\,\cdots\,b_n\,]$, where
-$b_j = c_j/(1 + \1\T c_j)$ for $j\in [n]$. Let $l_v$ be the labeling
+$b_j = c_j/(1 + \1\T c_j)$ for $j\in [n]$.
+
+Let $l_v$ be the labeling
 of the vertices of $P^\Delta $ given by
 \begin{equation}
 \label{vert-labeling-unitv}
@@ -549,7 +539,7 @@ Theorem \ref{unit-vector-dual-thm} gives a dual reduction to the problem
 {An $m$-dimensional simple polytope $P$ with $m+n$ facets;
 a labeling $l_f:[m+n]\to [n]$;
 a vertex $v_0$ of $P$ that is completely labeled by~$l_f$.}
-{A vertex $v\neq v_0$ of $P$ that is completely labeled by $l_s$.}
+{A vertex $v\neq v_0$ of $P$ that is completely labeled by $l_f$.}
 \label{aclv}
 \end{problem}
 
