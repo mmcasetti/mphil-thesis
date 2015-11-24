@@ -69,12 +69,10 @@ or end with an odd-length run; if $d$ is even then $s$ can start with
 an odd run if and only if it ends with an odd run.
 When $d$ is even, we can therefore see the Gale strings in $G(d,n)$
 as ``loops''
-obtained by ``gluing together'' the endpoints of the strings; then
-all runs on the loops are even.
+obtained by ``gluing together'' the endpoints of the strings; on these
+``loops'' all runs are even.
 Formally, we can see the bit positions in a Gale string $s\in G(d,n)$ with
-$d$ even as equivalence classes
-%\linebreak[4]
-modulo~$n$.
+$d$ even as equivalence classes modulo~$n$.
 
 \begin{example}\label{gs-example}
 As an example for even $d$, we have
@@ -84,6 +82,7 @@ G(4,6) = \{ & \1\1\1\100, \1\1\100\1, \1\100\1\1, \100\1\1\1, 00\1\1\1\1, \\
 \end{align*}
 The strings $\1\1\1\100$, $\1\1\100\1$, $\1\100\1\1$, $\100\1\1\1$,
 $00\1\1\1\1$ and $0\1\1\1\10$ are
+\linebreak[5]
 equivalent under a cyclic shift (if considering the strings as ``loops'', the
 $\1$'s are all consecutive), as are the strings $\1\10\1\10$, $\10\1\10\1$
 and $0\1\10\1\1$ (two runs of two $\1$'s separated by a single $0$).
@@ -101,7 +100,7 @@ The relation between cyclic polytopes and Gale strings was given by
 % use the unbreakable space ~, not linebreaks! \linebreak[5]
 Gale~\cite{gale}.
 
-\begin{theorem}{\rm (Gale \cite{gale}.)}
+\begin{theorem}{\rm (Gale \cite{gale})}
 \label{origgale-thm}
 For any $d,n\in\naturals$, where $n>d$,
 a set $F$ is a facet of $C_d(n)$ if and only if
@@ -115,41 +114,43 @@ F = \conv\{ \mu(t_j)\,\mid\, s(j)=1 \quad\text{ for }s\in G(d,n) \}.
 First, a hyperplane in $\reals^d$ of the form
 $\{x\in\reals^d\mid a\T x=a_0\}$ for some nonzero vector
 $a=(a_1,\ldots,a_d)\T$ can contain at most $d$ points on the
+\linebreak[4]
 moment curve, because otherwise the polynomial equation
 with a polynomial of degree~$d$ given by
 $-a_0+a_1t+a_2t^2+\cdots a_dt^d=0$ would have more than $d$
 roots~$t$.
-For the same reason, it is easy to see that any $d$ points
-on the moment curve are affinely independent and define a
+For the same reason, any $d$ points
+on the moment curve are affinely
+\linebreak[4]
+independent and define a
 unique hyperplane through them, which the moment curve {\em
-crosses} at these points (if it only touched the hyperplane,
-then a slight perturbation of the hyperplane would contain
-$d+1$ points on the moment curve).
-%% Consider $C_d(n)$ as defined in
-% \[
-% C_d(n) = %
-% \conv\{ \mu_d(t_j)\ \mid\ t_1 < \ldots < t_n \text{ affinely independent} \}.
-% \]
+crosses} at these points. Notice that if the curve were tangent to the
+\linebreak[4]
+hyperplane at an intersection, then a slight perturbation of the hyperplane
+could contain $d+1$ or $d-1$ points on the moment curve.
+
 Let $\overline{t_{1}} < \cdots < \overline{t_{d}}$ be a
 choice of $d$ of the $t_j$'s in the definition
-(\ref{cycdef}) of $C_d(n)$, and consider the hyperplane $H$
-that contains the points $\mu_d(\overline{t_1})$, \ldots, $\mu_d(\overline{t_d})$.
-The moment curve crosses $H$ at these points.
-% sign does not make sense. The scalar product of \mu would
-% have to be taken with respect to the normal vector of H.
-That is, if $t,t'\notin\{ \overline{t_i} \}$ and
-$t<\overline{t_i}<t'$ for exactly one $\overline{t_i}$ then
+(\ref{cycdef}) of $C_d(n)$; then the intersection of the moment curve and of
+the hyperplane $H$ through the points
+$\mu_d(\overline{t_1})$, \ldots, $\mu_d(\overline{t_d})$ coincides
+exactly with the points $\mu_d(\overline{t_i})$.
+Since the moment curve crosses the hyperplane at all intersections,
+if $t,t'\notin\{ \overline{t_i} \}$ and
+$t<\overline{t_i}<t'$ for exactly one of the $\overline{t_i}$'s then
 $\mu_d(t)$ and $\mu_d(t')$ are on opposite sides of~$H$.
-A facet $F$ of the cyclic polytope $C_d(n)$ given by
-$F=H\cap C_d(n)$ then corresponds to a choice of
-$\overline{t_i}$'s such that for all the other $t_k$'s in
-the definition of $C_d(n)$, that is, such that
-$t_k\notin \{ \overline{t_i}\,\mid\,i\in [d] \}$,
-the corresponding points $\mu_d(t_k)$ are on the {\em same} side of~$H$.
+
+A facet $F$ of the cyclic polytope $C_d(n)$ is given by
+$F=H\cap C_d(n)$. This corresponds to a choice of
+$\overline{t_i}$'s such that for all the other
+$t_k\notin \{ \overline{t_i}\,\mid\,i\in [d] \}$ in
+the definition of $C_d(n)$,
+the corresponding $\mu_d(t_k)$ are on the {\em same} side of~$H$.
 This can happen only if for every pair of these $t_k$'s the moment
-curve has an even number of crossings of $H$ between them.
-Hence, there is
+curve has an even number of crossings at $\mu(\overline{t_i})$
+of $H$ between them. This is equivalent to ask that there is
 an even number of $\overline{t_i}$'s between any two $t_k$'s.
+
 Let $s$ be the bitstring in which the \1's correspond to the
 $\overline{t_i}$'s and the 0's correspond to the other $t_k$'s.
 Then the condition that the set $F$ in (\ref{facet-gs}) is a
@@ -160,29 +161,25 @@ Because the moment curve has at most $d$ points on any hyperplane,
 each facet of $C_d(n)$ is a $d$-simplex, so $C_d(n)$ is simplicial
 and the choice of the $t_j$'s in (\ref{cycdef}) is
 irrelevant for the characterization of the facets of
-$C_d(n)$ as Gale strings.
-However, note that the order of the points on the curve,
-that is, of $t_1<\cdots<t_n$, defines the positions in the
-bitstring.
+$C_d(n)$ as Gale strings, as long as $t_1<\cdots<t_n$.
 
 \begin{example}
 Consider the facet $F$ of the cyclic polytope $C_3(6)$ marked in blue
 in Figure \ref{cyc36fac-fig}.
-If we label the vertices on the moment curve as $t_i$, with $i\in [n]$, and
+Let us label the vertices on the moment curve as $t_i$, with $i\in [n]$, and
 we set $s(i)=1$ if $t_i$ is a vertex of $F$ and $s(i)=0$
-otherwise, we see that the corresponding Gale string $s\in G(3,6)$ is
-$s=\100\1\10$.
-Figure \ref{cyc36fac-hyper-fig} shows the intersection of the
-moment curve and the hyperplane $H$ in $\reals^3$ defined by the
-$t_i$ such that $s(i)=1$.
+otherwise. Figure \ref{cyc36fac-hyper-fig} represents
+the intersection of the moment curve and the hyperplane $H$ in $\reals^3$
+defined by the $t_i$ such that $s(i)=1$. This shows
+how the corresponding Gale string $s\in G(3,6)$ is $s=\100\1\10$.
 
 \begin{figure}[h]
 \strut\hfill
 \includegraphics[width=28ex]{chapter-2/fig-gale-def/cyc36fac.pdf}%
 \hfill\strut
 \caption[A facet of the cyclic polytope $C_3(6)$]{%
-The facet of the cyclic polytope $C_3(6)$ corresponding to the Gale
-string $s=\1 00 \1\1 0\in G(3,6)$.
+The facet of the cyclic polytope $C_3(6)$ through the points
+$\mu_3(t_1),\mu_3(t_4),\mu_3(t_5)$.
 }
 \label{cyc36fac-fig}
 \end{figure}
@@ -191,31 +188,33 @@ string $s=\1 00 \1\1 0\in G(3,6)$.
 \includegraphics[width=35ex]{chapter-2/fig-gale-def/100110-hyper.pdf}%
 \hfill\strut
 \caption[A facet of $C_3(6)$ as zeroes of the moment curve]{%
-The facet of the cyclic polytope $C_3(6)$ given by the intersection
-of the moment curve and the hyperplane $H$ (seen ``from the
-side'') through the points
-% not zero's of \mu!
-$\mu_3(t_1),\mu_3(t_4),\mu_3(t_5)$ corresponds to the Gale string
-$s=\1 00 \1\1 0\in G(3,6)$.
+The facet of the cyclic polytope $C_3(6)$ through the points
+$\mu_3(t_1),\mu_3(t_4),\mu_3(t_5)$, as in Figure \ref{cyc36fac-fig},
+seen from the side of the
+\linebreak[4]
+hyperplane.
+This corresponds to the Gale string $s=\1 00 \1\1 0\in G(3,6)$.
 }
 \label{cyc36fac-hyper-fig}
 \end{figure}
 \end{example}
 
+\clearpage
+
 \begin{example}
 \label{c46-ex}
 Figure \ref{c46-fig} shows the cyclic polytope $C_4(6)$, with the exterior
 facet corresponding to the Gale string $s=\1\1\1\100$.
-Figure \ref{cyc46fac-hyper-fig} shows the string $s=\1\1\1\100$ as
-intersection of the moment curve and the hyperplane $H$.
+Figure \ref{cyc46fac-hyper-fig} shows the correspondence between the
+string $s=\1\1\1\100$ and the intersection of the moment curve and
+the hyperplane $H$.
 \begin{figure}[h]
 \strut\hfill
 \includegraphics[width=45ex]{chapter-2/fig-gale-def/c46.pdf}%
 \hfill\strut
 \caption[The cyclic polytope $C_4(6)$]{%
 The cyclic polytope $C_4(6)$. The thin lines represent the edges inside
-the exterior facet, in bold lines; the latter corresponds to the Gale string
-$s=\1\1\1\1 0\in G(4,6)$.
+the exterior facet, in bold lines.
 }
 \label{c46-fig}
 \end{figure}
@@ -226,38 +225,24 @@ $s=\1\1\1\1 0\in G(4,6)$.
 \caption[A facet of $C_4(6)$ via the moment curve]{%
 The facet of the cyclic polytope $C_4(6)$ given by the intersection of
 the moment curve and the hyperplane $H$ through the points
-$\mu_4(t_1),\mu_4(t_2),\mu_4(t_3),\mu_4(t_4)$,
-corresponding to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
+$\mu_4(t_1),\mu_4(t_2),\mu_4(t_3),\mu_4(t_4)$. This
+corresponds to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
 \label{cyc46fac-hyper-fig}
 \end{figure}
 \end{example}
 
+\clearpage
+
+\todo[inline]{New counterexample, something like: 110101 (crossing in the middle)}
+
 \begin{example}
 As a counterexample, consider Figure \ref{notfacet-even-hyper-fig}.
-The points $t=t_4$ and $t'=t_6$ lie on the moment curve but
+The points $t=t_4$ and $t'=t_6$ lie on the moment curve, but
 $\mu_4(t_4)$ and $\mu_4(t_6)$ are on opposite
 sides of the hyperplane~$H$ defined by the other four points.
-% corresponding bitstring is  $s=\1 0\1 0\1 0$
 The corresponding bitstring is $s=\1\1\10\10$, which is
 not a Gale string. The violation of the Gale Evenness Condition corresponds
 to the change of side with respect to the hyperplane between the $t_j$'s.
-% An analogous case is shown in Figure  \ref{notfacet-even-hyper-fig}; the
-
-%% not a good figure because of the extra crossings of the
-%% curve (only 3 allowed). Also not very different from the next figure hence
-%% omitted.
-% \begin{figure}[hp]
-% \strut\hfill
-% \includegraphics[width=45ex]{chapter-2/fig-gale-def/notfacet-odd-hyper.pdf}%
-% \hfill\strut
-% \caption[Not a facet of $C_3(6)$]{%
-% There is a change of sign between two $t_j$'s. The bitstring $s=0\1\1 0\1 0$
-% does not satisfy the Gale Evenness Condition, and the
-% $\overline{t_i}$'s (for the \1\ bits) do not
-% correspond to a facet of $C_3(6)$.
-% }
-% \label{notfacet-odd-hyper-fig}
-% \end{figure}
 
 \begin{figure}[hp]
 \strut\hfill
