@@ -45,8 +45,6 @@ if $S=\{0,1\}$. A maximal substring of consecutive
 1's in a bitstring is called a {\em run}.
 A run is called even if its length is even, and odd if its
 length is odd.
-% Does not seem to be needed
-% An {\em interior run} is bounded on both sides by 0's.
 We will use the notation $\1^k$ for a run of
 %\linebreak[5]
 length~$k$ and $0^k$ for a string of 0's of
@@ -62,7 +60,8 @@ $
 k\text{ is even.}
 $
 \end{enumerate}
-Let $G(d,n)$ be the set of these Gale strings.
+We denote by $G(d,n)$ be the set of Gale strings of length $n$ and
+dimension $d$.
 
 In general, the Gale Evenness Condition allows for Gale strings that start
 or end with an odd-length run; if $d$ is even then $s$ can start with
@@ -97,7 +96,6 @@ string.
 \end{example}
 
 The relation between cyclic polytopes and Gale strings was given by
-% use the unbreakable space ~, not linebreaks! \linebreak[5]
 Gale~\cite{gale}.
 
 \begin{theorem}{\rm (Gale \cite{gale})}
