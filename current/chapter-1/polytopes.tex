@@ -33,7 +33,8 @@ A set of points $Z$ is {\em convex} if $Z=\conv(Z)$. It has
 {\em dimension} $d$ if it contains exactly $d + 1$ affinely independent
 points. The convex hull of $d+1$ points of dimension
 $d$ is called a {\em $d$-simplex}. The {\em standard $d$-simplex} is
-$\Delta_d=\conv\{ e_i\ \mid\ i\in[d+1] \}$.
+the convex hull of the first $d+1$ unit vectors, that is,
+ $\Delta_d=\conv\{ e_i\ \mid\ i\in[d+1] \}$.
 
 A {\em polytope} is the convex hull of a finite set of points, not
 necessarily affinely independent.
@@ -41,7 +42,9 @@ Its {\em dimension} is its dimension as a convex set.
 A {\em polyhedron} is the intersection of finitely many closed halfspaces
 $\{ x\in \reals^d\ \mid\ a\T x\leq a_0\}$. It can be shown that a bounded
 polyhedron is a polytope.
-A {\em vertex} of a $d$-dimensional polytope $P=\conv(Z)$ is a
+A {\em vertex} of a
+\linebreak[4]
+$d$-dimensional polytope $P=\conv(Z)$ is a
 point $z\in Z$ that is not the convex combination of other
 points in $P$.
 % you have not defined convex hulls of infinite sets
@@ -51,7 +54,9 @@ as endpoints.
 A {\em facet} of $P$ is a set of dimension $d-1$ that is the convex hull of
 a set of vertices that lie on a hyperplane of the form
 $\{ x\in \reals^d\ \mid\ a\T x=a_0\}$ so that $a\T u<a_0$ for all other
-vertices $u$ of $P$.
+vertices
+\linebreak[5]
+$u$ of $P$.
 A $d$-dimensional polytope $P$ is {\em simplicial} if it is the convex hull
 of a set of at least $d+1$ points $v\in \reals^d$ such that no
 $d+1$ of them are on a common hyperplane. This is equivalent to requiring

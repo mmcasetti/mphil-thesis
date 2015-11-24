@@ -25,7 +25,9 @@ position of the cursor. The transition function returns the next
 state $q\in K$, the symbol $\tau\in \Sigma$ to be written at the position
 of the cursor, and a direction in which the cursor will move on the tape.
 The possible directions are ``left'', ``right'', or ``stay'', represented
-respectively by $\leftarrow,\rightarrow,-$. The first symbol is never
+respectively
+\linebreak[5]
+by $\leftarrow,\rightarrow,-$. The first symbol is never
 overwritten, and from there the cursor can only go left.
 
 In some cases, the machine reaches the state
@@ -84,7 +86,9 @@ set of languages. Let $\mathcal{M}$ be a Turing machine, and let
 $x\in (\Sigma\setminus\{ \sqcup \})^\ast$.
 We say that $\mathcal{M}$ {\em decides} $L$ if
 either $\mathcal{M}(x)=\text{{\sc Yes}}$ if $x\in L$ or
-$\mathcal{M}(x)=\text{{\sc No}}$ if $x\notin L$. A Turing
+$\mathcal{M}(x)=\text{{\sc No}}$
+\linebreak[5]
+if $x\notin L$. A Turing
 machine $\mathcal{M}$ {\em accepts} $L$ if
 $x\in L$ is a necessary and sufficient condition for
 $\mathcal{M}(x)=\text{{\sc Yes}}$, and if $x\notin L$ then
@@ -161,10 +165,15 @@ path $y$ of $x$?'' There are graphs with more than one possible
 Hamiltonian path, and each one of these can be used as certificate.
 
 It is quite simple to see that $\mathbf{P}\subseteq \mathbf{NP}$, but it is
-an important open problem whether the inclusion is strict. If this were
-not the case, it could be argued that there isn't any substantial
-difference between finding a solution and verifying its validity.
-This seems to contradict most intellectual experience, where the value
+an important open
+\linebreak[5]
+problem whether the inclusion is strict. If this were
+not the case, it could be
+\linebreak[5]
+argued that there isn't any substantial difference between finding a
+\linebreak[5]
+solution and verifying its validity. This seems to contradict most of
+the human intellectual experience, where the value
 of an ``original'' discovery is perceived as fundamental; the
 ``conventional'' view is therefore that $\mathbf{P}\neq\mathbf{NP}$.
 Another open problem is whether $\mathbf{NP} = \mathbf{co-NP}$; again,
@@ -198,16 +207,25 @@ a number of new classes; we will see more of this in
 section \ref{ppad-sect}.
 
 The class $\mathrm{\mathbf{\# P}}$ is the class of all function
-problems that output the number of possible certificates
+problems that output the
+\linebreak[5]
+number of possible certificates
 for a decision problem in $\mathrm{\mathbf{NP}}$.
-Formally: the {\em counting problem} associated with a binary
+Formally: the
+\linebreak[5]
+{\em counting problem} associated with a binary
 relation $Q(x,y)$ is ``given $x$, how many $y$ are there such
 that $(x,y)\in Q$?'' Then $\mathrm{\mathbf{\# P}}$ is the class of
-all counting problems associated with binary relations that are both
-polynomially balanced and polynomially decidable.
-It is interesting to notice that there are $\mathrm{\mathbf{\# P}}$-complete
+all
+\linebreak[5]
+counting problems associated with binary relations that are both
+polynomially
+balanced and polynomially decidable.
+It is interesting to notice that there are
+$\mathrm{\mathbf{\# P}}$-complete
 problems for which the corresponding search problem can
-be solved in polynomial time. An example close to the topic
+be solved
+in polynomial time. An example close to the topic
 of this thesis is given in Brightwell \cite{brightwell}: although finding
 an Eulerian circuit in an
 undirected graph takes polynomial time, counting the number of possible
