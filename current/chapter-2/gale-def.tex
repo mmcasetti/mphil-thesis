@@ -32,7 +32,7 @@ Figure \ref{cyc36-fig} shows the cyclic polytope in dimension 3 with 6 facets.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=28ex]{chapter-2/fig-gale-def/cyc36.pdf}
+\includegraphics[width=30ex]{chapter-2/fig-gale-def/cyc36.pdf}
 \hfill\strut
 \caption[The cyclic polytope $C_3(6)$]{The cyclic polytope $C_3(6)$.}
 \label{cyc36-fig}
@@ -175,7 +175,7 @@ how the corresponding Gale string $s\in G(3,6)$ is $s=\100\1\10$.
 
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=28ex]{chapter-2/fig-gale-def/cyc36fac.pdf}%
+\includegraphics[width=25ex]{chapter-2/fig-gale-def/cyc36fac.pdf}%
 \hfill\strut
 \caption[A facet of the cyclic polytope $C_3(6)$]{%
 The facet of the cyclic polytope $C_3(6)$ through the points
@@ -185,7 +185,7 @@ $\mu_3(t_1),\mu_3(t_4),\mu_3(t_5)$.
 \end{figure}
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=35ex]{chapter-2/fig-gale-def/100110-hyper.pdf}%
+\includegraphics[width=48ex]{chapter-2/fig-gale-def/100110-hyper.pdf}%
 \hfill\strut
 \caption[A facet of $C_3(6)$ as zeroes of the moment curve]{%
 The facet of the cyclic polytope $C_3(6)$ through the points
@@ -210,17 +210,17 @@ string $s=\1\1\1\100$ and the intersection of the moment curve and
 the hyperplane $H$.
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-2/fig-gale-def/c46.pdf}%
+\includegraphics[width=43ex]{chapter-2/fig-gale-def/c46.pdf}%
 \hfill\strut
 \caption[The cyclic polytope $C_4(6)$]{%
 The cyclic polytope $C_4(6)$. The thin lines represent the edges inside
-the exterior facet, in bold lines.
+the exterior facet, in bold lines. Vertex $i$ corresponds to $t_i$.
 }
 \label{c46-fig}
 \end{figure}
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=40ex]{chapter-2/fig-gale-def/111100-hyper.pdf}%
+\includegraphics[width=50ex]{chapter-2/fig-gale-def/111100-hyper.pdf}%
 \hfill\strut
 \caption[A facet of $C_4(6)$ via the moment curve]{%
 The facet of the cyclic polytope $C_4(6)$ given by the intersection of
@@ -233,24 +233,22 @@ corresponds to the Gale string $s=\1\1\1\1 00\in G(4,6)$.}
 
 \clearpage
 
-\todo[inline]{New counterexample, something like: 110101 (crossing in the middle)}
-
 \begin{example}
 As a counterexample, consider Figure \ref{notfacet-even-hyper-fig}.
-The points $t=t_4$ and $t'=t_6$ lie on the moment curve, but
-$\mu_4(t_4)$ and $\mu_4(t_6)$ are on opposite
+The points $t=t_3$ and $t'=t_5$ lie on the moment curve, but
+$\mu_4(t_3)$ and $\mu_4(t_5)$ are on opposite
 sides of the hyperplane~$H$ defined by the other four points.
-The corresponding bitstring is $s=\1\1\10\10$, which is
+The corresponding bitstring is $s=\1\10\10\1$, which is
 not a Gale string. The violation of the Gale Evenness Condition corresponds
-to the change of side with respect to the hyperplane between the $t_j$'s.
+to the change of side with respect to the hyperplane between $t$ and $t'$.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-2/fig-gale-def/notfacet-even-hyper.pdf}%
+\includegraphics[width=55ex]{chapter-2/fig-gale-def/notfacet-hyper.pdf}%
 \hfill\strut
 \caption[Not a facet of $C_4(6)$]{%
 There is a change of side between two $\mu_4(t_j)$'s (for
-the 0 bits). The bitstring $s=\1\1\1 0\1 0$
+the 0 bits). The bitstring $s=\1\10\1 0\1\1$
 does not satisfy the Gale Evenness Condition, and the
 set of $\mu_4(\overline{t_i})$'s (for the \1 bits)
 does not define a facet of $C_4(6)$.
