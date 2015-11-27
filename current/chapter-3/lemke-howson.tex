@@ -1,66 +1,84 @@
 \section{The Lemke-Howson Algorithm}
 \label{lh-sect}
 
-Theorem \ref{nash-ppad-complete-thm} makes the study of solutions of
-$n$-Nash as endpoints of paths particularly interesting. In this
-section we will see an algorithm that describes exactly this idea.
+Theorem \ref{nash-ppad-complete-thm} suggests that the study of solutions of
+$n$-{\sc Nash} as endpoints of paths can yield interesting results about
+the complexity of the problem itself. In this
+section we will study an algorithm that describes exactly this idea.
 
 Let $P$ be a simple $d$-polytope with $n$ facets.
 We {\em pivot on the vertices} of $P$ by moving from a
-vertex $x$ to another vertex $y$ connected to $x$ by an edge.
+vertex $x$ to another vertex $y$ connected to $x$ by an edge,
+see Figure \ref{pivot-vertex-fig}.
 Note that, since $P$ is simple, there are exactly
 $d$ possible choices for $y$.
 Analogously, we {\em pivot on the facets} of a simplicial
 polytope $P^\Delta$ in
 dimension $d$ by moving from a facet $F$ to a facet $G$ that
-shares all vertices but one with~$F$. Since $P^\Delta$ is
-simplicial, there are $d$ possible choices for $G$.
+shares all vertices but one with~$F$, see Figure \ref{pivot-facet-fig}.
+As above, since $P^\Delta$ is simplicial, there are $d$ possible choices
+for $G$.
 
-Suppose now that there is a labeling $l_f:[n]\to [d]$ of the facets of the
-simple polytope $P$.
-If we pivot from vertex $x$ to vertex $x'$ we ``leave behind'' a facet $F$
-to which $x$, but not $x'$, belong; let $F$ have label $k$. At the same
-time, we ``reach'' a facet $F'$, to which $x$ does not belong, but $x'$
-does; let $F'$ have label $h$.
-Therefore, if $x$ has labels $(l_1,\ldots,k,\ldots,l_d)$, then
-$x'$ has labels $(l_1,\ldots,h,\ldots,l_d)$. We call this
-{\em dropping label $k$ and picking up label $h$}, or
-{\em pivoting on label $k$}; see Figure
-\ref{pivot-vertex-fig} for illustration.
-Analogously, if there is a labeling $l_v:[n]\to [d]$ of the vertices
-of the simplicial poytope $P^\Delta$
-and we pivot from a facet $F$ with labels $(l_1,\ldots,k,\ldots,l_d)$
-to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
-{\em drop label $k$ and pick up label $h$}, or that we
-{\em pivot on label $k$}; see Figure \ref{pivot-facet-fig}.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-3/fig-lh/cube-pivot.pdf}%
+\includegraphics[width=40ex]{chapter-3/fig-lh/cube-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the vertices of the cube]{%
-A pivot on label $k$, dropping vertex $x$ with labels $(l_1,l_2,k)$ and
-picking up vertex $x'$ with labels $(l_1,l_2,h)$.
+A pivot from vertex $x$ to vertex $y$ on the edge of a cube.
 }
 \label{pivot-vertex-fig}
 \end{figure}
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-pivot.pdf}%
+\includegraphics[width=45ex]{chapter-3/fig-lh/octahedron-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the facets of the octahedron]{%
-A pivot on label $k$, dropping facet $F$ with labels $(l_1,l_2,k)$ and
-picking up facet $F'$ with labels $(l_1,l_2,h)$.
+A pivot from facet $F$ of an octahedron to facet $G$.
 }
 \label{pivot-facet-fig}
 \end{figure}
 
-\clearpage
+Suppose now that there is a labeling $l_f:[n]\to [d]$ of the facets of the
+simple polytope $P$.
+If we pivot from vertex $x$ to vertex $x'$ we ``leave behind'' a facet $F$
+with label $k$ to which $x$ belongs, but $x'$ does not. At the same
+time, we ``reach'' a facet $F'$ with label $h$, to which $x$ does not
+belong, but $x'$ does.
+Therefore, if $x$ has labels $(l_1,\ldots,k,\ldots,l_d)$, then
+$x'$ has labels $(l_1,\ldots,h,\ldots,l_d)$. We call this
+{\em dropping label $k$ and picking up label $h$}, or
+{\em pivoting on label $k$}; see Figure \ref{pivot-vertex-label-fig}.
+Analogously, if there is a labeling $l_v:[n]\to [d]$ of the vertices
+of the simplicial poytope $P^\Delta$
+and we pivot from a facet $F$ with labels $(l_1,\ldots,k,\ldots,l_d)$
+to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
+{\em drop label $k$ and pick up label $h$}, or that we
+{\em pivot on label $k$}; see Figure \ref{pivot-facet-label-fig}.
 
-% again, I don't think what you do here makes sense
-%Let $m,n\in \naturals$ with $m\leq n$; consider a set $X$
-%and a labeling $l:X\to [m]$. The $n$-uple $x=(x_1,\ldots,x_n)\in X^n$
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[width=38ex]{chapter-3/fig-lh/cube-pivot-label.pdf}%
+\hfill\strut
+\caption[A pivot on the vertices of the labeled cube]{%
+A pivot on label $k$: drop vertex $x$ with labels $(l_1,l_2,k)$ and
+pick up vertex $x'$ with labels $(l_1,l_2,h)$.
+}
+\label{pivot-vertex-label-fig}
+\end{figure}
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[width=45ex]{chapter-3/fig-lh/octahedron-pivot-label.pdf}%
+\hfill\strut
+\caption[A pivot on the facets of the labeled octahedron]{%
+A pivot on label $k$: drop a facet with labels $(l_1,l_2,k)$ and
+pick up a facet with labels $(l_1,l_2,h)$.
+}
+\label{pivot-facet-label-fig}
+\end{figure}
+
 Consider a labeling function $l:[n]\to[d]$, and a subset $S$
 of $[n]$ with $|S|=d$.
 Then $S$ is called {\em almost completely labeled} if
