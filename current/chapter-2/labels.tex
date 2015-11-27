@@ -37,12 +37,8 @@ A pair $(x,y)$ is called {\em completely labeled} if each
 possible label in $[m+n]$ is a label of $x$ or of~$y$.
 
 \begin{theorem}{\rm (Shapley \cite{shapley})}\label{comp-label-thm}
-Let $(x,y)\in X\times Y$. Then $(x,y)$ is a Nash
-\linebreak[5]
-equilibrium of the bimatrix
-game $(A,B)$ if and only if $(x,y)$ is completely
-%\linebreak[3]
-labeled.
+Let $(x,y)\in X\times Y$. Then $(x,y)$ is a Nash equilibrium of the bimatrix
+game $(A,B)$ if and only if $(x,y)$ is completely labeled.
 \end{theorem}
 
 \begin{proof}
@@ -264,9 +260,7 @@ could be non-symmetric equilibria of $(C,C\T)$ that are not found
 through the imitation game, as shown in the following example.
 
 \begin{example}({\rm Savani and von Stengel \cite{uvg}})
-As an example, consider the
-\linebreak[4]
-symmetric game $(C,C\T)$ with
+As an example, consider the symmetric game $(C,C\T)$ with
 \begin{equation}
 \label{C}
 C = \left(\begin{matrix}0&3&0\\ 2&2&2\\
@@ -278,9 +272,7 @@ C\T = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 The corresponding imitation game is $(I,C\T)=(A,B)$, seen in
 Example \ref{br-game-ex}.
 Figure~\ref{imit-fig} shows the labeled mixed-strategy simplices $X$ and $Y$
-for the
-%\linebreak[5]
-game~(\ref{C}); since the game is symmetric, only the labels
+for the game~(\ref{C}); since the game is symmetric, only the labels
 are different.
 In addition to the symmetric equilibrium $(x,x)$ where
 $x=(\frac13,\frac23,0)$, the game has two non-symmetric equilibria in $(a,b)$
@@ -302,9 +294,7 @@ The best response regions of the symmetric game (\ref{C}).
 
 The characterization of Nash equilibria as completely labeled pairs $(x,y)$
 holds for arbitrary bimatrix games. From now on, we impose a
-further
-\linebreak[5]
-condition: all points in $P$ have at most $m$ labels,
+further condition: all points in $P$ have at most $m$ labels,
 and all points in $Q$ have at most $n$ labels. These games are called
 {\em nondegenerate}.
 This condition is required for the Lemke-Howson algorithm (see
@@ -352,7 +342,6 @@ can be chosen for~$y$.
 Left: The best-response regions of the degenerate symmetric
 game (\ref{Cdeg}). \\
 Right: The best-response regions for player 2 in the corresponding
-\linebreak[3]
 imitation game $(I,C\T)$.
 }
 \label{deg-fig}
@@ -360,9 +349,7 @@ imitation game $(I,C\T)$.
 \end{example}
 
 A generalization of imitation games is the class of
-{\em unit vector games},
-\linebreak[3]
-introduced by Balthasar \cite{balthasar}.
+{\em unit vector games}, introduced by Balthasar \cite{balthasar}.
 These are defined as bimatrix games of the form $(U,B)$ where the
 columns of the matrix $U$ are unit vectors.
 By the results above, finding a Nash equilibrium of a bimatrix game is
@@ -556,10 +543,6 @@ a facet $F_0$ of $P^\Delta$ that is completely labeled by $l_v$.}
 \begin{proposition}
 \label{nash-to-acl}
 {\sc 2-Nash} reduces in polynomial time to
-{\sc Another}
-\linebreak[5]
-{\sc Completely Labeled Vertex} and
-{\sc Another Completely Labeled}
-\linebreak[5]
-{\sc Facet}.
+{\sc Another Completely Labeled Vertex} and
+{\sc Another Completely Labeled Facet}.
 \end{proposition}

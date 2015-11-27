@@ -36,7 +36,7 @@ to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-3/fig-lh/cube-1-pivot.pdf}%
+\includegraphics[width=45ex]{chapter-3/fig-lh/cube-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the vertices of the cube]{%
 A pivot on label $k$, dropping vertex $x$ with labels $(l_1,l_2,k)$ and
@@ -47,7 +47,7 @@ picking up vertex $x'$ with labels $(l_1,l_2,h)$.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-1-pivot.pdf}%
+\includegraphics[width=55ex]{chapter-3/fig-lh/octahedron-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the facets of the octahedron]{%
 A pivot on label $k$, dropping facet $F$ with labels $(l_1,l_2,k)$ and
@@ -222,7 +222,7 @@ polytope $Q$, and so on until we reach the point $x$ in $P$
 and $y$ in~$Q$, which gives here the only Nash equilibrium $(x,y)$ of $(A,B)$.
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=75ex]{chapter-3/fig-lh/lh.pdf}%
+\includegraphics[width=75ex]{chapter-3/fig-lh/lemke-path.pdf}%
 \hfill\strut
 \caption[A Lemke path for a bimatrix game]{%
 Lemke path for missing label 2 on the best response polytopes $P$ (left)
@@ -264,7 +264,7 @@ Figure \ref{disj-lp-br-poly}.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=80ex]{chapter-3/fig-lh/shapley-game-PQ-1.pdf}%
+\includegraphics[width=80ex]{chapter-3/fig-lh/shapley-game.pdf}%
 \hfill\strut
 \caption[A game with disjoint Lemke paths]{%
 Lemke paths for missing label 1 (blue), 2 (green) and 3 (pink) on the best
@@ -280,7 +280,6 @@ after the corresponding change of labels.
 \clearpage
 
 The dual version of the Lemke Path Algorithm \ref{lh-alg} and of
-%\linebreak[5]
 Proposition \ref{lh-works-ppa-thm} is straightforward.
 
 \begin{algorithm}
@@ -473,9 +472,7 @@ The {\em sign of an almost completely labeled Gale string} $s\in G(d,n)$ with
 missing label~$k$ and duplicate label $h$ is defined on two different strings.
 Let $i_1$ be the index of $h$ reached by the last pivot
 (the ``new'' position of the \1) and let $i_2$ be the index of $h$ such that
-$s(i_2)=\1$ before the last pivot (the ``old'' position of
-\linebreak[4]
-the \1).
+$s(i_2)=\1$ before the last pivot (the ``old'' position of the \1).
 Let $l_1$ be the string obtained as $l_0$ substituting $k$ to
 $h$ at index $i_1$, and let $l_2$ be the string obtained as $l_0$
 substituting $k$ to $h$ at index $i_2$. Notice that $\sign(l_1)=-\sign(l_2)$,
@@ -531,7 +528,7 @@ since $s(6)=s(1)=1$ and therefore the indices $6$ and $1$ are consecutive
 in the same run.
 \begin{figure}[h]
 \strut\hfill
-\includegraphics[width=60ex]{chapter-3/fig-lh/pivoting-sign-example.pdf}%
+\includegraphics[width=60ex]{chapter-3/fig-lh/lhg-sign.pdf}%
 \hfill\strut
 \caption[Pivoting with sign]
 {Pivoting with sign on $123432$.}

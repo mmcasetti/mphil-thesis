@@ -7,7 +7,6 @@ A {\em matching} of a graph $G=(V,E)$ is a set $M\subseteq E$ such that every
 vertex $v\in V$ is the endpoint of at most one edge $m\in M$. A
 {\em perfect matching} is a matching such that there is an edge $m\in M$
 incident to every vertex $v\in V$.
-\linebreak[5]
 Edmonds \cite{edm} proved the {\bf FP}
 complexity of finding a perfect matching. The result can be easily extended
 to multigraphs which have parallel edges, since a perfect matching of a multigraph $G$ corresponds to
@@ -33,7 +32,6 @@ matching for $G$.}
 \end{proposition}
 
 To prove our main result on \anothergale, we will prove that the
-%\linebreak[4]
 related problem \gale\ can be solved in polynomial time.
 
 \begin{problem}
@@ -135,11 +133,9 @@ Run Edmonds's Algorithm on $G$ \\
 \begin{example}
 \label{gs-pm-ex}
 Figure \ref{perfect-matching-fig} shows the graph for the Morris labeling
-\linebreak[5]
 $l_s=1234564523$, and its two matchings
 $M=\{ e_1,e_3,e_5 \}$ and $M'=\{ e_8,e_6,e_{10} \}$.
 These, in turn, correspond to the completely labeled Gale strings
-\linebreak[5]
 $s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
 
 \begin{figure}[h]
@@ -179,7 +175,6 @@ The graph for the labeling $l=121314$
 \clearpage
 
 We finally extend the proof of Theorem \ref{gale-thm} to give the complexity
-\linebreak[5]
 of \anothergale.
 
 \begin{theorem}
@@ -189,11 +184,8 @@ of \anothergale.
 
 \begin{proof}
 Let $G=(V,E)$ be the graph corresponding to the labeling
-\linebreak[5]
 $l:[n]\to [d]$ with $V=[d]$ and $E$ as in (\ref{edges-graph}). Let
-$M_0$ be the perfect
-\linebreak[5]
-matching of $G$ corresponding to the completely
+$M_0$ be the perfect matching of $G$ corresponding to the completely
 labeled Gale string $s_0\in G(d,n)$. % as in (\ref{matching-graph}).
 
 Theorem \ref{lhg-works-ppad-thm} guarantees the existence of another
@@ -287,12 +279,9 @@ Finding a Nash equilibrium of a Gale game takes polynomial time.
 
 \begin{example}
 The labeling $l=123432$ gives the graph $G$ in Figure \ref{matching-2-edges}.
-\linebreak[5]
 Suppose that Edmonds's algorithm returns the matching $M_0=\{ e_1,e_3 \}$ of
-\linebreak[5]
 Figure \ref{matching-2-edges} (left), corresponding to the completely labeled
 Gale string
-\linebreak[5]
 $s_0=\1\1\1\1 00$. A second perfect matching $M=\{ e_3,e_6 \}$,
 corresponding to the Gale string $s=\1 0\1\1 0\1$, can be found in the
 graph $G_1=(V(G),E(G)\setminus\{e_1 \})$, see Figure \ref{matching-2-edges}
@@ -317,14 +306,9 @@ matching corresponding to the Gale string $s=\1 0\1\1 0\1$.
 
 \begin{example}
 Consider the Morris graph of Example \ref{gs-pm-ex}. Suppose that
-\linebreak[5]
 Edmonds's algorithm returns the perfect matching $M_0=\{ e_1,e_3,e_5 \}$,
-as in
-\linebreak[5]
-Figure \ref{morris-matching} (left), corresponding
-to the completely labeled Gale string
-\linebreak[5]
-$s_0=\1\1\1\1\1\1 0000$.
+as in Figure \ref{morris-matching} (left), corresponding
+to the completely labeled Gale string $s_0=\1\1\1\1\1\1 0000$.
 We can then delete the edge $e_1$ to obtain the graph
 $G_1$, as in Figure \ref{morris-matching} (center). The graph $G_1$
 has a perfect matching $M=\{ e_6,e_8,e_{10} \}$, shown in
@@ -345,7 +329,6 @@ Left: The Morris graph $G=(V,E)$ and its matching
 $M=\{ e_1,e_3,e_5 \}$. \\
 Center: The graph $G_1=(V(G),E(G)\setminus\{e_1 \})$. \\
 Right: The set $M_1=\{ e_6,e_8,e_{10} \}$ is a perfect matching of both
-\linebreak[4]
 $G_1$ and $G$.
 }
 \label{morris-matching}
