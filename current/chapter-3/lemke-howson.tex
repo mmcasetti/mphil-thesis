@@ -84,24 +84,24 @@ of $[n]$ with $|S|=d$.
 Then $S$ is called {\em almost completely labeled} if
 \begin{equation}
 \label{acl-equation}
-l(S)~=~\{\,l(s)\mid s\in S\}~=~[d]\setminus\{k\}\,,
+l(S)~=~\{\,l(s)\mid s\in S\}~=~[d]\setminus\{k\}\,
 \end{equation}
 that is, all labels appear once in $S$ except for one {\em
 missing label} $k\in [d]$.
 Because $|S|=d$, in that case there is one
 {\em duplicate label} $h\in [d]$ that appears twice in~$S$.
 
-The set $S$ will be the set of labels of a vertex in a
-simple polytope (as the set of labels of the facets containing
-that vertex), or the set of labels of a facet in a
-simplicial polytope (as the set of labels of the vertices on
-that facet).
-Correspondingly, we call such a vertex (or facet) ``almost
-completely labeled''.
+Let $S$ be the set of labels of a vertex in a
+simple polytope, or the set of labels of a facet in a
+simplicial polytope.
+We call this vertex (or, respectively, facet) {\em almost
+completely labeled vertex (or facet)} if it is almost completely
+labeled by $S$ with respect to the labeling of the facets
+(or, respectively, vertices) of the polytope.
 It is easy to see that if we pivot from an almost completely
 labeled vertex (or facet) on the duplicate label, or from a
-completely labeled vertex (or facet) by on any label (which
-will become the missing label~$k$), then we reach either an
+completely labeled vertex (or facet) on any label, this
+becomes the missing label~$k$, and we reach either an
 almost completely labeled or a completely labeled vertex
 (or facet).
 
@@ -115,12 +115,15 @@ the product $P\times Q$ of the best-response polytopes.
 This can be abstracted slightly further by considering only
 a single polytope $P$ in dimension $d$ with facets labels
 from $[d]$.
-The resulting algorithm is also known as computing a ``Lemke
-path'', in the terminology used by Morris~\cite{morris}, and
-shown in Algorithm~\ref{lh-alg}.
-We will use Lemke paths to prove some fundamental properties
-of both the Lemke-Howson Algorithm and the problem {\sc
-Another Completely Labeled} {\sc Vertex}.
+Algorithm~\ref{lh-alg} gives this latter version; for simplicity
+of notation, we will call it {\em Lemke-Howson Algorithm}.
+Algorithm~\ref{lh-alg} also computes a ``Lemke
+path'', in the terminology of Morris~\cite{morris}; this, in turn,
+can be used to prove some fundamental properties
+of both the Lemke-Howson Algorithm and the Nash equilibria of a
+bimatrix game.
+
+\clearpage
 
 \begin{algorithm}[htb]
 \SetKwInOut{Input}{input}
@@ -141,40 +144,40 @@ with label $h$\\
 {
 % you don't use x_0 in the while loop
 pivot away from the other facet with label $h$ from $x$ to $x'$  \\
-let $h$ be the label of the new facet of $x'$ and
+let $h$ be the label of the new facet of $x'$ \\
 set $x = x'$
 }
 \Return $x$
-\caption{Lemke Path}
+\caption{Lemke-Howson}
 \label{lh-alg}
 \end{algorithm}
 
 \begin{proposition}\label{lh-works-ppa-thm}
-The Lemke Path Algorithm \ref{lh-alg} returns a solution to
+The Lemke-Howson Algorithm \ref{lh-alg} returns a solution to
 the {\bf PPA} problem {\sc Another Completely Labeled Vertex}.
 Furthermore, the number of completely labeled vertices in a simple
 polytope with labeled facets is even.
 \end{proposition}
 
 \begin{proof}
-We first show that the Lemke Path Algorithm works.
+We first show that the Lemke-Howson Algorithm works.
 From the completely labeled vertex $x_0$, there is a unique
 edge that leaves the facet with label~$k$ which leads to a
-new vertex $x$ as in step~2 of the algorithm.
+new vertex $x$, as in step~2 of the algorithm.
 If $x$ is completely labeled, then the algorithm terminates
-with output $x$ where clearly $x\ne x_0$.
+with output $x$, and it is trivial to see that $x\ne x_0$.
 Otherwise, $x$ is an almost completely labeled vertex with
 duplicate label~$h$, where one of the facets that contain $x$
 and have label~$h$ is a ``new'' facet that did not contain
 the preceding vertex on the Lemke path.
 Because $S$ is simple, $x$ is always on exactly $d$ facets
 and the duplicate label is unique.
-Hence no vertex (including $x_0$) can ever be re-visited
+Hence no vertex, including $x_0$, can ever be re-visited
 on the path because it would otherwise offer an alternative
 way to proceed when the vertex was encountered for the first
 time.
 
-The parity is proven by the following argument: each Lemke path is
+The parity result is proven by the following argument: each Lemke path is
 uniquely determined by its missing label and its starting point, so the
 Lemke path from the endpoint with the same missing label will lead back
 to the starting point. Since the endpoint and the starting point are
@@ -188,13 +191,15 @@ The problem {\sc Another Completely Labeled Vertex} correspond to finding
 a non-standard endpoints of this graph, which is a {\bf PPA} problem.
 \end{proof}
 
+\todo[inline]{result can be extended to PPAD, see eg VvS for an in-depth study}
+
 Applying the parity result of Proposition \ref{lh-works-ppa-thm} to the
 case of a bimatrix game (not necessarily a unit vector game), and
 remembering that the point $(\0,\0)$ corresponds to the
 ``artificial'' equilibrium, we have the following result, due to Lemke and
 Howson \cite{lh}.
 
-\begin{theorem}{\rm (Lemke-Howson \cite{lh}.)}
+\begin{theorem}{\rm (Lemke-Howson \cite{lh})}
 Every non-degenerate bimatrix game has an odd number of Nash equilibria.
 \end{theorem}
 
@@ -209,18 +214,18 @@ C=\binom{~0~~~ A\,}{B\T~ 0\,}.
 \]
 The facets of $C$ correspond to $2(m+n)$ inequalities. We label both
 the $i$-th and the $(m+n+i)$-th inequality as $i\in [m+n]$ and we apply the
-Lemke Path algorithm starting from the vertex $\0$. This returns a Nash
+Lemke-Howson algorithm starting from the vertex $\0$. This returns a Nash
 equilibrium $(z,z)$ of $C$, which corresponds to a Nash equilibrium
 $(x,y)=z$ of $(A,B)$.
-
 We can also follow the ``traditional'' exposition of the Lemke-Howson
-Algorithm by alternating a move on the best response polytopes $P$ and a move
+Algorithm given by Shapley \cite{shapley}. In this version,
+we alternate a move on the best response polytopes $P$ and a move
 on the best response polytope $Q$ of (\ref{br-polytopes}).
 Since the polytopes $P$ and $Q$ are in $\reals^m$ and $\reals^n$, whereas $R$
-is a polytope in $\reals^{m+n}$, this second version is much easier to
+is a polytope in $\reals^{m+n}$, the second version is much easier to
 visualize.
 
-\begin{example}({\rm Savani and von Stengel \cite{uvg}}.)
+\begin{example}({\rm Savani and von Stengel \cite{uvg}})
 Consider the $3\times 3$ game $(A,B)$ of Example \ref{br-game-ex}.
 \begin{equation*}
 A = \left(\begin{matrix}1&0&0\\ 0&1&0\\
@@ -231,35 +236,35 @@ B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 \end{equation*}
 The best response polytopes can be represented as the best response regions
 of Figure \ref{br-regions-fig} extended to the origin $\0$,
-as in Figure~\ref{lh-path-fig}, which is in fact the
-original exposition by Shapley~\cite{shapley}.
+as in Figure~\ref{lh-path-fig}.
 The path starts from $(\0,\0)$.
-We choose the missing label~2 and move in the polytope $P$.
+We choose the missing label~1 and move in the polytope $P$.
 Then label~6 is duplicate; so we drop it and we make the next move on the
 polytope $Q$, and so on until we reach the point $x$ in $P$
 and $y$ in~$Q$, which gives here the only Nash equilibrium $(x,y)$ of $(A,B)$.
+
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=75ex]{chapter-3/fig-lh/lemke-path.pdf}%
+\includegraphics[width=70ex]{chapter-3/fig-lh/lemke-path.pdf}%
 \hfill\strut
 \caption[A Lemke path for a bimatrix game]{%
-Lemke path for missing label 2 on the best response polytopes $P$ (left)
-and $Q$ (right) of game (\ref{AB}).
+Lemke path for missing label 1 on the best response polytopes of
+player 1 (left) and player 2 (right) of game (\ref{AB}).
 }
 \label{lh-path-fig}
 \end{figure}
 \end{example}
 
-%\newpage
-
 It is possible to have an equilibrium that cannot be reached applying the
 Lemke-Howson Algorithm from the artificial equilibrium, or even from
 the endpoint of a Lemke path from the artificial equilibrium. This is
-can be seen in the next example. Notice that, by the parity result in
-Proposition \ref{lh-works-ppa-thm}, there must be at least another equilibrium
-that is ``disconnected'' from the artificial one in this way.
+can be seen in the next example, where the Lemke paths form two disconnected
+components. Notice that, by the parity result of
+Proposition \ref{lh-works-ppa-thm}, each one of these components must
+contain an even number of equilibria (either Nash or artificial), since all
+these equilibria are endpoints of Lemke paths.
 
-\begin{example}(Shapley \cite{shapley}.)
+\begin{example}(R. Wilson, cited in Shapley \cite{shapley})
 Consider the symmetric game $(C,C\T)$ with
 \begin{equation}
 \label{disj-lp-game}
@@ -282,14 +287,16 @@ Figure \ref{disj-lp-br-poly}.
 
 \begin{figure}[hbt]
 \strut\hfill
-\includegraphics[width=80ex]{chapter-3/fig-lh/shapley-game.pdf}%
+\includegraphics[width=70ex]{chapter-3/fig-lh/shapley-game.pdf}%
 \hfill\strut
 \caption[A game with disjoint Lemke paths]{%
-Lemke paths for missing label 1 (blue), 2 (green) and 3 (pink) on the best
-response polytopes of game (\ref{disj-lp-game}). The paths for missing label
-4, 5 and 6 on the best response polytope of player 1 and 2 are the same
-as the paths of 1, 2 and 3 on the best response polytope of player 2 and~1,
-after the corresponding change of labels.
+The Lemke paths for missing label 1 (yellow), 2 (green) and 3 (pink) on the best
+response polytopes of game (\ref{disj-lp-game}).
+
+The paths for missing label
+4, 5 and 6 on the best response polytope of player 1 are the same
+as the paths of 1, 2 and 3 on the best response polytope of player 2,
+and vice versa.
 }
 \label{disj-lp-br-poly}
 \end{figure}
@@ -297,8 +304,10 @@ after the corresponding change of labels.
 
 \clearpage
 
-The dual version of the Lemke Path Algorithm \ref{lh-alg} and of
-Proposition \ref{lh-works-ppa-thm} is straightforward.
+The dual version of the Lemke-Howson Algorithm \ref{lh-alg} and of
+Proposition \ref{lh-works-ppa-thm} is straightforward; analogously,
+the proof can be extended to show that {\sc Another Completely Labeled Facet}
+is {\bf PPAD}.
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -313,32 +322,31 @@ A facet $F\neq F_0$ of $P^\Delta$ that is completely labeled by $l_v$.
 }
 \BlankLine
 choose any label $k\in [d]$ as missing label \\
-pivot on label $k$ from $F_0$ to $F$ which has a new verte
+pivot on label $k$ from $F_0$ to $F$ which has a new vertex
 with label $h$ \\
 \While{ $h\ne k$, so $F$ is not completely labeled ~}
 {
 pivot away from the other vertex with label $h$ from $F$ to $F'$  \\
-let $h$ be the label of the new vertex of $F'$ and
+let $h$ be the label of the new vertex of $F'$ \\
 set $F = F'$
 }
 \Return $F$
-\caption{Dual Lemke Path}
+\caption{Dual Lemke-Howson}
 \label{lh-dual-alg}
 \end{algorithm}
 
 \begin{proposition}\label{lh-dual-works-ppa-thm}
-The Dual Lemke Path Algorithm \ref{lh-dual-alg} returns
-a solution to the {\bf PPA} problem {\sc Another Completely Labeled Facet}.
+The Dual Lemke-Howson Algorithm \ref{lh-dual-alg} returns
+a solution to the {\bf PPAD} problem {\sc Another Completely Labeled Facet}.
 Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
 \end{proposition}
 
 By Theorem \ref{unit-vector-thm} and Theorem \ref{unit-vector-dual-thm},
 in the case of unit vector games it is enough to apply the
-Lemke Path Algorithm~\ref{lh-alg} to the polytope $P^l$ in
-(\ref{p-l}), or the Dual Lemke Path Algorithm
-(\ref{lh-dual-alg}) to the polytope $P^\Delta$ in
-(\ref{p-l-dual}).
+Lemke-Howson Algorithm~\ref{lh-alg} to the polytope $P^l$ in
+(\ref{p-l}), or the Dual Lemke-Howson Algorithm \ref{lh-dual-alg}
+to the polytope $P^\Delta$ in (\ref{p-l-dual}).
 The following theorem by Savani and von Stengel \cite{uvg} guarantees that
 not only does this yield a Nash equilibrium, but no potential solutions
 are ``lost'' considering the polytope $P^l$ with $m$ labels
@@ -369,6 +377,8 @@ $k=m+j$, where $j\in [n]$, the Lemke path on $P\times Q$ projects to a
 path on $Q$ that corresponds to the Lemke path on $P^l$ for the
 missing label~$l(j)$.
 \end{theorem}
+
+\todo[inline]{todo: from here}
 
 We finally focus on the case of Gale games.
 We will consider the strings $s\in G(d,n)$, with $d$ even,
@@ -565,48 +575,25 @@ the artificial equilibrium has index $-1$.
 Then a nondegenerate game with $n$ Nash equilibria
 with index $+1$ has $n-1$ Nash equilibria with index $-1$.
 
-\clearpage
+\todo[inline]{done from here until end of section}
 
-Morris \cite{morris} gave an example of a labeling
+Morris \cite{morris} has given an example of a labeling
 $l:[2d]\to [d]$ where the length of the Lemke paths on the
-cyclic polytope $C_d(2d)$ for the Lemke Path
+cyclic polytope $C_d(2d)$ for the Lemke-Howson
 Algorithm~\ref{lh-alg}
 grows exponentially in $d$ for every missing label.
 These paths are therefore also exponential on $G(d,2d)$ for
-the Lemke Path for Gale Algorithm~\ref{lhg-alg}.
-The labeling by Morris is given for $d$ both
-even and odd as follows:
-\[
-\arraycolsep.2em
-\begin{array}{rcll}
-l(k)&=&k          & \quad\quad\text{for }k\in [d],    \\
-l(d+1)&=&d,       & \\
-l(d+k)&=&d-k      & \quad\quad\text{for }2\leq k< d,\ k\text{ even },   \\
-l(d+k)&=&d-k+2    & \quad\quad\text{for }2\leq k\leq d,\ k\text{ odd }, \\
-l(2d)&=&1         & \quad\quad\text{for }k\text{ even}.
-\end{array}
-\]
+the Lemke-Howson for Gale Algorithm~\ref{lhg-alg}.
 Without repetitions of labels in consecutive positions,
-and restricted to the case of even~$d$,
-Morris's labeling is simplified to $l:[2d-2]\to [d]$ as follows:
+Morris's labeling is equilvalent to the following:
 \[
 \arraycolsep.2em
 \begin{array}{rcll}
 l(k)&=&k          & \quad\quad\text{for }k\in [d],    \\
-l(d+k)&=&d-k+1    & \quad\quad\text{for }k\in [d],\ k\text{ even},   \\
-l(d+k)&=&d-k-1    & \quad\quad\text{for }k\in [d],\ k\text{ odd}.
+l(d+k)&=&d-k+1    & \quad\quad\text{for }k\in [d - 1]\text{ and even},   \\
+l(d+k)&=&d-k-1    & \quad\quad\text{for }k\in [d - 1]\text{ and odd}.
 \end{array}
 \]
-Savani and von Stengel \cite{svs} \cite{uvg} extend Morris's
-example in order to construct different ``hard to solve'' games.
-These results give a strong motivation to study the
-complexity of \anothergale.
-Our main result, in the next section, will give a
-{\bf FP} algorithm that circumvents the problem of any exponential running
-time of the Lemke Path for Gale Algorithm by using a
-different algorithm.
-
-\clearpage
 
 \begin{example}
 \label{morris-ex}
@@ -642,3 +629,12 @@ overlined.}
 \label{morris-6-fig}
 \end{table}
 \end{example}
+
+Savani and von Stengel \cite{svs} \cite{uvg} extended Morris's
+example in order to construct a series of ``hard to solve'' games.
+Their results point to the importance of studying the
+complexity of \anothergale\ to understand the complexity of 2-{\sc Nash}.
+Our main result, in the next section, will give a
+{\bf FP} algorithm that circumvents the problem of any exponential running
+time of the Lemke-Howson for Gale Algorithm by using a very
+different approach.
