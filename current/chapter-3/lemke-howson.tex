@@ -19,10 +19,9 @@ shares all vertices but one with~$F$, see Figure \ref{pivot-facet-fig}.
 As above, since $P^\Delta$ is simplicial, there are $d$ possible choices
 for $G$.
 
-
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=40ex]{chapter-3/fig-lh/cube-pivot.pdf}%
+\includegraphics[width=38ex]{chapter-3/fig-lh/cube-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the vertices of the cube]{%
 A pivot from vertex $x$ to vertex $y$ on the edge of a cube.
@@ -32,13 +31,15 @@ A pivot from vertex $x$ to vertex $y$ on the edge of a cube.
 
 \begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-3/fig-lh/octahedron-pivot.pdf}%
+\includegraphics[width=48ex]{chapter-3/fig-lh/octahedron-pivot.pdf}%
 \hfill\strut
 \caption[A pivot on the facets of the octahedron]{%
 A pivot from facet $F$ of an octahedron to facet $G$.
 }
 \label{pivot-facet-fig}
 \end{figure}
+
+\clearpage
 
 Suppose now that there is a labeling $l_f:[n]\to [d]$ of the facets of the
 simple polytope $P$.
@@ -57,9 +58,9 @@ to a facet $F'$ with labels $(l_1,\ldots,h,\ldots,l_d)$, we say that we
 {\em drop label $k$ and pick up label $h$}, or that we
 {\em pivot on label $k$}; see Figure \ref{pivot-facet-label-fig}.
 
-\begin{figure}[hp]
+\begin{figure}[ht]
 \strut\hfill
-\includegraphics[width=38ex]{chapter-3/fig-lh/cube-pivot-label.pdf}%
+\includegraphics[width=40ex]{chapter-3/fig-lh/cube-pivot-label.pdf}%
 \hfill\strut
 \caption[A pivot on the vertices of the labeled cube]{%
 A pivot on label $k$: drop vertex $x$ with labels $(l_1,l_2,k)$ and
@@ -68,9 +69,11 @@ pick up vertex $x'$ with labels $(l_1,l_2,h)$.
 \label{pivot-vertex-label-fig}
 \end{figure}
 
-\begin{figure}[hp]
+\clearpage
+
+\begin{figure}[htb]
 \strut\hfill
-\includegraphics[width=45ex]{chapter-3/fig-lh/octahedron-pivot-label.pdf}%
+\includegraphics[width=48ex]{chapter-3/fig-lh/octahedron-pivot-label.pdf}%
 \hfill\strut
 \caption[A pivot on the facets of the labeled octahedron]{%
 A pivot on label $k$: drop a facet with labels $(l_1,l_2,k)$ and
@@ -88,7 +91,7 @@ l(S)~=~\{\,l(s)\mid s\in S\}~=~[d]\setminus\{k\}\,
 \end{equation}
 that is, all labels appear once in $S$ except for one {\em
 missing label} $k\in [d]$.
-Because $|S|=d$, in that case there is one
+Since $|S|=d$, in that case there is one
 {\em duplicate label} $h\in [d]$ that appears twice in~$S$.
 
 Let $S$ be the set of labels of a vertex in a
@@ -122,8 +125,6 @@ path'', in the terminology of Morris~\cite{morris}; this, in turn,
 can be used to prove some fundamental properties
 of both the Lemke-Howson Algorithm and the Nash equilibria of a
 bimatrix game.
-
-\clearpage
 
 \begin{algorithm}[htb]
 \SetKwInOut{Input}{input}
@@ -170,7 +171,7 @@ Otherwise, $x$ is an almost completely labeled vertex with
 duplicate label~$h$, where one of the facets that contain $x$
 and have label~$h$ is a ``new'' facet that did not contain
 the preceding vertex on the Lemke path.
-Because $S$ is simple, $x$ is always on exactly $d$ facets
+Since $S$ is simple, $x$ is always on exactly $d$ facets
 and the duplicate label is unique.
 Hence no vertex, including $x_0$, can ever be re-visited
 on the path because it would otherwise offer an alternative
@@ -191,7 +192,24 @@ The problem {\sc Another Completely Labeled Vertex} correspond to finding
 a non-standard endpoints of this graph, which is a {\bf PPA} problem.
 \end{proof}
 
-\todo[inline]{result can be extended to PPAD, see eg VvS for an in-depth study}
+Proposition \ref{lh-works-ppa-thm} can be extended. Lemke paths can be
+used to prove that {\sc Another Completely Labeled Vertex} is in {\bf PPAD},
+not just in {\bf PPA}. This is done
+by giving a {\em sign} (positive or negative) to the vertices.
+It can be proven that the endpoints of the Lemke paths have opposite
+sign, and the paths can therefore be oriented accordingly.
+Shapley \cite{shapley} proved an analogous result:
+two Nash equilibria at the ends of a
+Lemke path have opposite {\em index}, a concept analogous to sign but
+defined using determinants on the payoff matrices for the equilibrium
+support.
+The index of a Nash equilibrium is usually normalized, by
+multiplication with $-1$ of all signs if necessary, so that
+the artificial equilibrium has index $-1$;
+then a nondegenerate game with $n$ Nash equilibria
+with index $+1$ has $n-1$ Nash equilibria with index $-1$.
+For an in-depth study of the topics related to sign in the Lemke-Howson
+and other algorithms, we refer to V\'{e}gh and von Stengel \cite{vvs}.
 
 Applying the parity result of Proposition \ref{lh-works-ppa-thm} to the
 case of a bimatrix game (not necessarily a unit vector game), and
@@ -225,6 +243,8 @@ Since the polytopes $P$ and $Q$ are in $\reals^m$ and $\reals^n$, whereas $R$
 is a polytope in $\reals^{m+n}$, the second version is much easier to
 visualize.
 
+\clearpage
+
 \begin{example}({\rm Savani and von Stengel \cite{uvg}})
 Consider the $3\times 3$ game $(A,B)$ of Example \ref{br-game-ex}.
 \begin{equation*}
@@ -237,6 +257,7 @@ B = \left(\begin{matrix}0&2&4\\ 3&2&0\\
 The best response polytopes can be represented as the best response regions
 of Figure \ref{br-regions-fig} extended to the origin $\0$,
 as in Figure~\ref{lh-path-fig}.
+
 The path starts from $(\0,\0)$.
 We choose the missing label~1 and move in the polytope $P$.
 Then label~6 is duplicate; so we drop it and we make the next move on the
@@ -280,7 +301,9 @@ There are three equilibria of $(C,C\T)$, all of them symmetric,
 at $(x_i,x_i)$ with
 $x_1=(0,0,1)$,
 $x_2=(1/6,1/3,1/2)$ and
-$x_3=(1/3,2/3,0)$. All Lemke paths from the
+$x_3=(1/3,2/3,0)$.
+
+All Lemke paths from the
 artificial equilibrium $(0,0)$ end at $(x_1,x_1)$, and consequently all
 other Lemke paths connect $(x_2,x_2)$ and $(x_3,x_3)$; see
 Figure \ref{disj-lp-br-poly}.
@@ -302,14 +325,14 @@ and vice versa.
 \end{figure}
 \end{example}
 
-\clearpage
-
 The dual version of the Lemke-Howson Algorithm \ref{lh-alg} and of
 Proposition \ref{lh-works-ppa-thm} is straightforward; analogously,
 the proof can be extended to show that {\sc Another Completely Labeled Facet}
 is {\bf PPAD}.
 
-\begin{algorithm}
+\clearpage
+
+\begin{algorithm}[ht]
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
 \Input{%
@@ -337,7 +360,8 @@ set $F = F'$
 
 \begin{proposition}\label{lh-dual-works-ppa-thm}
 The Dual Lemke-Howson Algorithm \ref{lh-dual-alg} returns
-a solution to the {\bf PPAD} problem {\sc Another Completely Labeled Facet}.
+a solution to the {\bf PPAD}
+problem {\sc Another Completely Labeled Facet}.
 Furthermore, the number of completely labeled facets
 in a simplicial polytope with labeled vertices is even.
 \end{proposition}
@@ -398,8 +422,6 @@ when the label $l_s(i)$ does not uniquely identify~$i$),
 The {\em Lemke Path for Gale Algorithm} is given
 in Algorithm~\ref{lhg-alg}.
 
-\clearpage
-
 \begin{algorithm}%\label{lhg-alg}
 \SetKwInOut{Input}{input}
 \SetKwInOut{Output}{output}
@@ -447,8 +469,6 @@ $s_D=\10\1\10\1$. These correspond to the facets $A$, $B$, $C$ and
 $D$ of $C_4(6)$.
 Pivoting from $s_A=\1\1\1\100$ with missing label 3 returns $s_B=\1\10\1\10$.
 Analogously, pivoting from facet $A$ with missing label 3 returns facet $B$.
-
-\clearpage
 
 \begin{figure}[ht]
 \strut\hfill
@@ -563,17 +583,6 @@ in the same run.
 \label{lhg-sign-ex-figure}
 \end{figure}
 \end{example}
-
-A generalization of Proposition \ref{lhg-works-ppad-thm}
-is given in Shapley \cite{shapley}: two Nash equilibria at the ends of a
-Lemke path have opposite {\em index}, a concept analogous to the sign but
-defined using determinants on the payoff matrices for the equilibrium
-support.
-The index of a Nash equilibrium is usually normalized (by
-multiplication with $-1$ of all signs if necessary) so that
-the artificial equilibrium has index $-1$.
-Then a nondegenerate game with $n$ Nash equilibria
-with index $+1$ has $n-1$ Nash equilibria with index $-1$.
 
 \todo[inline]{done from here until end of section}
 
