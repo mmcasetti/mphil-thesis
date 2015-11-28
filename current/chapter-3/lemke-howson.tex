@@ -402,11 +402,13 @@ path on $Q$ that corresponds to the Lemke path on $P^l$ for the
 missing label~$l(j)$.
 \end{theorem}
 
-\todo[inline]{todo: from here}
-
 We finally focus on the case of Gale games.
-We will consider the strings $s\in G(d,n)$, with $d$ even,
-as ``wrapped-around strings''.
+In line with Proposition \ref{galenash-to-another-gale}, we look for
+solutions of the problem \anothergale, see Table \ref{another-gale}.
+By Proposition \ref{d-even-another-gale}, it is enough to study the
+case of Gale strings $s\in G(d,n)$ with $d$ even.
+We will consider these as ``wrapped-around strings''.
+
 Let $s(i)=1$ for an index $i\in [n]$. Then, by the Gale evenness condition,
 there is an odd run of \1's either on the left or on the right
 of position $i$ in $s$. Let $j$ be the first index after this run.
@@ -414,13 +416,14 @@ A {\em pivot from $s$ to $s'$} is given by setting $s'(i)=0$
 and $s'(j)=1$ to yield the new string~$s'$ which otherwise
 agrees with~$s$.
 If there is a labeling $l_s:[n]\to [d]$, we say that we
-{\em pivot on label $l_s(i)$} (where we have to specify $i$
-%% something you missed in your Algorithms
-when the label $l_s(i)$ does not uniquely identify~$i$),
-{\em dropping label $l_s(i)$} and
-{\em picking up label $l_s(j)$}.
-The {\em Lemke Path for Gale Algorithm} is given
+{\em drop label $l_s(i)$} and
+{\em pick up label $l_s(j)$}, or that we {\em pivot on label $l_s(i)$},
+specifying the index $i$ when the label $l_s(i)$ is not enough to
+identify it.
+The {\em Lemke-Howson for Gale Algorithm} is given
 in Algorithm~\ref{lhg-alg}.
+
+\clearpage
 
 \begin{algorithm}%\label{lhg-alg}
 \SetKwInOut{Input}{input}
@@ -440,16 +443,17 @@ with label $h$\\
 \While{ $h\ne k$, so $s$ is not completely labeled ~}
 {
 pivot away from the other \1 bit in $s$ with label $h$ from $s$ to $s'$  \\
-let $h$ be the label of the new \1 bit in $s'$ and
+let $h$ be the label of the new \1 bit in $s'$ \\
 set $s = s'$
 }
 \Return $s$
-\caption{Lemke Path for Gale}
+\caption{Lemke-Howson for Gale}
 \label{lhg-alg}
 \end{algorithm}
 
-The next example illustrates the correspondence between the
-Lemke Path Algorithm and the Lemke Path for Gale Algorithm.
+The next example illustrates the correspondence between the Dual
+\linebreak[5]
+Lemke-Howson Algorithm and the Lemke-Howson for Gale Algorithm.
 
 \begin{example}
 Figure \ref{lhg-123432-fig} shows the cyclic polytope $C_4(6)$
@@ -457,18 +461,20 @@ with the labeling
 \[
 \begin{array}{rll}
 l_v(i)= & i\quad & \text{ for }i\in [4], \\
-l_v(5)= & 3\,,  \\
-l_v(6)= & 2\,.
+l_v(5)= & 3,  \\
+l_v(6)= & 2.
 \end{array}
 \]
-This corresponds to the labeling $l_s$ for $G(4,6)$ given in
-Example \ref{c46-123432-ex}, which gives the four completely labeled Gale
-strings
+This corresponds to the labeling $l_s=123432$ for $G(4,6)$ given in
+Example \ref{c46-123432-ex}, for which there are four completely labeled
+Gale strings:
 $s_A=\1\1\1\100$, $s_B=\1\10\1\10$, $s_C=\100\1\1\1$ and
-$s_D=\10\1\10\1$. These correspond to the facets $A$, $B$, $C$ and
-$D$ of $C_4(6)$.
-Pivoting from $s_A=\1\1\1\100$ with missing label 3 returns $s_B=\1\10\1\10$.
-Analogously, pivoting from facet $A$ with missing label 3 returns facet $B$.
+$s_D=\10\1\10\1$. These, in turn, correspond to the facets $A$, $B$, $C$
+and $D$ of $C_4(6)$, that are exactly the completely labeled facets for $l_v$.
+
+From the point of view of Gale strings, pivoting on label 3
+from $s_A=\1\1\1\100$ returns $s_B=\1\10\1\10$. Analogously,
+pivoting on label 3 from facet $A$ returns facet $B$.
 
 \begin{figure}[ht]
 \strut\hfill
@@ -485,10 +491,13 @@ facet & {\bf 1} & {\bf 2} & {\bf 3} & {\bf 4} & {\bf 3} & {\bf 2}
 \end{tabular}
 \hfill\strut
 \caption[A pivot on $G(4,6)$ and on $C_4(6)$]{%
-The pivoting to $s_A=\1\1\1\1 00$ to $s_B=\1\10\1\10$ in the
-Lemke Path
-for Gale Algorithm corresponds to the pivoting from facet $A$ to facet $B$
-in the Dual Lemke Path Algorithm.%
+Pivoting on label 3 from $s_A=\1\1\1\1 00$ to $s_B=\1\10\1\10$ in the
+Lemke-Howson for Gale Algorithm corresponds to the pivoting from
+facet $A$ (edges in green) to facet $B$ (edges in blue) in the
+Dual Lemke Path Algorithm.
+
+The indices $i=1,2,4$ correspond to the 2-dimensional intersection of
+$A$ and $B$ (edges in pink).
 }
 \label{lhg-123432-fig}
 \end{figure}
@@ -496,17 +505,18 @@ in the Dual Lemke Path Algorithm.%
 
 The membership of \anothergale\ in the complexity class
 {\bf PPA} follows from an argument similar to Proposition
-\ref{lh-works-ppa-thm}.
-We extend the result to prove its membership in {\bf PPAD}.
+\ref{lh-works-ppa-thm}. We give here the full proof that it is
+in {\bf PPAD}, following the exposition given in Merschen \cite{jm}.
 
 A {\em permutation} of elements of an ordered set $S$ is a sequence
-without repetition. This gives a rearrangement of the elements of $S$.
+without repetition; this gives a rearrangement of the elements of $S$.
 A {\em transposition} is a permutation of exactly two elements.
 The {\em sign of a permutation} is
 $\sign(\sigma)=(-1)^m$, where $m$ is the number of transpositions needed
 to get the {\em natural order} $\sigma_0=1\ldots n$ from $\sigma$.
 It is immediate to see that any two permutations that differ in only
 one transposition have opposite sign.
+
 We define the {\em sign of a completely labeled Gale string} $s\in G(d,n)$
 %% what is "relative labeling"?
 % as follows: let $l:[n]\to [d]$ be the relative labeling of $G(d,n)$, and
@@ -516,6 +526,7 @@ two labels corresponding to a run in $l$ are adjacent in $l_0$. Then we
 define $\sign(s)=\sign(l_0)$.
 Notice that if $l(i)=i$ for $i\in [d]$ then the sign of the completely
 labeled Gale string $\1^d 0^{(n-d)}$ is always positive.
+
 The {\em sign of an almost completely labeled Gale string} $s\in G(d,n)$ with
 missing label~$k$ and duplicate label $h$ is defined on two different strings.
 Let $i_1$ be the index of $h$ reached by the last pivot
@@ -527,8 +538,8 @@ substituting $k$ to $h$ at index $i_2$. Notice that $\sign(l_1)=-\sign(l_2)$,
 since they can be obtained from each other applying the transposition $(kh)$.
 
 Consider now the steps of the Lemke paths in the Lemke Path for Gale
-Algorithm in the case where $\sign(s_0)=+1$.
-The negative case is analogous, with opposite signs.
+Algorithm in the case where $\sign(s_0)=+1$;
+the negative case is analogous, with opposite signs.
 If the first pivot returns another completely labeled Gale
 string $s$, this must have negative sign because it has been obtained
 ``jumping'' over an odd number of \1's.
@@ -539,25 +550,22 @@ change sign. This shows that
 the Lemke Path for Gale Algorithm results in the sign
 of the completely and almost completely labeled Gale strings
 ``swinging'' as in Table \ref{lhg-sign-figure}.
-Notice that all this construction can be done in polynomial time.
+Notice that all the steps of this construction can be done in polynomial
+time.
 Orienting all Lemke paths from positive to negative reduces the problem
 \anothergale\ to {\sc End Of The Line}.
-\begin{table}[hbt]
-$\xymatrix@C=30mm@R-=5mm@M=3mm{
-\text{\footnotesize completely labeled string} \ar[r]^{pivot}
-    & \text{\footnotesize missing label in new position}  \ar[dl]|{=}  \\
-\text{\footnotesize missing label in old position} \ar[r]^{pivot}
-    & \qquad\qquad\cdots\qquad\qquad \ar[dl]|{=} \\
-\qquad\qquad\cdots\qquad\qquad \ar[r]^{pivot}
-    & \text{\footnotesize completely labeled string}
-}$
-\caption[Sign switching on the Lemke Path for Gale Algorithm]
-{Sign switching on the Lemke Path for Gale Algorithm.}
+
+\begin{figure}[hp]
+\strut\hfill
+\includegraphics[width=70ex]{chapter-3/fig-lh/lhg-sign.pdf}%
+\hfill\strut
+\caption[Sign switching of the Lemke Path for Gale Algorithm]
+{Sign switching of the Lemke Path for Gale Algorithm.}
 \label{lhg-sign-figure}
-\end{table}
+\end{figure}
 
 \begin{proposition}\label{lhg-works-ppad-thm}
-The Lemke Path for Gale Algorithm~\ref{lhg-alg} returns a
+The Lemke-Howson for Gale Algorithm~\ref{lhg-alg} returns a
 solution to the {\bf PPAD} problem \anothergale.
 % d even assumed in Algo
 Furthermore, the number of completely labeled Gale strings
@@ -568,23 +576,24 @@ sign.
 
 \begin{example}
 Let $l_s=123432$. Consider the Lemke path from the completely labeled
-Gale string $s=\1\1\1\100$ with missing label $1$.
+Gale string $s=\1\1\1\100$ with missing label $4$.
 Figure \ref{lhg-sign-ex-figure} shows the graph of Table
 \ref{lhg-sign-figure}. Notice that
 $\sign(\10\1\10\1)=\sign(l(6)l(1)l(3)l(4))=\sign((2134))$,
 since $s(6)=s(1)=1$ and therefore the indices $6$ and $1$ are consecutive
 in the same run.
-\begin{figure}[h]
+
+\begin{figure}[hp]
 \strut\hfill
-\includegraphics[width=60ex]{chapter-3/fig-lh/lhg-sign.pdf}%
+\includegraphics[width=60ex]{chapter-3/fig-lh/lhg-sign-example.pdf}%
 \hfill\strut
 \caption[Pivoting with sign]
-{Pivoting with sign on $123432$.}
+{Pivoting with sign on the labeling $l=123432$ for $G(4,6)$.}
 \label{lhg-sign-ex-figure}
 \end{figure}
 \end{example}
 
-\todo[inline]{done from here until end of section}
+\clearpage
 
 Morris \cite{morris} has given an example of a labeling
 $l:[2d]\to [d]$ where the length of the Lemke paths on the
@@ -639,7 +648,7 @@ overlined.}
 \end{table}
 \end{example}
 
-Savani and von Stengel \cite{svs} \cite{uvg} extended Morris's
+Savani and von Stengel \cite{svs} \cite{uvg} extended Morris'
 example in order to construct a series of ``hard to solve'' games.
 Their results point to the importance of studying the
 complexity of \anothergale\ to understand the complexity of 2-{\sc Nash}.
