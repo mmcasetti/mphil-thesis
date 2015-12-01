@@ -1,23 +1,23 @@
 \section{The Complexity of \anothergale}
 \label{main-sect}
 
-% proposition "enough to solve anothergale for d even": \label{d-even-anothergale}
-
 A {\em matching} of a graph $G=(V,E)$ is a set $M\subseteq E$ such that every
 vertex $v\in V$ is the endpoint of at most one edge $m\in M$. A
 {\em perfect matching} is a matching such that there is an edge $m\in M$
 incident to every vertex $v\in V$.
-Edmonds \cite{edm} proved the {\bf FP}
-complexity of finding a perfect matching. The result can be easily extended
-to multigraphs which have parallel edges, since a perfect matching of a multigraph $G$ corresponds to
-a perfect matching of the graph $G'$ obtained by ignoring all parallel edges
-of $G$.
+Edmonds \cite{edm} proved that the problem of finding a perfect matching
+is in {\bf FP}.
 
-\begin{theorem}{\rm (Edmonds \cite{edm}.)}
+\begin{theorem}{\rm (Edmonds \cite{edm})}
 \label{edm-thm}
 It takes polynomial time to find a perfect matching of a
 graph or to decide that no such matching exists.
 \end{theorem}
+
+Theorem \ref{edm-thm} can be easily extended
+to multigraphs, since a perfect matching of a multigraph $G$ corresponds to
+a perfect matching of the graph $G'$ obtained taking only one edge whenever
+there are parallel edges in $G$.
 
 \begin{problem}
 {Perfect Matching}
@@ -36,7 +36,7 @@ related problem \gale\ can be solved in polynomial time.
 
 \begin{problem}
 {\gale}
-{A labeling $l:[n]\to[d]$, where $d$ is even and $n>d$.}
+{A labeling $l:[n]\to[d]$, where $n>d$.}
 {A Gale string $s\in G(d,n)$ that is completely labeled by $l$ or {\sc No}
 if no such string exists.}
 \end{problem}
@@ -46,8 +46,8 @@ if no such string exists.}
 \end{theorem}
 
 \begin{proof}
-Recall that we consider the Gale strings $s\in G(d,n)$ as
-``wrapped-around strings'', that is,
+Let us first consider the case of $d$ even, with Gale strings $s\in G(d,n)$
+as ``wrapped-around strings'', that is,
 $s(n+i)=s(i)$ and $l(n+i)=l(i)$ for all~$i\in[n]$.
 
 Let $G=(V,E)$ be the multigraph with $V=[d]$, so that the vertices of $G$
@@ -65,14 +65,9 @@ By the Gale evenness
 condition, every run of length $k$ in $s$ corresponds uniquely to $k/2$
 disjoint pairs of indices $(i,i+1)$ with $s(i)=s(i+1)=1$.
 Let $M$ be the set of corresponding edges $(l(i),l(i+1))$ in~$E$.
-%% does not define M clearly
-% \begin{equation}
-% \label{matching-graph}
-% M=\{ (l(i),l(i+1))\ \mid\ s(i)=s(i+1)=1\text{ without repetitions of } i \}.
-% \end{equation}
 Since $s$ is completely labeled, every label $l(i)\in [d]$
 occurs at exactly one of the endpoints of an edge in~$M$.
-Since the there are no repetitions of $i$'s in~$M$, there is only one such
+Since there are no repetitions of $i$'s in~$M$, there is only one such
 edge. Hence, $M$ is a perfect matching of~$G$.
 
 Conversely, let $M$ be a perfect matching for $G=(V,E)$.
@@ -85,14 +80,38 @@ evenness condition. Furthermore, since $M$ is perfect, every
 vertex $l(i)\in [d]$ is the endpoint of an edge $(l(i),l(i+1))\in M$,
 therefore $s$ is completely labeled.
 
+We now study the case of $d$ odd.
+
+Let $l':[n+1]\to[d+1]$ be the labeling defined as
+in (\ref{extended-labeling}). Let $G=(V,E)$ with $V=[d+1]$ and
+\begin{equation}
+E=\{\,(l(i),l(i+1))\mid i\in[n]\, \} \cup \{ (l(n),d+1), (d+1,l(1)) \}.
+\end{equation}
+By the argument used in the case of $d$ even, there is a completely labeled
+Gale string $s'\in G(d+1, n+1)$ for $l'$ if and only $G$ has a perfect
+matching.
+
+Let $s'$ be a bitstring string of length $n+1$, and
+let $s = s|_{[n]}$, that is, the bitstring of length $n$ given by
+$s(i)=s'(i)$ for $i\in [n]$.
+Since the only occurrence of label $d+1$ in $l'$ is at index $n+1$, $s$ is
+a completely labeled by $l$ if and only if $s'$ is completely labeled.
+Furthermore, if $s'$ is a Gale string then $s$ is also a Gale string,
+since the Gale evenness condition still holds in the internal runs.
+
+Given a labeling $l:[n]\to [d]$ with $d$ odd, it is therefore enough to
+apply the algorithm detailed above to the corresponding $l':[n+1]\to [d+1]$
+to find a completely labeled Gale string $s'$, and from that a
+Gale string $s$ that is completely labeled for $l$.
+Therefore, \gale\ for $d$ odd reduces to the case of $d$ even.
+
 This proves that \gale\ reduces to {\sc Perfect Matching} in polynomial time.
-By Proposition \ref{pm-thm}, Algorithm~\ref{gale-alg} takes
-polynomial time to find a solution of an instance of \gale\
-or to decide that no such solution exists.
+Therefore, by Proposition \ref{pm-thm}, \gale\ is a problem in {\bf FP}.
 \end{proof}
 
-It is interesting to notice that the graph $G=(V,E)$ is an Euler graph,
-since its edges have been defined following an Euler tour starting in $l(1)$.
+A polynomial-time algorithm to find a solution of an instance of \gale\
+or to decide that no such solution exists is given by
+Algorithm~\ref{gale-alg}.
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -105,6 +124,16 @@ A Gale string $s\in G(d,n)$ that is completely labeled by $l$ or {\sc No} if
 no such string exists.
 }
 \BlankLine
+\If{ $d$ odd }
+    {
+    Set ``$d$ originally odd'' = True
+    Set $d = d+1$, $n = n+1$ \\
+    Set $l':[n+1]\to [d+1]$, with $l'(i)= l(i)$ for $i\in [n]$, $l(n+1) = d+1$ \\
+    Set $l = l'$
+    }
+\Else{
+    Set ``$d$ originally odd'' = False
+    }
 Set $G=(V,E)$, with $V=[d]$ and $E=\varnothing$ \\
 \For{ $i\in [n-1]$ }
     {
@@ -117,7 +146,11 @@ Run Edmonds's Algorithm on $G$ \\
     set $s=0^n$ \\
     \For{ $(l(i),l(j))\in M$ }
         {
-        set $s(i)=s(j)=\1$
+        Set $s(i)=s(j)=\1$
+        }
+    \If{ ``$d$ originally odd''  }
+        {
+            Set $s = s|_{[n-1]}$
         }
     Return $s$
     }
@@ -128,7 +161,9 @@ Run Edmonds's Algorithm on $G$ \\
 \label{gale-alg}
 \end{algorithm}
 
-\clearpage
+It is interesting to notice that the graph $G=(V,E)$ is an Euler graph,
+since its edges have been defined following an Euler tour starting in
+$l(1)$.
 
 \begin{example}
 \label{gs-pm-ex}
@@ -143,16 +178,20 @@ $s=\1\1\1\1\1\1 0000$ and $s=\1 0000\1\1\1\1\1$.
 \includegraphics[width=35ex]{chapter-3/fig-main/morris-6-graph.pdf}%
 \hfill\strut
 \caption[The Morris graph for $G(6,4)$]{%
-The perfect matchings for the Morris labeling $l=1234564523$, corresponding
-to the Gale strings $s=\1\1\1\1\1\1 0000$ (in blue) and
-$s=\1 0000\1\1\1\1\1$ (in red).
+The perfect matchings for the Morris labeling $l=1234564523$.
+
+The matching $M_1$ (in blue) corresponds to the completely labeled
+Gale strings $s_1=\1\1\1\1\1\1 0000$ and the matching $M_2$ (in red)
+corresponds to the string $s_1=\1 0000\1\1\1\1\1$.
 }
 \label{perfect-matching-fig}
 \end{figure}
 \end{example}
 
+\todo[inline]{done until here}
+
 Notice that the existence of a completely labeled Gale string is not
-gua\-ran\-teed.
+guaranteed.
 %\mbox{guaranteed.}
 
 \begin{example}
