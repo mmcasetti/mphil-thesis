@@ -296,22 +296,13 @@ time for each $G_i$. Therefore, \anothergale\ reduces to the problem
 and by Proposition \ref{pm-thm} it belongs to {\bf FP}.
 \end{proof}
 
-Applying Theorem \ref{galenash-to-another-gale} to
-Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
-is in {\bf FP}, under the assumption that the construction
-of the game from a cyclic polytope is given.
-
-\begin{theorem}
-\label{main-thm}
-Finding a Nash equilibrium of a Gale game takes polynomial time.
-\end{theorem}
-
+Notice that, in the case of $d$ odd, the matchings $M_0$ and $M$ always
+differ in at least one edge that is neither $(l(n),d+1)$ nor $(d+1,l(1))$,
+since these are the only two edges incident on the vertex $v=d+1$.
 Given a labeling $l:[n]\to [d]$ and a completely labeled Gale string
-\linebreak[5]
-$s_0\in G(d,n)$, Algorithm \ref{anothergale-alg} returns
+$s_0\in G(d,n)$, Algorithm~\ref{anothergale-alg} returns
 a Gale string $s\neq s_0$ that is completely labeled by $l$
 in polynomial time.
-\todo{general case for $d$ even {\bf and odd}}
 
 \begin{algorithm}
 \SetKwInOut{Input}{input}
@@ -325,18 +316,34 @@ A Gale string $s\in G(d,n)$, completely labeled by $l$, such that
 $s\neq s_0$.
 }
 \BlankLine
-set $G=(V,E)$ as in Algorithm \ref{gale-alg} \\
-set $M_0$ as the matching corresponding to $s_0$\\
+\If{ $d$ odd }
+    {
+    Set ``$d$ originally odd'' as True \\
+    Set $d = d+1$ and $n = n+1$ \\
+    Set $l'(i)= l(i)$ for $i\in [n]$ and $l(n+1) = d+1$ \\
+    Set $l = l'$ \\
+    Set $s_0'(i)= s_0(i)$ for $i\in [n]$ and $s_0'(n+1) = \1$ \\
+    Set $s_0 = s_0'$
+    }
+\Else{
+    Set ``$d$ originally odd'' as False
+    }
+Set $G=(V,E)$ as in Algorithm \ref{gale-alg} \\
+Set $M_0$ as the matching corresponding to $s_0$\\
 \For{ $m\in M_0$ }
     {
     $E_m=E\setminus\{ m \}$ \\
     Run Edmonds's Algorithm on $G_m=(V,E_m)$ \\
     \If{ Edmonds's Algorithm returns a perfect matching $M_m$ of $G_m$ }
         {
-        set $s=0^n$ \\
+        Set $s=0^n$ \\
         \For{ $(l(i),l(j))\in M_m$ }
             {
-            set $s(i)=s(j)=\1$
+            Set $s(i)=s(j)=\1$
+            }
+        \If{ ``$d$ originally odd''  }
+            {
+            Set $s = s|_{[n]}$
             }
         \Return $s$
         }
@@ -344,6 +351,16 @@ set $M_0$ as the matching corresponding to $s_0$\\
 \caption{Another Gale String}
 \label{anothergale-alg}
 \end{algorithm}
+
+Applying Theorem \ref{galenash-to-another-gale} to
+Theorem \ref{anothergale-thm} we have our main result: {\sc Gale Nash}
+is in {\bf FP}, under the assumption that the construction
+of the game from a cyclic polytope is given.
+
+\begin{theorem}
+\label{main-thm}
+Finding a Nash equilibrium of a Gale game takes polynomial time.
+\end{theorem}
 
 \clearpage
 
