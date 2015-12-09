@@ -163,11 +163,13 @@ algorithm that, given a perfect matching of an Euler graph, finds a perfect
 matching of opposite sign. This allows to find a solution to
 {\sc Opposite Sign Gale} in polynomial time.
 
-\todo[inline]{from here: expand on savani}
-
 The wider issue of the complexity of the Lemke-Howson Algorithm has been
 solved by Goldberg, Papadimitriou and Savani \cite{gps} as
-{\bf PSPACE}-com\-plete. This invites, once more, a further investigation of
+{\bf PSPACE}-com\-plete. From a more general point of view,
+Fearnley and Savani \cite{fs-simplex} have proven that it is
+{\bf PSPACE}-complete to find a solution that is computed by a pivoting
+method, such as the simplex algorithm.
+This invites, once more, a further investigation of
 exchange-like algorithms to construct ``hard to solve'' games.
 Since restricting to games that can be reduced to oiks of dimension $2$
 seems to give games that are, after all, easily solvable, a possible
@@ -177,8 +179,6 @@ interesting, although the use of products of polytopes to make the
 solvability via enumeration support harder in Savani and
 von Stengel \cite{svs} was circumvented together with the simpler
 case of Gale games by our result.
-
-\todo[inline]{until here: savani}
 
 A further complexity-related result in the case of Gale games is given in
 Merschen \cite{jm}: finding the number of equilibria of a Gale game
