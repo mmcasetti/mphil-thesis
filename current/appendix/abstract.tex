@@ -1,43 +1,40 @@
-This thesis presents a report on original research, expanding on a result
-\linebreak[5]
+This thesis presents a report on original research, extending a result
 published as joint
 work with Merschen and von Stengel in {\em Electronic Notes in Discrete
-Mathematics}~\cite{main}. We presents a polynomial time
-algorithm to solve two problems related to labeled Gale strings, a
+Mathematics}~\cite{main}. We present a polynomial time
+algorithm for two problems on labeled Gale strings, a
 combinatorial structure
-\linebreak[5]
-introduced by Gale in \cite{gale} that can be
+introduced by Gale \cite{gale} that can be
 used in the representation of a particular class of games.
 
 These games were used by Savani and von Stengel~\cite{svs} as an
 example of exponential running time for the classical
 \mbox{Lemke-Howson} algorithm to find a Nash equilibrium of a
 bimatrix game~\cite{lh}.
-It was therefore conjectured that \mbox{solving} these games was a problem
-complete for the class {\bf PPAD} (Polynomial Parity
+It was therefore conjectured that \mbox{solving} these games was a
+complete problem in the class {\bf PPAD} (Polynomial Parity
 Argument, Directed version, see Papadimitriou~\cite{ppad}). In turn, a major
-motivation for the definition of PPAD was to study complementary pivoting
-methods, including the Lemke-Howson algorithm.
+motivation for the definition of PPAD was the study of complementary pivoting
+methods, such as the Lemke-Howson algorithm.
 
-Our result, on the contrary, sets apart this class of games as a case
+Our result, unexpectedly, sets apart this class of games as a case
 where a Nash equilibrium can be found in polynomial time.
 Since Daskalakis, Goldberg and Papaditrimiou~\cite{dgp} and
-Chen and Deng~\cite{cd} proved the \mbox{{\bf PPAD}-completeness} of
-finding a Nash equilibrium in general normal-form games, we have a special
+Chen and Deng~\cite{cd} proved that finding a Nash equilibrium in
+general normal-form games is \mbox{{\bf PPAD}-complete}, we have a special
 class of games, unless \mbox{{\bf PPAD} = {\bf P}}.
 
-Our proof exploits two results. First of all, as seen in Savani
+Our proof exploits two results. As seen in Savani
 and von Stengel~\cite{svs}~\cite{uvg}, we represent the Nash equilibria
 of these special games as Gale strings.
-Our original construction is a graph for which perfect matchings correspond
-to Nash equilibria via Gale strings; exploiting the polynomial-time
-algorithm for a perfect matching in a graph given by Edmonds~\cite{edm}
-we have our result.
+We then give a graph where the perfect matchings correspond
+to Nash equilibria via Gale strings, and we exploit Edmonds'
+polynomial-time algorithm for a perfect matching in a graph~\cite{edm}.
+The proof given in Casetti, Merschen and von Stengel \cite{main}
+covered only the case of even-dimensional Gale strings;
+here we extend the result to the general case.
 
-Merschen~\cite{jm} and V\'{e}gh and von Stengel~\cite{vvs} expanded our
-ideas to prove further results concerning the index of a Nash
-equilibrium, as defined in
-\linebreak[5]
-Shapley~\cite{shapley}, in the framework of ``oiks''
-as considered by
+Merschen~\cite{jm} and V\'{e}gh and von Stengel~\cite{vvs} expanded on our
+ideas, proving further results on the index of Nash equilibria (see
+Shapley~\cite{shapley}) in the framework of ``oiks'' introduced by
 Edmonds~\cite{edm-oiks} and Edmonds and Sanit\`a~\cite{edm-sanita}.
